@@ -30,10 +30,11 @@ public class WerknemerToevoegenIO {
 	}
 	
 	
-	public void voegWerknemerToe() {
+	public String voegWerknemerToe() {
 		Werknemer w = new Werknemer();
 		
 		//w.
+		return "home";
 		}
 	
 	

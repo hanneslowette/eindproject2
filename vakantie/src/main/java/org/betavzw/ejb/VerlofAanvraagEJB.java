@@ -66,4 +66,21 @@ public class VerlofAanvraagEJB {
 		return manager.find(VerlofAanvraag.class, id);
 	}
 
+	public LocalDate getStartDatum() {
+		return manager.find(VerlofAanvraagEJB.class, this).getStartDatum();
+	}
+
+	public LocalDate getEindDatum() {
+		return manager.find(VerlofAanvraagEJB.class, this).getEindDatum();
+	}
+
+	public void setToestand(String toestand) {
+		manager.setProperty("Toestand",
+				Toestand.valueOf(toestand.toUpperCase()));
+
+	}
+
+	public Toestand getToestand() {
+		return manager.find(VerlofAanvraagEJB.class, this).getToestand();
+	}
 }

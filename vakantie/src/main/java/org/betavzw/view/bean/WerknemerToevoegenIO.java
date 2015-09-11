@@ -43,7 +43,10 @@ public class WerknemerToevoegenIO {
 	
 	
 	public String voegWerknemerToe() {
-		Werknemer w = new Werknemer();
+		//Werknemer w = new Werknemer();
+		//Werknemer w4 = new Werknemer(naam, voornaam, adres, email, geboortedatum);
+		
+		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, adres);
 		p.toevoegen(w);
 		//w.
 		return "home";

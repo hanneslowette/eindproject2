@@ -1,5 +1,6 @@
 package org.betavzw.entities;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -52,7 +53,11 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
-	private String adres;
+	private Adres adres;
+
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
 
 	/**
 	 * De postcode van de gemeente waar de werknemer woont
@@ -86,6 +91,37 @@ public class Werknemer {
 	 */
 	@OneToMany
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
+	
+	
+	
+	
+	
+	
+	
+
+	public Werknemer() {
+		super();
+	}
+
+//	public Werknemer(String naam, String voornaam, String email,
+//			LocalDate geboortedatum, String adres) {
+//		super();
+//		this.naam = naam;
+//		this.voornaam = voornaam;
+//		this.email = email;
+//		this.geboortedatum = geboortedatum;
+//		//this.adres = adres;
+//	}
+
+	public Werknemer(String naam2, String voornaam2, String email2,
+			Date geboortedatum2, Adres adres2) {
+		// TODO Auto-generated constructor stub
+		this.naam = naam2;
+		this.voornaam = voornaam2;
+		this.email = email2;
+		this.geboortedatum = geboortedatum;
+		this.adres = adres2;
+	}
 
 	public String getNaam() {
 		return naam;
@@ -127,13 +163,13 @@ public class Werknemer {
 		this.personeelsNr = personeelsNr;
 	}
 
-	public String getAdres() {
-		return adres;
-	}
-
-	public void setAdres(String adres) {
-		this.adres = adres;
-	}
+//	public String getAdres() {
+//		return adres;
+//	}
+//
+//	public void setAdres(String adres) {
+//		this.adres = adres;
+//	}
 
 	public int getPostcode() {
 		return postcode;

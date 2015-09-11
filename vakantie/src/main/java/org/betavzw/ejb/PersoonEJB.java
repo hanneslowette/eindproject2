@@ -7,6 +7,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.betavzw.entities.Adres;
 import org.betavzw.entities.JaarlijksVerlof;
 import org.betavzw.entities.Team;
 import org.betavzw.entities.VerlofAanvraag;
@@ -30,7 +31,7 @@ public class PersoonEJB {
 		manager.persist(w);
 	}
 	
-	public void toevoegen(String naam, String voornaam, String adres,
+	public void toevoegen(String naam, String voornaam, Adres adres,
 			String email, LocalDate geboortedatum) {
 		Werknemer w = new Werknemer();
 		w.setNaam(naam);

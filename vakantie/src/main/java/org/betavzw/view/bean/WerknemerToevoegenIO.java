@@ -2,11 +2,15 @@ package org.betavzw.view.bean;
 
 import java.sql.Date;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+//import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.betavzw.ejb.PersoonEJB;
+import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Adres;
+import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
 
 @Named
@@ -18,8 +22,16 @@ public class WerknemerToevoegenIO {
 	private String email;
 	private Date geboortedatum;
 	
+	@EJB
+	private PersoonEJB p;
 	
-	public WerknemerToevoegenIO(String naam, String voornaam, Adres adres,
+	
+	public WerknemerToevoegenIO() {
+		super();
+	}
+
+
+	public WerknemerToevoegenIO  (String naam, String voornaam, Adres adres,
 			String email, Date geboortedatum) {
 		super();
 		this.naam = naam;
@@ -32,10 +44,23 @@ public class WerknemerToevoegenIO {
 	
 	public String voegWerknemerToe() {
 		Werknemer w = new Werknemer();
-		
+		p.toevoegen(w);
 		//w.
 		return "home";
 		}
+	
+//	@EJB
+//	private TeamEJB team;
+//	
+//	public String voegTeamToe() {
+//		
+//		Team t = new Team();
+//		t.setNaam(naam);
+//		team.aanmaken(t);
+//		
+//		return "home";
+//	}
+
 	
 	
 	

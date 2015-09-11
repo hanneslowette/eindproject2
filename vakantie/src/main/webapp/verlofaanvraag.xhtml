@@ -9,17 +9,25 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:outputLabel for="txtVoornaam" value=""></h:outputLabel>
-		<h:inputText id="txtVoornaam" value=""></h:inputText>
-		<h:outputLabel for="txtNaam" value=""></h:outputLabel>
-		<h:inputText id="txtNaam" value=""></h:inputText>
-		<h:outputLabel for="txtPersoneelsnummer" value=""></h:outputLabel>
-		<h:inputText id="txtPersoneelsnummer" value=""></h:inputText>
+		<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
+		<h:inputText id="txtVoornaam" value="#{verlogAanvraag.voornaam}"></h:inputText>
+		<br />
+		<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
+		<h:inputText id="txtNaam" value="#{verlogAanvraag.naam}"></h:inputText>
+		<br />
+		<h:outputLabel for="txtPersoneelsnummer"
+			value="Geef uw personeelsnummer: "></h:outputLabel>
+		<h:inputText id="txtPersoneelsnummer"
+			value="#{verlogAanvraag.personeelsNr}"></h:inputText>
+		<br />
 		<h:outputLabel for="txtStartDatum"
-			value="Geef startdatum van uw verlof"></h:outputLabel>
-		<h:inputText id="txtStartDatum" value="verlofAanvraag.startDatum"></h:inputText>
-		<h:outputLabel for="txtEindDatum" value="Geef einddatum van uw verlof"></h:outputLabel>
-		<h:inputText id="txtEindDatum" value="verlofAanvraag.eindDatum"></h:inputText>
+			value="Geef startdatum van uw verlof: "></h:outputLabel>
+		<h:inputText id="txtStartDatum" value="#{verlofAanvraag.startDatum}"></h:inputText>
+		<br />
+		<h:outputLabel for="txtEindDatum"
+			value="Geef einddatum van uw verlof: "></h:outputLabel>
+		<h:inputText id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"></h:inputText>
+		<br />
 		<h:commandButton value="Verstuur" action="verlofAanvraag.verstuur"></h:commandButton>
 	</h:form>
 </h:body>

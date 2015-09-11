@@ -10,11 +10,9 @@
 </h:head>
 <h:body>
 	<h:form>
-
 		<h:outputLabel for="selToestand"
-			value="Mag werknemer #{verlofGoedkeuren.werknemer} op verlof van #{verlofGoedkeuren.startDatum} tot #{verlofGoedkeuren.eindDatum}"></h:outputLabel>
+			value="Mag werknemer #{verlofGoedkeuren.voornaam} #{verlofGoedkeuren.naam} met personeelsnummer #{verlofGoedkeuren.personeelsNr} op verlof van #{verlofGoedkeuren.startDatum} tot #{verlofGoedkeuren.eindDatum}"></h:outputLabel>
 		<h:selectOneMenu id="selToestand" value="#{verlofGoedkeuren.keuring}">
-			</h:selectOneRadio>
 			<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
 			<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
 			<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>

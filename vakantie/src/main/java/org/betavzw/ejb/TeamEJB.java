@@ -8,7 +8,6 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
@@ -36,7 +35,7 @@ import org.betavzw.entities.Werknemer;
 	 * @param team
 	 * @return
 	 */
-	@Transactional public Team aanmaken(Team team) {
+	public Team aanmaken(Team team) {
 		manager.persist(team);
 		return team;
 	}
@@ -90,7 +89,7 @@ import org.betavzw.entities.Werknemer;
 	 * 
 	 * @param team
 	 */
-	@Transactional public void commit(Team team) {
+	public void commit(Team team) {
 		manager.persist(team);
 	}
 
@@ -100,7 +99,7 @@ import org.betavzw.entities.Werknemer;
 	 * @param id
 	 * @return
 	 */
-	@Transactional public Team get(int id) {
+	public Team get(int id) {
 		return manager.find(Team.class, id);
 	}
 

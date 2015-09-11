@@ -1,7 +1,6 @@
 package org.betavzw.ejb;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -9,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.betavzw.entities.Team;
 import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Toestand;
@@ -67,7 +65,6 @@ public class VerlofAanvraagEJB implements VerlofAanvraagEJBLocal {
 		return this.verlofAanmaken(verlofAanvraag);
 	}
 
-	@Transactional
 	public VerlofAanvraag get(int id) {
 		return manager.find(VerlofAanvraag.class, id);
 	}

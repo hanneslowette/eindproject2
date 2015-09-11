@@ -1,8 +1,10 @@
 package org.betavzw.ejb;
 
-import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 
-@Local
+@Stateless
+@LocalBean
 public interface VerlofAanvraagEJBLocal {
 
 }

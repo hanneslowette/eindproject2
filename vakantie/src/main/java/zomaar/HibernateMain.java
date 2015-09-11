@@ -30,7 +30,7 @@ public class HibernateMain {
 		Werknemer koen = new Werknemer();
 		koen.setNaam("Koen");
 		koen.setVoornaam("De Voegt");
-		koen.setAdres("Zuidewendelaan 7");
+//		koen.setAdres("Zuidewendelaan 7");
 		koen.setGemeente("Hoboken");
 		koen.setPostcode(2660);
 		koen.setPaswoord("paswoord");

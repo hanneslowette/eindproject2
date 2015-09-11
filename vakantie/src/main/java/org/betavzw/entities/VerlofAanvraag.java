@@ -2,12 +2,16 @@ package org.betavzw.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.betavzw.util.Toestand;
 
+@Entity
 public class VerlofAanvraag {
 
 	@Id
@@ -37,6 +41,7 @@ public class VerlofAanvraag {
 	/**
 	 * De werknemer die deze verlofaanvraag maakt
 	 */
+	@ManyToOne
 	private Werknemer werknemer;
 
 	public LocalDate getStartDatum() {
@@ -76,7 +81,20 @@ public class VerlofAanvraag {
 	}
 
 	public void setWerknemer(Werknemer werknemer) {
+		werknemer.addVerlofAanvraag(this);
 		this.werknemer = werknemer;
+	}
+
+	public void Goedkeuren() {
+		this.toestand = Toestand.ACCEPTED;
+	}
+
+	public void Afkeuren() {
+		this.toestand = Toestand.REJECTED;
+	}
+
+	public void Annuleren() {
+		this.toestand = Toestand.CANCELED;
 	}
 
 }

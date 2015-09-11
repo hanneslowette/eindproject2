@@ -3,11 +3,15 @@ package org.betavzw.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Team {
 
 	@Id
@@ -16,23 +20,10 @@ public class Team {
 	
 	private String naam;
 	private String code;
+	@ManyToOne()
 	private Werknemer teamverantwoordelijke;
+	@OneToMany(mappedBy="team")
 	private Set<Werknemer> teamLeden = new HashSet<Werknemer>();
-	
-	
-
-	public Team() {
-		super();
-	}
-	
-	
-
-	public Team(String naam) {
-		super();
-		this.naam = naam;
-	}
-
-
 
 	public String getNaam() {
 		return naam;
@@ -55,9 +46,13 @@ public class Team {
 	}
 
 	public void setTeamverantwoordelijke(Werknemer teamverantwoordelijke) {
+		teamverantwoordelijke.setTeam(this);
 		this.teamverantwoordelijke = teamverantwoordelijke;
 	}
 
+	/**
+	 * Doesn't update werknemers just adds a list to this team
+	 * **/
 	public Set<Werknemer> getTeamLeden() {
 		return teamLeden;
 	}
@@ -67,6 +62,7 @@ public class Team {
 	}
 
 	public void addWerknemer(Werknemer teamlid) {
+		teamlid.setTeam(this);
 		teamLeden.add(teamlid);
 	}
 

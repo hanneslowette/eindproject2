@@ -4,99 +4,89 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * 
  * 
  * @author Koen De Voegt
  */
+@Entity
 public class Werknemer {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	/**
 	 * De achternaam van de werknemer
 	 */
 	private String naam;
-	
+
 	/**
 	 * De voornaam van de werknemer
 	 */
 	private String voornaam;
-	
+
 	/**
 	 * Het e-mail adres van de gebruiker. Gebruikt als username bij login.
 	 */
 	private String email;
-	
+
 	/**
 	 * De geboortedatum van de werknemer
 	 */
 	private LocalDate geboortedatum;
-	
+
 	/**
 	 * De personeelsnummer van de werknemer (primary key in de databank)
 	 */
 	private int personeelsNr;
-	
+
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
 	private String adres;
-	
+
 	/**
 	 * De postcode van de gemeente waar de werknemer woont
 	 */
 	private int postcode;
-	
+
 	/**
 	 * De naam van de gemeente waar de werknemer woont
 	 */
 	private String gemeente;
-	
+
 	/**
 	 * Het wachtwoord van de werknemer
 	 */
 	private String paswoord;
-	
+
 	/**
 	 * Het team waartoe deze werknemer geboord
 	 */
+	@ManyToOne
 	private Team team;
-	
-	
-	public Werknemer() {
-		super();
-	}
 
-	public Werknemer(String naam, String voornaam, String email,
-			LocalDate geboortedatum,  String adres) {
-		super();
-		this.naam = naam;
-		this.voornaam = voornaam;
-		this.email = email;
-		this.geboortedatum = geboortedatum;
-		
-		this.adres = adres;
-	}
-	
 	/**
 	 * Het aantal verlofdagen dat deze werknemer in gegeven jaar heeft
 	 */
+	@OneToMany
 	private Set<JaarlijksVerlof> jaarlijkseVerloven = new HashSet<JaarlijksVerlof>();
 
 	/**
 	 * De verlofaanvragen van deze werknemer
 	 */
+	@OneToMany
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
 
-	
 	public String getNaam() {
 		return naam;
 	}
@@ -184,7 +174,7 @@ public class Werknemer {
 	public void setJaarlijkseVerloven(Set<JaarlijksVerlof> jaarlijkseVerloven) {
 		this.jaarlijkseVerloven = jaarlijkseVerloven;
 	}
-	
+
 	public void addJaarlijksVerlof(JaarlijksVerlof jaarlijksVerlof) {
 		jaarlijkseVerloven.add(jaarlijksVerlof);
 	}
@@ -196,7 +186,7 @@ public class Werknemer {
 	public void setVerlofAanvragen(Set<VerlofAanvraag> verlofAanvragen) {
 		this.verlofAanvragen = verlofAanvragen;
 	}
-	
+
 	public void addVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
 		verlofAanvragen.add(verlofAanvraag);
 	}

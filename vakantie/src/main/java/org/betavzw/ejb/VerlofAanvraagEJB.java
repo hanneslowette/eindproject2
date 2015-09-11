@@ -2,9 +2,9 @@ package org.betavzw.ejb;
 
 import java.time.LocalDate;
 
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
@@ -14,9 +14,10 @@ import org.betavzw.util.Toestand;
  * Session Bean implementation class VerlofAanvraagEJB
  */
 
+@Stateful
 public class VerlofAanvraagEJB implements VerlofAanvraagEJBLocal {
 
-	@PersistenceContext(name = "unitName")
+	@PersistenceContext
 	private EntityManager manager;
 
 	/**
@@ -26,7 +27,6 @@ public class VerlofAanvraagEJB implements VerlofAanvraagEJBLocal {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Transactional
 	public VerlofAanvraag verlofAanmaken(VerlofAanvraag verlofAanvraag) {
 		manager.persist(verlofAanvraag);
 		return verlofAanvraag;

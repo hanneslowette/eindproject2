@@ -1,7 +1,6 @@
 package org.betavzw.ejb;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,6 +9,7 @@ import org.betavzw.entities.JaarlijksVerlof;
 /**
  * Session Bean implementation class JaarlijksVerlofEJB
  */
+@Stateful
 public class JaarlijksVerlofEJB {
 
 	@PersistenceContext

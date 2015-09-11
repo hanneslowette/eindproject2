@@ -10,21 +10,15 @@
 </h:head>
 <h:body>
 	<h:form>
-	<h:outputLabel for="txtNaamWerknemer" value=""></h:outputLabel>
-	<h:inputText id="" value=""></h:inputText>
-	<h:outputLabel for="" value=""></h:outputLabel>
-	<h:inputText id="txt" value=""></h:inputText>
-	<h:outputLabel for="" value=""></h:outputLabel>
-	<h:inputText id="" value=""></h:inputText>
-	<h:outputLabel for="" value=""></h:outputLabel>
-	<h:inputText id="" value=""></h:inputText>
-		<h:outputLabel for="selMagDaOFMagDaNi"
+
+		<h:outputLabel for="selToestand"
 			value="Mag werknemer #{verlofGoedkeuren.werknemer} op verlof van #{verlofGoedkeuren.startDatum} tot #{verlofGoedkeuren.eindDatum}"></h:outputLabel>
-		<h:select id="selMagDaOFMagDaNi"
-			value="#{verlofGoedkeuren.keuring}"></h:selectOneRadio>
-		<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
-		<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
-		<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>
+		<h:selectOneMenu id="selToestand" value="#{verlofGoedkeuren.keuring}">
+			</h:selectOneRadio>
+			<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
+			<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
+			<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>
+		</h:selectOneMenu>
 		<h:commandButton value="Send" action="home"></h:commandButton>
 	</h:form>
 </h:body>

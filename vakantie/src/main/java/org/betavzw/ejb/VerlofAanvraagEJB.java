@@ -2,8 +2,6 @@ package org.betavzw.ejb;
 
 import java.time.LocalDate;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -34,24 +32,24 @@ public class VerlofAanvraagEJB implements VerlofAanvraagEJBLocal {
 		return verlofAanvraag;
 	}
 
-//	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-//			LocalDate aanvraagDatum) {
-//		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-//		verlofAanvraag.setStartDatum(startDatum);
-//		verlofAanvraag.setEindDatum(eindDatum);
-//		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-//		return this.verlofAanmaken(verlofAanvraag);
-//	}
-//
-//	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-//			LocalDate aanvraagDatum, Werknemer werknemer) {
-//		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-//		verlofAanvraag.setStartDatum(startDatum);
-//		verlofAanvraag.setEindDatum(eindDatum);
-//		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-//		verlofAanvraag.setWerknemer(werknemer);
-//		return this.verlofAanmaken(verlofAanvraag);
-//	}
+	// public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
+	// LocalDate aanvraagDatum) {
+	// VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+	// verlofAanvraag.setStartDatum(startDatum);
+	// verlofAanvraag.setEindDatum(eindDatum);
+	// verlofAanvraag.setAanvraagDatum(aanvraagDatum);
+	// return this.verlofAanmaken(verlofAanvraag);
+	// }
+	//
+	// public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
+	// LocalDate aanvraagDatum, Werknemer werknemer) {
+	// VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+	// verlofAanvraag.setStartDatum(startDatum);
+	// verlofAanvraag.setEindDatum(eindDatum);
+	// verlofAanvraag.setAanvraagDatum(aanvraagDatum);
+	// verlofAanvraag.setWerknemer(werknemer);
+	// return this.verlofAanmaken(verlofAanvraag);
+	// }
 
 	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
 			LocalDate aanvraagDatum, Toestand toestand, Werknemer werknemer) {

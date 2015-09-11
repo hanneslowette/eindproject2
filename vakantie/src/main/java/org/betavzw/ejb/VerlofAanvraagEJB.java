@@ -15,8 +15,7 @@ import org.betavzw.util.Toestand;
 /**
  * Session Bean implementation class VerlofAanvraagEJB
  */
-@Stateless
-@LocalBean
+
 public class VerlofAanvraagEJB implements VerlofAanvraagEJBLocal {
 
 	@PersistenceContext(name = "unitName")

@@ -10,8 +10,7 @@ import javax.persistence.PersistenceContext;
  * @author user104
  *
  */
-@LocalBean
-@Stateless public class PersoonEJB {
+public class PersoonEJB {
 
 	/**
 	 * 

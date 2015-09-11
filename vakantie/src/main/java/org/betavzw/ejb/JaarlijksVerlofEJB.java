@@ -10,8 +10,6 @@ import org.betavzw.entities.JaarlijksVerlof;
 /**
  * Session Bean implementation class JaarlijksVerlofEJB
  */
-@Stateless
-@LocalBean
 public class JaarlijksVerlofEJB {
 
 	@PersistenceContext

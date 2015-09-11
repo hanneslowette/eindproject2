@@ -21,8 +21,7 @@ import org.betavzw.entities.Werknemer;
  * 
  * @author Hannes Lowette
  */
-@LocalBean
-@Stateless public class TeamEJB {
+public class TeamEJB {
 
 	/**
 	 * TODO: naam persistence context

@@ -9,7 +9,7 @@ import javax.inject.Named;
 import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Team;
 
-@Named("verlofAanvraag")
+@Named("teamToevoegen")
 @SessionScoped
 public class TeamToevoegenIO implements Serializable{
 

@@ -2,7 +2,6 @@ package org.betavzw.entities;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -78,18 +77,6 @@ public class VerlofAanvraag {
 
 	public void setWerknemer(Werknemer werknemer) {
 		this.werknemer = werknemer;
-	}
-
-	public void Goedkeuren() {
-		this.toestand = Toestand.ACCEPTED;
-	}
-
-	public void Afkeuren() {
-		this.toestand = Toestand.REJECTED;
-	}
-
-	public void Annuleren() {
-		this.toestand = Toestand.CANCELED;
 	}
 
 }

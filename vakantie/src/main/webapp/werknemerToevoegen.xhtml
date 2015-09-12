@@ -10,37 +10,39 @@
 <h:form>
 <h:outputLabel for="naam" value="Naam:"></h:outputLabel>
 <h:inputText id="naam" value="#{werknemerToevoegenIO.naam}" ></h:inputText>
-
+<br/>
 <h:outputLabel for="voornaam" value="voornaam:"></h:outputLabel>
 <h:inputText id="voornaam" value="#{werknemerToevoegenIO.voornaam}" ></h:inputText>
 
 <br/>
-<h2>Adres</h2>
+<hr/>
+<h3>Adres</h3>
 <h:outputLabel for="straat" value="Straat:"></h:outputLabel>
 <h:inputText id="straat" value="#{werknemerToevoegenIO.adres.straat}" ></h:inputText>
-
+<br/>
 <h:outputLabel for="huisnummer" value="huisnummer:"></h:outputLabel>
 <h:inputText id="huisnummer" value="#{werknemerToevoegenIO.adres.huisnummer}" ></h:inputText>
 
-
+<br/>
 <h:outputLabel for="busnummer" value="busnummer:"></h:outputLabel>
 <h:inputText id="busnummer" value="#{werknemerToevoegenIO.adres.busnummer}" ></h:inputText>
 
-
+<br/>
 <h:outputLabel for="postcode" value="postcode:"></h:outputLabel>
 <h:inputText id="postcode" value="#{werknemerToevoegenIO.adres.postcode}" ></h:inputText>
 
-
+<br/>
 <h:outputLabel for="gemeente" value="gemeente:"></h:outputLabel>
 <h:inputText id="gemeente" value="#{werknemerToevoegenIO.adres.gemeente}" ></h:inputText>
 <br/>
+<hr></hr>
 <h:outputLabel for="email" value="email:"></h:outputLabel>
 <h:inputText id="email" value="#{werknemerToevoegenIO.email}" ></h:inputText>
 <br/>
 <h:outputLabel for="geboortedatum" value="geboortedatum:"></h:outputLabel>
-<h:inputText id="geboortedatum" value="#{werknemerToevoegenIO.geboortedatum}" ></h:inputText>
+<h:inputText id="geboortedatum" value="#{werknemerToevoegenIO.geboortedatum}" placeholder="jjjjmmdd"></h:inputText>
 
-
+<br/>
 <h:commandButton value="voeg werknemer toe" action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
 
 </h:form>

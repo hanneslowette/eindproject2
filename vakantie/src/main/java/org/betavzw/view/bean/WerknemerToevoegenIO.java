@@ -8,9 +8,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import org.betavzw.ejb.PersoonEJB;
-import org.betavzw.ejb.TeamEJB;
+//import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Adres;
-import org.betavzw.entities.Team;
+//import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
 
 @Named
@@ -21,6 +21,12 @@ public class WerknemerToevoegenIO {
 	private Adres adres;
 	private String email;
 	private Date geboortedatum;
+	
+	private String straat;
+	private String huisnummer;
+	private String busnummer;
+	private String postcode;
+	private String gemeente;
 	
 	@EJB
 	private PersoonEJB p;
@@ -45,8 +51,8 @@ public class WerknemerToevoegenIO {
 	public String voegWerknemerToe() {
 		//Werknemer w = new Werknemer();
 		//Werknemer w4 = new Werknemer(naam, voornaam, adres, email, geboortedatum);
-		
-		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, adres);
+		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
+		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, a);
 		p.toevoegen(w);
 		//w.
 		return "home";
@@ -96,6 +102,56 @@ public class WerknemerToevoegenIO {
 	}
 	public void setGeboortedatum(Date geboortedatum) {
 		this.geboortedatum = geboortedatum;
+	}
+
+
+	public String getStraat() {
+		return straat;
+	}
+
+
+	public void setStraat(String straat) {
+		this.straat = straat;
+	}
+
+
+	public String getHuisnummer() {
+		return huisnummer;
+	}
+
+
+	public void setHuisnummer(String huisnummer) {
+		this.huisnummer = huisnummer;
+	}
+
+
+	public String getBusnummer() {
+		return busnummer;
+	}
+
+
+	public void setBusnummer(String busnummer) {
+		this.busnummer = busnummer;
+	}
+
+
+	public String getPostcode() {
+		return postcode;
+	}
+
+
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+
+
+	public String getGemeente() {
+		return gemeente;
+	}
+
+
+	public void setGemeente(String gemeente) {
+		this.gemeente = gemeente;
 	}	
 	
 	

@@ -2,11 +2,20 @@ package org.betavzw.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Adres implements Serializable{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	
+	
+	
 	private String Straat;
 	private String huisnummer;
 	private String busnummer;
@@ -16,6 +25,9 @@ public class Adres implements Serializable{
 	
 	
 	
+	public Adres() {
+		super();
+	}
 	public Adres(String straat, String huisnummer, String busnummer,
 			String postcode, String gemeente) {
 		super();

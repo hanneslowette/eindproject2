@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.betavzw.entities.Adres;
 import org.betavzw.entities.JaarlijksVerlof;
@@ -84,9 +85,18 @@ public class WerknemerEJB implements IWerknemer, Serializable {
 	}
 
 	@Override
-	public void voegWerknemerToe(Werknemer werknemer) {
-		// TODO Auto-generated method stub
-		
+	@Transactional public void voegWerknemerToe(Werknemer werknemer) {
+		manager.persist(werknemer);
+	}
+	
+	@Override
+	@Transactional public void verwijderWerknemer(Werknemer werknemer) {
+		manager.remove(werknemer);
 	}
 
+	@Override
+	@Transactional public void wijzigWerknemer(Werknemer werknemer) {
+		manager.persist(werknemer);
+	}
+	
 }

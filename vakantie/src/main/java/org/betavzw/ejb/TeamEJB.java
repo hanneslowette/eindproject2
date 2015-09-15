@@ -59,6 +59,16 @@ public class TeamEJB implements ITeam, Serializable {
 		manager.persist(team);
 	}
 	
+	@Override
+	@Transactional public void verwijderTeam(Team team) {
+		manager.remove(team);
+	}
+	
+	@Override
+	@Transactional public void wijzigTeam(Team team) {
+		manager.persist(team);
+	}
+	
 	/**
 	 * Maakt een nieuw team aan met de gegeven waarden en geeft het aangemaakte
 	 * team terug

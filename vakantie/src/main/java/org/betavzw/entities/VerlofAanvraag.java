@@ -84,16 +84,4 @@ public class VerlofAanvraag {
 		this.werknemer = werknemer;
 	}
 
-	public void Goedkeuren() {
-		this.toestand = Toestand.ACCEPTED;
-	}
-
-	public void Afkeuren() {
-		this.toestand = Toestand.REJECTED;
-	}
-
-	public void Annuleren() {
-		this.toestand = Toestand.CANCELED;
-	}
-
 }

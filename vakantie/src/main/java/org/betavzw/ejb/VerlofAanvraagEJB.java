@@ -8,7 +8,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -26,18 +25,19 @@ import org.betavzw.util.Toestand;
 public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 
 	/**
-	 * 
+	 * Default Version id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * TODO: naam persistence context
 	 */
-//	@PersistenceContext
-//	private EntityManager manager;
+	// @PersistenceContext
+	// private EntityManager manager;
 
 	EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("unitName");
-	
+
 	EntityManager manager = emf.createEntityManager();
 
 	/**
@@ -47,6 +47,10 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param verlofAanvraag
+	 * @return
+	 */
 	public VerlofAanvraag verlofAanmaken(VerlofAanvraag verlofAanvraag) {
 		manager.persist(verlofAanvraag);
 		return verlofAanvraag;

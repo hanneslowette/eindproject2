@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Stateful;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -21,7 +22,7 @@ import org.betavzw.util.Filter;
  * @author user104
  *
  */
-@Stateful
+@ApplicationScoped
 public class WerknemerEJB implements IWerknemer {
 
 	/**
@@ -46,7 +47,7 @@ public class WerknemerEJB implements IWerknemer {
 			for (Filter filter : filters) {
 				query_builder.append(filter.getColumn())
 						.append((filter.getValue() instanceof String) ? " LIKE " : "= ")
-						.append(":").append(filter.getColumn());
+						.append(":").append(filter.getColumn()).append(" ");
 			}
 		}
 		

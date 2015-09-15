@@ -1,6 +1,8 @@
 package org.betavzw.view.bean;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -13,6 +15,7 @@ import org.betavzw.ejb.IWerknemer;
 import org.betavzw.ejb.WerknemerEJB;
 //import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Adres;
+import org.betavzw.entities.Team;
 //import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
@@ -77,10 +80,8 @@ public class WerknemerToevoegenIO {
 //		return "home";
 //	}
 	
-	public String getTeamnaam() {
-		return teamEJB.
-				.getNaam(new Filter("naam", this.voornaam)).get(0)
-				.getVoornaam();
+	public List<String> getTeamnaam() {
+		return teamEJB.getTeams().stream().map(t -> t.getNaam()).collect(Collectors.toList());
 	}
 
 	

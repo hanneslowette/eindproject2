@@ -84,26 +84,6 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 	public VerlofAanvraag getVerlofAanvraagId(int id) {
 		return manager.find(VerlofAanvraag.class, id);
 	}
-	
-	/**
-	 * Krijg een verlofaanvraag uit de database aan de hand van de startdatum
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public VerlofAanvraag getVerlofAanvraagStartDatum(LocalDate startDatum) {
-		return manager.find(VerlofAanvraag.class, startDatum);
-	}
-	
-	/**
-	 * Krijg een verlofaanvraag uit de database aan de hand van de einddatum
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public VerlofAanvraag getVerlofAanvraagEindDatum(LocalDate eindDatum) {
-		return manager.find(VerlofAanvraag.class, eindDatum);
-	}
 
 	public LocalDate getStartDatum() {
 		return manager.find(VerlofAanvraagEJB.class, this).getStartDatum();

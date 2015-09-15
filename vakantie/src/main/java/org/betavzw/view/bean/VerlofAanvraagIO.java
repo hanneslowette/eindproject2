@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Toestand;
 
 @Named("verlofAanvraag")
@@ -24,6 +25,15 @@ public class VerlofAanvraagIO implements Serializable {
 	private int personeelsNr;
 	private Date startDatum;
 	private Date eindDatum;
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getVoornaam() {
 		return voornaam;
@@ -75,7 +85,7 @@ public class VerlofAanvraagIO implements Serializable {
 					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
 					eindDatum.toInstant().atZone(ZoneId.systemDefault())
 							.toLocalDate(), LocalDate.now(), Toestand.PENDING,
-					null));
+					new Werknemer(voornaam, naam, personeelsNr)));
 			return "verlofaanvraagverstuurd";
 		} else {
 			// TODO: zet message dat startdatum voor einddatum moet komen
@@ -88,30 +98,16 @@ public class VerlofAanvraagIO implements Serializable {
 	 * werknemer een pagina te zien krijgt waar de status van de verlofaanvraag
 	 * staat
 	 */
-	public String chec1k() {
-		String pagina = "";
-		if (verlofAanvraagEJB.getToestand() == Toestand.PENDING) {
-			pagina = "verlofpending";
-		} else if (verlofAanvraagEJB.getToestand() == Toestand.ACCEPTED) {
-			pagina = "verlofgoedgekeurd";
-		} else if (verlofAanvraagEJB.getToestand() == Toestand.REJECTED) {
-			pagina = "verlofafgekeurd";
-		}
-		return pagina;
-	}
-	
 	public String check() {
 		String pagina = "";
-		if (verlofAanvraagEJB.getVerlofAanvraag(naam) == Toestand.PENDING) {
+		if (verlofAanvraagEJB.getVerlofAanvraagId(id).getToestand() == Toestand.PENDING) {
 			pagina = "verlofpending";
-		} else if (verlofAanvraagEJB.getToestand() == Toestand.ACCEPTED) {
+		} else if (verlofAanvraagEJB.getVerlofAanvraagId(id).getToestand() == Toestand.ACCEPTED) {
 			pagina = "verlofgoedgekeurd";
-		} else if (verlofAanvraagEJB.getToestand() == Toestand.REJECTED) {
+		} else if (verlofAanvraagEJB.getVerlofAanvraagId(id).getToestand() == Toestand.REJECTED) {
 			pagina = "verlofafgekeurd";
 		}
 		return pagina;
 	}
-	
-	
 
 }

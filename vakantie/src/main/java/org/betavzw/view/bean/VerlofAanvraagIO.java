@@ -24,7 +24,6 @@ public class VerlofAanvraagIO implements Serializable {
 	private int personeelsNr;
 	private Date startDatum;
 	private Date eindDatum;
-	private Date aanvraagDatum;
 
 	public String getVoornaam() {
 		return voornaam;
@@ -66,31 +65,29 @@ public class VerlofAanvraagIO implements Serializable {
 		this.eindDatum = eindDatum;
 	}
 
-	public Date getAanvraagDatum() {
-		return aanvraagDatum;
-	}
-
-	public void setAanvraagDatum() {
-		this.aanvraagDatum = Date.from(LocalDate.now().atStartOfDay()
-				.atZone(ZoneId.systemDefault()).toInstant());
+	/**
+	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waar een
+	 * nieuwe verlofaanvraag wordt aangemaakt in de databank
+	 */
+	public String verstuur() {
+		if (startDatum.before(eindDatum)) {
+			verlofAanvraagEJB.aanmaken(
+					startDatum.toInstant().atZone(ZoneId.systemDefault())
+							.toLocalDate(),
+					eindDatum.toInstant().atZone(ZoneId.systemDefault())
+							.toLocalDate(), LocalDate.now(), Toestand.PENDING);
+			return "verlofaanvraagverstuurd";
+		} else {
+			// TODO: zet message dat startdatum voor einddatum moet komen
+			return "verlofaanvragen";
+		}
 	}
 
 	/**
-	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waarmee de
-	 * response pagina bepaald wordt via het enum Toestand(PENDING, ACCEPTED,
-	 * REJECTED, CANCELED)
+	 * checkfunctie voor commandButton van verlofaanvragen.xhtml waarmee de
+	 * werknemer een pagina te zien krijgt waar de status van de verlofaanvraag
+	 * staat
 	 */
-	public String verstuur() {
-		if (startDatum.before(eindDatum)) {	
-			verlofAanvraagEJB.aanmaken(startDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), eindDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), aanvraagDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), Toestand.PENDING);
-			return "verlofaanvraagverstuurd";
-		}
-		else {
-			// TODO: zet message dat startdatum voor einddatum moet komen
-			return "verlofaanvragen";
-		}		
-	}
-
 	public String check() {
 		String pagina = "";
 		if (verlofAanvraagEJB.getToestand() == Toestand.PENDING) {

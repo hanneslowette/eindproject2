@@ -8,7 +8,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.betavzw.ejb.PersoonEJB;
+import org.betavzw.ejb.WerknemerEJB;
 import org.betavzw.ejb.VerlofAanvraagEJB;
 
 @Named("verlofGoedkeuren")
@@ -22,7 +22,7 @@ public class VerlofGoedkeurenIO implements Serializable {
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
 	@EJB
-	private PersoonEJB persoonEJB;
+	private WerknemerEJB persoonEJB;
 	private String voornaam;
 	private String naam;
 	private int personeelsNr;

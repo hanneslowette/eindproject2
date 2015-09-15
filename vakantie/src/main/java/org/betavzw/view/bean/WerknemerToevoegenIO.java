@@ -7,7 +7,7 @@ import javax.enterprise.context.RequestScoped;
 //import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.betavzw.ejb.PersoonEJB;
+import org.betavzw.ejb.WerknemerEJB;
 //import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Adres;
 //import org.betavzw.entities.Team;
@@ -29,7 +29,7 @@ public class WerknemerToevoegenIO {
 	private String gemeente;
 	
 	@EJB
-	private PersoonEJB p;
+	private WerknemerEJB p;
 	
 	
 	public WerknemerToevoegenIO() {

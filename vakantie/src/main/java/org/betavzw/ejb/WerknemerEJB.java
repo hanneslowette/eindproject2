@@ -1,6 +1,7 @@
 package org.betavzw.ejb;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.Stateful;
@@ -12,6 +13,7 @@ import org.betavzw.entities.JaarlijksVerlof;
 import org.betavzw.entities.Team;
 import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
+import org.betavzw.util.Filter;
 
 /**
  * 
@@ -19,7 +21,7 @@ import org.betavzw.entities.Werknemer;
  *
  */
 @Stateful
-public class PersoonEJB {
+public class WerknemerEJB implements IWerknemer {
 
 	/**
 	 * 
@@ -30,10 +32,13 @@ public class PersoonEJB {
 	public void toevoegen(Werknemer w) {
 		manager.persist(w);
 	}
+
+	@Override
+	public List<Werknemer> getWerknemers(Filter... filter) {
+		return manager.createQuery("FROM Werknemer", Werknemer.class).getResultList();
+	}
 	
-	public void toevoegen(String naam, String voornaam, Adres adres,
-			String email, LocalDate geboortedatum) {
-		Werknemer w = new Werknemer();
+	public void toevoegen(String naam, String voornaam, Adres adres, String email, LocalDate geboortedatum) {Werknemer w = new Werknemer();
 		w.setNaam(naam);
 		w.setVoornaam(voornaam);
 		w.setAdres(adres);

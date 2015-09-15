@@ -6,10 +6,12 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.betavzw.ejb.WerknemerEJB;
+import org.betavzw.ejb.IWerknemer;
 import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.util.Filter;
 
 @Named("verlofGoedkeuren")
 @SessionScoped
@@ -21,8 +23,8 @@ public class VerlofGoedkeurenIO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
-	@EJB
-	private WerknemerEJB persoonEJB;
+	@Inject
+	private IWerknemer werknemerEJB;
 	private String voornaam;
 	private String naam;
 	private int personeelsNr;
@@ -37,27 +39,21 @@ public class VerlofGoedkeurenIO implements Serializable {
 	}
 
 	public String getVoornaam() {
-		return voornaam;
-	}
-
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
+		return werknemerEJB
+				.getWerknemers(new Filter("voornaam", this.voornaam)).get(0)
+				.getVoornaam();
 	}
 
 	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
+		return werknemerEJB.getWerknemers(new Filter("naam", this.naam)).get(0)
+				.getNaam();
 	}
 
 	public int getPersoneelsNr() {
+		werknemerEJB
+				.getWerknemers(new Filter("personeelsNr", this.personeelsNr))
+				.get(0).getPersoneelsNr();
 		return personeelsNr;
-	}
-
-	public void setPersoneelsNr(int personeelsNr) {
-		this.personeelsNr = personeelsNr;
 	}
 
 	public Date getStartDatum() {

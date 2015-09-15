@@ -66,6 +66,10 @@ public class VerlofAanvraagIO implements Serializable {
 		this.eindDatum = eindDatum;
 	}
 
+	/**
+	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waarmee de response pagina bepaald wordt
+	 * via het enum Toestand(PENDING, ACCEPTED, REJECTED, CANCELED)
+	 */
 	public String verstuur() {
 		String pagina = "";
 		if (startDatum.before(eindDatum)) {

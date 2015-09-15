@@ -1,6 +1,5 @@
 package org.betavzw.entities;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -90,36 +89,35 @@ public class Werknemer {
 	 */
 	@OneToMany
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
-	
-	
-	
-	
-	
-	
-	
 
 	public Werknemer() {
 		super();
 	}
 
-//	public Werknemer(String naam, String voornaam, String email,
-//			LocalDate geboortedatum, String adres) {
-//		super();
-//		this.naam = naam;
-//		this.voornaam = voornaam;
-//		this.email = email;
-//		this.geboortedatum = geboortedatum;
-//		//this.adres = adres;
-//	}
+	// public Werknemer(String naam, String voornaam, String email,
+	// LocalDate geboortedatum, String adres) {
+	// super();
+	// this.naam = naam;
+	// this.voornaam = voornaam;
+	// this.email = email;
+	// this.geboortedatum = geboortedatum;
+	// //this.adres = adres;
+	// }
 
-	public Werknemer(String naam2, String voornaam2, String email2,
-			Date geboortedatum2, Adres adres2) {
+	public Werknemer(String naam, String voornaam, String email,
+			LocalDate geboortedatum, Adres adres) {
 		// TODO Auto-generated constructor stub
-		this.naam = naam2;
-		this.voornaam = voornaam2;
-		this.email = email2;
+		this.naam = naam;
+		this.voornaam = voornaam;
+		this.email = email;
 		this.geboortedatum = geboortedatum;
-		this.adres = adres2;
+		this.adres = adres;
+	}
+
+	public Werknemer(String naam, String voornaam, int personeelsNr) {
+		this.naam = naam;
+		this.voornaam = voornaam;
+		this.personeelsNr = personeelsNr;
 	}
 
 	public String getNaam() {
@@ -162,13 +160,13 @@ public class Werknemer {
 		this.personeelsNr = personeelsNr;
 	}
 
-//	public String getAdres() {
-//		return adres;
-//	}
-//
-//	public void setAdres(String adres) {
-//		this.adres = adres;
-//	}
+	// public String getAdres() {
+	// return adres;
+	// }
+	//
+	// public void setAdres(String adres) {
+	// this.adres = adres;
+	// }
 
 	public int getPostcode() {
 		return postcode;

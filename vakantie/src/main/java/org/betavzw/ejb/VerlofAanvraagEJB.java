@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
-import org.betavzw.entities.Team;
 import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
@@ -45,6 +44,17 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 		return verlofAanvraag;
 	}
 
+	/**
+	 * Maakt een nieuw verlofaanvraag aan met de gegeven waarden en geeft het
+	 * aangemaakte verlofaanvraag terug
+	 * 
+	 * @param startdatum
+	 * @param einddatum
+	 * @param aanvraagdatum
+	 * @param toestand
+	 * @param werknemer
+	 * @return
+	 */
 	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
 			LocalDate aanvraagDatum, Toestand toestand, Werknemer werknemer) {
 		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
@@ -56,8 +66,43 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 		return this.verlofAanmaken(verlofAanvraag);
 	}
 
-	public VerlofAanvraag getVerlofAanvraag(int id) {
+	/**
+	 * Persisteert de verlofaanvraag
+	 * 
+	 * @param verlofaanvraag
+	 */
+	public void commit(VerlofAanvraag verlofAanvraag) {
+		manager.persist(verlofAanvraag);
+	}
+
+	/**
+	 * Krijg een verlofaanvraag uit de database aan de hand van de id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public VerlofAanvraag getVerlofAanvraagId(int id) {
 		return manager.find(VerlofAanvraag.class, id);
+	}
+	
+	/**
+	 * Krijg een verlofaanvraag uit de database aan de hand van de startdatum
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public VerlofAanvraag getVerlofAanvraagStartDatum(LocalDate startDatum) {
+		return manager.find(VerlofAanvraag.class, startDatum);
+	}
+	
+	/**
+	 * Krijg een verlofaanvraag uit de database aan de hand van de einddatum
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public VerlofAanvraag getVerlofAanvraagEindDatum(LocalDate eindDatum) {
+		return manager.find(VerlofAanvraag.class, eindDatum);
 	}
 
 	public LocalDate getStartDatum() {

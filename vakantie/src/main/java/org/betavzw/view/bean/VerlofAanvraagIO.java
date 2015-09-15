@@ -71,11 +71,11 @@ public class VerlofAanvraagIO implements Serializable {
 	 */
 	public String verstuur() {
 		if (startDatum.before(eindDatum)) {
-			verlofAanvraagEJB.aanmaken(
-					startDatum.toInstant().atZone(ZoneId.systemDefault())
-							.toLocalDate(),
+			verlofAanvraagEJB.commit(verlofAanvraagEJB.aanmaken(startDatum
+					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
 					eindDatum.toInstant().atZone(ZoneId.systemDefault())
-							.toLocalDate(), LocalDate.now(), Toestand.PENDING, null);
+							.toLocalDate(), LocalDate.now(), Toestand.PENDING,
+					null));
 			return "verlofaanvraagverstuurd";
 		} else {
 			// TODO: zet message dat startdatum voor einddatum moet komen
@@ -88,7 +88,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 * werknemer een pagina te zien krijgt waar de status van de verlofaanvraag
 	 * staat
 	 */
-	public String check() {
+	public String chec1k() {
 		String pagina = "";
 		if (verlofAanvraagEJB.getToestand() == Toestand.PENDING) {
 			pagina = "verlofpending";
@@ -99,5 +99,19 @@ public class VerlofAanvraagIO implements Serializable {
 		}
 		return pagina;
 	}
+	
+	public String check() {
+		String pagina = "";
+		if (verlofAanvraagEJB.getVerlofAanvraag(naam) == Toestand.PENDING) {
+			pagina = "verlofpending";
+		} else if (verlofAanvraagEJB.getToestand() == Toestand.ACCEPTED) {
+			pagina = "verlofgoedgekeurd";
+		} else if (verlofAanvraagEJB.getToestand() == Toestand.REJECTED) {
+			pagina = "verlofafgekeurd";
+		}
+		return pagina;
+	}
+	
+	
 
 }

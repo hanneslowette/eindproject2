@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.ejb.Stateful;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.betavzw.entities.VerlofAanvraag;
@@ -19,7 +20,7 @@ import org.betavzw.util.Toestand;
  * Session Bean implementation class VerlofAanvraagEJB
  */
 
-@Stateful
+@ApplicationScoped
 public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 
 	/**
@@ -100,6 +101,14 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 
 	public Toestand getToestand() {
 		return manager.find(VerlofAanvraagEJB.class, this).getToestand();
+	}
+
+	public List<VerlofAanvraag> getVerlofAanvragen() {
+		List<VerlofAanvraag> verlofAanvraagLijst = null;
+		TypedQuery<VerlofAanvraag> query = manager.createQuery(
+				"select v from VerlofAanvraag v", VerlofAanvraag.class);
+		verlofAanvraagLijst = query.getResultList();
+		return verlofAanvraagLijst;
 	}
 
 	@Override

@@ -10,6 +10,17 @@
 </h:head>
 <h:body>
 	<h:form>
+		<h:dataTable value="#{verlofGoedkeuren.verlofAanvragen}" var="tmp">
+			<h:column>#{tmp.startDatum}</h:column>
+			<h:column>#{tmp.eindDatum}</h:column>
+			<h:column>#{tmp.aanvraagDatum}</h:column>
+			<h:column>#{tmp.toestand}</h:column>
+			<h:column>#{tmp.werknemer.voornaam}</h:column>
+			<h:column>#{tmp.werknemer.naam}</h:column>
+			<h:column>#{tmp.werknemer.personeelsNr}</h:column>
+		</h:dataTable>
+		<br />
+
 		<h:outputLabel for="selToestand"
 			value="Mag werknemer #{verlofAanvraag.voornaam} #{verlofAanvraag.naam} met personeelsnummer #{verlofAanvraag.personeelsNr} op verlof van #{verlofAanvraag.startDatum} tot #{verlofAanvraag.eindDatum}"></h:outputLabel>
 		<h:selectOneMenu id="selToestand" value="#{verlofGoedkeuren.keuring}">

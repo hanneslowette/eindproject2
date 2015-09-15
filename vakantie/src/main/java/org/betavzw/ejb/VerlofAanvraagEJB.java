@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -30,8 +32,13 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 	/**
 	 * TODO: naam persistence context
 	 */
-	@PersistenceContext
-	private EntityManager manager;
+//	@PersistenceContext
+//	private EntityManager manager;
+
+	EntityManagerFactory emf = Persistence
+			.createEntityManagerFactory("unitName");
+	
+	EntityManager manager = emf.createEntityManager();
 
 	/**
 	 * Default constructor.

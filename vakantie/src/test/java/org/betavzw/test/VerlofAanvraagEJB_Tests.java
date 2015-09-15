@@ -1,6 +1,7 @@
 package org.betavzw.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
@@ -45,9 +46,19 @@ public class VerlofAanvraagEJB_Tests {
 	
 	@Test
 	public void testGetStartDatum() {
-		verlofAanvraagEJB.aanmaken(startDatum, eindDatum, aanvraagDatum, toestand, werknemer);
-		assertEquals(verlofAanvraagEJB.getStartDatum(), startDatum);
+		VerlofAanvraag verlofAanvraag = verlofAanvraagEJB.aanmaken(startDatum, eindDatum, aanvraagDatum, toestand, werknemer);
+		assertEquals(verlofAanvraag.getStartDatum(), startDatum);
 	} 
 	
+	@Test
+	public void testGetToestand() {
+		verlofAanvraagEJB.setToestand("ACCEPTED");
+		assertEquals("failure - toestand doesn't match", verlofAanvraagEJB.getToestand(), Toestand.ACCEPTED);
+	}
+	
+	@Test
+	public void testSetToestand() {
+		assertTrue("Provide setter: setToestand(Toestand)", false);
+	}
 	
 }

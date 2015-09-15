@@ -77,10 +77,10 @@ public class VerlofAanvraagEJB {
 	public void setToestand(String toestand) {
 		manager.setProperty("Toestand",
 				Toestand.valueOf(toestand.toUpperCase()));
-
 	}
 
 	public Toestand getToestand() {
 		return manager.find(VerlofAanvraagEJB.class, this).getToestand();
 	}
+
 }

@@ -44,7 +44,7 @@ public class TeamOpvragenIO implements Serializable {
 			tmp.add(new Filter("verantwoordelijke", this.verantwoordelijke));
 		}
 		
-		//lijst = ejb.getTeams(filter);
+		lijst = ejb.getTeams();
 		//lijst = ejb.getWerknemers(tmp.toArray(new Filter[0]));
 		return null;
 	}

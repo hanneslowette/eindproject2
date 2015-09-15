@@ -3,6 +3,7 @@ package org.betavzw.test;
 import org.betavzw.util.Filter;
 import org.junit.Test;
 
+@Deprecated
 public class WerknemerQueryTest {
 
 	@Test

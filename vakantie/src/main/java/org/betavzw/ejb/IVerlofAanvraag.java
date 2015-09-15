@@ -14,5 +14,6 @@ public interface IVerlofAanvraag {
 	 * @return
 	 */
 	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filter);
+	
 
 }

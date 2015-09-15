@@ -17,5 +17,9 @@ public interface IWerknemer {
 	
 	// voegt een werknemer toe in de database
 	public void voegWerknemerToe(Werknemer werknemer);
+	
+	public void wijzigWerknemer(Werknemer werknemer);
+	
+	public void verwijderWerknemer(Werknemer werknemer);
 
 }

@@ -47,14 +47,14 @@
 <h:commandButton value="voeg team toe" action="teamToevoegen"></h:commandButton>
 </h:form>
 
-<select>
-<option value="naam ">naam </option>
-<option value="voornaam">voornaam</option>
-</select>
 
-<h:selectOneMenu  value="#{teamToevoegenIO.teams}" var="tmp">
-<f:selectItems value="naam" ></f:selectItems>
 
+<!-- <h:selectOneMenu  value="#{teamToevoegenIO.teams}" var="tmp"> -->
+<!-- <f:selectItems   value="tmp.naam" ></f:selectItems> -->
+
+<!-- </h:selectOneMenu> -->
+<h:selectOneMenu value="#{teamToevoegenIO.teams}" var="tmp">
+    <f:selectItems value="#{tmp}" itemLabel="#{tmp.naam}"/>
 </h:selectOneMenu>
 
 </h:body>

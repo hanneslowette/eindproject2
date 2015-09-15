@@ -25,5 +25,9 @@ public interface ITeam {
 	// voegt een team toe in de database
 	public void voegTeamToe(Team team);
 	
+	public void verwijderTeam(Team team);
+	
+	public void wijzigTeam(Team team);
+	
 
 }

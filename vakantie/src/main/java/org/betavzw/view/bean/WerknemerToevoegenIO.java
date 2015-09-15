@@ -38,8 +38,8 @@ public class WerknemerToevoegenIO {
 	@Inject
 	private ITeam teamEJB;
 	
-	@EJB
-	private WerknemerEJB p;
+	@Inject
+	private IWerknemer p;
 	
 	
 	public WerknemerToevoegenIO() {
@@ -63,7 +63,7 @@ public class WerknemerToevoegenIO {
 		//Werknemer w4 = new Werknemer(naam, voornaam, adres, email, geboortedatum);
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
 		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, a);
-		p.toevoegen(w);
+		p.voegWerknemerToe(w);
 		//w.
 		return "home";
 		}
@@ -80,8 +80,8 @@ public class WerknemerToevoegenIO {
 //		return "home";
 //	}
 	
-	public List<String> getTeamnaam() {
-		return teamEJB.getTeams().stream().map(t -> t.getNaam()).collect(Collectors.toList());
+	public List<Team> getTeamnaam() {
+		return teamEJB.getTeams();
 	}
 
 	

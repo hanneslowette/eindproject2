@@ -105,11 +105,11 @@ public class VerlofAanvraagIO implements Serializable {
 	 */
 	public String verstuur() {
 		if (startDatum.before(eindDatum)) {
-			verlofAanvraagEJB.commit(verlofAanvraagEJB.aanmaken(startDatum
+			verlofAanvraagEJB.aanmaken(startDatum
 					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
 					eindDatum.toInstant().atZone(ZoneId.systemDefault())
 							.toLocalDate(), LocalDate.now(), Toestand.PENDING,
-					new Werknemer(voornaam, naam, personeelsNr)));
+					new Werknemer(voornaam, naam, personeelsNr));
 			return "verlofaanvraagverstuurd";
 		} else {
 			// TODO: zet message dat startdatum voor einddatum moet komen

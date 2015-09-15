@@ -4,9 +4,9 @@ public class Filter {
 
 	private final String column;
 	
-	private final String value;
+	private final Object value;
 
-	public Filter(String column, String value) {
+	public Filter(String column, Object value) {
 		this.column = column;
 		this.value = value;
 	}
@@ -15,7 +15,7 @@ public class Filter {
 		return column;
 	}
 
-	public String getValue() {
+	public Object getValue() {
 		return value;
 	}
 	

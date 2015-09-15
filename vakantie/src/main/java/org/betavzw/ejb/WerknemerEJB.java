@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.betavzw.entities.Adres;
 import org.betavzw.entities.JaarlijksVerlof;
@@ -34,8 +35,31 @@ public class WerknemerEJB implements IWerknemer {
 	}
 
 	@Override
-	public List<Werknemer> getWerknemers(Filter... filter) {
-		return manager.createQuery("FROM Werknemer", Werknemer.class).getResultList();
+	public List<Werknemer> getWerknemers(Filter... filters) {
+		StringBuilder query_builder = new StringBuilder("SELECT w FROM Werknemer");
+		
+		/*
+		 * 
+		 */
+		if (filters.length > 0) {
+			query_builder.append(" WHERE ");
+			for (Filter filter : filters) {
+				query_builder.append(filter.getColumn());
+			}
+		}
+		
+		/*
+		 * Maak de query aan
+		 */
+		TypedQuery<Werknemer> query = manager.createQuery(query_builder.toString(), Werknemer.class);
+		
+		/*
+		 * Zet de waarden van de HQL variabelen
+		 */
+		for (Filter filter : filters) {
+			
+		}
+		return query.getResultList();
 	}
 	
 	public void toevoegen(String naam, String voornaam, Adres adres, String email, LocalDate geboortedatum) {Werknemer w = new Werknemer();

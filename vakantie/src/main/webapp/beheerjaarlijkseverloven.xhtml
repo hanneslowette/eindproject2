@@ -9,22 +9,26 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:outputLabel for="txtWerknemer"
-			value="Geef de werknemer van wie u het jaarlijkse verlof wilt bekijken: "></h:outputLabel>
-		<h:inputText id="txtWerknemer" value="#{verlofBeheer.voornaam}"></h:inputText>
-		<br />
-		<h:outputLabel for="txtWerknemer"
-			value="Geef de werknemer van wie u het jaarlijkse verlof wilt bekijken: "></h:outputLabel>
-		<h:inputText id="txtWerknemer" value="#{verlofBeheer.naam}"></h:inputText>3
-		<br />
-		<h:outputLabel for="txtWerknemer"
-			value="Geef de werknemer van wie u het jaarlijkse verlof wilt bekijken: "></h:outputLabel>
-		<h:inputText id="txtWerknemer" value="#{verlofBeheer.personeelsNr}"></h:inputText>
+		<h:outputLabel for="txtPersoneelsNr"
+			value="Geef het personeelsnummer van de werknemer van wie u het jaarlijkse verlof wilt bekijken: "></h:outputLabel>
+		<h:inputText id="txtPersoneelsNr" value="#{verlofBeheer.personeelsNr}"></h:inputText>
 		<br />
 		<h:outputLabel for="txtJaartal"
 			value="Geef jaartal op dat u wilt bekijken: "></h:outputLabel>
 		<h:inputText id="txtJaartal" value="#{verlofBeheer.jaartal}"></h:inputText>
 		<br />
+		<h:commandButton value="Bekijk verlofdagen"></h:commandButton>
+		<br />
+		<h:dataTable value="#{verlofBeheer.verlofAanvragen}"
+			var="verlofAanvraag">
+			<h:column>#{verlofAanvraag.startDatum}</h:column>
+			<h:column>#{verlofAanvraag.eindDatum}</h:column>
+			<h:column>#{verlofAanvraag.aanvraagDatum}</h:column>
+			<h:column>#{verlofAanvraag.toestand}</h:column>
+			<h:column>#{verlofAanvraag.werknemer.voornaam}</h:column>
+			<h:column>#{verlofAanvraag.werknemer.naam}</h:column>
+			<h:column>#{verlofAanvraag.werknemer.personeelsNr}</h:column>
+		</h:dataTable>
 	</h:form>
 </h:body>
 </html>

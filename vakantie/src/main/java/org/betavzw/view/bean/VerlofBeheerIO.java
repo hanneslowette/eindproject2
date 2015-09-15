@@ -1,13 +1,16 @@
 package org.betavzw.view.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
+import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.entities.VerlofAanvraag;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Named("verlofBeheer")
@@ -18,38 +21,16 @@ public class VerlofBeheerIO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@EJB
+	private VerlofAanvraagEJB verlofAanvraagEJB;
 	@Digits(integer = 4, fraction = 0)
 	@NotEmpty
 	@NotNull
 	private int jaartal;
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
-	@NotEmpty
-	@NotNull
-	private String voornaam;
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
-	@NotEmpty
-	@NotNull
-	private String naam;
 	@Digits(integer = 10, fraction = 0)
 	@NotEmpty
 	@NotNull
 	private int personeelsNr;
-
-	public String getVoornaam() {
-		return voornaam;
-	}
-
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
-
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
 
 	public int getPersoneelsNr() {
 		return personeelsNr;
@@ -65,6 +46,11 @@ public class VerlofBeheerIO implements Serializable {
 
 	public void setJaartal(int jaartal) {
 		this.jaartal = jaartal;
+	}
+
+	public List<VerlofAanvraag> getVerlofAanvragen() {
+		return verlofAanvraagEJB.getVerlofAanvraagPersoneelsNr(personeelsNr);		
+		// TODO: zoeken op jaartal
 	}
 
 }

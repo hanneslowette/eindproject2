@@ -86,6 +86,11 @@ public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 		return manager.find(VerlofAanvraag.class, id);
 	}
 
+	public List<VerlofAanvraag> getVerlofAanvraagPersoneelsNr(int personeelsNr) {
+		return QueryBuilder.create(manager, VerlofAanvraag.class,
+				new Filter("personeelsNr", personeelsNr)).getResultList();
+	}
+
 	public LocalDate getStartDatum() {
 		return manager.find(VerlofAanvraagEJB.class, this).getStartDatum();
 	}

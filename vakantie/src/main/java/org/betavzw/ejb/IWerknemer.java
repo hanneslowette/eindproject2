@@ -23,5 +23,7 @@ public interface IWerknemer {
 
 	// verwijderen van werknemer uit database
 	public void verwijderWerknemer(Werknemer werknemer);
+	
+	public Werknemer getWerknemer(int id);
 
 }

@@ -83,6 +83,10 @@ public class WerknemerEJB implements IWerknemer, Serializable {
 		w.setVerlofAanvragen(verlofAanvragen);
 		manager.persist(w);
 	}
+	
+	public Werknemer getWerknemer(int id){
+		return manager.find(Werknemer.class, id);
+	}
 
 	@Override
 	@Transactional public void voegWerknemerToe(Werknemer werknemer) {

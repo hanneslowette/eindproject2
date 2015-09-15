@@ -31,6 +31,13 @@ public class WerknemerOpvragenIO implements Serializable{
 	private String naam, voornaam;
 	private Integer personeelsNummer;
 	private List<Werknemer> lijst = new ArrayList<Werknemer>();
+	private Werknemer werknemer;
+	public Werknemer getWerknemer() {
+		return werknemer;
+	}
+	public void setWerknemer(Werknemer werknemer) {
+		this.werknemer = werknemer;
+	}
 	public IWerknemer getEjb() {
 		return ejb;
 	}
@@ -68,5 +75,10 @@ public class WerknemerOpvragenIO implements Serializable{
 		}
 		lijst = ejb.getWerknemers(tmp.toArray(new Filter[0]));
 		return null;
+	}
+	
+	public String wijzig(int id){
+		setWerknemer(ejb.getWerknemer(id));
+		return "wijzigWerknemer";
 	}
 }

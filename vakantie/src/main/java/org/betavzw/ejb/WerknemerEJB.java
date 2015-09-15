@@ -65,7 +65,7 @@ public class WerknemerEJB implements IWerknemer, Serializable {
 		manager.persist(w);
 	}
 	
-	public void postcodeSetten(int id, int postcode){
+	public void Setpostcode(int id, int postcode){
 		Werknemer w = manager.find(Werknemer.class, id);
 		w.setPostcode(postcode);
 		manager.persist(w);

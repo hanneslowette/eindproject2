@@ -1,15 +1,30 @@
 package org.betavzw.view.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import org.betavzw.ejb.IWerknemer;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
 
-public class WerknemerOpvragenIO {
+@Named
+@SessionScoped
+public class WerknemerOpvragenIO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public List<Werknemer> getLijst() {
+		return lijst;
+	}
+	public void setLijst(List<Werknemer> lijst) {
+		this.lijst = lijst;
+	}
 	@EJB
 	private IWerknemer ejb;
 	

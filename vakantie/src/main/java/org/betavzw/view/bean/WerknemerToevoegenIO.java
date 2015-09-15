@@ -1,6 +1,7 @@
 package org.betavzw.view.bean;
 
 import java.sql.Date;
+import java.time.ZoneId;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -58,7 +59,7 @@ public class WerknemerToevoegenIO {
 		//Werknemer w = new Werknemer();
 		//Werknemer w4 = new Werknemer(naam, voornaam, adres, email, geboortedatum);
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
-		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, a);
+		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
 		p.voegWerknemerToe(w);
 		//w.
 		return "home";

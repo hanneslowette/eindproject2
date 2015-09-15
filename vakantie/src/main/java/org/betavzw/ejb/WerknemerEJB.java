@@ -39,12 +39,14 @@ public class WerknemerEJB implements IWerknemer {
 		StringBuilder query_builder = new StringBuilder("SELECT w FROM Werknemer");
 		
 		/*
-		 * 
+		 * Bouw de query op
 		 */
 		if (filters.length > 0) {
 			query_builder.append(" WHERE ");
 			for (Filter filter : filters) {
-				query_builder.append(filter.getColumn());
+				query_builder.append(filter.getColumn())
+						.append((filter.getValue() instanceof String) ? " LIKE " : "= ")
+						.append(":").append(filter.getColumn());
 			}
 		}
 		
@@ -57,7 +59,7 @@ public class WerknemerEJB implements IWerknemer {
 		 * Zet de waarden van de HQL variabelen
 		 */
 		for (Filter filter : filters) {
-			
+			query.setParameter(":" + filter.getColumn(), filter.getValue());
 		}
 		return query.getResultList();
 	}

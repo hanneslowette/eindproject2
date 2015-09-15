@@ -7,21 +7,18 @@ import org.betavzw.util.Filter;
 
 public interface IVerlofAanvraag {
 
-	/**
-	 * 
-	 * 
-	 * @param filter
-	 * @return
-	 */
-	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filter);
-
-	// voegt een verlofaanvraag toe in de database
+	// toevoegen van een verlofaanvraag in de database
 	public void voegVerlofAanvraagToe(VerlofAanvraag verlofAanvraag);
 
-	// verwijderen van verlofaanvraag uit de database
+	// verwijderen van een verlofaanvraag uit de database
 	public void verwijderVerlofAanvraag(VerlofAanvraag verlofAanvraag);
 
-	// wijziging van verlofaanvraag doorvoeren in de database
+	// wijzigiging van een verlofaanvraag doorvoeren in de database
 	public void wijzigVerlofAanvraag(VerlofAanvraag verlofAanvraag);
 
+	// weergave lijst met alle verlofaanvragen
+	public List<VerlofAanvraag> getVerlofAanvragen();
+	
+	// weergave lijst met verlofaanvragen gefilterd op kolom(veld)
+	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filter);
 }

@@ -29,6 +29,11 @@
 		<h:inputText id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"></h:inputText>
 		<br />
 		<h:commandButton value="Verstuur" action="#{verlofAanvraag.verstuur}"></h:commandButton>
+		<hr />
+		<h:outputLabel for="txtId"
+			value="Geef het id van de verlofaanvraag in de datatabel: "></h:outputLabel>
+		<h:inputText id="txtiD" value="#{verlofAanvraag.id}"></h:inputText>
+		<br />
 		<h:commandButton value="Check" action="#{verlofAanvraag.check}"></h:commandButton>
 	</h:form>
 </h:body>

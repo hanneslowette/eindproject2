@@ -114,7 +114,7 @@ public class Werknemer {
 		this.adres = adres;
 	}
 
-	public Werknemer(String naam, String voornaam, int personeelsNr) {
+	public Werknemer(String voornaam, String naam, int personeelsNr) {
 		this.naam = naam;
 		this.voornaam = voornaam;
 		this.personeelsNr = personeelsNr;

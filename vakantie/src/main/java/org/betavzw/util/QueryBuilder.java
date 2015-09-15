@@ -6,7 +6,7 @@ import javax.persistence.TypedQuery;
 public class QueryBuilder {
 
 	public static <T> TypedQuery<T> create(EntityManager manager, Class<T> c, Filter... filters) {
-		StringBuilder query_builder = new StringBuilder("SELECT o FROM ").append(c.getSimpleName());
+		StringBuilder query_builder = new StringBuilder("SELECT o FROM ").append(c.getSimpleName()).append(" o");
 		
 		/*
 		 * Bouw de query op

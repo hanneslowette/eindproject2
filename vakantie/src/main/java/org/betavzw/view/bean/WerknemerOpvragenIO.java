@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.ejb.IWerknemer;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
 
-@Named
+@Named("werknemerOpvragenIO")
 @SessionScoped
 public class WerknemerOpvragenIO implements Serializable{
 	/**
@@ -25,11 +25,11 @@ public class WerknemerOpvragenIO implements Serializable{
 	public void setLijst(List<Werknemer> lijst) {
 		this.lijst = lijst;
 	}
-	@EJB
+	@Inject
 	private IWerknemer ejb;
 	
 	private String naam, voornaam;
-	private int personeelsNummer = -1;
+	private Integer personeelsNummer;
 	private List<Werknemer> lijst = new ArrayList<Werknemer>();
 	public IWerknemer getEjb() {
 		return ejb;
@@ -49,13 +49,13 @@ public class WerknemerOpvragenIO implements Serializable{
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-	public int getPersoneelsNummer() {
+	public Integer getPersoneelsNummer() {
 		return personeelsNummer;
 	}
-	public void setPersoneelsNummer(int personeelsNummer) {
+	public void setPersoneelsNummer(Integer personeelsNummer) {
 		this.personeelsNummer = personeelsNummer;
 	}
-	public void zoekWerknemer(){
+	public String zoek(){
 		List<Filter> tmp = new ArrayList<Filter>();
 		if (!naam.equals("")) {
 			tmp.add(new Filter("naam", this.naam));
@@ -67,5 +67,6 @@ public class WerknemerOpvragenIO implements Serializable{
 			tmp.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
 		lijst = ejb.getWerknemers(tmp.toArray(new Filter[0]));
+		return null;
 	}
 }

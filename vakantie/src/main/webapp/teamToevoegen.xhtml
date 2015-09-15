@@ -11,14 +11,14 @@
 
 <h:outputLabel for="team" value="teamnaam:"></h:outputLabel>
 <h:inputText id="team" value="#{teamToevoegenIO.naam}" ></h:inputText>
-
+<br/>
 <h:selectOneMenu value="#{teamToevoegenIO.werknemers()}" var="tmp">
     <f:selectItems value="#{tmp}" itemLabel="#{tmp.naam}"/>
 </h:selectOneMenu>
 
-
+<br/>
 <h:commandButton value="voeg team toe" action="#{teamToevoegenIO.voegTeamToe()}"></h:commandButton>
-
+<h:commandButton value="voeg werknemer toe" action="werknemerToevoegen"></h:commandButton>
 
 </h:form>
 

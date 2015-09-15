@@ -62,7 +62,7 @@ public class VerlofAanvraagEJB {
 		return this.verlofAanmaken(verlofAanvraag);
 	}
 
-	public VerlofAanvraag get(int id) {
+	public VerlofAanvraag getVerlofAanvraag(int id) {
 		return manager.find(VerlofAanvraag.class, id);
 	}
 

@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,7 +15,9 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.betavzw.ejb.IVerlofAanvraag;
 import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Toestand;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,6 +27,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class VerlofAanvraagIO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Inject
+	private IVerlofAanvraag iVerlofAanvraag;
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
 	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
@@ -105,11 +110,23 @@ public class VerlofAanvraagIO implements Serializable {
 	 */
 	public String verstuur() {
 		if (startDatum.before(eindDatum)) {
-			verlofAanvraagEJB.aanmaken(startDatum
-					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
-					eindDatum.toInstant().atZone(ZoneId.systemDefault())
-							.toLocalDate(), LocalDate.now(), Toestand.PENDING,
-					new Werknemer(voornaam, naam, personeelsNr));
+			VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+			verlofAanvraag.setStartDatum(startDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setEindDatum(eindDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setAanvraagDatum(LocalDate.now());
+			verlofAanvraag.setToestand(Toestand.PENDING);
+			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam,
+					personeelsNr));
+			iVerlofAanvraag.voegVerlofAanvraagToe(verlofAanvraag);
+
+			// verlofAanvraagEJB.aanmaken(
+			// startDatum.toInstant().atZone(ZoneId.systemDefault())
+			// .toLocalDate(),
+			// eindDatum.toInstant().atZone(ZoneId.systemDefault())
+			// .toLocalDate(), LocalDate.now(), Toestand.PENDING,
+			// new Werknemer(voornaam, naam, personeelsNr));
 			return "verlofaanvraagverstuurd";
 		} else {
 			// TODO: zet message dat startdatum voor einddatum moet komen

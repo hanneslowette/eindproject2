@@ -83,4 +83,10 @@ public class WerknemerEJB implements IWerknemer, Serializable {
 		manager.persist(w);
 	}
 
+	@Override
+	public void voegWerknemerToe(Werknemer werknemer) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

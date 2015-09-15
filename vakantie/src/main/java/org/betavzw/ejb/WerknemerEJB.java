@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.betavzw.entities.Adres;
 import org.betavzw.entities.JaarlijksVerlof;
@@ -42,6 +43,11 @@ public class WerknemerEJB implements IWerknemer, Serializable {
 	@Override
 	public List<Werknemer> getWerknemers(Filter... filters) {
 		return QueryBuilder.create(manager, Werknemer.class, filters).getResultList();
+	}
+	
+	@Override
+	@Transactional public void voegWerknemerToe(Werknemer werknemer) {
+		manager.persist(werknemer);
 	}
 	
 	public void toevoegen(String naam, String voornaam, Adres adres, String email, LocalDate geboortedatum) {Werknemer w = new Werknemer();

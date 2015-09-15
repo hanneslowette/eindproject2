@@ -9,6 +9,7 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
@@ -51,6 +52,11 @@ public class TeamEJB implements ITeam, Serializable {
 	@Override
 	public List<Team> getTeams(Filter... filters) {
 		return QueryBuilder.create(manager, Team.class, filters).getResultList();
+	}
+	
+	@Override
+	@Transactional public void voegTeamToe(Team team) {
+		manager.persist(team);
 	}
 	
 	/**

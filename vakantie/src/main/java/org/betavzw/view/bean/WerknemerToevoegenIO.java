@@ -1,17 +1,24 @@
 package org.betavzw.view.bean;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 //import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.betavzw.ejb.ITeam;
+import org.betavzw.ejb.IWerknemer;
 import org.betavzw.ejb.WerknemerEJB;
 //import org.betavzw.ejb.TeamEJB;
 import org.betavzw.entities.Adres;
+import org.betavzw.entities.Team;
 //import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
+import org.betavzw.util.Filter;
 
 @Named
 @RequestScoped
@@ -27,6 +34,9 @@ public class WerknemerToevoegenIO {
 	private String busnummer;
 	private String postcode;
 	private String gemeente;
+	
+	@Inject
+	private ITeam teamEJB;
 	
 	@EJB
 	private WerknemerEJB p;
@@ -69,6 +79,10 @@ public class WerknemerToevoegenIO {
 //		
 //		return "home";
 //	}
+	
+	public List<String> getTeamnaam() {
+		return teamEJB.getTeams().stream().map(t -> t.getNaam()).collect(Collectors.toList());
+	}
 
 	
 	

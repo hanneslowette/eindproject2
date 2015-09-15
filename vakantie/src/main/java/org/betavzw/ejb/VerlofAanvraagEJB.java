@@ -15,7 +15,7 @@ import org.betavzw.util.Toestand;
  */
 
 @Stateful
-public class VerlofAanvraagEJB {
+public class VerlofAanvraagEJB implements VerlofAanvraagInterface{
 
 	@PersistenceContext
 	private EntityManager manager;

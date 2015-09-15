@@ -8,8 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.betavzw.ejb.WerknemerEJB;
 import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.ejb.WerknemerEJB;
 
 @Named("verlofGoedkeuren")
 @SessionScoped
@@ -21,11 +21,6 @@ public class VerlofGoedkeurenIO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
-	@EJB
-	private WerknemerEJB werknemerEJB;
-	private String voornaam;
-	private String naam;
-	private int personeelsNr;
 	private String keuring;
 
 	public String getKeuring() {
@@ -34,31 +29,6 @@ public class VerlofGoedkeurenIO implements Serializable {
 
 	public void setKeuring(String keuring) {
 		this.keuring = keuring;
-	}
-
-	public String getVoornaam() {
-		werknemerEJB.
-		return voornaam;
-	}
-
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
-
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
-
-	public int getPersoneelsNr() {
-		return personeelsNr;
-	}
-
-	public void setPersoneelsNr(int personeelsNr) {
-		this.personeelsNr = personeelsNr;
 	}
 
 	public Date getStartDatum() {

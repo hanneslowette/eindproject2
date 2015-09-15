@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.ejb.TeamEJB;
@@ -14,22 +15,34 @@ import org.betavzw.ejb.WerknemerEJB;
 import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
 
+/**
+ * Voegt 
+ * 
+ * @author user104
+ *
+ */
 @Named("teamToevoegen")
-@SessionScoped
-public class TeamToevoegenIO implements Serializable{
+@SessionScoped public class TeamToevoegenIO implements Serializable{
 
 	/**
-	 * 
+	 * De versie ID van de 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 */
 	private String naam;
 	
-	@EJB
-	private TeamEJB team;
+	/**
+	 * 
+	 */
+	@Inject private TeamEJB team;
 	
-	@EJB
-	private WerknemerEJB werknemerEJB;
+	/**
+	 * 
+	 */
+	@Inject private WerknemerEJB werknemerEJB;
 	
 	public String voegTeamToe() {
 		

@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -34,9 +36,15 @@ public class TeamEJB implements ITeam, Serializable {
 	/**
 	 * TODO: naam persistence context
 	 */
-	@PersistenceContext
-	private EntityManager manager;
+//	@PersistenceContext
+//	private EntityManager manager;
 
+	EntityManagerFactory emf = Persistence
+			.createEntityManagerFactory("unitName");
+	
+	EntityManager manager = emf.createEntityManager();
+	
+	
 	/**
 	 * Registreert een team in de entity manager en geeft dit terug (voor
 	 * chaining)

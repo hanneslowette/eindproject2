@@ -5,12 +5,9 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.betavzw.ejb.IWerknemer;
 import org.betavzw.ejb.VerlofAanvraagEJB;
-import org.betavzw.util.Filter;
 import org.betavzw.util.Toestand;
 
 @Named("verlofAanvraag")
@@ -23,21 +20,13 @@ public class VerlofAanvraagIO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
-	
-//	@EJB
-//	private WerknemerEJB werknemerEJB;
-	
-	@Inject private IWerknemer werknemerEJB;
-	
 	private String voornaam;
-
 	private String naam;
 	private int personeelsNr;
 	private Date startDatum;
 	private Date eindDatum;
 
-	public String getVoornaam() {
-		werknemerEJB.getWerknemers(new Filter("voornaam", this.voornaam));
+	public String getVoornaam() {	
 		return voornaam;
 	}
 
@@ -78,8 +67,9 @@ public class VerlofAanvraagIO implements Serializable {
 	}
 
 	/**
-	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waarmee de response pagina bepaald wordt
-	 * via het enum Toestand(PENDING, ACCEPTED, REJECTED, CANCELED)
+	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waarmee de
+	 * response pagina bepaald wordt via het enum Toestand(PENDING, ACCEPTED,
+	 * REJECTED, CANCELED)
 	 */
 	public String verstuur() {
 		String pagina = "";

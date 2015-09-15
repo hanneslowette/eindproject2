@@ -14,6 +14,14 @@ public interface IVerlofAanvraag {
 	 * @return
 	 */
 	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filter);
-	
+
+	// voegt een verlofaanvraag toe in de database
+	public void voegVerlofAanvraagToe(VerlofAanvraag verlofAanvraag);
+
+	// verwijderen van verlofaanvraag uit de database
+	public void verwijderVerlofAanvraag(VerlofAanvraag verlofAanvraag);
+
+	// wijziging van verlofaanvraag doorvoeren in de database
+	public void wijzigVerlofAanvraag(VerlofAanvraag verlofAanvraag);
 
 }

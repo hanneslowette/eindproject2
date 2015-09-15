@@ -75,7 +75,7 @@ public class VerlofAanvraagIO implements Serializable {
 					startDatum.toInstant().atZone(ZoneId.systemDefault())
 							.toLocalDate(),
 					eindDatum.toInstant().atZone(ZoneId.systemDefault())
-							.toLocalDate(), LocalDate.now(), Toestand.PENDING);
+							.toLocalDate(), LocalDate.now(), Toestand.PENDING, null);
 			return "verlofaanvraagverstuurd";
 		} else {
 			// TODO: zet message dat startdatum voor einddatum moet komen

@@ -1,13 +1,19 @@
 package org.betavzw.ejb;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
+import org.betavzw.entities.Team;
 import org.betavzw.entities.VerlofAanvraag;
 import org.betavzw.entities.Werknemer;
+import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 import org.betavzw.util.Toestand;
 
 /**
@@ -15,8 +21,15 @@ import org.betavzw.util.Toestand;
  */
 
 @Stateful
-public class VerlofAanvraagEJB {
+public class VerlofAanvraagEJB implements Serializable, IVerlofAanvraag {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * TODO: naam persistence context
+	 */
 	@PersistenceContext
 	private EntityManager manager;
 
@@ -32,32 +45,14 @@ public class VerlofAanvraagEJB {
 		return verlofAanvraag;
 	}
 
-	// public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-	// LocalDate aanvraagDatum) {
-	// VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-	// verlofAanvraag.setStartDatum(startDatum);
-	// verlofAanvraag.setEindDatum(eindDatum);
-	// verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-	// return this.verlofAanmaken(verlofAanvraag);
-	// }
-	//
-	// public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-	// LocalDate aanvraagDatum, Werknemer werknemer) {
-	// VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-	// verlofAanvraag.setStartDatum(startDatum);
-	// verlofAanvraag.setEindDatum(eindDatum);
-	// verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-	// verlofAanvraag.setWerknemer(werknemer);
-	// return this.verlofAanmaken(verlofAanvraag);
-	// }
-
 	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-			LocalDate aanvraagDatum, Toestand toestand) {
+			LocalDate aanvraagDatum, Toestand toestand, Werknemer werknemer) {
 		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
 		verlofAanvraag.setStartDatum(startDatum);
 		verlofAanvraag.setEindDatum(eindDatum);
 		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 		verlofAanvraag.setToestand(toestand);
+		verlofAanvraag.setWerknemer(werknemer);
 		return this.verlofAanmaken(verlofAanvraag);
 	}
 
@@ -80,6 +75,30 @@ public class VerlofAanvraagEJB {
 
 	public Toestand getToestand() {
 		return manager.find(VerlofAanvraagEJB.class, this).getToestand();
+	}
+
+	@Override
+	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filters) {
+		return QueryBuilder.create(manager, VerlofAanvraag.class, filters)
+				.getResultList();
+	}
+
+	@Override
+	@Transactional
+	public void voegVerlofAanvraagToe(VerlofAanvraag verlofAanvraag) {
+		manager.persist(verlofAanvraag);
+	}
+
+	@Override
+	@Transactional
+	public void verwijderVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
+		manager.remove(verlofAanvraag);
+	}
+
+	@Override
+	@Transactional
+	public void wijzigVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
+		manager.persist(verlofAanvraag);
 	}
 
 }

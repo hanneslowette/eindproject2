@@ -1,15 +1,19 @@
 package org.betavzw.ejb;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
-import javax.ejb.Stateful;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
+import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 
 /**
  * 1.2. Beheren van teams Als HR-medewerker wil ik gegevens van teams kunnen
@@ -19,9 +23,13 @@ import org.betavzw.entities.Werknemer;
  * 
  * @author Hannes Lowette
  */
-@Stateful
-public class TeamEJB {
+@ApplicationScoped
+public class TeamEJB implements ITeam, Serializable {
 
+	/**
+	 * Version id van het geserializeerd object
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * TODO: naam persistence context
 	 */
@@ -40,6 +48,11 @@ public class TeamEJB {
 		return team;
 	}
 
+	@Override
+	public List<Team> getTeams(Filter... filters) {
+		return QueryBuilder.create(manager, Team.class, filters).getResultList();
+	}
+	
 	/**
 	 * Maakt een nieuw team aan met de gegeven waarden en geeft het aangemaakte
 	 * team terug

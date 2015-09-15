@@ -3,7 +3,6 @@ package org.betavzw.ejb;
 import java.util.List;
 
 import org.betavzw.entities.Team;
-import org.betavzw.entities.Werknemer;
 //import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
 

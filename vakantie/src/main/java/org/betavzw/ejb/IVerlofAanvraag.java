@@ -13,6 +13,6 @@ public interface IVerlofAanvraag {
 	 * @param filter
 	 * @return
 	 */
-	public List<VerlofAanvraag> getWerknemers(Filter... filter);
+	public List<VerlofAanvraag> getVerlofAanvragen(Filter... filter);
 
 }

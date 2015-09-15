@@ -15,6 +15,7 @@ public class WerknemerOpvragenIO {
 	
 	private String naam, voornaam;
 	private int personeelsNummer = -1;
+	private List<Werknemer> lijst = new ArrayList<Werknemer>();
 	public IWerknemer getEjb() {
 		return ejb;
 	}
@@ -39,17 +40,17 @@ public class WerknemerOpvragenIO {
 	public void setPersoneelsNummer(int personeelsNummer) {
 		this.personeelsNummer = personeelsNummer;
 	}
-	public List<Werknemer> zoekWerknemer(){
-		List<Filter> lijst = new ArrayList<Filter>();
+	public void zoekWerknemer(){
+		List<Filter> tmp = new ArrayList<Filter>();
 		if (!naam.equals("")) {
-			lijst.add(new Filter("naam", this.naam));
+			tmp.add(new Filter("naam", this.naam));
 		}
 		if (!voornaam.equals("")) {
-			lijst.add(new Filter("voornaam", this.voornaam));
+			tmp.add(new Filter("voornaam", this.voornaam));
 		}
 		if (personeelsNummer!=-1) {
-			lijst.add(new Filter("id", this.personeelsNummer));
+			tmp.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
-		return ejb.getWerknemers(lijst.toArray(new Filter[0]));
+		lijst = ejb.getWerknemers(tmp.toArray(new Filter[0]));
 	}
 }

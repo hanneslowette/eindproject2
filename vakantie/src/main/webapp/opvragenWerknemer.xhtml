@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Werknemer opvragen</title>
+</h:head>
+<h:body>
+
+<h:form>
+
+<h:inputText value="#{werknemerOpvragenIO.naam}"></h:inputText>
+<h:inputText value="#{werknemerOpvragenIO.voornaam}"></h:inputText>
+<h:inputText value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>
+<h:commandButton value="Zoek"></h:commandButton><br/>
+</h:form>
+
+<h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
+<h:column value="#{w.id}"></h:column>
+<h:column value="#{w.personeelsNr}"></h:column>
+<h:column value="#{w.naam}"></h:column>
+<h:column value="#{w.voornaam}"></h:column>
+<h:column value="#{w.email}"></h:column>
+</h:dataTable>
+
+</h:body>
+</html>

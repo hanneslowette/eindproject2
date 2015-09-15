@@ -14,5 +14,8 @@ public interface IWerknemer {
 	 * @return
 	 */
 	public List<Werknemer> getWerknemers(Filter... filter);
+	
+	// voegt een werknemer toe in de database
+	public void voegWerknemerToe(Werknemer werknemer);
 
 }

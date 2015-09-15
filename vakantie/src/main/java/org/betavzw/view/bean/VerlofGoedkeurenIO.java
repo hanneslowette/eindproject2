@@ -37,6 +37,7 @@ public class VerlofGoedkeurenIO implements Serializable {
 	}
 
 	public String getVoornaam() {
+		werknemerEJB.
 		return voornaam;
 	}
 

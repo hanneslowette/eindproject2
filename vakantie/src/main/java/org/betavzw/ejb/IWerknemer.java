@@ -6,8 +6,12 @@ import org.betavzw.entities.Team;
 import org.betavzw.entities.Werknemer;
 
 public interface IWerknemer {
- public List<Team> getTeams();
- public List<Werknemer> getWerknemers();
- public Werknemer getWerknemer(String naam);
- public Team getTeam(String naam);
+
+	// geeft een lijst met werknemers terug, om te gebruiken in
+	// "opvragen werknemers"
+	public List<Werknemer> getWerknemers();
+
+	// geeft een werknemer terug, om te gebruiken in zoekfuncties
+	public Werknemer getWerknemer(String naam);
+
 }

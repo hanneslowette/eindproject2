@@ -1,6 +1,8 @@
 package org.betavzw.view.bean;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -14,9 +16,6 @@ import org.betavzw.util.Toestand;
 @SessionScoped
 public class VerlofAanvraagIO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private VerlofAanvraagEJB verlofAanvraagEJB;
@@ -25,8 +24,9 @@ public class VerlofAanvraagIO implements Serializable {
 	private int personeelsNr;
 	private Date startDatum;
 	private Date eindDatum;
+	private Date aanvraagDatum;
 
-	public String getVoornaam() {	
+	public String getVoornaam() {
 		return voornaam;
 	}
 
@@ -66,24 +66,41 @@ public class VerlofAanvraagIO implements Serializable {
 		this.eindDatum = eindDatum;
 	}
 
+	public Date getAanvraagDatum() {
+		return aanvraagDatum;
+	}
+
+	public void setAanvraagDatum() {
+		this.aanvraagDatum = Date.from(LocalDate.now().atStartOfDay()
+				.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
 	/**
 	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waarmee de
 	 * response pagina bepaald wordt via het enum Toestand(PENDING, ACCEPTED,
 	 * REJECTED, CANCELED)
 	 */
 	public String verstuur() {
-		String pagina = "";
-		if (startDatum.before(eindDatum)) {
+		if (startDatum.before(eindDatum)) {	
+			verlofAanvraagEJB.aanmaken(startDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), eindDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), aanvraagDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), Toestand.PENDING);
+			return "verlofaanvraagverstuurd";
+		}
+		else {
 			// TODO: zet message dat startdatum voor einddatum moet komen
-			pagina = "verlofaanvraag";
-			if (verlofAanvraagEJB.getToestand() == Toestand.PENDING) {
-				pagina = "verlofpending";
-			} else if (verlofAanvraagEJB.getToestand() == Toestand.ACCEPTED) {
-				pagina = "verlofgoedgekeurd";
-			} else if (verlofAanvraagEJB.getToestand() == Toestand.REJECTED) {
-				pagina = "verlofafgekeurd";
-			}
+			return "verlofaanvragen";
+		}		
+	}
+
+	public String check() {
+		String pagina = "";
+		if (verlofAanvraagEJB.getToestand() == Toestand.PENDING) {
+			pagina = "verlofpending";
+		} else if (verlofAanvraagEJB.getToestand() == Toestand.ACCEPTED) {
+			pagina = "verlofgoedgekeurd";
+		} else if (verlofAanvraagEJB.getToestand() == Toestand.REJECTED) {
+			pagina = "verlofafgekeurd";
 		}
 		return pagina;
 	}
+
 }

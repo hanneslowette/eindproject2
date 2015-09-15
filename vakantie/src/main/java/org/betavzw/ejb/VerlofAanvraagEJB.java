@@ -52,13 +52,12 @@ public class VerlofAanvraagEJB {
 	// }
 
 	public VerlofAanvraag aanmaken(LocalDate startDatum, LocalDate eindDatum,
-			LocalDate aanvraagDatum, Toestand toestand, Werknemer werknemer) {
+			LocalDate aanvraagDatum, Toestand toestand) {
 		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
 		verlofAanvraag.setStartDatum(startDatum);
 		verlofAanvraag.setEindDatum(eindDatum);
 		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 		verlofAanvraag.setToestand(toestand);
-		verlofAanvraag.setWerknemer(werknemer);
 		return this.verlofAanmaken(verlofAanvraag);
 	}
 

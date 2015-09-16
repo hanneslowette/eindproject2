@@ -39,7 +39,6 @@ public class VerlofAanvraagIO implements Serializable {
 	@NotNull
 	private String naam;
 	@Digits(integer = 4, fraction = 0)
-	@NotNull
 	private int personeelsNr;
 	@Temporal(TemporalType.DATE)
 	@NotEmpty
@@ -50,7 +49,6 @@ public class VerlofAanvraagIO implements Serializable {
 	@NotNull
 	private Date eindDatum;
 	@Digits(integer = 10, fraction = 0)
-	@NotNull
 	private int id;
 	
 	/**

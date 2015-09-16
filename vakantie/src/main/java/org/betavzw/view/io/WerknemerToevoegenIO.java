@@ -54,7 +54,10 @@ public class WerknemerToevoegenIO {
 		this.geboortedatum = geboortedatum;
 	}
 	
-	
+	/**
+	 * offert de werknemer
+	 * @return homepage
+	 */
 	public String voegWerknemerToe() {
 		// Werknemer w = new Werknemer();
 		// Werknemer w4 = new Werknemer(naam, voornaam, adres, email,

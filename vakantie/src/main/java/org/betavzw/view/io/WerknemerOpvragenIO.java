@@ -16,9 +16,9 @@ import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
 /**
- * Wat de fuck was dees, gast
  * 
- * @author red
+ * 
+ * @author Brent
  *
  */
 @Named("werknemerOpvragenIO")

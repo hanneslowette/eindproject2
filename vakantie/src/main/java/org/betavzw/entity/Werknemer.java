@@ -51,6 +51,7 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
+	@SuppressWarnings("unused")
 	private Adres adres;
 
 	public void setAdres(Adres adres) {

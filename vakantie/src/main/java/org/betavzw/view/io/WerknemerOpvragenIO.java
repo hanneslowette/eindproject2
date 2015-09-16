@@ -91,7 +91,7 @@ public class WerknemerOpvragenIO implements Serializable{
 	 */
 	public String wijzig(int id){
 		setWerknemer(werknemer_bean.getSingle(new Filter("id", id)));
-		return View.WIJZIG_WERKNEMER;
+		return View.WERKNEMER_WIJZIGEN;
 	}
 
 	public List<Werknemer> getLijst() {

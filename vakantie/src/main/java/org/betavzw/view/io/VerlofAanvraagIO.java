@@ -64,9 +64,9 @@ public class VerlofAanvraagIO implements Serializable {
 			verlofAanvraag.setToestand(Toestand.PENDING);
 			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam, personeelsNr));
 			aanvraag_bean.offer(verlofAanvraag);
-			return "verlofaanvraagverstuurd";
+			return View.VERSTUURD;
 		} else {
-			return "verlofaanvragen";
+			return View.VERLOFAANVRAGEN;
 		}
 	}
 

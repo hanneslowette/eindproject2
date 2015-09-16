@@ -11,6 +11,7 @@ import javax.inject.Named;
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
 @Named
@@ -62,7 +63,7 @@ public class WerknemerToevoegenIO {
 		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
 		werknemer_bean.offer(w);
 		// w.
-		return "home";
+		return View.HOME;
 	}
 	
 //	@EJB

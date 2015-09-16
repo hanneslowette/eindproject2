@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
 @Named("verlofGoedkeuren")
@@ -56,7 +57,7 @@ public class VerlofGoedkeurenIO implements Serializable {
 //		} else if (keuring.equalsIgnoreCase("CANCEL")) {
 //			verlofAanvraagEJB.setToestand("CANCEL");
 //		}
-		return "home";
+		return View.HOME;
 	}
 	
 }

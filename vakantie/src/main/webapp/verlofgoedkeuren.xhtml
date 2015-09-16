@@ -26,7 +26,6 @@
 		<h:selectOneMenu id="selToestand" value="#{verlofGoedkeuren.keuring}">
 			<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
 			<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
-			<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>
 		</h:selectOneMenu>
 		<h:commandButton value="Send" action="#{verlof.Goedkeuren.verstuur}"></h:commandButton>
 	</h:form>

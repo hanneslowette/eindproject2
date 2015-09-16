@@ -12,6 +12,7 @@
 		<class>org.betavzw.entity.Team</class>
 		<class>org.betavzw.entity.VerlofAanvraag</class>
 		<class>org.betavzw.entity.Werknemer</class>
+		<class>org.betavzw.entity.Credentials</class>
 		<!-- andere klassen -->
 		<properties>
 			<property name="hibernate.transaction.jta.platform"

@@ -54,10 +54,6 @@ public class Werknemer {
 	@SuppressWarnings("unused")
 	private Adres adres;
 
-	public void setAdres(Adres adres) {
-		this.adres = adres;
-	}
-
 	/**
 	 * De postcode van de gemeente waar de werknemer woont
 	 */
@@ -91,23 +87,7 @@ public class Werknemer {
 	@OneToMany
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
 
-	public Werknemer() {
-		super();
-	}
-
-	// public Werknemer(String naam, String voornaam, String email,
-	// LocalDate geboortedatum, String adres) {
-	// super();
-	// this.naam = naam;
-	// this.voornaam = voornaam;
-	// this.email = email;
-	// this.geboortedatum = geboortedatum;
-	// //this.adres = adres;
-	// }
-
-	public Werknemer(String naam, String voornaam, String email,
-			LocalDate geboortedatum, Adres adres) {
-		// TODO Auto-generated constructor stub
+	public Werknemer(String naam, String voornaam, String email, LocalDate geboortedatum, Adres adres) {
 		this.naam = naam;
 		this.voornaam = voornaam;
 		this.email = email;
@@ -119,6 +99,14 @@ public class Werknemer {
 		this.naam = naam;
 		this.voornaam = voornaam;
 		this.personeelsNr = personeelsNr;
+	}
+
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
+
+	public Werknemer() {
+		super();
 	}
 
 	public String getNaam() {
@@ -160,14 +148,6 @@ public class Werknemer {
 	public void setPersoneelsNr(int personeelsNr) {
 		this.personeelsNr = personeelsNr;
 	}
-
-	// public String getAdres() {
-	// return adres;
-	// }
-	//
-	// public void setAdres(String adres) {
-	// this.adres = adres;
-	// }
 
 	public int getPostcode() {
 		return postcode;

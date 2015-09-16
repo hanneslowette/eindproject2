@@ -1,4 +1,4 @@
-package org.betavzw.view.bean;
+package org.betavzw.view.io;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,11 +8,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.betavzw.ejb.ITeam;
-import org.betavzw.ejb.IWerknemer;
-import org.betavzw.entities.Team;
-import org.betavzw.entities.Werknemer;
+import org.betavzw.entity.Team;
 import org.betavzw.util.Filter;
+import org.betavzw.view.bean.Bean;
 
 @Named
 @RequestScoped
@@ -23,16 +21,35 @@ public class TeamOpvragenIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private ITeam ejb;
+	/**
+	 * De bean die verantwoordelijk is voor teams
+	 */
+	@Inject private Bean<Team> bean;
 	
+	/**
+	 * De lijst met gevonden teams
+	 */
+	private List<Team> teams;
+	
+	/**
+	 * De naam van het team
+	 */
 	private String naam;
+	
+	/**
+	 * De verantwoordelijke van het team
+	 */
 	private String verantwoordelijke;
+	
+	/**
+	 * De unieke code van het team
+	 */
 	private String code;
-	private List<Team> lijst = new ArrayList<Team>();
 	
-	
-	public String zoek(){
+	/**
+	 * De actie die gebeurt wanneer de gebruiker op "Zoek" klikt in de view
+	 */
+	public void zoek() {
 		List<Filter> tmp = new ArrayList<Filter>();
 		if (!naam.equals("")) {
 			tmp.add(new Filter("naam", this.naam));
@@ -44,46 +61,39 @@ public class TeamOpvragenIO implements Serializable {
 			tmp.add(new Filter("verantwoordelijke", this.verantwoordelijke));
 		}
 		
-		lijst = ejb.getTeams();
-		//lijst = ejb.getWerknemers(tmp.toArray(new Filter[0]));
-		return null;
+		teams = bean.get(tmp);
 	}
-	
-	
-	
-	public ITeam getEjb() {
-		return ejb;
-	}
-	public void setEjb(ITeam ejb) {
-		this.ejb = ejb;
-	}
+
 	public String getNaam() {
 		return naam;
 	}
+
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
+
 	public String getVerantwoordelijke() {
 		return verantwoordelijke;
 	}
+
 	public void setVerantwoordelijke(String verantwoordelijke) {
 		this.verantwoordelijke = verantwoordelijke;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public List<Team> getLijst() {
-		return lijst;
+
+	public List<Team> getTeams() {
+		return teams;
 	}
-	public void setLijst(List<Team> lijst) {
-		this.lijst = lijst;
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
 	}
-	
-	
-	
-	
 
 }

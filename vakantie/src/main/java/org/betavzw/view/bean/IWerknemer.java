@@ -1,8 +1,8 @@
-package org.betavzw.ejb;
+package org.betavzw.view.bean;
 
 import java.util.List;
 
-import org.betavzw.entities.Werknemer;
+import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
 
 public interface IWerknemer {

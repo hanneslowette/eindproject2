@@ -1,4 +1,4 @@
-package org.betavzw.entities;
+package org.betavzw.entity;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -51,6 +51,7 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
+	@SuppressWarnings("unused")
 	private Adres adres;
 
 	public void setAdres(Adres adres) {
@@ -222,6 +223,10 @@ public class Werknemer {
 
 	public void addVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
 		verlofAanvragen.add(verlofAanvraag);
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

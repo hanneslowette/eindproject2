@@ -5,13 +5,13 @@
 	<persistence-unit name="unitName" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>jdbc/_eindproject</jta-data-source>
-		<class>org.betavzw.entities.CollectiefVerlof</class>
-		<class>org.betavzw.entities.CollectieveSluiting</class>
-		<class>org.betavzw.entities.Feestdag</class>
-		<class>org.betavzw.entities.JaarlijksVerlof</class>
-		<class>org.betavzw.entities.Team</class>
-		<class>org.betavzw.entities.VerlofAanvraag</class>
-		<class>org.betavzw.entities.Werknemer</class>
+		<class>org.betavzw.entity.CollectiefVerlof</class>
+		<class>org.betavzw.entity.CollectieveSluiting</class>
+		<class>org.betavzw.entity.Feestdag</class>
+		<class>org.betavzw.entity.JaarlijksVerlof</class>
+		<class>org.betavzw.entity.Team</class>
+		<class>org.betavzw.entity.VerlofAanvraag</class>
+		<class>org.betavzw.entity.Werknemer</class>
 		<!-- andere klassen -->
 		<properties>
 			<property name="hibernate.transaction.jta.platform"
@@ -20,7 +20,7 @@
 			<!-- geen properties definiëren voor password, user, driver etc; want 
 				we gebruiken datasource -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+<!-- 			<property name="hibernate.hbm2ddl.auto" value="update" /> -->
 			<property name="hibernate.connection.autocommit" value="true" />
 		</properties>
 	</persistence-unit>

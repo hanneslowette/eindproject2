@@ -19,7 +19,7 @@
 			<h:outputLabel for="txtNaam" value="Password: "></h:outputLabel>
 			<h:inputSecret id="txtNaam" value="#{login.password}" a:placeholder="*****"></h:inputSecret>
 			
-			<h:commandButton value="Aanmelden" ></h:commandButton>
+			<h:commandButton value="Aanmelden" action="#{login.aanmelden}"></h:commandButton>
 		</h:panelGrid>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>

@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.Toestand;
 
 @SessionScoped
 public class LoginBean implements Serializable {
@@ -24,6 +25,11 @@ public class LoginBean implements Serializable {
 	 * Het team dat de persoon beheert
 	 */
 	private Team team;
+	
+	/**
+	 * toestand van deze sessie (bezoeker/werknemer/teamverantwoordelijke)
+	 */
+	private Toestand toestand;
 
 	public Werknemer getWerknemer() {
 		return werknemer;

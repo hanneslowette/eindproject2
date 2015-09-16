@@ -9,9 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.ejb.ITeam;
-import org.betavzw.ejb.IWerknemer;
 import org.betavzw.entities.Team;
-import org.betavzw.entities.Werknemer;
 import org.betavzw.util.Filter;
 
 @Named

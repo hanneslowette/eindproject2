@@ -5,13 +5,13 @@ package org.betavzw.test;
 
 import static org.junit.Assert.*;
 
-import org.betavzw.entities.Adres;
-import org.betavzw.entities.CollectiefVerlof;
-import org.betavzw.entities.CollectieveSluiting;
-import org.betavzw.entities.Feestdag;
-import org.betavzw.entities.JaarlijksVerlof;
-import org.betavzw.entities.Team;
-import org.betavzw.entities.Werknemer;
+import org.betavzw.entity.Adres;
+import org.betavzw.entity.CollectiefVerlof;
+import org.betavzw.entity.CollectieveSluiting;
+import org.betavzw.entity.Feestdag;
+import org.betavzw.entity.JaarlijksVerlof;
+import org.betavzw.entity.Team;
+import org.betavzw.entity.Werknemer;
 import org.junit.Test;
 
 /**

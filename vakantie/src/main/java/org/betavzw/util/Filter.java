@@ -3,12 +3,12 @@ package org.betavzw.util;
 public class Filter {
 
 	/**
-	 * De naam van de variable waar je op wil vergelijken. (Meestal een veld in de klasse waarop gecheckt moet worden)
+	 * De naam van de kolom. Meestal de naam van de variable in de klasse waar je op wil vergelijken
 	 */
 	private final String column;
 	
 	/**
-	 * De door de gebruiker opgegeven waarde
+	 * De waarde van de voorwaarde
 	 */
 	private final Object value;
 
@@ -24,6 +24,5 @@ public class Filter {
 	public Object getValue() {
 		return value;
 	}
-	
 
 }

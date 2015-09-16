@@ -8,12 +8,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.betavzw.entities.CollectiefVerlof;
-import org.betavzw.entities.Feestdag;
-import org.betavzw.entities.JaarlijksVerlof;
-import org.betavzw.entities.Team;
-import org.betavzw.entities.VerlofAanvraag;
-import org.betavzw.entities.Werknemer;
+import org.betavzw.entity.CollectiefVerlof;
+import org.betavzw.entity.Feestdag;
+import org.betavzw.entity.JaarlijksVerlof;
+import org.betavzw.entity.Team;
+import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.entity.Werknemer;
 
 public class HibernateMain {
 

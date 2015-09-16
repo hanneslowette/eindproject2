@@ -19,15 +19,8 @@ public class WerknemerOpvragenIO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public List<Werknemer> getLijst() {
-		return lijst;
-	}
-	public void setLijst(List<Werknemer> lijst) {
-		this.lijst = lijst;
-	}
 	@Inject
 	private IWerknemer ejb;
-	
 	private String naam, voornaam;
 	private Integer personeelsNummer;
 	private List<Werknemer> lijst = new ArrayList<Werknemer>();
@@ -61,6 +54,12 @@ public class WerknemerOpvragenIO implements Serializable{
 	}
 	public void setPersoneelsNummer(Integer personeelsNummer) {
 		this.personeelsNummer = personeelsNummer;
+	}
+	public List<Werknemer> getLijst() {
+		return lijst;
+	}
+	public void setLijst(List<Werknemer> lijst) {
+		this.lijst = lijst;
 	}
 	public String zoek(){
 		List<Filter> tmp = new ArrayList<Filter>();

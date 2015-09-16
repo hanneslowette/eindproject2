@@ -1,16 +1,16 @@
-package org.betavzw.view.bean;
+package org.betavzw.view.io;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
-import org.betavzw.ejb.VerlofAanvraagEJB;
-import org.betavzw.entities.VerlofAanvraag;
+import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.util.Filter;
+import org.betavzw.view.bean.Bean;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Named("verlofBeheer")
@@ -21,12 +21,17 @@ public class VerlofBeheerIO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@EJB
-	private VerlofAanvraagEJB verlofAanvraagEJB;
+	
+	/**
+	 * 
+	 */
+	private Bean<VerlofAanvraag> aanvraag_bean;
+	
 	@Digits(integer = 4, fraction = 0)
 	@NotEmpty
 	@NotNull
 	private int jaartal;
+	
 	@Digits(integer = 10, fraction = 0)
 	@NotEmpty
 	@NotNull
@@ -49,8 +54,7 @@ public class VerlofBeheerIO implements Serializable {
 	}
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		return verlofAanvraagEJB.getVerlofAanvraagPersoneelsNr(personeelsNr);		
-		// TODO: zoeken op jaartal
+		return aanvraag_bean.get(new Filter("personeelsNr", personeelsNr));
 	}
 
 }

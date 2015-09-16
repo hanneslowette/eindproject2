@@ -1,31 +1,29 @@
-package org.betavzw.ejb;
+package org.betavzw.view.bean;
 
-import javax.ejb.Stateful;
+import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.betavzw.entities.JaarlijksVerlof;
+import org.betavzw.entity.JaarlijksVerlof;
+import org.betavzw.util.Filter;
+import org.betavzw.util.Queries;
 
 /**
  * Session Bean implementation class JaarlijksVerlofEJB
  */
-@Stateful
-public class JaarlijksVerlofEJB {
-
-	@PersistenceContext
-	private EntityManager manager;
+@ApplicationScoped
+public class JaarlijksVerlofBean extends AbstractBean<JaarlijksVerlof> {
 
 	/**
-	 * Default constructor.
+	 * De entity manager
 	 */
-	public JaarlijksVerlofEJB() {
-		// TODO Auto-generated constructor stub
+	@PersistenceContext private EntityManager manager;
+
+	@Override
+	public List<JaarlijksVerlof> get(Filter... filters) {
+		return Queries.create(super.getEntityManager(), JaarlijksVerlof.class, filters).getResultList();
 	}
 
-	public void toevoegen(int aantalDagen, int jaar) {
-		JaarlijksVerlof tmp = new JaarlijksVerlof();
-		tmp.setAantalDagen(aantalDagen);
-		tmp.setJaar(jaar);
-		manager.persist(tmp);
-	}
 }

@@ -1,4 +1,4 @@
-package org.betavzw.entities;
+package org.betavzw.entity;
 
 import java.io.Serializable;
 

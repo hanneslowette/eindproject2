@@ -1,4 +1,4 @@
-package org.betavzw.view.bean;
+package org.betavzw.view.io;
 
 import java.io.Serializable;
 
@@ -16,7 +16,6 @@ public class HomeIO  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public String voegWerknemerToe() {
-		
 		return "werknemerToevoegen";
 	}
 

@@ -1,16 +1,14 @@
-package org.betavzw.view.bean;
+package org.betavzw.view.io;
 
 import java.io.Serializable;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import org.betavzw.entities.VerlofAanvraag;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.betavzw.ejb.VerlofAanvraagEJB;
+import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.view.bean.Bean;
 
 @Named("verlofGoedkeuren")
 @SessionScoped
@@ -20,12 +18,12 @@ public class VerlofGoedkeurenIO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@EJB
-	private VerlofAanvraagEJB verlofAanvraagEJB;
+	
+	private Bean<VerlofAanvraag> aanvraag_bean;
 	private String keuring;
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		return verlofAanvraagEJB.getVerlofAanvragen();
+		return aanvraag_bean.get();
 	}
 
 	public String getKeuring() {
@@ -37,23 +35,28 @@ public class VerlofGoedkeurenIO implements Serializable {
 	}
 
 	public Date getStartDatum() {
-		return Date.from(verlofAanvraagEJB.getStartDatum().atStartOfDay()
-				.atZone(ZoneId.systemDefault()).toInstant());
+//		return Date.from(verlofAanvraagEJB.getStartDatum().atStartOfDay()
+//				.atZone(ZoneId.systemDefault()).toInstant());
+		return null;
 	}
 
 	public Date getEindDatum() {
-		return Date.from(verlofAanvraagEJB.getEindDatum().atStartOfDay()
-				.atZone(ZoneId.systemDefault()).toInstant());
+//		return Date.from(verlofAanvraagEJB.getEindDatum().atStartOfDay()
+//				.atZone(ZoneId.systemDefault()).toInstant());
+		return null;
 	}
 
 	public String verstuur() {
-		if (keuring.equalsIgnoreCase("ACCEPT")) {
-			verlofAanvraagEJB.setToestand("ACCEPT");
-		} else if (keuring.equalsIgnoreCase("REJECT")) {
-			verlofAanvraagEJB.setToestand("REJECT");
-		} else if (keuring.equalsIgnoreCase("CANCEL")) {
-			verlofAanvraagEJB.setToestand("CANCEL");
-		}
+		
+		
+//		if (keuring.equalsIgnoreCase("ACCEPT")) {
+//			verlofAanvraagEJB.setToestand("ACCEPT");
+//		} else if (keuring.equalsIgnoreCase("REJECT")) {
+//			verlofAanvraagEJB.setToestand("REJECT");
+//		} else if (keuring.equalsIgnoreCase("CANCEL")) {
+//			verlofAanvraagEJB.setToestand("CANCEL");
+//		}
 		return "home";
 	}
+	
 }

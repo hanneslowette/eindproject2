@@ -1,4 +1,4 @@
-package org.betavzw.entities;
+package org.betavzw.entity;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -63,6 +63,10 @@ public class Team {
 	public void addWerknemer(Werknemer teamlid) {
 		teamlid.setTeam(this);
 		teamLeden.add(teamlid);
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

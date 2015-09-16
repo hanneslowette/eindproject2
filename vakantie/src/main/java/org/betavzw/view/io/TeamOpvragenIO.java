@@ -39,7 +39,7 @@ public class TeamOpvragenIO implements Serializable {
 	/**
 	 * De verantwoordelijke van het team
 	 */
-	private String verantwoordelijke;
+	private String teamverantwoordelijke;
 	
 	/**
 	 * De unieke code van het team
@@ -57,8 +57,8 @@ public class TeamOpvragenIO implements Serializable {
 		if (!code.equals("")) {
 			tmp.add(new Filter("code", this.code));
 		}
-		if (!verantwoordelijke.equals("")) {
-			tmp.add(new Filter("verantwoordelijke", this.verantwoordelijke));
+		if (!teamverantwoordelijke.equals("")) {
+			tmp.add(new Filter("teamverantwoordelijke", this.teamverantwoordelijke));
 		}
 		
 		teams = bean.get(tmp);
@@ -73,11 +73,11 @@ public class TeamOpvragenIO implements Serializable {
 	}
 
 	public String getVerantwoordelijke() {
-		return verantwoordelijke;
+		return teamverantwoordelijke;
 	}
 
 	public void setVerantwoordelijke(String verantwoordelijke) {
-		this.verantwoordelijke = verantwoordelijke;
+		this.teamverantwoordelijke = verantwoordelijke;
 	}
 
 	public String getCode() {

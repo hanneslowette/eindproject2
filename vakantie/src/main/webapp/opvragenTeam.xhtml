@@ -24,9 +24,9 @@
 	</h:form>
 
 	<h:dataTable value="#{teamOpvragenIO.teams}" var="t">
-		<h:column value="#{t.naam}"></h:column>
-		<h:column value="#{t.code}"></h:column>
-		<h:column value="#{t.teamverantwoordelijke}"></h:column>
+		<h:column >#{t.naam}</h:column>
+		<h:column >#{t.code}</h:column>
+		<h:column >#{t.teamverantwoordelijke}</h:column>
 	</h:dataTable>
 
 </h:body>

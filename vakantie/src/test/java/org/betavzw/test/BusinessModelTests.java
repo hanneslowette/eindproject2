@@ -19,12 +19,12 @@ import org.junit.Test;
  *
  */
 public class BusinessModelTests {
-	private Werknemer werknemer;
-	private Team team;
-	private JaarlijksVerlof jaarlijksVerlof;
-	private CollectieveSluiting collectieveSluiting;
-	private Feestdag feestDag;
-	private CollectiefVerlof collectiefVerlof;
+//	private Werknemer werknemer;
+//	private Team team;
+//	private JaarlijksVerlof jaarlijksVerlof;
+//	private CollectieveSluiting collectieveSluiting;
+//	private Feestdag feestDag;
+//	private CollectiefVerlof collectiefVerlof;
 	
 	public BusinessModelTests(){
 		

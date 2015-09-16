@@ -3,15 +3,15 @@
  */
 package org.betavzw.test;
 
-import static org.junit.Assert.*;
-
-import org.betavzw.entity.Adres;
-import org.betavzw.entity.CollectiefVerlof;
-import org.betavzw.entity.CollectieveSluiting;
-import org.betavzw.entity.Feestdag;
-import org.betavzw.entity.JaarlijksVerlof;
-import org.betavzw.entity.Team;
-import org.betavzw.entity.Werknemer;
+//import static org.junit.Assert.*;
+//
+//import org.betavzw.entity.Adres;
+//import org.betavzw.entity.CollectiefVerlof;
+//import org.betavzw.entity.CollectieveSluiting;
+//import org.betavzw.entity.Feestdag;
+//import org.betavzw.entity.JaarlijksVerlof;
+//import org.betavzw.entity.Team;
+//import org.betavzw.entity.Werknemer;
 import org.junit.Test;
 
 /**

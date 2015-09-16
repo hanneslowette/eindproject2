@@ -14,9 +14,6 @@ import org.betavzw.view.bean.AbstractBean;
 @SessionScoped
 public class LoginIO extends AbstractBean<Login> implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String username;

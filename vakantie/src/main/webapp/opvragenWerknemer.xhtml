@@ -16,10 +16,10 @@
 
 <h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
 <!-- <h:column> <h:commandButton value="wijzig" action="#{werknemerOpvragenIO.wijzig(w.id)}"></h:commandButton> </h:column> -->
-<h:column value="#{w.personeelsNr}"></h:column>
-<h:column value="#{w.naam}"></h:column>
-<h:column value="#{w.voornaam}"></h:column>
-<h:column value="#{w.email}"></h:column>
+<h:column>#{w.personeelsNr}</h:column>
+<h:column>#{w.naam}</h:column>
+<h:column>#{w.voornaam}</h:column>
+<h:column>#{w.email}</h:column>
 </h:dataTable>
 <h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>

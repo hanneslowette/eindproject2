@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -61,18 +63,23 @@ public class WerknemerOpvragenIO implements Serializable{
 	/**
 	 * De code die wordt uitgevoerd wanneer de gebruiker op "zoek" klikt
 	 */
-	public void zoek(){
-		List<Filter> tmp = new ArrayList<Filter>();
+	public String zoek(){
+		List<Filter> filterlist = new ArrayList<Filter>();
 		if (!naam.equals("")) {
-			tmp.add(new Filter("naam", this.naam));
+			filterlist.add(new Filter("naam", this.naam));
 		}
 		if (!voornaam.equals("")) {
-			tmp.add(new Filter("voornaam", this.voornaam));
+			filterlist.add(new Filter("voornaam", this.voornaam));
 		}
-		if (personeelsNummer!=-1) {
-			tmp.add(new Filter("personeelsNr", this.personeelsNummer));
+		if (personeelsNummer!=null) {
+			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
-		lijst = werknemer_bean.get(tmp.toArray(new Filter[0]));
+		lijst = werknemer_bean.get(filterlist);
+		if (lijst.size()==0) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage(null, new FacesMessage("Geen zoekresultaten", "Geen zoekresultaten"));
+		}
+		return null;
 	}
 	
 	/**

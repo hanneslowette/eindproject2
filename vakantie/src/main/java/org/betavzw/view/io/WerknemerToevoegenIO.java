@@ -28,6 +28,7 @@ public class WerknemerToevoegenIO {
 	private String busnummer;
 	private String postcode;
 	private String gemeente;
+	private int teamId;
 	
 	@Deprecated
 	private Adres adres;
@@ -81,7 +82,7 @@ public class WerknemerToevoegenIO {
 //		return "home";
 //	}
 	
-	public List<Team> getTeamnaam() {
+	public List<Team> getTeams() {
 		return team_bean.get();
 	}
 
@@ -163,6 +164,16 @@ public class WerknemerToevoegenIO {
 
 	public void setGemeente(String gemeente) {
 		this.gemeente = gemeente;
+	}
+
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
 }

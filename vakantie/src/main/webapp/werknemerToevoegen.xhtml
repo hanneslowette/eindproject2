@@ -55,8 +55,8 @@
 <!-- <f:selectItems   value="tmp.naam" ></f:selectItems> -->
 
 <!-- </h:selectOneMenu> -->
-<h:selectOneMenu value="#{teamToevoegenIO.teams}" var="tmp">
-    <f:selectItems value="#{tmp}" itemLabel="#{tmp.naam}"/>
+<h:selectOneMenu id="werknemers" value="#{werknemerToevoegenIO.teamId}" var="tmp">
+	<f:selectItems value="#{werknemerToevoegenIO.teams}" var="tmp" itemLabel="#{tmp.naam}" itemValue="#{tmp.id}"/>
 </h:selectOneMenu>
 <h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>

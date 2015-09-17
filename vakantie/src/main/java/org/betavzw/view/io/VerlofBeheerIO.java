@@ -71,14 +71,22 @@ public class VerlofBeheerIO implements Serializable {
 	 */
 	public String zoek() {
 		List<Filter> tmp = new ArrayList<Filter>();
-		tmp.add(new Filter("Werknemer_ID", loginBean.getWerknemer()
+
+		tmp.add(new Filter("Werknemer_personeelsNr", loginBean.getWerknemer()
 				.getPersoneelsNr()));
-		tmp.add(new Filter("startDatum", LocalDate.of(
-				Integer.parseInt(jaartal), 1, 1)));
-		tmp.add(new Filter("eindDatum", LocalDate.of(Integer.parseInt(jaartal),
-				12, 31)));
-		tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
 		verlofPeriodes = bean.get(tmp);
+
+		verlofPeriodes = bean.get(
+				new Filter("startDatum", LocalDate.of(
+						Integer.parseInt(jaartal), 1, 1)),
+				new Filter("eindDatum", LocalDate.of(Integer.parseInt(jaartal),
+						12, 31)), new Filter("Toestand", Toestand.ACCEPTED));
+		// tmp.add(new Filter("startDatum", LocalDate.of(
+		// Integer.parseInt(jaartal), 1, 1)));
+		// tmp.add(new Filter("eindDatum",
+		// LocalDate.of(Integer.parseInt(jaartal),
+		// 12, 31)));
+		// tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
 		return null;
 	}
 }

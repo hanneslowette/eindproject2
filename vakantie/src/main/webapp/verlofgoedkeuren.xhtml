@@ -11,23 +11,27 @@
 <h:body>
 	<h:form>
 		<h:dataTable value="#{verlofGoedkeuren.verlofAanvragen}" var="tmp">
+			<h:column>#{tmp.werknemer.voornaam}</h:column>
+			<h:column>#{tmp.werknemer.naam}</h:column>
+			<h:column>#{tmp.werknemer.personeelsNr}</h:column>
 			<h:column>#{tmp.startDatum}</h:column>
 			<h:column>#{tmp.eindDatum}</h:column>
 			<h:column>#{tmp.aanvraagDatum}</h:column>
 			<h:column>#{tmp.toestand}</h:column>
-			<h:column>#{tmp.werknemer.voornaam}</h:column>
-			<h:column>#{tmp.werknemer.naam}</h:column>
-			<h:column>#{tmp.werknemer.personeelsNr}</h:column>
+			<h:outputLabel for="selToestand"
+				value="Mag werknemer #{verlofAanvraag.voornaam} #{verlofAanvraag.naam} met personeelsnummer #{verlofAanvraag.personeelsNr} op verlof van #{verlofAanvraag.startDatum} tot #{verlofAanvraag.eindDatum}"></h:outputLabel>
+			<h:column>
+				<h:selectOneMenu id="selToestand"
+					value="#{verlofGoedkeuren.keuring}">
+					<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
+					<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
+					<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>
+				</h:selectOneMenu>
+			</h:column>
+			<h:column>
+				<h:commandButton value="Update" action="#{verlof.Goedkeuren.update}"></h:commandButton>
+			</h:column>
 		</h:dataTable>
-		<br />
-
-		<h:outputLabel for="selToestand"
-			value="Mag werknemer #{verlofAanvraag.voornaam} #{verlofAanvraag.naam} met personeelsnummer #{verlofAanvraag.personeelsNr} op verlof van #{verlofAanvraag.startDatum} tot #{verlofAanvraag.eindDatum}"></h:outputLabel>
-		<h:selectOneMenu id="selToestand" value="#{verlofGoedkeuren.keuring}">
-			<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
-			<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
-		</h:selectOneMenu>
-		<h:commandButton value="Send" action="#{verlof.Goedkeuren.verstuur}"></h:commandButton>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>

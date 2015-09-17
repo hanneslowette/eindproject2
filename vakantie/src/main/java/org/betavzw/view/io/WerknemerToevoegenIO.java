@@ -1,6 +1,7 @@
 package org.betavzw.view.io;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class WerknemerToevoegenIO {
 	private String naam;
 	private String voornaam;
 	private String email;
-	private Date geboortedatum;
+	private LocalDate geboortedatum;
 	
 	private String straat;
 	private String huisnummer;
@@ -45,15 +46,15 @@ public class WerknemerToevoegenIO {
 	}
 
 
-	public WerknemerToevoegenIO  (String naam, String voornaam, Adres adres,
-			String email, Date geboortedatum) {
-		super();
-		this.naam = naam;
-		this.voornaam = voornaam;
-		this.adres = adres;
-		this.email = email;
-		this.geboortedatum = geboortedatum;
-	}
+//	public WerknemerToevoegenIO  (String naam, String voornaam, Adres adres,
+//			String email, Date geboortedatum) {
+//		super();
+//		this.naam = naam;
+//		this.voornaam = voornaam;
+//		this.adres = adres;
+//		this.email = email;
+//		this.geboortedatum = geboortedatum;
+//	}
 	
 	/**
 	 * offert de werknemer
@@ -64,7 +65,7 @@ public class WerknemerToevoegenIO {
 		// Werknemer w4 = new Werknemer(naam, voornaam, adres, email,
 		// geboortedatum);
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
-		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
+		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum, a);
 		werknemer_bean.offer(w);
 		// w.
 		return View.HOME;
@@ -118,11 +119,11 @@ public class WerknemerToevoegenIO {
 		this.email = email;
 	}
 
-	public Date getGeboortedatum() {
+	public LocalDate getGeboortedatum() {
 		return geboortedatum;
 	}
 
-	public void setGeboortedatum(Date geboortedatum) {
+	public void setGeboortedatum(LocalDate geboortedatum) {
 		this.geboortedatum = geboortedatum;
 	}
 

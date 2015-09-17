@@ -33,7 +33,7 @@ public class Werknemer {
 	private String voornaam;
 
 	/**
-	 * Het e-mail adres van de werknemer. Gebruikt als username bij login.
+	 * Het e-mail adres van de werknemer.
 	 */
 	private String email;
 
@@ -55,11 +55,6 @@ public class Werknemer {
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="adres_id")
 	private Adres adres;
-
-	/**
-	 * Het wachtwoord van de werknemer
-	 */
-	private String paswoord;
 
 	/**
 	 * Het team waartoe deze werknemer geboord
@@ -131,7 +126,7 @@ public class Werknemer {
 	}
 	
 	public void setAdres(Adres adres) {
-		adres.setWerknemer(this);
+//		adres.setWerknemer(this);
 		this.adres = adres;
 	}
 	
@@ -139,13 +134,13 @@ public class Werknemer {
 		return adres;
 	}
 
-	public String getPaswoord() {
-		return paswoord;
-	}
-
-	public void setPaswoord(String paswoord) {
-		this.paswoord = paswoord;
-	}
+//	public String getPaswoord() {
+//		return paswoord;
+//	}
+//
+//	public void setPaswoord(String paswoord) {
+//		this.paswoord = paswoord;
+//	}
 
 	public Team getTeam() {
 		return team;

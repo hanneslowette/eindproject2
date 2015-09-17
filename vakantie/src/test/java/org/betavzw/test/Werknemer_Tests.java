@@ -57,13 +57,6 @@ public class Werknemer_Tests {
 	}
 	
 	@Test
-	public void Password_Test() {
-		String password = "password";
-		werknemer.setPaswoord(password);
-		assertEquals("failure - Password doesn't match", werknemer.getPaswoord(), password);
-	}
-	
-	@Test
 	public void Team_Test() {
 		Team team = new Team();
 		werknemer.setTeam(team);

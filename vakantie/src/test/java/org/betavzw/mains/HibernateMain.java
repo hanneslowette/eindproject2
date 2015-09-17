@@ -33,8 +33,8 @@ public class HibernateMain {
 		koen.setNaam("Koen");
 		koen.setVoornaam("De Voegt");
 //		koen.setAdres("Zuidewendelaan 7");
-		koen.setGemeente("Hoboken");
-		koen.setPostcode(2660);
+//		koen.setGemeente("Hoboken");
+//		koen.setPostcode(2660);
 		koen.setPaswoord("paswoord");
 		koen.setEmail("koen@devoegt.be");
 		

@@ -4,8 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.betavzw.entity.Adres;
+import org.betavzw.entity.JaarlijksVerlof;
+import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
 import org.junit.Test;
 
@@ -49,5 +53,34 @@ public class Werknemer_Tests {
 		werknemer.setAdres(adres);
 		assertEquals("failure - Adres doesn't match", werknemer.getAdres(), adres);
 	}
+	
+	@Test
+	public void Password_Test() {
+		String password = "password";
+		werknemer.setPaswoord(password);
+		assertEquals("failure - Password doesn't match", werknemer.getPaswoord(), password);
+	}
+	
+	@Test
+	public void Team_Test() {
+		Team team = new Team();
+		werknemer.setTeam(team);
+		assertEquals("failure - Team doesn't match", werknemer.getTeam(), team);
+	}
+	
+	@Test
+	public void JaarlijksVerlof_Test() {
+		JaarlijksVerlof jv1 = new JaarlijksVerlof();
+		JaarlijksVerlof jv2 = new JaarlijksVerlof();
+		Set<JaarlijksVerlof> jvList = new HashSet<JaarlijksVerlof>();
+		jvList.add(jv1);
+		jvList.add(jv2);
+		
+		werknemer.setJaarlijkseVerloven(jvList);
+		assertEquals("failure - JaarlijkseVerloven don't match", werknemer.getJaarlijkseVerloven(), jvList);
+	}
+	
+	@Test
+	public void 
 	
 }

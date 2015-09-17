@@ -45,7 +45,6 @@ public class Werknemer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int personeelsNr;
-	
 
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer

@@ -18,7 +18,7 @@ import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.AccountType;
 
-public class HibernateMain {
+public class LoadDummyData_Main {
 
 	public static void main(String[] args) {
 		

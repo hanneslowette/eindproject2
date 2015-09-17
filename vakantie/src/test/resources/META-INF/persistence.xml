@@ -12,6 +12,7 @@
 		<class>org.betavzw.entity.VerlofAanvraag</class>
 		<class>org.betavzw.entity.Werknemer</class>
 		<class>org.betavzw.entity.Credentials</class>
+		<class>org.betavzw.entity.Adres</class>
 		<class>org.betavzw.util.LocalDateConverter</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>

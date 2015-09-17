@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.betavzw.entity.Adres;
 import org.betavzw.entity.CollectiefVerlof;
 import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Feestdag;
@@ -32,9 +33,14 @@ public class HibernateMain {
 		Werknemer koen = new Werknemer();
 		koen.setNaam("Koen");
 		koen.setVoornaam("De Voegt");
-//		koen.setAdres("Zuidewendelaan 7");
-//		koen.setGemeente("Hoboken");
-//		koen.setPostcode(2660);
+		
+		Adres adres = new Adres();
+		adres.setStraat("Zuidewendelaan");
+		adres.setHuisnummer("7");
+		adres.setGemeente("Hoboken");
+		adres.setPostcode("2660");
+		
+		koen.setAdres(adres);
 		koen.setPaswoord("paswoord");
 		koen.setEmail("koen@devoegt.be");
 		

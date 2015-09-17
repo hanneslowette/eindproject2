@@ -1,6 +1,7 @@
 package org.betavzw.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,7 @@ import java.util.Set;
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.Team;
+import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.junit.Test;
 
@@ -81,6 +83,18 @@ public class Werknemer_Tests {
 	}
 	
 	@Test
-	public void 
+	public void AddJaarlijksVerlof_Test() {
+		JaarlijksVerlof jv = new JaarlijksVerlof();
+		werknemer.addJaarlijksVerlof(jv);
+		Set<JaarlijksVerlof> list = werknemer.getJaarlijkseVerloven();
+		assertTrue("", list.contains(jv));
+	}
+	
+	@Test
+	public void VerlofAanvraag_Test() {
+		VerlofAanvraag va1 = new VerlofAanvraag()
+		VerlofAanvraag va2 = new VerlofAanvraag()
+		Set<VerlofAanvraag> vaList = 
+	}
 	
 }

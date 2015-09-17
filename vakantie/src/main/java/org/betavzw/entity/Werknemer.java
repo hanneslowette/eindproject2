@@ -19,10 +19,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Werknemer {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
 	/**
 	 * De achternaam van de werknemer
 	 */
@@ -34,7 +30,7 @@ public class Werknemer {
 	private String voornaam;
 
 	/**
-	 * Het e-mail adres van de gebruiker. Gebruikt als username bij login.
+	 * Het e-mail adres van de werknemer. Gebruikt als username bij login.
 	 */
 	private String email;
 
@@ -46,6 +42,8 @@ public class Werknemer {
 	/**
 	 * De personeelsnummer van de werknemer (primary key in de databank)
 	 */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int personeelsNr;
 
 	/**
@@ -87,6 +85,13 @@ public class Werknemer {
 	@OneToMany
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
 
+	public Werknemer() {}
+
+	public Werknemer(String voornaam, String naam) {
+		this.naam = naam;
+		this.voornaam = voornaam;
+	}
+	
 	public Werknemer(String naam, String voornaam, String email, LocalDate geboortedatum, Adres adres) {
 		this.naam = naam;
 		this.voornaam = voornaam;
@@ -95,18 +100,8 @@ public class Werknemer {
 		this.adres = adres;
 	}
 
-	public Werknemer(String voornaam, String naam, int personeelsNr) {
-		this.naam = naam;
-		this.voornaam = voornaam;
-		this.personeelsNr = personeelsNr;
-	}
-
 	public void setAdres(Adres adres) {
 		this.adres = adres;
-	}
-
-	public Werknemer() {
-		super();
 	}
 
 	public String getNaam() {
@@ -143,10 +138,6 @@ public class Werknemer {
 
 	public int getPersoneelsNr() {
 		return personeelsNr;
-	}
-
-	public void setPersoneelsNr(int personeelsNr) {
-		this.personeelsNr = personeelsNr;
 	}
 
 	public int getPostcode() {
@@ -203,10 +194,6 @@ public class Werknemer {
 
 	public void addVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
 		verlofAanvragen.add(verlofAanvraag);
-	}
-
-	public int getId() {
-		return id;
 	}
 
 }

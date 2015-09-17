@@ -62,7 +62,7 @@ public class VerlofAanvraagIO implements Serializable {
 			verlofAanvraag.setEindDatum(eindDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 			verlofAanvraag.setAanvraagDatum(LocalDate.now());
 			verlofAanvraag.setToestand(Toestand.PENDING);
-			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam, personeelsNr));
+			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
 			aanvraag_bean.offer(verlofAanvraag);
 			return View.VERSTUURD;
 		} else {

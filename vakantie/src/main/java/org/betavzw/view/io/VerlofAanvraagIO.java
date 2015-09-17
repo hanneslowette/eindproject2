@@ -27,9 +27,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class VerlofAanvraagIO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	@Inject private Bean<VerlofAanvraag> aanvraag_bean;
-	
+
+	@Inject
+	private Bean<VerlofAanvraag> bean;
+
 	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
 	@NotEmpty
 	@NotNull
@@ -50,7 +51,7 @@ public class VerlofAanvraagIO implements Serializable {
 	private Date eindDatum;
 	@Digits(integer = 10, fraction = 0)
 	private int id;
-	
+
 	/**
 	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waar een
 	 * nieuwe verlofaanvraag wordt aangemaakt in de databank
@@ -58,12 +59,14 @@ public class VerlofAanvraagIO implements Serializable {
 	public String verstuur() {
 		if (startDatum.before(eindDatum)) {
 			VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-			verlofAanvraag.setStartDatum(startDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-			verlofAanvraag.setEindDatum(eindDatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setStartDatum(startDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setEindDatum(eindDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
 			verlofAanvraag.setAanvraagDatum(LocalDate.now());
 			verlofAanvraag.setToestand(Toestand.PENDING);
 			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
-			aanvraag_bean.offer(verlofAanvraag);
+			bean.offer(verlofAanvraag);
 			return View.VERSTUURD;
 		} else {
 			return View.VERLOFAANVRAGEN;
@@ -76,8 +79,8 @@ public class VerlofAanvraagIO implements Serializable {
 	 * staat
 	 */
 	public String check() {
-		VerlofAanvraag aanvraag = aanvraag_bean.getSingle(new Filter("id", id));
-		
+		VerlofAanvraag aanvraag = bean.getSingle(new Filter("id", id));
+
 		String pagina = null;
 		switch (aanvraag.getToestand()) {
 		case PENDING:
@@ -141,6 +144,5 @@ public class VerlofAanvraagIO implements Serializable {
 	public void setEindDatum(Date eindDatum) {
 		this.eindDatum = eindDatum;
 	}
-
 
 }

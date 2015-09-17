@@ -14,8 +14,8 @@
 <h:inputText value="#{werknemerOpvragenIO.werknemer.geboortedatum}" a:placeholder="dd-mm-yyyy">
 <f:convertDateTime pattern="d-M-yyyy" />
 </h:inputText>geboortedatum<br/>
-<h:inputText value="#{werknemerOpvragenIO.werknemer.postcode}"></h:inputText>postcode<br/>
-<h:inputText value="#{werknemerOpvragenIO.werknemer.gemeente}"></h:inputText>gemeente<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.postcode}"></h:inputText>postcode<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.gemeente}"></h:inputText>gemeente<br/>
 
 <h:commandButton value="save" action="#{werknemerOpvragenIO.save}"></h:commandButton>
 </h:form>

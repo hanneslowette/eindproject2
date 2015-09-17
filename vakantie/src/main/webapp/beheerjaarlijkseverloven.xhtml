@@ -10,20 +10,21 @@
 <h:body>
 	<h:form>
 		<h:outputLabel for="txtJaartal"
-			value="Geef jaartal op dat u wilt bekijken: "></h:outputLabel>
+			value="Geef een jaartal op waarvan u  uw verlofperiodes wilt bekijken: "></h:outputLabel>
 		<h:inputText id="txtJaartal" value="#{verlofBeheer.jaartal}"></h:inputText>
 		<br />
-		<h:commandButton value="Bekijk verlofdagen"></h:commandButton>
+		<h:commandButton value="Bekijk verlofperiodes"
+			action="#{verlofBeheer.zoek}"></h:commandButton>
 		<br />
-		<h:dataTable value="#{verlofBeheer.verlofAanvragen}"
-			var="verlofAanvraag">
-			<h:column>#{verlofAanvraag.startDatum}</h:column>
-			<h:column>#{verlofAanvraag.eindDatum}</h:column>
-			<h:column>#{verlofAanvraag.aanvraagDatum}</h:column>
-			<h:column>#{verlofAanvraag.toestand}</h:column>
-			<h:column>#{verlofAanvraag.werknemer.voornaam}</h:column>
-			<h:column>#{verlofAanvraag.werknemer.naam}</h:column>
-			<h:column>#{verlofAanvraag.werknemer.personeelsNr}</h:column>
+		<h:dataTable value="#{verlofBeheer.verlofPeriodes}"
+			var="verlofPeriode">
+			<h:column>#{verlofPeriode.startDatum}</h:column>
+			<h:column>#{verlofPeriode.eindDatum}</h:column>
+			<h:column>#{verlofPeriode.aanvraagDatum}</h:column>
+			<h:column>#{verlofPeriode.toestand}</h:column>
+			<h:column>#{verlofPeriode.werknemer.voornaam}</h:column>
+			<h:column>#{verlofPeriode.werknemer.naam}</h:column>
+			<h:column>#{verlofPeriode.werknemer.personeelsNr}</h:column>
 		</h:dataTable>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>

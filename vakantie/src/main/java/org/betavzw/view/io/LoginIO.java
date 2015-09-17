@@ -1,27 +1,41 @@
 package org.betavzw.view.io;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
-import org.betavzw.view.bean.AbstractBean;
+import org.betavzw.view.View;
+import org.betavzw.view.bean.Bean;
+import org.betavzw.view.bean.LoginBean;
 
-@Named("login")
+@Named("login_view")
 @SessionScoped
-public class LoginIO extends AbstractBean<Credentials> implements Serializable {
+public class LoginIO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	@Inject private Bean<Credentials> credential_bean;
+	@Inject private LoginBean login;
 
 	private String username;
 	private String password;
 
 	public String aanmelden() {
-
-		return null;
+		try {
+			Credentials credentials = credential_bean.getSingle(new Filter("username", username), new Filter("password", password));
+			
+			login.setType(credentials.getType());
+			login.setWerknemer(credentials.getWerknemer());
+			login.setAangemeld(true);
+			return View.VERSTUURD;
+		} catch (Exception ex) {
+			return null;
+		}
+		
 	}
 
 	public String getUsername() {
@@ -44,9 +58,4 @@ public class LoginIO extends AbstractBean<Credentials> implements Serializable {
 		return serialVersionUID;
 	}
 
-	@Override
-	public List<Credentials> get(Filter... filters) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

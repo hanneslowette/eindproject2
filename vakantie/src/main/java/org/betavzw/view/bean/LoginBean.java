@@ -3,11 +3,12 @@ package org.betavzw.view.bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
-import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
-import org.betavzw.util.Toestand;
+import org.betavzw.util.AccountType;
 
+@Named("login")
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -15,6 +16,11 @@ public class LoginBean implements Serializable {
 	 * De versie id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	/**
+	 * Het type van account
+	 */
+	private AccountType type;
 
 	/**
 	 * De aangemelde werknemer
@@ -22,14 +28,9 @@ public class LoginBean implements Serializable {
 	private Werknemer werknemer;
 	
 	/**
-	 * Het team dat de persoon beheert
+	 * Laat zien of de gebruiker is aangemeld of niet
 	 */
-	private Team team;
-	
-	/**
-	 * toestand van deze sessie (bezoeker/werknemer/teamverantwoordelijke)
-	 */
-	private Toestand toestand;
+	private boolean aangemeld;
 
 	public Werknemer getWerknemer() {
 		return werknemer;
@@ -39,12 +40,20 @@ public class LoginBean implements Serializable {
 		this.werknemer = werknemer;
 	}
 
-	public Team getTeam() {
-		return team;
+	public AccountType getType() {
+		return type;
 	}
 
-	public void setTeam(Team team) {
-		this.team = team;
+	public void setType(AccountType type) {
+		this.type = type;
+	}
+
+	public boolean isAangemeld() {
+		return aangemeld;
+	}
+
+	public void setAangemeld(boolean aangemeld) {
+		this.aangemeld = aangemeld;
 	}
 
 }

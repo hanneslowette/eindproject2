@@ -14,12 +14,12 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel for="txtVoornaam" value="Username: "></h:outputLabel>
-			<h:inputText id="txtVoornaam" value="#{login.username}" a:placeholder="username"></h:inputText>
+			<h:inputText id="txtVoornaam" value="#{login_view.username}" a:placeholder="username"></h:inputText>
 			
 			<h:outputLabel for="txtNaam" value="Password: "></h:outputLabel>
-			<h:inputSecret id="txtNaam" value="#{login.password}" a:placeholder="*****"></h:inputSecret>
+			<h:inputSecret id="txtNaam" value="#{login_view.password}" a:placeholder="*****"></h:inputSecret>
 			
-			<h:commandButton value="Aanmelden" action="#{login.aanmelden}"></h:commandButton>
+			<h:commandButton value="Aanmelden" action="#{login_view.aanmelden}"></h:commandButton>
 		</h:panelGrid>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>

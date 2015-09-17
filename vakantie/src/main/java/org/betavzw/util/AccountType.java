@@ -1,6 +1,6 @@
 package org.betavzw.util;
 
-public enum CredentialState {
+public enum AccountType {
 	/**
 	 * bezoekers
 	 */
@@ -14,6 +14,17 @@ public enum CredentialState {
 	 * mogen de verlofaanvragen zien van elke werknemer in hun team
 	 * en deze goed of afkeuren
 	 */
-	TEAMVERANTWOORDELIJKE
+	TEAMVERANTWOORDELIJKE,
+	
+	/**
+	 * De HR kan alle teams bekijken maar niet bewerken.
+	 */
+	HR,
+	
+	/**
+	 * De administrator kan alle teams en werknemers opvragen en bewerken
+	 * en aanvragen goed- en afkeuren
+	 */
+	ADMINISTRATOR;
 
 }

@@ -9,11 +9,13 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.betavzw.entity.CollectiefVerlof;
+import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Feestdag;
 import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.AccountType;
 
 public class HibernateMain {
 
@@ -115,10 +117,18 @@ public class HibernateMain {
 		f.setOmschrijving("Kerstmis");
 		em.persist(f);
 		
+		Credentials credentials = new Credentials();
+		credentials.setUsername("hannes");
+		credentials.setPassword("hannes");
+		credentials.setType(AccountType.ADMINISTRATOR);
+		credentials.setWerknemer(hannes);
+		em.persist(credentials);
+		
 		tx.commit();
 		
 		em.close();
 		emf.close();
+		
 		
 	}
 

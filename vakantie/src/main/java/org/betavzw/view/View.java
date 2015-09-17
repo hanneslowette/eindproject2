@@ -55,16 +55,17 @@ public interface View {
 	 */
 	public static final String VERSTUURD = "verlofaanvraagverstuurd";
 	/**
-	 * De view die wordt weergeven als de gebruiker een jaartal invoert (getal van 4 cijfers) 
-	 * en het aantal verlofdagen waar de werknemer dat jaar recht op heeft in.  
-	 * Als het jaartal niet in het verleden ligt, het aantal verlofdagen tussen 0 (incl.) en 50 (incl.) 
-	 * en voor deze werknemer en dit jaar nog geen aantal verlofdagen ingevoerd is, 
-	 * registreert het systeem de gegevens als de medewerker de gegevens bevestigt.  
-	 * Anders toont het systeem gepaste foutmeldingen
+	 * De view die wordt weergeven als de gebruiker een jaartal invoert (getal
+	 * van 4 cijfers) en het aantal verlofdagen waar de werknemer dat jaar recht
+	 * op heeft in. Als het jaartal niet in het verleden ligt, het aantal
+	 * verlofdagen tussen 0 (incl.) en 50 (incl.) en voor deze werknemer en dit
+	 * jaar nog geen aantal verlofdagen ingevoerd is, registreert het systeem de
+	 * gegevens als de medewerker de gegevens bevestigt. Anders toont het
+	 * systeem gepaste foutmeldingen
 	 */
-	public static final String JAARLIJKSVERLOF = "beheerjaarlijkseverloven";
+	public static final String JAARLIJKSVERLOF = "opvragenverlofperiodes";
 	/**
-	 * view om een verlof goed te keuren/ af te keuren
+	 * view om een verlof goed te keuren / af te keuren / cancellen
 	 */
 	public static final String VERLOFGOEDKEUREN = "verlofgoedkeuren";
 }

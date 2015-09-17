@@ -99,7 +99,7 @@ public class WerknemerOpvragenIO implements Serializable{
 	 * @return werknemer_opvragen xhtml string
 	 */
 	public String save(){
-//		werknemer_bean.update(werknemer);
+		werknemer_bean.update(werknemer);
 		lijst = new ArrayList<Werknemer>();
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ctx.addMessage(null, new FacesMessage("werknemer aangepast", "update geslaagd"));

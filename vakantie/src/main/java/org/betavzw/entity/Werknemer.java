@@ -50,7 +50,6 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
-	@SuppressWarnings("unused")
 	private Adres adres;
 
 	/**
@@ -101,10 +100,6 @@ public class Werknemer {
 		this.adres = adres;
 	}
 
-	public void setAdres(Adres adres) {
-		this.adres = adres;
-	}
-
 	public String getNaam() {
 		return naam;
 	}
@@ -140,22 +135,30 @@ public class Werknemer {
 	public int getPersoneelsNr() {
 		return personeelsNr;
 	}
-
-	public int getPostcode() {
-		return postcode;
+	
+	public void setAdres(Adres adres) {
+		this.adres = adres;
+	}
+	
+	public Adres getAdres() {
+		return adres;
 	}
 
-	public void setPostcode(int postcode) {
-		this.postcode = postcode;
-	}
-
-	public String getGemeente() {
-		return gemeente;
-	}
-
-	public void setGemeente(String gemeente) {
-		this.gemeente = gemeente;
-	}
+//	public int getPostcode() {
+//		return postcode;
+//	}
+//
+//	public void setPostcode(int postcode) {
+//		this.postcode = postcode;
+//	}
+//
+//	public String getGemeente() {
+//		return gemeente;
+//	}
+//
+//	public void setGemeente(String gemeente) {
+//		this.gemeente = gemeente;
+//	}
 
 	public String getPaswoord() {
 		return paswoord;

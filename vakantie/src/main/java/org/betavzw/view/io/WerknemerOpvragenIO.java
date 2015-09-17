@@ -51,7 +51,7 @@ public class WerknemerOpvragenIO implements Serializable{
 	private Integer personeelsNummer;
 	
 	/**
-	 * 
+	 * entity werknemer om te wijzigen
 	 */
 	private Werknemer werknemer;
 	
@@ -87,7 +87,7 @@ public class WerknemerOpvragenIO implements Serializable{
 	 * de view die hem kan bewerken
 	 * 
 	 * @param id
-	 * @return
+	 * @return werknemer wijzigen pagina
 	 */
 	public String wijzig(int id){
 		setWerknemer(werknemer_bean.getSingle(new Filter("id", id)));
@@ -95,11 +95,11 @@ public class WerknemerOpvragenIO implements Serializable{
 	}
 	
 	/**
-	 * bij het wijzigen van een pagina kan je op save drukken en wordt dit uitgevoerd
+	 * bij het wijzigen van een werknemer kan je op save drukken en wordt dit uitgevoerd
 	 * @return werknemer_opvragen xhtml string
 	 */
 	public String save(){
-		werknemer_bean.update(werknemer);
+//		werknemer_bean.update(werknemer);
 		lijst = new ArrayList<Werknemer>();
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ctx.addMessage(null, new FacesMessage("werknemer aangepast", "update geslaagd"));

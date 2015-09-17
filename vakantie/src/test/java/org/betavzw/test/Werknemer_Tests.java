@@ -87,14 +87,26 @@ public class Werknemer_Tests {
 		JaarlijksVerlof jv = new JaarlijksVerlof();
 		werknemer.addJaarlijksVerlof(jv);
 		Set<JaarlijksVerlof> list = werknemer.getJaarlijkseVerloven();
-		assertTrue("", list.contains(jv));
+		assertTrue("failure - JaarlijksVerlof not added", list.contains(jv));
 	}
 	
 	@Test
 	public void VerlofAanvraag_Test() {
-		VerlofAanvraag va1 = new VerlofAanvraag()
-		VerlofAanvraag va2 = new VerlofAanvraag()
-		Set<VerlofAanvraag> vaList = 
+		VerlofAanvraag va1 = new VerlofAanvraag();
+		VerlofAanvraag va2 = new VerlofAanvraag();
+		Set<VerlofAanvraag> vaList = new HashSet<VerlofAanvraag>();
+		vaList.add(va1);
+		vaList.add(va2);
+		
+		werknemer.setVerlofAanvragen(vaList);
+		assertEquals("failure - VerlofAanvragen don't match",  werknemer.getVerlofAanvragen(), vaList);
 	}
 	
+	@Test
+	public void AddVerlofAanvraag_Test() {
+		VerlofAanvraag va = new VerlofAanvraag();
+		werknemer.addVerlofAanvraag(va);
+		Set<VerlofAanvraag> list = werknemer.getVerlofAanvragen();
+		assertTrue("failure - VerlofAanvraag not added", list.contains(va));
+	}
 }

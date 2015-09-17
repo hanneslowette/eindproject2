@@ -8,6 +8,8 @@
 	<title>Team toevoegen</title>
 </h:head>
 <h:body>
+<ui:composition template="./TEMPLATE.xhtml">
+<ui:define name="content">
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel for="team" value="Naam:"></h:outputLabel>
@@ -24,5 +26,7 @@
 		</h:panelGrid>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>
+	</ui:define>
+</ui:composition>
 </h:body>
 </html>

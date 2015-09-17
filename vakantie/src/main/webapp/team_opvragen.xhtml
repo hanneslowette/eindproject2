@@ -9,6 +9,8 @@
 	<title>Insert title here</title>
 </h:head>
 <h:body>
+<ui:composition template="./TEMPLATE.xhtml">
+<ui:define name="content">
 	<h1>Team opvragen</h1>
 
 	<h:form>
@@ -28,5 +30,7 @@
 		</h:dataTable>
 	</c:if>
 	<h:messages style="color:red;list-style:none;"></h:messages>
+	</ui:define>
+</ui:composition>
 </h:body>
 </html>

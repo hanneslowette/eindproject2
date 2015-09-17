@@ -1,14 +1,14 @@
 package org.betavzw.view.io;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
-import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
 @Named("verlofGoedkeuren")
@@ -16,16 +16,17 @@ import org.betavzw.view.bean.Bean;
 public class VerlofGoedkeurenIO implements Serializable {
 
 	/**
-	 * 
+	 * Versie id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private Bean<VerlofAanvraag> aanvraag_bean;
-	private String keuring;
 
-	public List<VerlofAanvraag> getVerlofAanvragen() {
-		return aanvraag_bean.get();
-	}
+	/**
+	 * De bean die verantwoordelijk is voor verlofaanvragen
+	 */
+	@Inject
+	private Bean<VerlofAanvraag> bean;
+
+	private String keuring;
 
 	public String getKeuring() {
 		return keuring;
@@ -35,29 +36,35 @@ public class VerlofGoedkeurenIO implements Serializable {
 		this.keuring = keuring;
 	}
 
-	public Date getStartDatum() {
-//		return Date.from(verlofAanvraagEJB.getStartDatum().atStartOfDay()
-//				.atZone(ZoneId.systemDefault()).toInstant());
+	/**
+	 * De opgevraagde lijst met verlofaanvragen
+	 */
+	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
+
+	public List<VerlofAanvraag> getVerlofAanvragen() {
+		verlofAanvragen = bean.get();
+		return verlofAanvragen;
+	}
+
+	public void setVerlofPeriodes(List<VerlofAanvraag> verlofAanvragen) {
+		this.verlofAanvragen = verlofAanvragen;
+	}
+
+	/**
+	 * De actie die gebeurt wanneer de gebruiker op "Verstuur" klikt in de view
+	 */
+
+	public String update() {
+		if (keuring.equalsIgnoreCase("accept")) {
+
+		} else if (keuring.equalsIgnoreCase("reject")) {
+
+		} else if (keuring.equalsIgnoreCase("cancel")) {
+
+		}
+		// TODO: toestand updaten bij juist DataTable Column entiteit van
+		// verlofaanvraag
 		return null;
 	}
 
-	public Date getEindDatum() {
-//		return Date.from(verlofAanvraagEJB.getEindDatum().atStartOfDay()
-//				.atZone(ZoneId.systemDefault()).toInstant());
-		return null;
-	}
-
-	public String verstuur() {
-		
-		
-//		if (keuring.equalsIgnoreCase("ACCEPT")) {
-//			verlofAanvraagEJB.setToestand("ACCEPT");
-//		} else if (keuring.equalsIgnoreCase("REJECT")) {
-//			verlofAanvraagEJB.setToestand("REJECT");
-//		} else if (keuring.equalsIgnoreCase("CANCEL")) {
-//			verlofAanvraagEJB.setToestand("CANCEL");
-//		}
-		return View.HOME;
-	}
-	
 }

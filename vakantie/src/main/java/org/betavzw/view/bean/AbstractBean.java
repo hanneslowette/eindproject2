@@ -38,5 +38,14 @@ public abstract class AbstractBean<T> implements Bean<T> {
 	public EntityManager getEntityManager() {
 		return manager;
 	}
+	
+	/**
+	 * Sets the entity manager, only used for testing
+	 * @param manager
+	 */
+	
+	public void setEntityManager(EntityManager manager) {
+		this.manager = manager;
+	}
 
 }

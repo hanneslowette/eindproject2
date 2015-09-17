@@ -10,7 +10,7 @@
 <h:body>
 	<h:form>
 		<h:outputLabel for="txtJaartal"
-			value="Geef een jaartal op waarvan u  uw verlofperiodes wilt bekijken: "></h:outputLabel>
+			value="Geef een jaartal op waarvan u uw verlofperiodes wilt bekijken: "></h:outputLabel>
 		<h:inputText id="txtJaartal" value="#{verlofBeheer.jaartal}"></h:inputText>
 		<br />
 		<h:commandButton value="Bekijk verlofperiodes"
@@ -26,6 +26,7 @@
 			<h:column>#{verlofPeriode.werknemer.naam}</h:column>
 			<h:column>#{verlofPeriode.werknemer.personeelsNr}</h:column>
 		</h:dataTable>
+		<h:commandButton value="Terug naar home" action="home" immediate="true"></h:commandButton>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Adres implements Serializable {
@@ -21,6 +22,9 @@ public class Adres implements Serializable {
 	private String busnummer;
 	private String postcode;
 	private String gemeente;
+	
+	@OneToOne
+	private Werknemer werknemer;
 
 	public Adres() {
 	}
@@ -72,6 +76,14 @@ public class Adres implements Serializable {
 
 	public void setGemeente(String gemeente) {
 		this.gemeente = gemeente;
+	}
+
+	public Werknemer getWerknemer() {
+		return werknemer;
+	}
+
+	public void setWerknemer(Werknemer werknemer) {
+		this.werknemer = werknemer;
 	}
 
 }

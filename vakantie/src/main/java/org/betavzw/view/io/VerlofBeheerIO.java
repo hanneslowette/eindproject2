@@ -71,22 +71,30 @@ public class VerlofBeheerIO implements Serializable {
 	 */
 	public String zoek() {
 		List<Filter> tmp = new ArrayList<Filter>();
+		// TODO: NullPointerException oplossen
+		if (loginBean != null
+				&& new Filter("Werknemer_personeelsNr", loginBean
+						.getWerknemer().getPersoneelsNr()) != null) {
+			// ^ werkt niet
+			tmp.add(new Filter("Werknemer_personeelsNr", loginBean
+					.getWerknemer().getPersoneelsNr()));
+			verlofPeriodes = bean.get(tmp);
 
-		tmp.add(new Filter("Werknemer_personeelsNr", loginBean.getWerknemer()
-				.getPersoneelsNr()));
-		verlofPeriodes = bean.get(tmp);
-
-		verlofPeriodes = bean.get(
-				new Filter("startDatum", LocalDate.of(
-						Integer.parseInt(jaartal), 1, 1)),
-				new Filter("eindDatum", LocalDate.of(Integer.parseInt(jaartal),
-						12, 31)), new Filter("Toestand", Toestand.ACCEPTED));
-		// tmp.add(new Filter("startDatum", LocalDate.of(
-		// Integer.parseInt(jaartal), 1, 1)));
-		// tmp.add(new Filter("eindDatum",
-		// LocalDate.of(Integer.parseInt(jaartal),
-		// 12, 31)));
-		// tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
-		return null;
+			verlofPeriodes = bean.get(
+					new Filter("startDatum", LocalDate.of(
+							Integer.parseInt(jaartal), 1, 1)),
+					new Filter("eindDatum", LocalDate.of(
+							Integer.parseInt(jaartal), 12, 31)), new Filter(
+							"Toestand", Toestand.ACCEPTED));
+			// tmp.add(new Filter("startDatum", LocalDate.of(
+			// Integer.parseInt(jaartal), 1, 1)));
+			// tmp.add(new Filter("eindDatum",
+			// LocalDate.of(Integer.parseInt(jaartal),
+			// 12, 31)));
+			// tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
+			return null;
+		} else {
+			return null;
+		}
 	}
 }

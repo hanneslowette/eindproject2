@@ -31,19 +31,21 @@ public class HibernateMain {
 		tx.begin();
 		
 		Werknemer koen = new Werknemer();
-		koen.setNaam("Koen");
-		koen.setVoornaam("De Voegt");
+		koen.setNaam("De Voegt");
+		koen.setVoornaam("Koen");
 		
 		Adres adres = new Adres();
 		adres.setStraat("Zuidewendelaan");
 		adres.setHuisnummer("7");
+		adres.setBusnummer("");
 		adres.setGemeente("Hoboken");
 		adres.setPostcode("2660");
 		
+		em.persist(adres);
 		koen.setAdres(adres);
 		koen.setPaswoord("paswoord");
 		koen.setEmail("koen@devoegt.be");
-		
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
 		koen.setGeboortedatum(date);
@@ -59,13 +61,13 @@ public class HibernateMain {
 		em.persist(teamBlue);
 		
 		Werknemer thomas = new Werknemer();
-		thomas.setNaam("Thomas");
+		thomas.setVoornaam("Thomas");
 		em.persist(thomas);
 		
 		teamRed.setTeamverantwoordelijke(thomas);
 		
 		Werknemer hannes = new Werknemer();
-		hannes.setNaam("Hannes");
+		hannes.setVoornaam("Hannes");
 		teamRed.addWerknemer(hannes);
 		em.persist(hannes);
 		

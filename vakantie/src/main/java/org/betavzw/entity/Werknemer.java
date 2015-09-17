@@ -5,9 +5,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -50,18 +52,9 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="adres_id")
 	private Adres adres;
-
-//	/**
-//	 * De postcode van de gemeente waar de werknemer woont
-//	 */
-//	private int postcode;
-//
-//	/**
-//	 * De naam van de gemeente waar de werknemer woont
-//	 */
-//	private String gemeente;
 
 	/**
 	 * Het wachtwoord van de werknemer
@@ -138,28 +131,13 @@ public class Werknemer {
 	}
 	
 	public void setAdres(Adres adres) {
+		adres.setWerknemer(this);
 		this.adres = adres;
 	}
 	
 	public Adres getAdres() {
 		return adres;
 	}
-
-//	public int getPostcode() {
-//		return postcode;
-//	}
-//
-//	public void setPostcode(int postcode) {
-//		this.postcode = postcode;
-//	}
-//
-//	public String getGemeente() {
-//		return gemeente;
-//	}
-//
-//	public void setGemeente(String gemeente) {
-//		this.gemeente = gemeente;
-//	}
 
 	public String getPaswoord() {
 		return paswoord;

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Opvragen verlofperiodes</title>
@@ -10,7 +11,7 @@
 <h:body>
 	<h:form>
 		<h:outputLabel for="txtJaartal"
-			value="Geef een jaartal op waarvan u  uw verlofperiodes wilt bekijken: "></h:outputLabel>
+			value="Geef een jaartal op waarvan u uw verlofperiodes wilt bekijken: "></h:outputLabel>
 		<h:inputText id="txtJaartal" value="#{verlofBeheer.jaartal}"></h:inputText>
 		<br />
 		<h:commandButton value="Bekijk verlofperiodes"
@@ -26,6 +27,7 @@
 			<h:column>#{verlofPeriode.werknemer.naam}</h:column>
 			<h:column>#{verlofPeriode.werknemer.personeelsNr}</h:column>
 		</h:dataTable>
+		<h:commandButton value="Terug naar home" action="home" immediate="true"></h:commandButton>
 	</h:form>
 	<h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>

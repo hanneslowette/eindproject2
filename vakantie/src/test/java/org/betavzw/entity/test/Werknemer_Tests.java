@@ -1,4 +1,4 @@
-package org.betavzw.test;
+package org.betavzw.entity.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

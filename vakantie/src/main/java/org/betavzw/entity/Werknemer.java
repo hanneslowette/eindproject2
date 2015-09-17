@@ -51,15 +51,15 @@ public class Werknemer {
 	 */
 	private Adres adres;
 
-	/**
-	 * De postcode van de gemeente waar de werknemer woont
-	 */
-	private int postcode;
-
-	/**
-	 * De naam van de gemeente waar de werknemer woont
-	 */
-	private String gemeente;
+//	/**
+//	 * De postcode van de gemeente waar de werknemer woont
+//	 */
+//	private int postcode;
+//
+//	/**
+//	 * De naam van de gemeente waar de werknemer woont
+//	 */
+//	private String gemeente;
 
 	/**
 	 * Het wachtwoord van de werknemer

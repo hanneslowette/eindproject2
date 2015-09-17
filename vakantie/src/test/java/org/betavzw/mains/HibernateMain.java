@@ -43,7 +43,6 @@ public class HibernateMain {
 		
 		em.persist(adres);
 		koen.setAdres(adres);
-		koen.setPaswoord("paswoord");
 		koen.setEmail("koen@devoegt.be");
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");

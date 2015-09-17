@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -21,29 +22,17 @@ public class VerlofBeheerIO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
-	 * 
+	 * De bean die verantwoordelijk is voor verlofaanvragen
 	 */
+	@Inject
 	private Bean<VerlofAanvraag> aanvraag_bean;
-	
+
 	@Digits(integer = 4, fraction = 0)
 	@NotEmpty
 	@NotNull
 	private int jaartal;
-	
-	@Digits(integer = 10, fraction = 0)
-	@NotEmpty
-	@NotNull
-	private int personeelsNr;
-
-	public int getPersoneelsNr() {
-		return personeelsNr;
-	}
-
-	public void setPersoneelsNr(int personeelsNr) {
-		this.personeelsNr = personeelsNr;
-	}
 
 	public int getJaartal() {
 		return jaartal;
@@ -54,7 +43,7 @@ public class VerlofBeheerIO implements Serializable {
 	}
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		return aanvraag_bean.get(new Filter("personeelsNr", personeelsNr));
+		return null;
 	}
 
 }

@@ -48,7 +48,7 @@
 				<br />
 				<h:outputLabel for="passwoord" value="paswoord:"></h:outputLabel>
 				<h:inputSecret id="passwoord" value="#{credentialsIO.paswoord}"></h:inputSecret>
-				
+
 				<h:inputHidden value="#{credentialsIO.username"></h:inputHidden>
 				<br />
 				<hr></hr>
@@ -68,17 +68,11 @@
 					action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
 				<h:commandButton value="voeg team toe" action="teamToevoegen"></h:commandButton>
 			</h:form>
-
-
 			<h:selectOneMenu id="werknemers"
 				value="#{werknemerToevoegenIO.teamId}" var="tmp">
 				<f:selectItems value="#{werknemerToevoegenIO.teams}" var="tmp"
 					itemLabel="#{tmp.naam}" itemValue="#{tmp.id}" />
 			</h:selectOneMenu>
-			<h:messages style="color:red;list-style:none;"></h:messages>
-
-
-			
 		</ui:define>
 	</ui:composition>
 </h:body>

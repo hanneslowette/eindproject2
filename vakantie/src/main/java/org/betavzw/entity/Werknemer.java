@@ -131,7 +131,7 @@ public class Werknemer {
 	}
 	
 	public void setAdres(Adres adres) {
-		adres.setWerknemer(this);
+//		adres.setWerknemer(this);
 		this.adres = adres;
 	}
 	

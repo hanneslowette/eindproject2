@@ -7,9 +7,11 @@
 </h:head>
 <h:body>
 <ui:insert name="content"></ui:insert>
-<h:form>
-<h:commandButton value="HOME" action="home"></h:commandButton><br/>
-</h:form>
+
+<h:link outcome="home" >
+	<h:graphicImage value="http://www.amaryllisjk.com/images/Home-icon.png" width="30" />
+</h:link>
+
 <h:messages style="color:red;list-style:none;"></h:messages>
 
 </h:body>

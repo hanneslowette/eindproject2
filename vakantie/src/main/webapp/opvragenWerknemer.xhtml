@@ -12,15 +12,15 @@
 <h:inputText value="#{werknemerOpvragenIO.voornaam}"></h:inputText>Voornaam<br/>
 <h:inputText value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>PersoneelsNummer<br/>
 <h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton><br/>
-</h:form>
 
 <h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
-<!-- <h:column> <h:commandButton value="wijzig" action="#{werknemerOpvragenIO.wijzig(w.id)}"></h:commandButton> </h:column> -->
+<h:column> <h:commandButton value="wijzig" action="#{werknemerOpvragenIO.wijzig(w.id)}"></h:commandButton> </h:column>
 <h:column>#{w.personeelsNr}</h:column>
 <h:column>#{w.naam}</h:column>
 <h:column>#{w.voornaam}</h:column>
 <h:column>#{w.email}</h:column>
 </h:dataTable>
+</h:form>
 <h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>
 </html>

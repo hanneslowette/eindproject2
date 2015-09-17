@@ -9,18 +9,17 @@
 
 <h:form>
 <h:inputText value="#{werknemerOpvragenIO.werknemer.naam}"></h:inputText>Naam<br/>
-<h:inputText value="#{werknemerOpvragenIO.voornaam}"></h:inputText>Voornaam<br/>
-<h:inputText value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>PersoneelsNummer<br/>
-<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton><br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.voornaam}"></h:inputText>Voornaam<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.email}"></h:inputText>Voornaam<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.geboortedatum}"></h:inputText>Voornaam<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.personeelsNr}"></h:inputText>Voornaam<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.postcode}"></h:inputText>Voornaam<br/>
+<h:inputText value="#{werknemerOpvragenIO.werknemer.gemeente}"></h:inputText>Voornaam<br/>
+<!-- <h:inputText value="#{werknemerOpvragenIO.team}"></h:inputText>Voornaam<br/> -->
+
+<h:commandButton value="save" action="#{werknemerOpvragenIO.save}"></h:commandButton>
 </h:form>
 
-<h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
-<h:column> <h:commandButton value="wijzig" action="#{werknemerOpvragenIO.wijzig(w.id)}"></h:commandButton> </h:column>
-<h:column value="#{w.personeelsNr}"></h:column>
-<h:column value="#{w.naam}"></h:column>
-<h:column value="#{w.voornaam}"></h:column>
-<h:column value="#{w.email}"></h:column>
-</h:dataTable>
 <h:messages style="color:red;list-style:none;"></h:messages>
 </h:body>
 </html>

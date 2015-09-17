@@ -93,6 +93,18 @@ public class WerknemerOpvragenIO implements Serializable{
 		setWerknemer(werknemer_bean.getSingle(new Filter("id", id)));
 		return View.WERKNEMER_WIJZIGEN;
 	}
+	
+	/**
+	 * bij het wijzigen van een pagina kan je op save drukken en wordt dit uitgevoerd
+	 * @return werknemer_opvragen xhtml string
+	 */
+	public String save(){
+		werknemer_bean.update(werknemer);
+		lijst = new ArrayList<Werknemer>();
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		ctx.addMessage(null, new FacesMessage("werknemer aangepast", "update geslaagds"));
+		return View.WERKNEMER_OPVRAGEN;
+	}
 
 	public List<Werknemer> getLijst() {
 		return lijst;

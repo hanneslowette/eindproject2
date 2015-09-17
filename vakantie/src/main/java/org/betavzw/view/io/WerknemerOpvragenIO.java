@@ -102,7 +102,7 @@ public class WerknemerOpvragenIO implements Serializable{
 		werknemer_bean.update(werknemer);
 		lijst = new ArrayList<Werknemer>();
 		FacesContext ctx = FacesContext.getCurrentInstance();
-		ctx.addMessage(null, new FacesMessage("werknemer aangepast", "update geslaagds"));
+		ctx.addMessage(null, new FacesMessage("werknemer aangepast", "update geslaagd"));
 		return View.WERKNEMER_OPVRAGEN;
 	}
 

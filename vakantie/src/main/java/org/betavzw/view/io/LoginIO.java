@@ -6,13 +6,13 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import org.betavzw.entity.Login;
+import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
 import org.betavzw.view.bean.AbstractBean;
 
 @Named("login")
 @SessionScoped
-public class LoginIO extends AbstractBean<Login> implements Serializable {
+public class LoginIO extends AbstractBean<Credentials> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,7 @@ public class LoginIO extends AbstractBean<Login> implements Serializable {
 	}
 
 	@Override
-	public List<Login> get(Filter... filters) {
+	public List<Credentials> get(Filter... filters) {
 		// TODO Auto-generated method stub
 		return null;
 	}

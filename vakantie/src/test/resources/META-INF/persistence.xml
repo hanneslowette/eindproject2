@@ -4,15 +4,13 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="unitName">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>org.betavzw.entities.CollectiefVerlof</class>
-		<class>org.betavzw.entities.CollectieveSluiting</class>
-		<class>org.betavzw.entities.Feestdag</class>
-		<class>org.betavzw.entities.JaarlijksVerlof</class>
-		<class>org.betavzw.entities.Team</class>
-		<class>org.betavzw.entities.VerlofAanvraag</class>
-		<class>org.betavzw.entities.Werknemer</class>
-		<class>org.betavzw.entities.Login</class> 
-<!-- 		????? wat???? -->
+		<class>org.betavzw.entity.CollectiefVerlof</class>
+		<class>org.betavzw.entity.CollectieveSluiting</class>
+		<class>org.betavzw.entity.Feestdag</class>
+		<class>org.betavzw.entity.JaarlijksVerlof</class>
+		<class>org.betavzw.entity.Team</class>
+		<class>org.betavzw.entity.VerlofAanvraag</class>
+		<class>org.betavzw.entity.Werknemer</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/eindproject"></property>

@@ -47,8 +47,9 @@
 
 				<br />
 				<h:outputLabel for="passwoord" value="paswoord:"></h:outputLabel>
-				<h:inputSecret id="passwoord" value=""></h:inputSecret>
-				<h:inputText id="gemeente" value="#{werknemerToevoegenIO.gemeente}"></h:inputText>
+				<h:inputSecret id="passwoord" value="#{credentialsIO.paswoord}"></h:inputSecret>
+				
+				<h:inputHidden value="#{credentialsIO.username"></h:inputHidden>
 				<br />
 				<hr></hr>
 				<h:outputLabel for="email" value="email:"></h:outputLabel>

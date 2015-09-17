@@ -18,7 +18,7 @@ import org.betavzw.view.bean.Bean;
  * @author user104
  *
  */
-@Named("teamToevoegen")
+@Named("teamToevoegenIO")
 @SessionScoped public class TeamToevoegenIO implements Serializable{
 
 	/**

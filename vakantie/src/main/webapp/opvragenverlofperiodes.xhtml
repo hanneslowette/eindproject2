@@ -23,33 +23,40 @@
 				<h:dataTable value="#{verlofBeheer.verlofPeriodes}"
 					var="verlofPeriode">
 					<h:column>
+						<f:facet name="header">Startdatum</f:facet>
 						<h:outputText value="#{verlofPeriode.startDatum}">
 							<f:converter converterId="extendedDateTimeConverter" />
 							<f:attribute name="pattern" value="dd/MM/yyyy" />
 						</h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Einddatum</f:facet>
 						<h:outputText value="#{verlofPeriode.eindDatum}">
 							<f:converter converterId="extendedDateTimeConverter" />
 							<f:attribute name="pattern" value="dd/MM/yyyy" />
 						</h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Aanvraagdatum</f:facet>
 						<h:outputText value="#{verlofPeriode.aanvraagDatum}">
 							<f:converter converterId="extendedDateTimeConverter" />
 							<f:attribute name="pattern" value="dd/MM/yyyy" />
 						</h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Toestand</f:facet>
 						<h:outputText value="#{verlofPeriode.toestand}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Voornaam</f:facet>
 						<h:outputText value="#{verlofPeriode.werknemer.voornaam}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Naam</f:facet>
 						<h:outputText value="#{verlofPeriode.werknemer.naam}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Personeelsnummer</f:facet>
 						<h:outputText value="	#{verlofPeriode.werknemer.personeelsNr}"></h:outputText>
 					</h:column>
 				</h:dataTable>

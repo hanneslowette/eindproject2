@@ -11,8 +11,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.Adres;
+import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -52,6 +55,9 @@ public class WerknemerToevoegenIO {
 
 	@Inject
 	private Bean<Werknemer> werknemer_bean;
+	
+	@Inject
+	private Bean<Credentials> credential_bean;
 
 	public WerknemerToevoegenIO() {
 		super();
@@ -77,11 +83,15 @@ public class WerknemerToevoegenIO {
 		// Werknemer w4 = new Werknemer(naam, voornaam, adres, email,
 		// geboortedatum);
 		
-		
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
 		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum
 				.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
 		werknemer_bean.offer(w);
+		
+		Credentials cred = new Credentials();
+		cred.setUsername(this.email);
+		cred.setWerknemer(w);
+		credential_bean.offer(cred);
 		// w.
 		return View.HOME;
 	}

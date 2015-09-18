@@ -15,9 +15,6 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel for="team_naam" value="Naam:"></h:outputLabel>
 			<h:inputText id="team_naam" value="#{team_toevoegen.naam}"></h:inputText>
-			
-			<h:outputLabel for="team_code" value="Code:"></h:outputLabel>
-			<h:inputText id="team_code" value="#{team_toevoegen.code}"></h:inputText>
 	
 			<br />
 			<h:commandButton value="Submit" action="#{team_toevoegen.add()}"></h:commandButton>

@@ -25,12 +25,12 @@
 					<h:outputText value="Verantwoordelijke: "></h:outputText>
 					<h:inputText value="#{team_opvragen.verantwoordelijke}"></h:inputText>
 
-					<h:commandButton value="zoek"></h:commandButton>
+					<h:commandButton action="#{team_opvragen.zoek()}" value="zoek"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 
-			<c:if test="${not empty team_opvragen.results()}">
-				<h:dataTable value="#{team_opvragen.results()}" var="t">
+			<c:if test="${not empty team_opvragen.teams}">
+				<h:dataTable value="#{team_opvragen.teams}" var="t">
 					<h:column>
 						<f:facet name="header">Code</f:facet>#{t.code}</h:column>
 					<h:column>

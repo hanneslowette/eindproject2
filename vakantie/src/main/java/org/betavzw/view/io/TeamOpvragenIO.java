@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,8 +12,8 @@ import org.betavzw.entity.Team;
 import org.betavzw.util.Filter;
 import org.betavzw.view.bean.Bean;
 
-@Named
-@RequestScoped
+@Named("team_opvragen")
+@SessionScoped
 public class TeamOpvragenIO implements Serializable {
 
 	/**
@@ -27,11 +27,6 @@ public class TeamOpvragenIO implements Serializable {
 	@Inject private Bean<Team> bean;
 	
 	/**
-	 * De lijst met gevonden teams
-	 */
-	private List<Team> teams;
-	
-	/**
 	 * De naam van het team
 	 */
 	private String naam;
@@ -39,12 +34,17 @@ public class TeamOpvragenIO implements Serializable {
 	/**
 	 * De verantwoordelijke van het team
 	 */
-	private String teamverantwoordelijke;
+	private String verantwoordelijke;
 	
 	/**
 	 * De unieke code van het team
 	 */
 	private String code;
+	
+	/**
+	 * De lijst met teams
+	 */
+	private List<Team> teams;
 	
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Zoek" klikt in de view
@@ -57,11 +57,11 @@ public class TeamOpvragenIO implements Serializable {
 		if (!code.equals("")) {
 			tmp.add(new Filter("code", this.code));
 		}
-		if (!teamverantwoordelijke.equals("")) {
-			tmp.add(new Filter("teamverantwoordelijke", this.teamverantwoordelijke));
+		if (!verantwoordelijke.equals("")) {
+			tmp.add(new Filter("teamverantwoordelijke.naam", this.verantwoordelijke));
 		}
 		
-		teams = bean.get(tmp);
+		this.teams = bean.get(tmp);
 	}
 
 	public String getNaam() {
@@ -70,14 +70,6 @@ public class TeamOpvragenIO implements Serializable {
 
 	public void setNaam(String naam) {
 		this.naam = naam;
-	}
-
-	public String getVerantwoordelijke() {
-		return teamverantwoordelijke;
-	}
-
-	public void setVerantwoordelijke(String verantwoordelijke) {
-		this.teamverantwoordelijke = verantwoordelijke;
 	}
 
 	public String getCode() {
@@ -92,8 +84,12 @@ public class TeamOpvragenIO implements Serializable {
 		return teams;
 	}
 
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
+	public String getVerantwoordelijke() {
+		return verantwoordelijke;
+	}
+
+	public void setVerantwoordelijke(String verantwoordelijke) {
+		this.verantwoordelijke = verantwoordelijke;
 	}
 
 }

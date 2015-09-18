@@ -30,11 +30,6 @@ import org.betavzw.view.bean.Bean;
 	private String naam;
 	
 	/**
-	 * De door de gebruiker opgegeven code
-	 */
-	private String code;
-	
-	/**
 	 * De bean die verantwoordelijk is voor teams
 	 */
 	@Inject private Bean<Team> team_bean;
@@ -46,7 +41,6 @@ import org.betavzw.view.bean.Bean;
 		 * Vul de waarden van het team in
 		 */
 		team.setNaam(this.naam);
-		team.setCode(this.code);
 		
 		/*
 		 * Voeg het team toe aan de databank
@@ -65,14 +59,6 @@ import org.betavzw.view.bean.Bean;
 
 	public void setNaam(String naam) {
 		this.naam = naam;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 }

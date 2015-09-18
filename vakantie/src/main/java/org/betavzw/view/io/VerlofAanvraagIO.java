@@ -5,13 +5,16 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
@@ -56,55 +59,43 @@ public class VerlofAanvraagIO implements Serializable {
 	 * nieuwe verlofaanvraag wordt aangemaakt in de databank
 	 */
 	public String verstuur() {
-		if (startDatum.before(eindDatum)) {
-			if (isOpTijdAangevraagd() == true) {
-				if (isNietOverlappend() == true) {
-					if (isGenoegVerlofdagen() == true) {
-						VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-						verlofAanvraag.setStartDatum(startDatum.toInstant()
-								.atZone(ZoneId.systemDefault()).toLocalDate());
-						verlofAanvraag.setEindDatum(eindDatum.toInstant()
-								.atZone(ZoneId.systemDefault()).toLocalDate());
-						verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-						verlofAanvraag.setToestand(Toestand.PENDING);
-						verlofAanvraag.setWerknemer(new Werknemer(voornaam,
-								naam));
-						bean.offer(verlofAanvraag);
-						return View.VERSTUURD;
-					} else {
-						FacesContext facesContext = FacesContext
-								.getCurrentInstance();
-						facesContext
-								.addMessage(
-										"",
-										new FacesMessage(
-												"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
-						return View.VERLOFAANVRAGEN;
-					}
-				} else {
-					FacesContext facesContext = FacesContext
-							.getCurrentInstance();
-					facesContext
-							.addMessage(
-									"",
-									new FacesMessage(
-											"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
-					return View.VERLOFAANVRAGEN;
-				}
-			} else {
-				FacesContext facesContext = FacesContext.getCurrentInstance();
-				facesContext
-						.addMessage(
-								"",
-								new FacesMessage(
-										"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
-				return View.VERLOFAANVRAGEN;
-			}
-		} else {
-			FacesContext facesContext = FacesContext.getCurrentInstance();
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
 					"De startdatum moet voor de einddatum liggen"));
 			return View.VERLOFAANVRAGEN;
+		}
+		if (isOpTijdAangevraagd()) {
+			facesContext.addMessage("", new FacesMessage(
+					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
+			return View.VERLOFAANVRAGEN;
+		}
+		if (isNietOverlappend()) {
+			facesContext
+					.addMessage(
+							"",
+							new FacesMessage(
+									"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+			return View.VERLOFAANVRAGEN;
+		}
+		if (isGenoegVerlofdagen()) {
+			facesContext
+					.addMessage(
+							"",
+							new FacesMessage(
+									"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
+			return View.VERLOFAANVRAGEN;
+		} else {
+			VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+			verlofAanvraag.setStartDatum(startDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setEindDatum(eindDatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+			verlofAanvraag.setAanvraagDatum(aanvraagDatum);
+			verlofAanvraag.setToestand(Toestand.PENDING);
+			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
+			bean.offer(verlofAanvraag);
+			return View.VERSTUURD;
 		}
 	}
 
@@ -113,9 +104,9 @@ public class VerlofAanvraagIO implements Serializable {
 	 * dagen op voorhand
 	 */
 	public boolean isOpTijdAangevraagd() {
-		return aanvraagDatum.toEpochDay()
-				- startDatum.toInstant().atZone(ZoneId.systemDefault())
-						.toLocalDate().toEpochDay() < 14;
+		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		return Period.between(start, aanvraagDatum).getDays() < 14;
 	}
 
 	/**
@@ -123,12 +114,16 @@ public class VerlofAanvraagIO implements Serializable {
 	 * al geannuleerd of afgekeurd is
 	 */
 	public boolean isNietOverlappend() {
-//		start1.before(end2) && start2.before(end1);
-//		bean.get(New Filter("aanvraagDatum", ))
-//		Date date1 =
-//		Date date2 = 
-//		return startDatum.before(when) && .before(eindDatum) ? true : false;
-		return true;
+		// start1.before(end2) && start2.before(end1);
+		LocalDate startDatumtmp = startDatum.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate eindDatumtmp = eindDatum.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate();
+		List<LocalDate> startdatums = new ArrayList<LocalDate>();
+		List<LocalDate> einddatums = new ArrayList<LocalDate>();
+
+		// return startDatum.before(when) && .before(eindDatum) ? true : false;
+		return false;
 	}
 
 	/**
@@ -136,7 +131,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 */
 	public boolean isGenoegVerlofdagen() {
 		// TODO: genoeg verlofdagen halen uit datatabel
-		return true;
+		return false;
 	}
 
 	public LocalDate getAanvraagDatum() {

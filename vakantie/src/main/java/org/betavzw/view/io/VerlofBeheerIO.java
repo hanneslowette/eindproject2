@@ -73,7 +73,7 @@ public class VerlofBeheerIO implements Serializable {
 	 */
 	public String zoek() {
 		// TODO: NullPointerException oplossen
-		verlofPeriodes = bean.get(new Filter("personeelsNr", loginBean
+		verlofPeriodes = bean.get(new Filter("werknemer_personeelsNr", loginBean
 				.getWerknemer().getPersoneelsNr()));
 
 		verlofPeriodes = bean.get(

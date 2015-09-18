@@ -66,13 +66,13 @@ public class WerknemerOpvragenIO implements Serializable{
 	public String zoek(){
 		List<Filter> filterlist = new ArrayList<Filter>();
 		if (!naam.equals("")) {
-			filterlist.add(new Filter("naam", this.naam));
+			filterlist.add(new Filter("naam", "%"+this.naam+"%"));
 		}
 		if (!voornaam.equals("")) {
-			filterlist.add(new Filter("voornaam", this.voornaam));
+			filterlist.add(new Filter("voornaam", "%"+this.voornaam+"%"));
 		}
 		if (personeelsNummer!=null) {
-			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
+			filterlist.add(new Filter("personeelsNr", "%"+this.personeelsNummer+"%"));
 		}
 		lijst = werknemer_bean.get(filterlist);
 		if (lijst.size()==0) {

@@ -28,7 +28,7 @@ public class WerknemerBean_Tests {
 	private static EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("unitName");
 
-	private static EntityManager manager = emf.createEntityManager();
+	private static EntityManager manager;
 	private static WerknemerBean werknemerBean = new WerknemerBean();
 	private static EntityTransaction tx;
 
@@ -51,6 +51,7 @@ public class WerknemerBean_Tests {
 
 	@BeforeClass
 	public static void masterSetup() {
+		manager = emf.createEntityManager();
 		tx = manager.getTransaction();
 		werknemerBean.setEntityManager(manager);
 	}
@@ -94,7 +95,7 @@ public class WerknemerBean_Tests {
 
 		Utils.purge((AbstractBean) werknemerBean);
 		tx.commit();
-		
+
 		tx.begin();
 		List<Werknemer> list = werknemerBean.get();
 		assertEquals("failure - Werknemers not purged", list.size(), 0);
@@ -109,38 +110,31 @@ public class WerknemerBean_Tests {
 		adres.setPostcode(postcode);
 		adres.setGemeente(gemeente);
 
-		// manager.persist(adres); // needs to be removed
+//		manager.persist(adres); // needs to be removed
 
 		wn.setAdres(adres);
-		werknemerBean.offer(wn);
 
 		try {
-			 tx.commit();
-		} catch (RollbackException a) {
-//			tx.begin();
-			System.out.println("here");
-			masterTeardown();
-			masterSetup();
-		}
-		 tx.begin();
-//
-//		System.exit(0);
-//		//
-//		// List<Werknemer> list = werknemerBean.get();
-//		// Werknemer wn_out = list.get(0);
-//		// Adres adres_out = wn_out.getAdres();
-//		//
-//		// assertEquals("failure - straat doesn't match", straat,
-//		// adres_out.getStraat());
-//		// assertEquals("failure - huisnummer doesn't match", huisnummer,
-//		// adres_out.getHuisnummer());
-//		// assertEquals("failure - busnummer doesn't match", busnummer,
-//		// adres_out.getBusnummer());
-//		// assertEquals("failure - gemeente doesn't match", gemeente,
-//		// adres_out.getGemeente());
-//		//
-//		// werknemerBean.delete(wn);
+			werknemerBean.offer(wn);
+			tx.commit();
+			List<Werknemer> list = werknemerBean.get();
+			Werknemer wn_out = list.get(0);
+			Adres adres_out = wn_out.getAdres();
 
+			assertEquals("failure - straat doesn't match", straat,
+					adres_out.getStraat());
+			assertEquals("failure - huisnummer doesn't match", huisnummer,
+					adres_out.getHuisnummer());
+			assertEquals("failure - busnummer doesn't match", busnummer,
+					adres_out.getBusnummer());
+			assertEquals("failure - gemeente doesn't match", gemeente,
+					adres_out.getGemeente());
+		} catch (RollbackException a) {
+			tx.begin();
+			tx.rollback();
+			assertTrue("failure - unable to retrieve Adres", false);
+		}
+		tx.begin();
 	}
 
 	@Test
@@ -159,7 +153,7 @@ public class WerknemerBean_Tests {
 		assertEquals("failure - Email doesn't match", email, wn_out.getEmail());
 		assertEquals("failure - Geboortedatum doesn't match", date,
 				wn_out.getGeboortedatum());
-		Utils.purge((AbstractBean) werknemerBean);
+//		Utils.purge((AbstractBean) werknemerBean);
 	}
 
 	@Test

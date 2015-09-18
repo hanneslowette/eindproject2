@@ -8,11 +8,15 @@ import org.betavzw.view.bean.Bean;
 abstract public class Utils {
 
 	@SuppressWarnings("rawtypes")
-	public static <T> void purge(Bean<T> b) {
-		List list = b.get();
-		for (Object ab : list) {
-			b.delete((T) ab);
+	public static <T> void purge(Bean<T> bean) {
+		List list = bean.get();
+		System.out.println("Before" + list.size());
+		
+		for (Object item : list) {
+			bean.delete((T) item);
 		}
+		
+		System.out.println("After" + list.size());
 	}
 
 }

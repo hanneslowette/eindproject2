@@ -11,21 +11,23 @@
 	<title>Verlof aanvragen</title>
 </h:head>
 <h:body>
-<ui:composition template="./TEMPLATE.xhtml">
-<ui:define name="content">
-	<h1>Aanmelden</h1>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel for="txtVoornaam" value="Username: "></h:outputLabel>
-			<h:inputText id="txtVoornaam" value="#{login_view.username}" a:placeholder="username"></h:inputText>
-			
-			<h:outputLabel for="txtNaam" value="Password: "></h:outputLabel>
-			<h:inputSecret id="txtNaam" value="#{login_view.password}" a:placeholder="*****"></h:inputSecret>
-			
-			<h:commandButton value="Aanmelden" action="#{login_view.aanmelden}"></h:commandButton>
-		</h:panelGrid>
-	</h:form>
-	</ui:define>
-</ui:composition>
+	<ui:composition template="./TEMPLATE.xhtml">
+		<ui:define name="content">
+			<h1>Aanmelden</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel for="txtVoornaam" value="Username: "></h:outputLabel>
+					<h:inputText id="txtVoornaam" value="#{login_view.username}"
+						a:placeholder="username"></h:inputText>
+					<br />
+					<h:outputLabel for="txtNaam" value="Password: "></h:outputLabel>
+					<h:inputSecret id="txtNaam" value="#{login_view.password}"
+						a:placeholder="*****"></h:inputSecret>
+					<br />
+					<h:commandButton value="Aanmelden" action="#{login_view.aanmelden}"></h:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

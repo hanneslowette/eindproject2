@@ -33,15 +33,15 @@ h1 {
 .buttonStyle {
 	color: #FFFFFF;
 	font-weight: bold;
-	background-color: #700000;
+	background-color: #E62E00;
 	padding: 5px;
 	border-radius: 10px;
-	border-color: #FFFFFF;
+	border-width: 0;
 }
 
 .buttonStyle:hover {
 	cursor: pointer;
-	background-color: #E62E00;
+	background-color: #700000;
 }
 
 .homebutton {

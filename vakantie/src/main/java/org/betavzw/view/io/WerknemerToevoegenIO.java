@@ -3,6 +3,7 @@ package org.betavzw.view.io;
 import java.util.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -75,6 +76,8 @@ public class WerknemerToevoegenIO {
 		// Werknemer w = new Werknemer();
 		// Werknemer w4 = new Werknemer(naam, voornaam, adres, email,
 		// geboortedatum);
+		
+		
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
 		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum
 				.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
@@ -82,6 +85,17 @@ public class WerknemerToevoegenIO {
 		// w.
 		return View.HOME;
 	}
+	
+//	public String evnalueerDatum() {
+//		
+//		if (condition) {
+//			
+//		}
+//		LocalDate nu = new LocalDate()
+//		ChronoLocalDate dt = new chronol();
+//		
+//		geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(dt);
+//	}
 
 	// @EJB
 	// private TeamEJB team;

@@ -52,13 +52,13 @@ public class TeamOpvragenIO implements Serializable {
 	public void zoek() {
 		List<Filter> tmp = new ArrayList<Filter>();
 		if (!naam.equals("")) {
-			tmp.add(new Filter("naam", this.naam));
+			tmp.add(new Filter("naam", "%" + this.naam + "%"));
 		}
 		if (!code.equals("")) {
-			tmp.add(new Filter("code", this.code));
+			tmp.add(new Filter("code", "%" + this.code + "%"));
 		}
 		if (!verantwoordelijke.equals("")) {
-			tmp.add(new Filter("teamverantwoordelijke.naam", this.verantwoordelijke));
+			tmp.add(new Filter("teamverantwoordelijke.naam", "%" + this.verantwoordelijke + "%"));
 		}
 		
 		this.teams = bean.get(tmp);

@@ -1,15 +1,12 @@
 package org.betavzw.view.io;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.Team;
-import org.betavzw.entity.Werknemer;
-import org.betavzw.util.Filter;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
@@ -38,19 +35,9 @@ import org.betavzw.view.bean.Bean;
 	private String code;
 	
 	/**
-	 * De verantwoordelijke van het team
-	 */
-	private int verantwoordelijkeId;
-	
-	/**
 	 * De bean die verantwoordelijk is voor teams
 	 */
 	@Inject private Bean<Team> team_bean;
-	
-	/**
-	 * De bean die verantwoordelijk is vooor werknemers
-	 */
-	@Inject private Bean<Werknemer> werknemer_bean;
 	
 	public String add() {
 		Team team = new Team();
@@ -60,7 +47,6 @@ import org.betavzw.view.bean.Bean;
 		 */
 		team.setNaam(this.naam);
 		team.setCode(this.code);
-		team.setTeamverantwoordelijke(werknemer_bean.getSingle(new Filter("personeelsNr", verantwoordelijkeId)));
 		
 		/*
 		 * Voeg het team toe aan de databank
@@ -72,10 +58,6 @@ import org.betavzw.view.bean.Bean;
 		 */
 		return View.TEAM_OPVRAGEN;
 	}
-	
-	public List<Werknemer> getWerknemers() {
-		return werknemer_bean.get();
-	}
 
 	public String getNaam() {
 		return naam;
@@ -83,14 +65,6 @@ import org.betavzw.view.bean.Bean;
 
 	public void setNaam(String naam) {
 		this.naam = naam;
-	}
-
-	public int getVerantwoordelijkeId() {
-		return verantwoordelijkeId;
-	}
-
-	public void setVerantwoordelijkeId(int verantwoordelijkeId) {
-		this.verantwoordelijkeId = verantwoordelijkeId;
 	}
 
 	public String getCode() {

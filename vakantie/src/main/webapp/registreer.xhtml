@@ -58,11 +58,10 @@
 				<h:outputLabel for="geboortedatum" value="geboortedatum:"></h:outputLabel>
 				<h:inputText id="geboortedatum"
 					value="#{werknemerToevoegenIO.geboortedatum}"
-					a:placeholder="dd-mm-yyyy">
-
-					<f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
+					a:placeholder="dd/mm/yyyy">
+					<f:convertDateTime dateStyle="short" type="date"
+						pattern="dd/MM/yyyy" />
 				</h:inputText>
-
 				<br />
 				<h:commandButton value="voeg werknemer toe"
 					action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>

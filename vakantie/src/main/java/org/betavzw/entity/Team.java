@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Team {
 	private String code;
 	@ManyToOne()
 	private Werknemer teamverantwoordelijke;
-	@OneToMany(mappedBy="team")
+	@OneToMany(mappedBy="team", fetch=FetchType.EAGER)
 	private Set<Werknemer> teamLeden = new HashSet<Werknemer>();
 
 	public String getNaam() {

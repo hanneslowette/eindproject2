@@ -13,14 +13,6 @@ import org.betavzw.util.QueryBuilder;
  * @param <T>
  */
 public interface Bean<T> {
-
-	/**
-	 * Haalt de resultaten van een query
-	 * 
-	 * @param filters
-	 * @return
-	 */
-	public abstract List<T> get(Filter... filters);
 	
 	/**
 	 * Haalt de resultaten van een custom query
@@ -49,6 +41,16 @@ public interface Bean<T> {
 	 * @param entity
 	 */
 	public abstract void delete(T entity);
+
+	/**
+	 * Haalt de resultaten van een query
+	 * 
+	 * @param filters
+	 * @return
+	 */
+	default List<T> get(Filter... filters) {
+		return get(new QueryBuilder().addFilters(filters));
+	}
 	
 	/**
 	 * Krijgt een lijst van entities terug met een lijst van filters

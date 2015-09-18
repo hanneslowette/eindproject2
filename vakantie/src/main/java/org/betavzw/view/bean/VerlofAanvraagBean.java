@@ -6,7 +6,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.betavzw.entity.VerlofAanvraag;
-import org.betavzw.util.Filter;
 import org.betavzw.util.QueryBuilder;
 
 /**
@@ -20,12 +19,6 @@ public class VerlofAanvraagBean extends AbstractBean<VerlofAanvraag> implements 
 	 * Default Version id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	public List<VerlofAanvraag> get(Filter... filters) {
-		return new QueryBuilder().addFilters(filters)
-				.build(super.getEntityManager(), VerlofAanvraag.class).getResultList();
-	}
 
 	@Override
 	public List<VerlofAanvraag> get(QueryBuilder query) {

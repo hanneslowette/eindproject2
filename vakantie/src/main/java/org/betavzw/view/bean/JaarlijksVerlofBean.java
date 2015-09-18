@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.betavzw.entity.JaarlijksVerlof;
-import org.betavzw.util.Filter;
 import org.betavzw.util.QueryBuilder;
 
 /**
@@ -20,12 +19,6 @@ public class JaarlijksVerlofBean extends AbstractBean<JaarlijksVerlof> {
 	 * De entity manager
 	 */
 	@PersistenceContext private EntityManager manager;
-
-	@Override
-	public List<JaarlijksVerlof> get(Filter... filters) {
-		return new QueryBuilder().addFilters(filters)
-				.build(super.getEntityManager(), JaarlijksVerlof.class).getResultList();
-	}
 
 	@Override
 	public List<JaarlijksVerlof> get(QueryBuilder query) {

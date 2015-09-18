@@ -6,7 +6,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.betavzw.entity.Team;
-import org.betavzw.util.Filter;
 import org.betavzw.util.QueryBuilder;
 
 @ApplicationScoped
@@ -16,12 +15,6 @@ public class TeamBean extends AbstractBean<Team> implements Serializable {
 	 * Versie id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Override
-	public List<Team> get(Filter... filters) {
-		return new QueryBuilder().addFilters(filters)
-				.build(super.getEntityManager(), Team.class).getResultList();
-	}
 
 	@Override
 	public List<Team> get(QueryBuilder query) {

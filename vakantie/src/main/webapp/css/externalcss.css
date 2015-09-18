@@ -1,0 +1,13 @@
+body {
+	background-color: #700000 ;
+	text-align: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+}
+
+.float {
+	background-color: #ffffff;
+	text-align: left;
+	border-radius: 25px;
+	margin: 30px;
+	padding: 15px;
+}

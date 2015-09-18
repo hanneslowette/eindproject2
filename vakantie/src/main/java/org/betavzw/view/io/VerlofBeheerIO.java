@@ -4,16 +4,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 import org.betavzw.util.Toestand;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.LoginBean;
@@ -71,31 +72,21 @@ public class VerlofBeheerIO implements Serializable {
 	 * De actie die gebeurt wanneer de gebruiker op "Zoek" klikt in de view
 	 */
 	public String zoek() {
-		List<Filter> tmp = new ArrayList<Filter>();
 		// TODO: NullPointerException oplossen
-		if (loginBean != null
-				&& new Filter("Werknemer_personeelsNr", loginBean
-						.getWerknemer().getPersoneelsNr()) != null) {
-			// ^ werkt niet
-			tmp.add(new Filter("Werknemer_personeelsNr", loginBean
-					.getWerknemer().getPersoneelsNr()));
-			verlofPeriodes = bean.get(tmp);
-			
-			verlofPeriodes = bean.get(
-					new Filter("startDatum", LocalDate.of(
-							Integer.parseInt(jaartal), 1, 1)),
-					new Filter("eindDatum", LocalDate.of(
-							Integer.parseInt(jaartal), 12, 31)), new Filter(
-							"Toestand", Toestand.ACCEPTED));
-			// tmp.add(new Filter("startDatum", LocalDate.of(
-			// Integer.parseInt(jaartal), 1, 1)));
-			// tmp.add(new Filter("eindDatum",
-			// LocalDate.of(Integer.parseInt(jaartal),
-			// 12, 31)));
-			// tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
-			return null;
-		} else {
-			return null;
-		}
+		verlofPeriodes = bean.get(new Filter("personeelsNr", loginBean
+				.getWerknemer().getPersoneelsNr()));
+
+		verlofPeriodes = bean.get(
+				new Filter("startDatum", LocalDate.of(
+						Integer.parseInt(jaartal), 1, 1)),
+				new Filter("eindDatum", LocalDate.of(Integer.parseInt(jaartal),
+						12, 31)), new Filter("Toestand", Toestand.ACCEPTED));
+		// tmp.add(new Filter("startDatum", LocalDate.of(
+		// Integer.parseInt(jaartal), 1, 1)));
+		// tmp.add(new Filter("eindDatum",
+		// LocalDate.of(Integer.parseInt(jaartal),
+		// 12, 31)));
+		// tmp.add(new Filter("Toestand", Toestand.ACCEPTED));
+		return null;
 	}
 }

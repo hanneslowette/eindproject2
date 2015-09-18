@@ -27,17 +27,17 @@
 			<h:outputLabel for="txtStartDatum"
 				value="Geef startdatum van uw verlof: "></h:outputLabel>
 			<h:inputText id="txtStartDatum" value="#{verlofAanvraag.startDatum}"
-				a:placeholder="dd-mm-yyyy">
-				<f:convertDateTime pattern="dd-MM-yyyy" dateStyle="short"
-					type="date" locale="nl_BE" />
+				a:placeholder="dd/mm/yyyy">
+				<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
+					type="date" />
 			</h:inputText>
 
 			<h:outputLabel for="txtEindDatum"
 				value="Geef einddatum van uw verlof: "></h:outputLabel>
 			<h:inputText id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"
-				a:placeholder="dd-mm-yyyy">
-				<f:convertDateTime pattern="dd-MM-yyyy" dateStyle="short"
-					type="date" locale="nl_BE" />
+				a:placeholder="dd/mm/yyyy">
+				<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
+					type="date" />
 			</h:inputText>
 
 			<h:commandButton value="Verstuur" action="#{verlofAanvraag.verstuur}"></h:commandButton>

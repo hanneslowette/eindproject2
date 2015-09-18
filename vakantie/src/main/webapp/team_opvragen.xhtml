@@ -28,26 +28,28 @@
 				</h:panelGrid>
 			</h:form>
 
-			<c:if test="${not empty team_opvragen.teams}">
-				<h:dataTable value="#{team_opvragen.teams}" var="t">
-					<h:column>
-						<f:facet name="header">Code</f:facet>
-						<h:outputText value="#{t.code}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Naam</f:facet>
-						<h:outputText value="#{t.naam}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Verantwoordelijke</f:facet>
-						<h:outputText value="#{t.teamverantwoordelijke.naam}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Beheer</f:facet>
-						<h:commandButton value="Beheer" action="#{team_beheer.beheer(t.id)}"></h:commandButton>
-					</h:column>
-				</h:dataTable>
-			</c:if>
+			<h:form>
+				<c:if test="${not empty team_opvragen.teams}">
+					<h:dataTable value="#{team_opvragen.teams}" var="t">
+						<h:column>
+							<f:facet name="header">Code</f:facet>
+							<h:outputText value="#{t.code}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Naam</f:facet>
+							<h:outputText value="#{t.naam}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Verantwoordelijke</f:facet>
+							<h:outputText value="#{t.teamverantwoordelijke.naam}"></h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Beheer</f:facet>
+							<h:commandButton value="Beheer" action="#{team_beheer.beheer(t.id)}"></h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</c:if>
+			</h:form>
 			<h:messages style="color:red;list-style:none;"></h:messages>
 		</ui:define>
 	</ui:composition>

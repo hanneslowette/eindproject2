@@ -12,7 +12,22 @@
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
-			
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Code: "></h:outputText>
+					<h:outputText value="#{team_beheer.code}"></h:outputText>
+
+					<h:outputText value="Naam: "></h:outputText>
+					<h:inputText value="#{team_beheer.naam}"></h:inputText>
+
+					<h:outputText value="Verantwoordelijke: "></h:outputText>
+					<h:selectOneMenu value="#{team_beheer.verantwoordelijkeId}">
+						<f:selectItems value="#{team_beheer.team.teamLeden}" var="tmp" itemLabel="#{tmp.naam}" itemValue="#{tmp.personeelsNr}" />
+					</h:selectOneMenu>
+
+					<h:commandButton action="#{team_beheer.update}" value="Bewerk"></h:commandButton>
+				</h:panelGrid>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

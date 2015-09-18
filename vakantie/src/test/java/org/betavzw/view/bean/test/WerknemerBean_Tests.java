@@ -1,4 +1,4 @@
-package org.betavzw.test;
+package org.betavzw.view.bean.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -19,7 +19,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class bean_Tests {
+public class WerknemerBean_Tests {
 
 	private static EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("unitName");
@@ -93,10 +93,10 @@ public class bean_Tests {
 		werknemerBean.delete(wn);
 		tx.commit();
 		
-//		tx.begin();
-//		List<Werknemer> list = werknemerBean.get();
-//		assertEquals("failure - Werknemer not deleted", list.size(), 0);
-//		tx.commit();
+		tx.begin();
+		List<Werknemer> list = werknemerBean.get();
+		assertEquals("failure - Werknemer not deleted", list.size(), 0);
+		tx.commit();
 		
 	}
 	

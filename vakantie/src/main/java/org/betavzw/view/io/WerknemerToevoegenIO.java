@@ -1,7 +1,6 @@
 package org.betavzw.view.io;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 

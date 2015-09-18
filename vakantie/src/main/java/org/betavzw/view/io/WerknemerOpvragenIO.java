@@ -1,7 +1,10 @@
 package org.betavzw.view.io;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -76,6 +79,11 @@ public class WerknemerOpvragenIO implements Serializable {
 	private List<Werknemer> lijst = new ArrayList<Werknemer>();
 
 	/**
+	 * datum van de werknemer
+	 */
+	private Date datum;
+
+	/**
 	 * De code die wordt uitgevoerd wanneer de gebruiker op "zoek" klikt
 	 */
 	public String zoek() {
@@ -89,8 +97,8 @@ public class WerknemerOpvragenIO implements Serializable {
 		if (personeelsNummer != null) {
 			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
-		lijst = werknemer_bean.get(new QueryBuilder().addFilter(filterlist).sort("naam").sort("voornaam")
-				.sort("personeelsNr"));
+		lijst = werknemer_bean.get(new QueryBuilder().addFilter(filterlist)
+				.sort("naam").sort("voornaam").sort("personeelsNr"));
 		if (lijst.size() == 0) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage(null, new FacesMessage("Geen zoekresultaten",
@@ -195,7 +203,8 @@ public class WerknemerOpvragenIO implements Serializable {
 			/**
 			 * als alles is ingevuld:
 			 */
-			werknemer.setTeam(team_bean.getSingle(new QueryBuilder().addFilter(new Filter("id", teamId))));
+			werknemer.setTeam(team_bean.getSingle(new QueryBuilder()
+					.addFilter(new Filter("id", teamId))));
 			werknemer_bean.update(werknemer);
 			lijst = new ArrayList<Werknemer>();
 			ctx.addMessage(null, new FacesMessage("werknemer aangepast",
@@ -254,6 +263,16 @@ public class WerknemerOpvragenIO implements Serializable {
 
 	public void setTeamId(int teamId) {
 		this.teamId = teamId;
+	}
+
+	public Date getDatum() {
+		return Date.from(werknemer.getGeboortedatum().atStartOfDay()
+				.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
+	public void setDatum(Date datum) {
+		werknemer.setGeboortedatum(datum.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate());
 	}
 
 }

@@ -35,6 +35,11 @@
 				<h:outputLabel for="txtGemeente" value="Gemeente"></h:outputLabel>
 				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.gemeente}"></h:inputText>
 				<br />
+				<h:selectOneMenu id="werknemers"
+				value="#{werknemerOpvragenIO.teamId}" var="tmp">
+				<f:selectItems value="#{werknemerOpvragenIO.teams}" var="tmp"
+					itemLabel="#{tmp.naam}" itemValue="#{tmp.id}" />
+			</h:selectOneMenu>
 				<h:commandButton value="save" action="#{werknemerOpvragenIO.save}"></h:commandButton>
 			</h:form>
 		</ui:define>

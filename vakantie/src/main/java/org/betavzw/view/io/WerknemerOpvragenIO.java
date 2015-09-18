@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.Adres;
+import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
 import org.betavzw.util.QueryBuilder;
@@ -37,6 +38,17 @@ public class WerknemerOpvragenIO implements Serializable {
 	 */
 	@Inject
 	private Bean<Werknemer> werknemer_bean;
+
+	/**
+	 * De bean die instaat voor de teams
+	 */
+	@Inject
+	private Bean<Team> team_bean;
+
+	/**
+	 * veld dat wordt ingevuld door dropdown om team te kiezen
+	 */
+	private int teamId;
 
 	/**
 	 * De door de gebruiker ingevulde achternaam
@@ -148,34 +160,31 @@ public class WerknemerOpvragenIO implements Serializable {
 		if (werknemer.getNaam() == null
 				|| werknemer.getNaam().equalsIgnoreCase("")) {
 			missingComponents = true;
-			ctx.addMessage(null, new FacesMessage("Geen naam",
-					"Geen naam"));
+			ctx.addMessage(null, new FacesMessage("Geen naam", "Geen naam"));
 		}
-		
+
 		if (werknemer.getVoornaam() == null
 				|| werknemer.getVoornaam().equalsIgnoreCase("")) {
 			missingComponents = true;
 			ctx.addMessage(null, new FacesMessage("Geen voornaam",
 					"Geen voornaam"));
 		}
-		
+
 		if (werknemer.getEmail() == null
 				|| werknemer.getEmail().equalsIgnoreCase("")) {
 			missingComponents = true;
-			ctx.addMessage(null, new FacesMessage("Geen email",
-					"Geen email"));
+			ctx.addMessage(null, new FacesMessage("Geen email", "Geen email"));
 		}
-		
+
 		if (werknemer.getGeboortedatum() == null) {
 			missingComponents = true;
 			ctx.addMessage(null, new FacesMessage("Geen geboortedatum",
 					"Geen geboortedatum"));
 		}
-		
+
 		if (werknemer.getTeam() == null) {
 			missingComponents = true;
-			ctx.addMessage(null, new FacesMessage("Geen team",
-					"Geen team"));
+			ctx.addMessage(null, new FacesMessage("Geen team", "Geen team"));
 		}
 		/**
 		 * als er ook maar één ding mis is:
@@ -186,6 +195,7 @@ public class WerknemerOpvragenIO implements Serializable {
 			/**
 			 * als alles is ingevuld:
 			 */
+			werknemer.setTeam(team_bean.getSingle(new QueryBuilder().addFilter(new Filter("id", teamId))));
 			werknemer_bean.update(werknemer);
 			lijst = new ArrayList<Werknemer>();
 			ctx.addMessage(null, new FacesMessage("werknemer aangepast",
@@ -232,6 +242,18 @@ public class WerknemerOpvragenIO implements Serializable {
 
 	public void setPersoneelsNummer(Integer personeelsNummer) {
 		this.personeelsNummer = personeelsNummer;
+	}
+
+	public List<Team> getTeams() {
+		return team_bean.get();
+	}
+
+	public int getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(int teamId) {
+		this.teamId = teamId;
 	}
 
 }

@@ -14,11 +14,11 @@ public interface View {
 	/**
 	 * View om een team op te vragen
 	 */
-	public static final String TEAM_OPVRAGEN = "opvragenTeam";
+	public static final String TEAM_OPVRAGEN = "team_opvragen";
 	/**
 	 * View om een team te kunnen toevoegen
 	 */
-	public static final String TEAM_TOEVOEGEN = "teamToevoegen";
+	public static final String TEAM_TOEVOEGEN = "team_toevoegen";
 	/**
 	 * De view waar je werknemers kunt zoeken
 	 */

@@ -72,7 +72,7 @@ public class WerknemerOpvragenIO implements Serializable{
 			filterlist.add(new Filter("voornaam", "%"+this.voornaam+"%"));
 		}
 		if (personeelsNummer!=null) {
-			filterlist.add(new Filter("personeelsNr", "%"+this.personeelsNummer+"%"));
+			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
 		lijst = werknemer_bean.get(filterlist);
 		if (lijst.size()==0) {

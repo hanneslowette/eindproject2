@@ -14,13 +14,13 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h1>Aanmelden</h1>
-			<h:form>
+			<h:form id="loginform">
 				<h:panelGrid columns="2">
-					<h:outputLabel for="txtVoornaam" value="Username: "></h:outputLabel>
-					<h:inputText id="txtVoornaam" value="#{login_view.username}"
+					<h:outputLabel for="txtUsername" value="Username: "></h:outputLabel>
+					<h:inputText id="txtUsername" value="#{login_view.username}"
 						a:placeholder="username"></h:inputText>
-					<h:outputLabel for="txtNaam" value="Password: "></h:outputLabel>
-					<h:inputSecret id="txtNaam" value="#{login_view.password}"
+					<h:outputLabel for="txtPassword" value="Password: "></h:outputLabel>
+					<h:inputSecret id="txtPassword" value="#{login_view.password}"
 						a:placeholder="*****"></h:inputSecret>
 					<br />
 					<h:commandButton value="Aanmelden" action="#{login_view.aanmelden}"></h:commandButton>

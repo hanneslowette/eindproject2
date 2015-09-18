@@ -2,17 +2,18 @@ package org.betavzw.view.bean.test;
 
 import java.util.List;
 
-import org.betavzw.view.bean.AbstractBean;
+import org.betavzw.entity.Werknemer;
 import org.betavzw.view.bean.Bean;
 
 abstract public class Utils {
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static <T> void purge(Bean<T> bean) {
-		List list = bean.get();
+		List<T> list = bean.get();
 		System.out.println("Before" + list.size());
 		
 		for (Object item : list) {
+			Werknemer werknemer = (Werknemer)item;
 			bean.delete((T) item);
 		}
 		

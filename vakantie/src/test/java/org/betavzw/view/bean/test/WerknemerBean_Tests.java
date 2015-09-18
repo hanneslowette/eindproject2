@@ -102,15 +102,13 @@ public class WerknemerBean_Tests {
 	}
 
 	@Test
-	public void Adres_Test() {
+	public void SetAdres_Test() {
 
 		adres.setStraat(straat);
 		adres.setHuisnummer(huisnummer);
 		adres.setBusnummer(busnummer);
 		adres.setPostcode(postcode);
 		adres.setGemeente(gemeente);
-
-//		manager.persist(adres); // needs to be removed
 
 		wn.setAdres(adres);
 
@@ -136,6 +134,12 @@ public class WerknemerBean_Tests {
 		}
 		tx.begin();
 	}
+	
+	@Test
+	public void removeAdres() {
+		assertTrue("check if able to delete with adres constraint", false);
+		
+	}
 
 	@Test
 	public void WerknemerOffer_Test() {
@@ -153,7 +157,6 @@ public class WerknemerBean_Tests {
 		assertEquals("failure - Email doesn't match", email, wn_out.getEmail());
 		assertEquals("failure - Geboortedatum doesn't match", date,
 				wn_out.getGeboortedatum());
-//		Utils.purge((AbstractBean) werknemerBean);
 	}
 
 	@Test

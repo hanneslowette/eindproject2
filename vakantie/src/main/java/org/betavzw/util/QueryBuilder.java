@@ -73,7 +73,7 @@ public class QueryBuilder {
 				/*
 				 * De variabele naam is de naam van de voorwaarde met een : ervoor
 				 */
-				.append(":").append(entry.getKey());
+				.append(":").append(formatParameter(entry.getKey()));
 				
 				/*
 				 * Als er nog andere voorwaarden volgen, worden deze gescheiden met het "AND" keyword
@@ -134,7 +134,7 @@ public class QueryBuilder {
 			/*
 			 * Vul de waarde van de parameter in
 			 */
-			query.setParameter(entry.getKey(), entry.getValue());
+			query.setParameter(formatParameter(entry.getKey()), entry.getValue());
 		}
 
 		/*
@@ -208,6 +208,16 @@ public class QueryBuilder {
 	public QueryBuilder sort(String... columns) {
 		Arrays.stream(columns).forEach(sort_columns::add);
 		return this;
+	}
+
+	/**
+	 * Formats a parameter name
+	 * 
+	 * @param input
+	 * @return
+	 */
+	private static String formatParameter(String input) {
+		return input.replaceAll("\\.", "");
 	}
 
 }

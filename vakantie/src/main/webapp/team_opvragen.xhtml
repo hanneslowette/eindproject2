@@ -15,16 +15,22 @@
 			<h1>Team opvragen</h1>
 
 			<h:form>
-				<h:panelGrid columns="3">
-					<h:outputText value="Naam"></h:outputText>
-					<h:inputText value="#{team.query}"></h:inputText>
+				<h:panelGrid columns="2">
+					<h:outputText value="Code: "></h:outputText>
+					<h:inputText value="#{team_opvragen.code}"></h:inputText>
+					
+					<h:outputText value="Naam: "></h:outputText>
+					<h:inputText value="#{team_opvragen.naam}"></h:inputText>
+					
+					<h:outputText value="Verantwoordelijke: "></h:outputText>
+					<h:inputText value="#{team_opvragen.verantwoordelijke}"></h:inputText>
 
 					<h:commandButton value="zoek"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 
-			<c:if test="${not empty team.search()}">
-				<h:dataTable value="#{teamOpvragenIO.teams}" var="t">
+			<c:if test="${not empty team_opvragen.results()}">
+				<h:dataTable value="#{team_opvragen.results()}" var="t">
 					<h:column>
 						<f:facet name="header">Code</f:facet>#{t.code}</h:column>
 					<h:column>

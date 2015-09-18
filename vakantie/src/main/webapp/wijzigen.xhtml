@@ -12,9 +12,10 @@
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
-		<h1>Wijzigen werknemer</h1><br/>
+			<h1>Wijzigen werknemer</h1>
+			<br />
 			<h:form>
-			<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
+				<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
 				<h:inputText value="#{werknemerOpvragenIO.werknemer.naam}"></h:inputText>
 				<br />
 				<h:outputLabel for="txtVoornaam" value="Voornaam"></h:outputLabel>
@@ -36,11 +37,12 @@
 				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.gemeente}"></h:inputText>
 				<br />
 				<h:selectOneMenu id="werknemers"
-				value="#{werknemerOpvragenIO.teamId}" var="tmp">
-				<f:selectItems value="#{werknemerOpvragenIO.teams}" var="tmp"
-					itemLabel="#{tmp.naam}" itemValue="#{tmp.id}" />
-			</h:selectOneMenu>
-				<h:commandButton value="save" action="#{werknemerOpvragenIO.save}"></h:commandButton>
+					value="#{werknemerOpvragenIO.teamId}" var="tmp">
+					<f:selectItems value="#{werknemerOpvragenIO.teams}" var="tmp"
+						itemLabel="#{tmp.naam}" itemValue="#{tmp.id}" />
+				</h:selectOneMenu>
+				<h:commandButton styleClass="buttonStyle" value="save"
+					action="#{werknemerOpvragenIO.save}"></h:commandButton>
 			</h:form>
 		</ui:define>
 	</ui:composition>

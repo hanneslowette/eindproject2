@@ -89,7 +89,7 @@ public class WerknemerOpvragenIO implements Serializable {
 		if (personeelsNummer != null) {
 			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
-		lijst = werknemer_bean.get(new QueryBuilder().addFilter(filterlist)
+		lijst = werknemer_bean.get(new QueryBuilder().addFilter(filterlist).sort("naam").sort("voornaam")
 				.sort("personeelsNr"));
 		if (lijst.size() == 0) {
 			FacesContext ctx = FacesContext.getCurrentInstance();

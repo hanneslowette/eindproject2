@@ -15,12 +15,18 @@
 			<h:column>#{tmp.werknemer.voornaam}</h:column>
 			<h:column>#{tmp.werknemer.naam}</h:column>
 			<h:column>#{tmp.werknemer.personeelsNr}</h:column>
+			<h:outputText value="#{item.time}">
+    <f:converter converterId="extendedDateTimeConverter" />
+    <f:attribute name="pattern" value="yyyy-MM-dd HH:mm:ssZ" />
+    <f:attribute name="timeZone" value="#{item.timeZone}" />
+</h:outputText>
+			
+			
+			
 			<h:column>#{tmp.startDatum}</h:column>
 			<h:column>#{tmp.eindDatum}</h:column>
 			<h:column>#{tmp.aanvraagDatum}</h:column>
 			<h:column>#{tmp.toestand}</h:column>
-			<h:outputLabel for="selToestand"
-				value="Mag werknemer #{tmp.werknemer.voornaam} #{tmp.werknemer.naam} met personeelsnummer #{tmp.werknemer.personeelsNr} op verlof van ##{tmp.startDatum} tot #{tmp.eindDatum}"></h:outputLabel>
 			<h:column>
 				<h:selectOneMenu id="selToestand"
 					value="#{verlofGoedkeuren.keuring}">

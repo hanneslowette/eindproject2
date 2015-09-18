@@ -68,4 +68,6 @@ public interface View {
 	 * view om een verlof goed te keuren / af te keuren / cancellen
 	 */
 	public static final String VERLOFGOEDKEUREN = "verlofgoedkeuren";
+	
+	public static final String TEAM_BEHEER = "team_beheer";
 }

@@ -126,21 +126,12 @@ public class Werknemer {
 	}
 	
 	public void setAdres(Adres adres) {
-//		adres.setWerknemer(this);
 		this.adres = adres;
 	}
 	
 	public Adres getAdres() {
 		return adres;
 	}
-
-//	public String getPaswoord() {
-//		return paswoord;
-//	}
-//
-//	public void setPaswoord(String paswoord) {
-//		this.paswoord = paswoord;
-//	}
 
 	public Team getTeam() {
 		return team;

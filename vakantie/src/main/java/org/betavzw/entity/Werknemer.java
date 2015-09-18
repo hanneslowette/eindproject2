@@ -52,7 +52,7 @@ public class Werknemer {
 	/**
 	 * Het adres (de straatnaam en huisnummer) van de werknemer
 	 */
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="adres_id")
 	private Adres adres;
 

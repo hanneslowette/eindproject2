@@ -13,6 +13,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.betavzw.entity.Werknemer;
+import org.betavzw.entity.Adres;
 import org.betavzw.view.bean.WerknemerBean;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,11 +32,18 @@ public class WerknemerBean_Tests {
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 	
 	private Werknemer wn = new Werknemer();
+	private Adres adres = new Adres();
 	
 	private String voornaam = "Koen";
 	private String naam = "De Voegt";
 	private String email = "koen@devoegt.be";
 	private LocalDate date = LocalDate.parse("1980-apr-13", formatter);
+	
+	private String straat = "Zuidwendelaan";
+	private String huisnummmer = "7";
+	private String busnummer = "";
+	private String postcode = "2660";
+	private String gemeente = "Hoboken (Antwerpen)";
 		
 	@BeforeClass
 	public static void masterSetup() {

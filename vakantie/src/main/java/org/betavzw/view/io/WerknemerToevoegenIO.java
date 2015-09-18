@@ -1,9 +1,7 @@
 package org.betavzw.view.io;
 
-import java.util.Date;
-import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.chrono.ChronoLocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,8 +12,6 @@ import org.betavzw.entity.Adres;
 import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
-import org.betavzw.util.Filter;
-import org.betavzw.util.QueryBuilder;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,26 +20,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 @RequestScoped
 public class WerknemerToevoegenIO {
 
-	@NotEmpty(message="naam mag niet leeg zijn")
+	@NotEmpty(message = "naam mag niet leeg zijn")
 	private String naam;
-	@NotEmpty(message="voornaam mag niet leeg zijn")
+	@NotEmpty(message = "voornaam mag niet leeg zijn")
 	private String voornaam;
-	@NotEmpty(message="email mag niet leeg zijn")
+	@NotEmpty(message = "email mag niet leeg zijn")
 	private String email;
-	
-	
+
 	private Date geboortedatum;
 
-	@NotEmpty(message="straat mag niet leeg zijn")
+	@NotEmpty(message = "straat mag niet leeg zijn")
 	private String straat;
-	@NotEmpty(message="huisnummer mag niet leeg zijn")
+	@NotEmpty(message = "huisnummer mag niet leeg zijn")
 	private String huisnummer;
-	@NotEmpty(message="busnummer mag niet leeg zijn")
+	@NotEmpty(message = "busnummer mag niet leeg zijn")
 	private String busnummer;
-	
-	@NotEmpty(message="postcode mag niet leeg zijn")
+
+	@NotEmpty(message = "postcode mag niet leeg zijn")
 	private String postcode;
-	@NotEmpty(message="gemeente mag niet leeg zijn")
+	@NotEmpty(message = "gemeente mag niet leeg zijn")
 	private String gemeente;
 	private int teamId;
 
@@ -55,7 +50,7 @@ public class WerknemerToevoegenIO {
 
 	@Inject
 	private Bean<Werknemer> werknemer_bean;
-	
+
 	@Inject
 	private Bean<Credentials> credential_bean;
 
@@ -82,12 +77,12 @@ public class WerknemerToevoegenIO {
 		// Werknemer w = new Werknemer();
 		// Werknemer w4 = new Werknemer(naam, voornaam, adres, email,
 		// geboortedatum);
-		
+
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
 		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum
 				.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
 		werknemer_bean.offer(w);
-		
+
 		Credentials cred = new Credentials();
 		cred.setUsername(this.email);
 		cred.setWerknemer(w);
@@ -95,17 +90,17 @@ public class WerknemerToevoegenIO {
 		// w.
 		return View.HOME;
 	}
-	
-//	public String evnalueerDatum() {
-//		
-//		if (condition) {
-//			
-//		}
-//		LocalDate nu = new LocalDate()
-//		ChronoLocalDate dt = new chronol();
-//		
-//		geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(dt);
-//	}
+
+	// public String evnalueerDatum() {
+	//
+	// if (condition) {
+	//
+	// }
+	// LocalDate nu = new LocalDate()
+	// ChronoLocalDate dt = new chronol();
+	//
+	// geboortedatum.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(dt);
+	// }
 
 	// @EJB
 	// private TeamEJB team;

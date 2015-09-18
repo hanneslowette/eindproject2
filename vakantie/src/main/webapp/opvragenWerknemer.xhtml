@@ -12,24 +12,39 @@
 		<ui:define name="content">
 			<h1>Werknemer zoeken</h1>
 			<h:form>
-				<h:inputText value="#{werknemerOpvragenIO.naam}"></h:inputText>Naam<br />
-				<h:inputText value="#{werknemerOpvragenIO.voornaam}"></h:inputText>Voornaam<br />
-				<h:inputText value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>PersoneelsNummer<br />
+				<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
+				<h:inputText id="txtNaam" value="#{werknemerOpvragenIO.naam}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtVoornaam" value="Voornaam"></h:outputLabel>
+				<h:inputText id="txtVoornaam"
+					value="#{werknemerOpvragenIO.voornaam}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtPersoneelsNummer" value="PersoneelsNummer"></h:outputLabel>
+				<h:inputText id="txtPersoneelsNummer"
+					value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>
+				<br />
 				<br />
 				<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton>
 				<br />
 				<br />
 				<br />
-
 				<h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
 					<h:column>
 						<h:commandButton value="wijzig"
 							action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"></h:commandButton>
 					</h:column>
-					<h:column>#{w.personeelsNr}</h:column>
-					<h:column>#{w.naam}</h:column>
-					<h:column>#{w.voornaam}</h:column>
-					<h:column>#{w.email}</h:column>
+					<h:column>
+						<h:outputText value="#{w.personeelsNr}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{w.naam}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{w.voornaam}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{w.email}"></h:outputText>
+					</h:column>
 				</h:dataTable>
 			</h:form>
 		</ui:define>

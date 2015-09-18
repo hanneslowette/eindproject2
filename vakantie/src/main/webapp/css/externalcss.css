@@ -5,10 +5,6 @@ body {
 	color: #700000;
 }
 
-h1 {
-	color: #000000;
-}
-
 .float {
 	background-color: #E6E6E6;
 	border-color: #471919;
@@ -33,15 +29,16 @@ h1 {
 .buttonStyle {
 	color: #FFFFFF;
 	font-weight: bold;
-	background-color: #E62E00;
+	background-color: #700000;
+	margin: 5px;
 	padding: 5px;
-	border-radius: 10px;
+	border-radius: 5px;
 	border-width: 0;
 }
 
 .buttonStyle:hover {
 	cursor: pointer;
-	background-color: #700000;
+	background-color: #E10019;
 }
 
 .homebutton {

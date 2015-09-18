@@ -24,7 +24,7 @@
 					<h:outputText value="Verantwoordelijke: "></h:outputText>
 					<h:inputText value="#{team_opvragen.verantwoordelijke}"></h:inputText>
 
-					<h:commandButton action="#{team_opvragen.zoek()}" value="zoek"></h:commandButton>
+					<h:commandButton styleClass="buttonStyle" action="#{team_opvragen.zoek()}" value="zoek"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 
@@ -45,7 +45,7 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Beheer</f:facet>
-							<h:commandButton value="Beheer" action="#{team_beheer.beheer(t.id)}"></h:commandButton>
+							<h:commandButton styleClass="buttonStyle" value="Beheer" action="#{team_beheer.beheer(t.id)}"></h:commandButton>
 						</h:column>
 					</h:dataTable>
 				</c:if>

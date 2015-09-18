@@ -25,12 +25,14 @@
 					<h:inputText id="txtPersoneelsNummer"
 						value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>
 
-					<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton>
+					<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"
+						styleClass="buttonStyle"></h:commandButton>
 				</h:panelGrid>
 				<h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
 					<h:column>
 						<h:commandButton value="wijzig"
-							action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"></h:commandButton>
+							action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"
+							styleClass="buttonStyle"></h:commandButton>
 					</h:column>
 					<h:column>
 						<h:outputText value="#{w.personeelsNr}"></h:outputText>

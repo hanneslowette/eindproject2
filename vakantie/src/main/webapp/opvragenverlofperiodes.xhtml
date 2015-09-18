@@ -22,13 +22,38 @@
 				<br />
 				<h:dataTable value="#{verlofBeheer.verlofPeriodes}"
 					var="verlofPeriode">
-					<h:column>#{verlofPeriode.startDatum}</h:column>
-					<h:column>#{verlofPeriode.eindDatum}</h:column>
-					<h:column>#{verlofPeriode.aanvraagDatum}</h:column>
-					<h:column>#{verlofPeriode.toestand}</h:column>
-					<h:column>#{verlofPeriode.werknemer.voornaam}</h:column>
-					<h:column>#{verlofPeriode.werknemer.naam}</h:column>
-					<h:column>#{verlofPeriode.werknemer.personeelsNr}</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.startDatum}">
+							<f:converter converterId="extendedDateTimeConverter" />
+							<f:attribute name="pattern" value="dd/MM/yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.eindDatum}">
+							<f:converter converterId="extendedDateTimeConverter" />
+							<f:attribute name="pattern" value="dd/MM/yyyy" />
+						</h:outputText>
+
+					</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.aanvraagDatum}">
+							<f:converter converterId="extendedDateTimeConverter" />
+							<f:attribute name="pattern" value="dd/MM/yyyy" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.toestand}"></h:outputText>
+
+					</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.werknemer.voornaam}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="#{verlofPeriode.werknemer.naam}"></h:outputText>
+					</h:column>
+					<h:column>
+						<h:outputText value="	#{verlofPeriode.werknemer.personeelsNr}"></h:outputText>
+					</h:column>
 				</h:dataTable>
 				<h:commandButton value="Terug naar home" action="home"
 					immediate="true"></h:commandButton>

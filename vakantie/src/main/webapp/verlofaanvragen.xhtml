@@ -17,9 +17,11 @@
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
-					<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"></h:inputText>
+					<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"
+						a:placeholder="voornaam"></h:inputText>
 					<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
-					<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"></h:inputText>
+					<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"
+						a:placeholder="naam"></h:inputText>
 					<h:outputLabel for="txtPersoneelsnummer"
 						value="Geef uw personeelsnummer: "></h:outputLabel>
 					<h:inputText id="txtPersoneelsnummer"
@@ -44,7 +46,7 @@
 				</h:panelGrid>
 				<h:panelGrid columns="3">
 					<h:outputLabel for="txtId"
-						value="Geef het id van de verlofaanvraag in de datatabel: "></h:outputLabel>
+						value="Geef het personeelsnummer van de werknemer om zijn verlofaanvragen te zien:"></h:outputLabel>
 					<h:inputText id="txtiD" value="#{verlofAanvraag.id}"></h:inputText>
 					<h:commandButton value="Check" action="#{verlofAanvraag.check}"></h:commandButton>
 				</h:panelGrid>

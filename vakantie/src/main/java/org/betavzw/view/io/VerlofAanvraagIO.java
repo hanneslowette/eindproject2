@@ -31,24 +31,20 @@ public class VerlofAanvraagIO implements Serializable {
 	@Inject
 	private Bean<VerlofAanvraag> bean;
 
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
-	@NotEmpty
-	@NotNull
+	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige voornaam ingeven")
+	@NotEmpty(message = "Veld voornaam moet ingevuld zijn")
 	private String voornaam;
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*")
-	@NotEmpty
-	@NotNull
+	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige naam ingeven")
+	@NotEmpty(message = "Veld naam moet ingevuld zijn")
 	private String naam;
-	@Digits(integer = 4, fraction = 0)
+	@Digits(integer = 3, fraction = 0, message = "Geldig personeelsnummer ingeven")
 	private int personeelsNr;
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message = "Veld startdatum moet ingevuld zijn")
 	private Date startDatum;
 	@Temporal(TemporalType.DATE)
-	@NotNull
+	@NotNull(message = "Veld einddatum moet ingevuld zijn")
 	private Date eindDatum;
-	@Digits(integer = 10, fraction = 0)
-	private int id;
 
 	/**
 	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waar een
@@ -93,14 +89,6 @@ public class VerlofAanvraagIO implements Serializable {
 			break;
 		}
 		return pagina;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getVoornaam() {

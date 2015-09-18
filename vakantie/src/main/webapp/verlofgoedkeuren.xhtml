@@ -13,9 +13,15 @@
 <h:body>
 	<h:form>
 		<h:dataTable value="#{verlofGoedkeuren.verlofAanvragen}" var="tmp">
-			<h:column>#{tmp.werknemer.voornaam}</h:column>
-			<h:column>#{tmp.werknemer.naam}</h:column>
-			<h:column>#{tmp.werknemer.personeelsNr}</h:column>
+			<h:column>
+				<h:outputText value="#{tmp.werknemer.voornaam}"></h:outputText>
+			</h:column>
+			<h:column>
+				<h:outputText value="#{tmp.werknemer.naam}"></h:outputText>
+			</h:column>
+			<h:column>
+				<h:outputText value="#{tmp.werknemer.personeelsNr}"></h:outputText>
+			</h:column>
 			<h:column>
 				<h:outputText value="#{tmp.startDatum}">
 					<f:converter converterId="extendedDateTimeConverter" />
@@ -34,7 +40,9 @@
 						pattern="yyyy-MM-dd" />
 				</h:outputText>
 			</h:column>
-			<h:column>#{tmp.toestand}</h:column>
+			<h:column>
+				<h:outputText value="#{tmp.toestand}"></h:outputText>
+			</h:column>
 			<h:column>
 				<h:selectOneMenu id="selToestand"
 					value="#{verlofGoedkeuren.keuring}">

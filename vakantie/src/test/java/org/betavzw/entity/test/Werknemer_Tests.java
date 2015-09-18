@@ -17,9 +17,8 @@ import org.junit.Test;
 
 public class Werknemer_Tests {
 
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-	
-	Werknemer werknemer = new Werknemer();
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+	private Werknemer werknemer = new Werknemer();
 	
 	@Test
 	public void Naam_Test() {

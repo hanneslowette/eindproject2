@@ -13,7 +13,7 @@
 <h:inputText value="#{werknemerOpvragenIO.naam}"></h:inputText>Naam<br/>
 <h:inputText value="#{werknemerOpvragenIO.voornaam}"></h:inputText>Voornaam<br/>
 <h:inputText value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>PersoneelsNummer<br/><br/>
-<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton><br/>
+<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"></h:commandButton><br/><br/><br/>
 
 <h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
 <h:column> <h:commandButton value="wijzig" action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"></h:commandButton> </h:column>

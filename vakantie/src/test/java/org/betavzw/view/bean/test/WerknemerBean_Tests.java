@@ -100,27 +100,29 @@ public class WerknemerBean_Tests {
 		assertEquals("failure - Werknemers not purged", list.size(), 0);
 	}
 
-//	@Test
-//	public void Adres_Test() {
-//
-//		adres.setStraat(straat);
-//		adres.setHuisnummer(huisnummer);
-//		adres.setBusnummer(busnummer);
-//		adres.setPostcode(postcode);
-//		adres.setGemeente(gemeente);
-//
-//		// manager.persist(adres); // needs to be removed
-//
-//		wn.setAdres(adres);
-//		werknemerBean.offer(wn);
-//
-//		try {
-//			 tx.commit();
-//		} catch (RollbackException a) {
-////			tx.begin();
-//			System.out.println("here");
-//		}
-//		// tx.begin();
+	@Test
+	public void Adres_Test() {
+
+		adres.setStraat(straat);
+		adres.setHuisnummer(huisnummer);
+		adres.setBusnummer(busnummer);
+		adres.setPostcode(postcode);
+		adres.setGemeente(gemeente);
+
+		// manager.persist(adres); // needs to be removed
+
+		wn.setAdres(adres);
+		werknemerBean.offer(wn);
+
+		try {
+			 tx.commit();
+		} catch (RollbackException a) {
+//			tx.begin();
+			System.out.println("here");
+			masterTeardown();
+			masterSetup();
+		}
+		 tx.begin();
 //
 //		System.exit(0);
 //		//
@@ -138,42 +140,42 @@ public class WerknemerBean_Tests {
 //		// adres_out.getGemeente());
 //		//
 //		// werknemerBean.delete(wn);
-//
-//	}
 
-//	@Test
-//	public void WerknemerOffer_Test() {
-//
-//		werknemerBean.offer(wn);
-//		tx.commit();
-//
-//		tx.begin();
-//		List<Werknemer> list = werknemerBean.get();
-//		assertTrue("failure - Werknemer not added", list.contains(wn));
-//		Werknemer wn_out = list.get(0);
-//		assertEquals("failure - Voornaam doesn't match", voornaam,
-//				wn_out.getVoornaam());
-//		assertEquals("failure - Naam doesn't match", naam, wn_out.getNaam());
-//		assertEquals("failure - Email doesn't match", email, wn_out.getEmail());
-//		assertEquals("failure - Geboortedatum doesn't match", date,
-//				wn_out.getGeboortedatum());
-//		Utils.purge((AbstractBean) werknemerBean);
-//	}
-//
-//	@Test
-//	public void WerknemerDelete_Test() {
-//
-//		werknemerBean.offer(wn);
-//		tx.commit();
-//
-//		tx.begin();
-//		werknemerBean.delete(wn);
-//		tx.commit();
-//
-//		tx.begin();
-//		List<Werknemer> list = werknemerBean.get();
-//		assertEquals("failure - Werknemer not deleted", list.size(), 0);
-//
-//	}
+	}
+
+	@Test
+	public void WerknemerOffer_Test() {
+
+		werknemerBean.offer(wn);
+		tx.commit();
+
+		tx.begin();
+		List<Werknemer> list = werknemerBean.get();
+		assertTrue("failure - Werknemer not added", list.contains(wn));
+		Werknemer wn_out = list.get(0);
+		assertEquals("failure - Voornaam doesn't match", voornaam,
+				wn_out.getVoornaam());
+		assertEquals("failure - Naam doesn't match", naam, wn_out.getNaam());
+		assertEquals("failure - Email doesn't match", email, wn_out.getEmail());
+		assertEquals("failure - Geboortedatum doesn't match", date,
+				wn_out.getGeboortedatum());
+		Utils.purge((AbstractBean) werknemerBean);
+	}
+
+	@Test
+	public void WerknemerDelete_Test() {
+
+		werknemerBean.offer(wn);
+		tx.commit();
+
+		tx.begin();
+		werknemerBean.delete(wn);
+		tx.commit();
+
+		tx.begin();
+		List<Werknemer> list = werknemerBean.get();
+		assertEquals("failure - Werknemer not deleted", list.size(), 0);
+
+	}
 
 }

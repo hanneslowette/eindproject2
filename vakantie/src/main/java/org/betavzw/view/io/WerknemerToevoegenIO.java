@@ -1,6 +1,7 @@
 package org.betavzw.view.io;
 
 import java.util.Date;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -13,20 +14,32 @@ import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Named
 @RequestScoped
 public class WerknemerToevoegenIO {
 
+	@NotEmpty(message="naam mag niet leeg zijn")
 	private String naam;
+	@NotEmpty(message="voornaam mag niet leeg zijn")
 	private String voornaam;
+	@NotEmpty(message="email mag niet leeg zijn")
 	private String email;
+	
+	
 	private Date geboortedatum;
 
+	@NotEmpty(message="straat mag niet leeg zijn")
 	private String straat;
+	@NotEmpty(message="huisnummer mag niet leeg zijn")
 	private String huisnummer;
+	@NotEmpty(message="busnummer mag niet leeg zijn")
 	private String busnummer;
+	
+	@NotEmpty(message="postcode mag niet leeg zijn")
 	private String postcode;
+	@NotEmpty(message="gemeente mag niet leeg zijn")
 	private String gemeente;
 	private int teamId;
 

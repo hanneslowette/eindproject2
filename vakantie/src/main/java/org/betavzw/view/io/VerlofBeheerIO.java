@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -79,7 +80,7 @@ public class VerlofBeheerIO implements Serializable {
 			tmp.add(new Filter("Werknemer_personeelsNr", loginBean
 					.getWerknemer().getPersoneelsNr()));
 			verlofPeriodes = bean.get(tmp);
-
+			
 			verlofPeriodes = bean.get(
 					new Filter("startDatum", LocalDate.of(
 							Integer.parseInt(jaartal), 1, 1)),

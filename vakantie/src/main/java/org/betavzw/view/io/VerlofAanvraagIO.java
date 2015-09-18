@@ -2,10 +2,14 @@ package org.betavzw.view.io;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Temporal;
@@ -45,6 +49,7 @@ public class VerlofAanvraagIO implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld einddatum moet ingevuld zijn")
 	private Date eindDatum;
+	private LocalDate aanvraagDatum = LocalDate.now();
 
 	/**
 	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waar een
@@ -52,43 +57,94 @@ public class VerlofAanvraagIO implements Serializable {
 	 */
 	public String verstuur() {
 		if (startDatum.before(eindDatum)) {
-			VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-			verlofAanvraag.setStartDatum(startDatum.toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate());
-			verlofAanvraag.setEindDatum(eindDatum.toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate());
-			verlofAanvraag.setAanvraagDatum(LocalDate.now());
-			verlofAanvraag.setToestand(Toestand.PENDING);
-			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
-			bean.offer(verlofAanvraag);
-			return View.VERSTUURD;
+			if (isOpTijdAangevraagd() == true) {
+				if (isNietOverlappend() == true) {
+					if (isGenoegVerlofdagen() == true) {
+						VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+						verlofAanvraag.setStartDatum(startDatum.toInstant()
+								.atZone(ZoneId.systemDefault()).toLocalDate());
+						verlofAanvraag.setEindDatum(eindDatum.toInstant()
+								.atZone(ZoneId.systemDefault()).toLocalDate());
+						verlofAanvraag.setAanvraagDatum(aanvraagDatum);
+						verlofAanvraag.setToestand(Toestand.PENDING);
+						verlofAanvraag.setWerknemer(new Werknemer(voornaam,
+								naam));
+						bean.offer(verlofAanvraag);
+						return View.VERSTUURD;
+					} else {
+						FacesContext facesContext = FacesContext
+								.getCurrentInstance();
+						facesContext
+								.addMessage(
+										"",
+										new FacesMessage(
+												"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
+						return View.VERLOFAANVRAGEN;
+					}
+				} else {
+					FacesContext facesContext = FacesContext
+							.getCurrentInstance();
+					facesContext
+							.addMessage(
+									"",
+									new FacesMessage(
+											"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+					return View.VERLOFAANVRAGEN;
+				}
+			} else {
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				facesContext
+						.addMessage(
+								"",
+								new FacesMessage(
+										"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
+				return View.VERLOFAANVRAGEN;
+			}
 		} else {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			facesContext.addMessage("", new FacesMessage(
+					"De startdatum moet voor de einddatum liggen"));
 			return View.VERLOFAANVRAGEN;
 		}
 	}
 
 	/**
-	 * checkfunctie voor commandButton van verlofaanvragen.xhtml waarmee de
-	 * werknemer een pagina te zien krijgt waar de status van de verlofaanvraag
-	 * staat
+	 * functie die true weergeeft als het verlof op tijd is aangevraagd nl. 14
+	 * dagen op voorhand
 	 */
-	public String check() {
-		VerlofAanvraag aanvraag = bean.getSingle(new Filter("id", id));
+	public boolean isOpTijdAangevraagd() {
+		return aanvraagDatum.toEpochDay()
+				- startDatum.toInstant().atZone(ZoneId.systemDefault())
+						.toLocalDate().toEpochDay() < 14;
+	}
 
-		String pagina = null;
-		switch (aanvraag.getToestand()) {
-		case PENDING:
-			pagina = View.PENDING;
-			break;
-		case ACCEPTED:
-			pagina = View.ACCEPTED;
-			break;
-		case REJECTED:
-		case CANCELED:
-			pagina = View.REJECTED;
-			break;
-		}
-		return pagina;
+	/**
+	 * functie die true weergeeft als er geen overlappende verlofaanvraag is die
+	 * al geannuleerd of afgekeurd is
+	 */
+	public boolean isNietOverlappend() {
+//		start1.before(end2) && start2.before(end1);
+//		bean.get(New Filter("aanvraagDatum", ))
+//		Date date1 =
+//		Date date2 = 
+//		return startDatum.before(when) && .before(eindDatum) ? true : false;
+		return true;
+	}
+
+	/**
+	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
+	 */
+	public boolean isGenoegVerlofdagen() {
+		// TODO: genoeg verlofdagen halen uit datatabel
+		return true;
+	}
+
+	public LocalDate getAanvraagDatum() {
+		return aanvraagDatum;
+	}
+
+	public void setAanvraagDatum(LocalDate aanvraagDatum) {
+		this.aanvraagDatum = aanvraagDatum;
 	}
 
 	public String getVoornaam() {

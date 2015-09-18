@@ -44,12 +44,6 @@
 						action="#{verlofAanvraag.verstuur}"></h:commandButton>
 					<br />
 				</h:panelGrid>
-				<h:panelGrid columns="3">
-					<h:outputLabel for="txtId"
-						value="Geef het personeelsnummer van de werknemer om zijn verlofaanvragen te zien:"></h:outputLabel>
-					<h:inputText id="txtiD" value="#{verlofAanvraag.id}"></h:inputText>
-					<h:commandButton value="Check" action="#{verlofAanvraag.check}"></h:commandButton>
-				</h:panelGrid>
 			</h:form>
 		</ui:define>
 	</ui:composition>

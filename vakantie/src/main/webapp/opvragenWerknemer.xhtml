@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Werknemer opvragen</title>
@@ -30,19 +31,24 @@
 				<br />
 				<h:dataTable value="#{werknemerOpvragenIO.lijst}" var="w">
 					<h:column>
+						<f:facet name="header">Wijzigen</f:facet>
 						<h:commandButton value="wijzig"
 							action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"></h:commandButton>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Personeelsnummer</f:facet>
 						<h:outputText value="#{w.personeelsNr}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Naam</f:facet>
 						<h:outputText value="#{w.naam}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">Voornaam</f:facet>
 						<h:outputText value="#{w.voornaam}"></h:outputText>
 					</h:column>
 					<h:column>
+						<f:facet name="header">E-mail</f:facet>
 						<h:outputText value="#{w.email}"></h:outputText>
 					</h:column>
 				</h:dataTable>

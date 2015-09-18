@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
@@ -74,7 +75,7 @@ public class WerknemerOpvragenIO implements Serializable{
 		if (personeelsNummer!=null) {
 			filterlist.add(new Filter("personeelsNr", this.personeelsNummer));
 		}
-		lijst = werknemer_bean.get(filterlist);
+		lijst = werknemer_bean.get(new QueryBuilder().addFilter(filterlist).sort("personeelsNr"));
 		if (lijst.size()==0) {
 			FacesContext ctx = FacesContext.getCurrentInstance();
 			ctx.addMessage(null, new FacesMessage("Geen zoekresultaten", "Geen zoekresultaten"));

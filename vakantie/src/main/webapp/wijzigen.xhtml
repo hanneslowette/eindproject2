@@ -12,17 +12,28 @@
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
-			<h:form>
-				<h:inputText value="#{werknemerOpvragenIO.werknemer.naam}"></h:inputText>Naam<br />
-				<h:inputText value="#{werknemerOpvragenIO.werknemer.voornaam}"></h:inputText>Voornaam<br />
-				<h:inputText value="#{werknemerOpvragenIO.werknemer.email}"></h:inputText>email<br />
+			<h:form>.
+			<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
+				<h:inputText value="#{werknemerOpvragenIO.werknemer.naam}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtVoornaam" value="Voornaam"></h:outputLabel>
+				<h:inputText value="#{werknemerOpvragenIO.werknemer.voornaam}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtEmail" value="e-mail"></h:outputLabel>
+				<h:inputText value="#{werknemerOpvragenIO.werknemer.email}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtGeboortedatum" value="Geboortedatum"></h:outputLabel>
 				<h:inputText value="#{werknemerOpvragenIO.werknemer.geboortedatum}"
-					a:placeholder="dd-mm-yyyy">
-					<f:convertDateTime pattern="d-M-yyyy" />
-				</h:inputText>geboortedatum<br />
-				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.postcode}"></h:inputText>postcode<br />
-				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.gemeente}"></h:inputText>gemeente<br />
-
+					a:placeholder="dd/mm/yyyy">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<br />
+				<h:outputLabel for="txtPostcode" value="Postcode"></h:outputLabel>
+				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.postcode}"></h:inputText>
+				<br />
+				<h:outputLabel for="txtGemeente" value="Gemeente"></h:outputLabel>
+				<h:inputText value="#{werknemerOpvragenIO.werknemer.adres.gemeente}"></h:inputText>
+				<br />
 				<h:commandButton value="save" action="#{werknemerOpvragenIO.save}"></h:commandButton>
 			</h:form>
 		</ui:define>

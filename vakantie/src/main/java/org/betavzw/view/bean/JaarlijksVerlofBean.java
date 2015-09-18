@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.util.Filter;
-import org.betavzw.util.Queries;
+import org.betavzw.util.QueryBuilder;
 
 /**
  * Session Bean implementation class JaarlijksVerlofEJB
@@ -23,7 +23,13 @@ public class JaarlijksVerlofBean extends AbstractBean<JaarlijksVerlof> {
 
 	@Override
 	public List<JaarlijksVerlof> get(Filter... filters) {
-		return Queries.create(super.getEntityManager(), JaarlijksVerlof.class, filters).getResultList();
+		return new QueryBuilder().addFilters(filters)
+				.build(super.getEntityManager(), JaarlijksVerlof.class).getResultList();
+	}
+
+	@Override
+	public List<JaarlijksVerlof> get(QueryBuilder query) {
+		return query.build(super.getEntityManager(), JaarlijksVerlof.class).getResultList();
 	}
 
 }

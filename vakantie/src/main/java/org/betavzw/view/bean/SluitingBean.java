@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 import org.betavzw.entity.CollectieveSluiting;
 import org.betavzw.util.Filter;
-import org.betavzw.util.Queries;
+import org.betavzw.util.QueryBuilder;
 
 
 public class SluitingBean extends AbstractBean<CollectieveSluiting> {
@@ -19,7 +19,13 @@ public class SluitingBean extends AbstractBean<CollectieveSluiting> {
 
 	@Override
 	public List<CollectieveSluiting> get(Filter... filters) {
-		return Queries.create(super.getEntityManager(), CollectieveSluiting.class, filters).getResultList();
+		return new QueryBuilder().addFilters(filters)
+				.build(super.getEntityManager(), CollectieveSluiting.class).getResultList();
+	}
+
+	@Override
+	public List<CollectieveSluiting> get(QueryBuilder query) {
+		return query.build(super.getEntityManager(), CollectieveSluiting.class).getResultList();
 	}
 
 }

@@ -7,7 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
-import org.betavzw.util.Queries;
+import org.betavzw.util.QueryBuilder;
 
 @ApplicationScoped
 public class WerknemerBean extends AbstractBean<Werknemer> implements Serializable {
@@ -19,7 +19,13 @@ public class WerknemerBean extends AbstractBean<Werknemer> implements Serializab
 
 	@Override
 	public List<Werknemer> get(Filter... filters) {
-		return Queries.create(super.getEntityManager(), Werknemer.class, filters).getResultList();
+		return new QueryBuilder().addFilters(filters)
+				.build(super.getEntityManager(), Werknemer.class).getResultList();
+	}
+
+	@Override
+	public List<Werknemer> get(QueryBuilder query) {
+		return query.build(super.getEntityManager(), Werknemer.class).getResultList();
 	}
 
 }

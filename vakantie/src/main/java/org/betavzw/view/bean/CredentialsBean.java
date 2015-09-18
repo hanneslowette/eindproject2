@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
-import org.betavzw.util.Queries;
+import org.betavzw.util.QueryBuilder;
 
 @ApplicationScoped
 public class CredentialsBean extends AbstractBean<Credentials> {
@@ -20,7 +20,13 @@ public class CredentialsBean extends AbstractBean<Credentials> {
 
 	@Override
 	public List<Credentials> get(Filter... filters) {
-		return Queries.create(super.getEntityManager(), Credentials.class, filters).getResultList();
+		return new QueryBuilder().addFilters(filters)
+				.build(super.getEntityManager(), Credentials.class).getResultList();
+	}
+
+	@Override
+	public List<Credentials> get(QueryBuilder builder) {
+		return builder.build(super.getEntityManager(), Credentials.class).getResultList();
 	}
 
 }

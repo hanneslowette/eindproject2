@@ -3,6 +3,7 @@ package org.betavzw.view.bean;
 import java.util.List;
 
 import org.betavzw.util.Filter;
+import org.betavzw.util.QueryBuilder;
 
 /**
  * Stelt een abstracte bean voor
@@ -20,6 +21,14 @@ public interface Bean<T> {
 	 * @return
 	 */
 	public abstract List<T> get(Filter... filters);
+	
+	/**
+	 * Haalt de resultaten van een custom query
+	 * 
+	 * @param builder
+	 * @return
+	 */
+	public abstract List<T> get(QueryBuilder query);
 	
 	/**
 	 * Probeert een entity te persisteren
@@ -60,7 +69,20 @@ public interface Bean<T> {
 	default T getSingle(Filter... filters) {
 		List<T> result = get(filters);
 		if (result.size() == 1)
-			return get(filters).get(0);
+			return result.get(0);
+		throw new IllegalStateException("getSingle() must return just one result (size="+result.size()+")");
+	}
+	
+	/**
+	 * Krijg een enkele waarde terug van een query
+	 * 
+	 * @param filters
+	 * @return
+	 */
+	default T getSingle(QueryBuilder query) {
+		List<T> result = get(query);
+		if (result.size() == 1)
+			return result.get(0);
 		throw new IllegalStateException("getSingle() must return just one result (size="+result.size()+")");
 	}
 

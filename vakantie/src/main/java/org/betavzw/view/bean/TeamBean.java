@@ -7,7 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.betavzw.entity.Team;
 import org.betavzw.util.Filter;
-import org.betavzw.util.Queries;
+import org.betavzw.util.QueryBuilder;
 
 @ApplicationScoped
 public class TeamBean extends AbstractBean<Team> implements Serializable {
@@ -19,7 +19,13 @@ public class TeamBean extends AbstractBean<Team> implements Serializable {
 
 	@Override
 	public List<Team> get(Filter... filters) {
-		return Queries.create(super.getEntityManager(), Team.class, filters).getResultList();
+		return new QueryBuilder().addFilters(filters)
+				.build(super.getEntityManager(), Team.class).getResultList();
+	}
+
+	@Override
+	public List<Team> get(QueryBuilder query) {
+		return query.build(super.getEntityManager(), Team.class).getResultList();
 	}
 
 }

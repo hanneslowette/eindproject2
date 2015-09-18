@@ -76,7 +76,7 @@ public class WerknemerBean_Tests {
 		Werknemer wn_out = list.get(0);
 		assertEquals("failure - Voornaam doesn't match", wn_out.getVoornaam(), voornaam);
 		assertEquals("failure - Naam doesn't match", wn_out.getNaam(), naam);
-		assertEquals("failure - email doesn't match", wn_out.getEmail(), email);
+		assertEquals("failure - Email doesn't match", wn_out.getEmail(), email);
 		assertEquals("failure - Geboortedatum doesn't match", wn_out.getGeboortedatum(), date);
 		werknemerBean.delete(wn_out);
 		tx.commit();

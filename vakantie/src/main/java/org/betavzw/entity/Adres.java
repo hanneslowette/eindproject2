@@ -34,6 +34,10 @@ public class Adres implements Serializable {
 		setGemeente(gemeente);
 	}
 
+	public int getId() {
+		return id;
+	}
+	
 	public String getStraat() {
 		return straat;
 	}

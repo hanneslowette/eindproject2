@@ -13,30 +13,34 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h1>Team opvragen</h1>
-
 			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputText value="Code: "></h:outputText>
 					<h:inputText value="#{team_opvragen.code}"></h:inputText>
-					
+
 					<h:outputText value="Naam: "></h:outputText>
 					<h:inputText value="#{team_opvragen.naam}"></h:inputText>
-					
+
 					<h:outputText value="Verantwoordelijke: "></h:outputText>
 					<h:inputText value="#{team_opvragen.verantwoordelijke}"></h:inputText>
 
 					<h:commandButton action="#{team_opvragen.zoek()}" value="zoek"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
-
 			<c:if test="${not empty team_opvragen.teams}">
 				<h:dataTable value="#{team_opvragen.teams}" var="t">
 					<h:column>
-						<f:facet name="header">Code</f:facet>#{t.code}</h:column>
+						<f:facet name="header">Code</f:facet>
+						<h:outputText value="#{t.code}"></h:outputText>
+					</h:column>
 					<h:column>
-						<f:facet name="header">Naam</f:facet>#{t.naam}</h:column>
+						<f:facet name="header">Naam</f:facet>
+					</h:column>
+					<h:outputText value="#{t.naam}"></h:outputText>
 					<h:column>
-						<f:facet name="header">Verantwoordelijke</f:facet>#{t.teamverantwoordelijke}</h:column>
+						<f:facet name="header">Verantwoordelijke</f:facet>
+					</h:column>
+					<h:outputText value="#{t.teamverantwoordelijke}"></h:outputText>
 				</h:dataTable>
 			</c:if>
 			<h:messages style="color:red;list-style:none;"></h:messages>

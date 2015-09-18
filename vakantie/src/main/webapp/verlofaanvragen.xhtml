@@ -18,15 +18,12 @@
 				<h:panelGrid columns="2">
 					<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
 					<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"></h:inputText>
-
 					<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
 					<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"></h:inputText>
-
 					<h:outputLabel for="txtPersoneelsnummer"
 						value="Geef uw personeelsnummer: "></h:outputLabel>
 					<h:inputText id="txtPersoneelsnummer"
 						value="#{verlofAanvraag.personeelsNr}"></h:inputText>
-
 					<h:outputLabel for="txtStartDatum"
 						value="Geef startdatum van uw verlof: "></h:outputLabel>
 					<h:inputText id="txtStartDatum"
@@ -34,7 +31,6 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
 							type="date" />
 					</h:inputText>
-
 					<h:outputLabel for="txtEindDatum"
 						value="Geef einddatum van uw verlof: "></h:outputLabel>
 					<h:inputText id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"
@@ -42,7 +38,6 @@
 						<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
 							type="date" />
 					</h:inputText>
-
 					<h:commandButton value="Verstuur"
 						action="#{verlofAanvraag.verstuur}"></h:commandButton>
 					<br />
@@ -51,7 +46,6 @@
 					<h:outputLabel for="txtId"
 						value="Geef het id van de verlofaanvraag in de datatabel: "></h:outputLabel>
 					<h:inputText id="txtiD" value="#{verlofAanvraag.id}"></h:inputText>
-
 					<h:commandButton value="Check" action="#{verlofAanvraag.check}"></h:commandButton>
 				</h:panelGrid>
 			</h:form>

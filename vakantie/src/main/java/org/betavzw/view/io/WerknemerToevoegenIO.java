@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,6 +14,7 @@ import org.betavzw.entity.Adres;
 import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -79,8 +82,11 @@ public class WerknemerToevoegenIO {
 		// geboortedatum);
 
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
-		Werknemer w = new Werknemer(naam, voornaam, email, geboortedatum
-				.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
+		Werknemer w;
+		try {
+			w = new Werknemer(naam, voornaam, email, geboortedatum
+					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
+		
 		werknemer_bean.offer(w);
 
 		Credentials cred = new Credentials();
@@ -89,6 +95,19 @@ public class WerknemerToevoegenIO {
 		credential_bean.offer(cred);
 		// w.
 		return View.HOME;
+		} catch (GeboortedatumInDeToekomstException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			
+			FacesContext
+			.getCurrentInstance()
+			.addMessage(
+					null,
+					new FacesMessage(
+							"werknemer niet toegevoegd: geboortedatum mag niet in de toekomst liggen",
+							"toevoegen niet geslaagd"));
+			return null;
+		}
 	}
 
 	// public String evnalueerDatum() {

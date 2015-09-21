@@ -74,6 +74,7 @@ public class WerknemerBean_Tests {
 
 	@After
 	public void teardown() {
+		Utils.purge((AbstractBean) werknemerBean);
 		tx.commit();
 	}
 
@@ -177,7 +178,7 @@ public class WerknemerBean_Tests {
 	}
 
 	@Test
-	public void WerknemerNaam_KleinerDan_personeelsNr_Test() {
+	public void WerknemerPersoneelsNr_KleinerDan_Test() {
 		Werknemer werknemer1 = new Werknemer("A", "A");	
 		werknemerBean.offer(werknemer1);
 		Werknemer werknemer2 = new Werknemer("A", "A");
@@ -189,7 +190,7 @@ public class WerknemerBean_Tests {
 	}
 	
 	@Test
-	public void WerknemerNaam_GroterDan_personeelsNr_Test() {
+	public void WerknemerPersoneelsNr_GroterDan_Test() {
 		Werknemer werknemer1 = new Werknemer("A", "A");	
 		werknemerBean.offer(werknemer1);
 		Werknemer werknemer2 = new Werknemer("A", "A");

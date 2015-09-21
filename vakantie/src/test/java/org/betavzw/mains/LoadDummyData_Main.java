@@ -17,12 +17,13 @@ import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.AccountType;
+import org.betavzw.util.exceptions.FoutAantalVerlofdagenException;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 
 public class LoadDummyData_Main {
 
 	public static void main(String[] args)
-			throws GeboortedatumInDeToekomstException {
+			throws GeboortedatumInDeToekomstException, FoutAantalVerlofdagenException {
 
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("unitName");
@@ -54,12 +55,12 @@ public class LoadDummyData_Main {
 
 		Team teamRed = new Team();
 		teamRed.setNaam("Team Red");
-		teamRed.setCode("WIN");
+//		teamRed.setCode("WIN");
 		em.persist(teamRed);
 
 		Team teamBlue = new Team();
 		teamBlue.setNaam("Team Blue");
-		teamBlue.setCode("LOSE");
+//		teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
 
 		Werknemer thomas = new Werknemer();

@@ -18,7 +18,6 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String naam;
-    @GeneratedValue(strategy = GenerationType.AUTO)
 	private String code;
 	@ManyToOne()
 	private Werknemer teamverantwoordelijke;
@@ -34,7 +33,8 @@ public class Team {
 	}
 
 	public String getCode() {
-		return code;
+		if (code == null) return Integer.toString(id);
+		else return code;
 	}
 
 	public void setCode(String code) {

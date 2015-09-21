@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
+
 /**
  * 
  * 
@@ -81,7 +83,7 @@ public class Werknemer {
 		setVoornaam(voornaam);
 	}
 	
-	public Werknemer(String voornaam, String naam, String email, LocalDate geboortedatum, Adres adres) {
+	public Werknemer(String voornaam, String naam, String email, LocalDate geboortedatum, Adres adres) throws GeboortedatumInDeToekomstException {
 		this(voornaam, naam);
 		setEmail(email);
 		setGeboortedatum(geboortedatum);
@@ -116,7 +118,7 @@ public class Werknemer {
 		return geboortedatum;
 	}
 
-	public void setGeboortedatum(LocalDate geboortedatum) {
+	public void setGeboortedatum(LocalDate geboortedatum) throws GeboortedatumInDeToekomstException {
 		this.geboortedatum = geboortedatum;
 	}
 

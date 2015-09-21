@@ -15,22 +15,20 @@
 		<ui:define name="content">
 			<h1>Verlof aanvragen</h1>
 			<c:choose>
-				<c:when test="#{login.clearance>0}">
+				<c:when test="#{login.clearance > 0}">
 					<h:form>
 						<h:panelGrid columns="2">
 							<h:outputLabel for="txtStartDatum"
 								value="Geef startdatum van uw verlof: "></h:outputLabel>
 							<h:inputText id="txtStartDatum"
-								value="#{verlofAanvraag.startDatum}" a:placeholder="dd/mm/yyyy">
-								<f:convertDateTime pattern="dd/mm/yy" dateStyle="short"
-									type="date" />
+								value="#{verlofAanvraag.startDatum}" a:placeholder="dd-MM-yyyy">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:outputLabel for="txtEindDatum"
 								value="Geef einddatum van uw verlof: "></h:outputLabel>
 							<h:inputText id="txtEindDatum"
-								value="#{verlofAanvraag.eindDatum}" a:placeholder="dd/mm/yyyy">
-								<f:convertDateTime pattern="dd/mm/yy" dateStyle="short"
-									type="date" />
+								value="#{verlofAanvraag.eindDatum}" a:placeholder="dd-MM-yyyy">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:commandButton styleClass="buttonStyle" value="Verstuur"
 								action="#{verlofAanvraag.verstuur}"></h:commandButton>

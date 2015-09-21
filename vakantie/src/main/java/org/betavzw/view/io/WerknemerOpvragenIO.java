@@ -18,6 +18,7 @@ import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
 import org.betavzw.util.QueryBuilder;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 
@@ -273,8 +274,18 @@ public class WerknemerOpvragenIO implements Serializable {
 
 	public void setDatum(Date datum) {
 		this.datum = datum;
-		werknemer.setGeboortedatum(datum.toInstant()
-				.atZone(ZoneId.systemDefault()).toLocalDate());
+		try {
+			werknemer.setGeboortedatum(datum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate());
+		} catch (GeboortedatumInDeToekomstException e) {
+			FacesContext
+					.getCurrentInstance()
+					.addMessage(
+							null,
+							new FacesMessage(
+									"werknemer niet aangepast: geboortedatum mag niet in de toekomst liggen",
+									"update geslaagd"));
+		}
 	}
 
 }

@@ -1,12 +1,14 @@
 package org.betavzw.view.io;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -41,6 +43,11 @@ public class WerknemerToevoegenIO implements Serializable{
 	private Date datum;
 	private int teamId;
 	
+	@PostConstruct
+	public void makeAdres(){
+		werknemer.setAdres(new Adres());
+	}
+	
 	public List<Team> getTeams() {
 		return team_bean.get();
 	}
@@ -70,9 +77,12 @@ public class WerknemerToevoegenIO implements Serializable{
 	public void setDatum(Date datum) {
 		this.datum = datum;
 		try {
-			LocalDate localdate = datum.toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate();
-			werknemer.setGeboortedatum(localdate);
+//			LocalDate localdate = datum.toInstant()
+//					.atZone(ZoneId.systemDefault()).toLocalDate();
+			Instant instant = Instant.ofEpochMilli(datum.getTime());
+			LocalDate res = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+			werknemer.setGeboortedatum(res);
+			
 		} catch (GeboortedatumInDeToekomstException e) {
 			FacesContext
 					.getCurrentInstance()

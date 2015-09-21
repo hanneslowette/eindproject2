@@ -91,4 +91,35 @@ public class AdresBean_Tests {
 		assertEquals("failure - Adressen not purged", list.size(), 0);
 
 	}
+
+	@Test
+	public void AdresOffer_Test() {
+		adresBean.offer(adres);
+		tx.commit();
+		
+		tx.begin();
+		List<Adres> list = adresBean.get();
+		Adres adres_out = list.get(0);
+		assertEquals("failure - Straat doesn't match", straat, adres_out.getStraat());
+		assertEquals("failure - Huisnummer doesn't match", huisnummer, adres_out.getHuisnummer());
+		assertEquals("failure - Busnummer doesn't match", busnummer, adres_out.getBusnummer());
+		assertEquals("failure - Postcode doesn't match", postcode, adres_out.getPostcode());
+		assertEquals("failure - Gemeente doesn't match", gemeente, adres_out.getGemeente());
+		
+	}
+	
+	@Test
+	public void AdresDelete_Test() {
+		adresBean.offer(adres);
+		tx.commit();
+		
+		tx.begin();
+		adresBean.delete(adres);
+		tx.commit();
+		
+		tx.begin();
+		List<Adres> list = adresBean.get();
+		assertEquals("failure - Adres not deleted", list.size(), 0);
+
+	}
 }

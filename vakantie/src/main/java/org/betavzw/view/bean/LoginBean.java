@@ -43,7 +43,7 @@ public class LoginBean implements Serializable {
 	public AccountType getType() {
 		return type;
 	}
-
+	
 	public void setType(AccountType type) {
 		this.type = type;
 	}
@@ -54,6 +54,10 @@ public class LoginBean implements Serializable {
 
 	public void setAangemeld(boolean aangemeld) {
 		this.aangemeld = aangemeld;
+	}
+	
+	public int getClearance(){
+		return type.ordinal();
 	}
 
 }

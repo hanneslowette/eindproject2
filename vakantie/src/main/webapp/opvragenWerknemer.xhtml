@@ -12,52 +12,55 @@
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
-		<c:if test="#{login.clearance>2}">
-			<h1>Werknemer zoeken</h1>
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
-					<h:inputText id="txtNaam" value="#{werknemerOpvragenIO.naam}"></h:inputText>
-					<h:outputLabel for="txtVoornaam" value="Voornaam"></h:outputLabel>
-					<h:inputText id="txtVoornaam"
-						value="#{werknemerOpvragenIO.voornaam}"></h:inputText>
+			<c:choose>
+				<c:when test="#{login.clearance>2}">
+					<h1>Werknemer zoeken</h1>
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel for="txtNaam" value="Naam"></h:outputLabel>
+							<h:inputText id="txtNaam" value="#{werknemerOpvragenIO.naam}"></h:inputText>
+							<h:outputLabel for="txtVoornaam" value="Voornaam"></h:outputLabel>
+							<h:inputText id="txtVoornaam"
+								value="#{werknemerOpvragenIO.voornaam}"></h:inputText>
 
-					<h:outputLabel for="txtPersoneelsNummer" value="Personeelsnummer"></h:outputLabel>
-					<h:inputText id="txtPersoneelsNummer"
-						value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>
+							<h:outputLabel for="txtPersoneelsNummer" value="Personeelsnummer"></h:outputLabel>
+							<h:inputText id="txtPersoneelsNummer"
+								value="#{werknemerOpvragenIO.personeelsNummer}"></h:inputText>
 
-					<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"
-						styleClass="buttonStyle"></h:commandButton>
-				</h:panelGrid>
-				<h:dataTable rendered="#{not empty werknemerOpvragenIO.lijst}"
-					styleClass="table" headerClass="tableHeader"
-					rowClasses="tableEvenRow, tableOddRow"
-					value="#{werknemerOpvragenIO.lijst}" var="w">
-					<h:column>
-						<f:facet name="header">Wijzigen</f:facet>
-						<h:commandButton value="wijzig"
-							action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"
-							styleClass="buttonStyle"></h:commandButton>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Personeelsnummer</f:facet>
-						<h:outputText value="#{w.personeelsNr}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Naam</f:facet>
-						<h:outputText value="#{w.naam}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Voornaam</f:facet>
-						<h:outputText value="#{w.voornaam}"></h:outputText>
-					</h:column>
-					<h:column>
-						<f:facet name="header">E-mail</f:facet>
-						<h:outputText value="#{w.email}"></h:outputText>
-					</h:column>
-				</h:dataTable>
-			</h:form>
-			</c:if><c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
+							<h:commandButton value="zoek"
+								action="#{werknemerOpvragenIO.zoek}" styleClass="buttonStyle"></h:commandButton>
+						</h:panelGrid>
+						<h:dataTable rendered="#{not empty werknemerOpvragenIO.lijst}"
+							styleClass="table" headerClass="tableHeader"
+							rowClasses="tableEvenRow, tableOddRow"
+							value="#{werknemerOpvragenIO.lijst}" var="w">
+							<h:column>
+								<f:facet name="header">Wijzigen</f:facet>
+								<h:commandButton value="wijzig"
+									action="#{werknemerOpvragenIO.wijzig(w.personeelsNr)}"
+									styleClass="buttonStyle"></h:commandButton>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Personeelsnummer</f:facet>
+								<h:outputText value="#{w.personeelsNr}"></h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Naam</f:facet>
+								<h:outputText value="#{w.naam}"></h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Voornaam</f:facet>
+								<h:outputText value="#{w.voornaam}"></h:outputText>
+							</h:column>
+							<h:column>
+								<f:facet name="header">E-mail</f:facet>
+								<h:outputText value="#{w.email}"></h:outputText>
+							</h:column>
+						</h:dataTable>
+					</h:form>
+				</c:when>
+			<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
+			</c:choose>
 		</ui:define>
 	</ui:composition>
 </h:body>

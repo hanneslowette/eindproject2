@@ -10,21 +10,25 @@
 	<title>Team toevoegen</title>
 </h:head>
 <h:body>
-<ui:composition template="./TEMPLATE.xhtml">
-<ui:define name="content">
-<c:if test="#{login.clearance>2}">
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputLabel for="team_naam" value="Naam:"></h:outputLabel>
-			<h:inputText id="team_naam" value="#{team_toevoegen.naam}"></h:inputText>
-	
-			<br />
-			<h:commandButton styleClass="buttonStyle" value="Submit" action="#{team_toevoegen.add()}"></h:commandButton>
-		</h:panelGrid>
-	</h:form>
-	<h:messages style="color:red;list-style:none;"></h:messages>
-	</c:if><c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
-	</ui:define>
-</ui:composition>
+	<ui:composition template="./TEMPLATE.xhtml">
+		<ui:define name="content">
+			<c:choose>
+				<c:when test="#{login.clearance>2}">
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel for="team_naam" value="Naam:"></h:outputLabel>
+							<h:inputText id="team_naam" value="#{team_toevoegen.naam}"></h:inputText>
+
+							<br />
+							<h:commandButton styleClass="buttonStyle" value="Submit"
+								action="#{team_toevoegen.add()}"></h:commandButton>
+						</h:panelGrid>
+					</h:form>
+					<h:messages style="color:red;list-style:none;"></h:messages>
+				</c:when>
+				<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
+			</c:choose>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

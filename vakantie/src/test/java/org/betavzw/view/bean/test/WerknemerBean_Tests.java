@@ -176,28 +176,28 @@ public class WerknemerBean_Tests {
 
 	}
 
-//	@Test
-//	public void WerknemerNaam_KleinerDan_personeelsNr_Test() {
-//		Werknemer werknemer1 = new Werknemer("A", "A");		
-//		Werknemer werknemer2 = new Werknemer("A", "A");
-//		tx.commit();
-//		System.out.println(werknemer1.getPersoneelsNr());
-//		
-//		tx.begin();
-//		List<Werknemer> list = werknemerBean.get();
-//		
-//		//list.g
-//		
-//		int result = werknemer1.compareTo(werknemer2);
-//		assertTrue("failure - personeelsNr not less than: " + result,  result  <= -1);
-//	}
-//	
-//	@Test
-//	public void WerknemerNaam_GroterDan_personeelsNr_Test() {
-//		Werknemer werknemer1 = new Werknemer("A", "A");		
-//		Werknemer werknemer2 = new Werknemer("A", "A");
-//		int result = werknemer1.compareTo(werknemer2);
-//		assertTrue("failure - personeelsNr not greater than: " + result,  result >= 1);
-//	}
+	@Test
+	public void WerknemerNaam_KleinerDan_personeelsNr_Test() {
+		Werknemer werknemer1 = new Werknemer("A", "A");	
+		werknemerBean.offer(werknemer1);
+		Werknemer werknemer2 = new Werknemer("A", "A");
+		werknemerBean.offer(werknemer2);
+		tx.commit();
+		tx.begin();
+		int result = werknemer1.compareTo(werknemer2);
+		assertTrue("failure - personeelsNr not less than: " + result,  result  <= -1);
+	}
+	
+	@Test
+	public void WerknemerNaam_GroterDan_personeelsNr_Test() {
+		Werknemer werknemer1 = new Werknemer("A", "A");	
+		werknemerBean.offer(werknemer1);
+		Werknemer werknemer2 = new Werknemer("A", "A");
+		werknemerBean.offer(werknemer2);
+		tx.commit();
+		tx.begin();
+		int result = werknemer2.compareTo(werknemer1);
+		assertTrue("failure - personeelsNr not greater than: " + result,  result >= 1);
+	}
 	
 }

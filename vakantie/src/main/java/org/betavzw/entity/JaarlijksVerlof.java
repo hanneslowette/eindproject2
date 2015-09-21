@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.betavzw.util.exceptions.FoutAantalVerlofdagenException;
+
 @Entity
 public class JaarlijksVerlof {
 
@@ -29,7 +31,7 @@ public class JaarlijksVerlof {
 		// Default constructor voor Hibernate
 	}
 
-	public JaarlijksVerlof(int jaar, int aantalDagen) {
+	public JaarlijksVerlof(int jaar, int aantalDagen) throws FoutAantalVerlofdagenException {
 		setJaar(jaar);
 		setAantalDagen(aantalDagen);
 	}
@@ -46,7 +48,11 @@ public class JaarlijksVerlof {
 		return aantalDagen;
 	}
 
-	public void setAantalDagen(int aantalDagen) {
-		this.aantalDagen = aantalDagen;
+	public void setAantalDagen(int aantalDagen) throws FoutAantalVerlofdagenException {
+		
+		if ((aantalDagen >= 20) && (aantalDagen <= 50)) {
+			this.aantalDagen = aantalDagen;
+		} else throw new FoutAantalVerlofdagenException();
+		
 	}
 }

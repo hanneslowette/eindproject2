@@ -275,10 +275,8 @@ public class WerknemerOpvragenIO implements Serializable {
 	public void setDatum(Date datum) {
 		this.datum = datum;
 		try {
-			System.out.println(datum);
 			LocalDate localdate = datum.toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();
-			System.out.println(localdate);
 			werknemer.setGeboortedatum(localdate);
 		} catch (GeboortedatumInDeToekomstException e) {
 			FacesContext

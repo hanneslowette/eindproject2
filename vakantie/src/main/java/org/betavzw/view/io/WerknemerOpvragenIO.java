@@ -266,11 +266,13 @@ public class WerknemerOpvragenIO implements Serializable {
 	}
 
 	public Date getDatum() {
-		return Date.from(werknemer.getGeboortedatum().atStartOfDay()
-				.atZone(ZoneId.systemDefault()).toInstant());
+		return werknemer.getGeboortedatum() == null ? null : Date
+				.from(werknemer.getGeboortedatum().atStartOfDay()
+						.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
 	public void setDatum(Date datum) {
+		this.datum = datum;
 		werknemer.setGeboortedatum(datum.toInstant()
 				.atZone(ZoneId.systemDefault()).toLocalDate());
 	}

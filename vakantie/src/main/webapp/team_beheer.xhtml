@@ -25,7 +25,7 @@
 						<f:selectItems value="#{team_beheer.team.teamLeden}" var="tmp" itemLabel="#{tmp.naam}" itemValue="#{tmp.personeelsNr}" />
 					</h:selectOneMenu>
 
-					<h:commandButton action="#{team_beheer.update}" value="Bewerk"></h:commandButton>
+					<h:commandButton styleClass="buttonStyle" action="#{team_beheer.update}" value="Bewerk"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

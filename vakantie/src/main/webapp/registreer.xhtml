@@ -63,9 +63,9 @@
 						pattern="dd/MM/yyyy" />
 				</h:inputText>
 				<br />
-				<h:commandButton value="voeg werknemer toe"
+				<h:commandButton styleClass="buttonStyle" value="voeg werknemer toe"
 					action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
-				<h:commandButton value="voeg team toe" action="teamToevoegen"></h:commandButton>
+				<h:commandButton styleClass="buttonStyle" value="voeg team toe" action="teamToevoegen"></h:commandButton>
 			</h:form>
 			<h:selectOneMenu id="werknemers"
 				value="#{werknemerToevoegenIO.teamId}" var="tmp">

@@ -13,6 +13,7 @@ import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.junit.Test;
 
 public class Werknemer_Tests {
@@ -42,10 +43,11 @@ public class Werknemer_Tests {
 	}
 	
 	@Test
-	public void Geboortedatum_Test() {
+	public void Geboortedatum_Test() throws GeboortedatumInDeToekomstException {
 		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
 		werknemer.setGeboortedatum(date);
 		assertEquals("failure - Geboortedatum doesn't match", werknemer.getGeboortedatum(), date);
+		assertTrue("Check geboortedatum in de toekomst", false);
 	}
 	
 	@Test

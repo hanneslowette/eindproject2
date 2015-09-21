@@ -17,10 +17,11 @@ import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.AccountType;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 
 public class LoadDummyData_Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws GeboortedatumInDeToekomstException {
 		
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("unitName");

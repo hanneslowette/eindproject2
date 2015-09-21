@@ -2,7 +2,6 @@ package org.betavzw.view.bean.test;
 
 import java.util.List;
 
-import org.betavzw.entity.Werknemer;
 import org.betavzw.view.bean.Bean;
 
 abstract public class Utils {
@@ -13,7 +12,7 @@ abstract public class Utils {
 		System.out.println("Before" + list.size());
 		
 		for (Object item : list) {
-			Werknemer werknemer = (Werknemer)item;
+//			Werknemer werknemer = (Werknemer)item;
 			bean.delete((T) item);
 		}
 		

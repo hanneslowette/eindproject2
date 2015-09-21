@@ -12,21 +12,24 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h:form>
-			<c:if test="#{login.clearance>0}">
-				<c:if test="#{login.clearance>2}">
-				<h:commandButton styleClass="buttonStyle" value="Voeg werknemer toe"
-					action="werknemerToevoegen"></h:commandButton>
-				<h:commandButton styleClass="buttonStyle" value="werknemer opvragen"
-					action="opvragenWerknemer"></h:commandButton>
-				<h:commandButton styleClass="buttonStyle" value="Team toevoegen"
-					action="team_toevoegen"></h:commandButton></c:if>
-				<h:commandButton styleClass="buttonStyle" value="Verlofaanvraag"
-					action="verlofaanvragen"></h:commandButton>
-				<h:commandButton styleClass="buttonStyle" value="verlof aanvragen"
-					action="verlofkeuren"></h:commandButton>
-				<br />
-				<br />
-				<br />
+				<c:if test="#{login.clearance>0}">
+					<c:if test="#{login.clearance>2}">
+						<h:commandButton styleClass="buttonStyle"
+							value="Voeg werknemer toe" action="werknemerToevoegen"></h:commandButton>
+						<h:commandButton styleClass="buttonStyle"
+							value="werknemer opvragen" action="opvragenWerknemer"></h:commandButton>
+						<h:commandButton styleClass="buttonStyle" value="Team toevoegen"
+							action="team_toevoegen"></h:commandButton>
+					</c:if>
+					<h:commandButton styleClass="buttonStyle" value="Verlofaanvraag"
+						action="verlofaanvragen"></h:commandButton>
+					<h:commandButton styleClass="buttonStyle" value="Verlof keuren"
+						action="verlofkeuren"></h:commandButton>
+					<h:commandButton styleClass="buttonStyle" value="Overzicht verlofaanvragen"
+						action="verlofaanvraagoverzicht"></h:commandButton>
+					<br />
+					<br />
+					<br />
 				</c:if>
 				<h:commandButton styleClass="buttonStyle" value="login"
 					action="login"></h:commandButton>

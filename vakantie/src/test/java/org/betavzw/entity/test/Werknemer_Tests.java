@@ -14,6 +14,7 @@ import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
+import org.eclipse.persistence.jpa.jpql.Assert.AssertException;
 import org.junit.Test;
 
 public class Werknemer_Tests {
@@ -47,7 +48,12 @@ public class Werknemer_Tests {
 		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
 		werknemer.setGeboortedatum(date);
 		assertEquals("failure - Geboortedatum doesn't match", werknemer.getGeboortedatum(), date);
-		assertTrue("Check geboortedatum in de toekomst", false);
+	}
+	
+	@Test(expected = GeboortedatumInDeToekomstException.class)  
+	public void Geboortedatum_Exception_Test() throws GeboortedatumInDeToekomstException {
+		LocalDate date = LocalDate.parse("2500-apr-13", formatter);
+		werknemer.setGeboortedatum(date);		
 	}
 	
 	@Test

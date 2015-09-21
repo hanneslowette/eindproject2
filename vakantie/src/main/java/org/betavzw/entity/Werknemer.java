@@ -119,6 +119,7 @@ public class Werknemer {
 	}
 
 	public void setGeboortedatum(LocalDate geboortedatum) throws GeboortedatumInDeToekomstException {
+		if (geboortedatum.isAfter(LocalDate.now())) throw new GeboortedatumInDeToekomstException();
 		this.geboortedatum = geboortedatum;
 	}
 

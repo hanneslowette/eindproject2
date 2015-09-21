@@ -36,7 +36,7 @@ public class VerlofAanvraagIO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private Bean<VerlofAanvraag> bean;
+	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 
 	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige voornaam ingeven")
 	@NotEmpty(message = "Veld voornaam moet ingevuld zijn")
@@ -94,7 +94,7 @@ public class VerlofAanvraagIO implements Serializable {
 			verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 			verlofAanvraag.setToestand(Toestand.PENDING);
 			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
-			bean.offer(verlofAanvraag);
+			verlofAanvraag_bean.offer(verlofAanvraag);
 			return View.VERSTUURD;
 		}
 	}

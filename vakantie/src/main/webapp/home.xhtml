@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Home</title>
@@ -11,12 +12,13 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h:form>
+				<c:if test="#{login.clearance>2}">
 				<h:commandButton styleClass="buttonStyle" value="Voeg werknemer toe"
 					action="werknemerToevoegen"></h:commandButton>
 				<h:commandButton styleClass="buttonStyle" value="werknemer opvragen"
 					action="opvragenWerknemer"></h:commandButton>
 				<h:commandButton styleClass="buttonStyle" value="Team toevoegen"
-					action="team_toevoegen"></h:commandButton>
+					action="team_toevoegen"></h:commandButton></c:if>
 				<h:commandButton styleClass="buttonStyle" value="Verlofaanvraag"
 					action="verlofaanvragen"></h:commandButton>
 				<h:commandButton styleClass="buttonStyle" value="verlof aanvragen"

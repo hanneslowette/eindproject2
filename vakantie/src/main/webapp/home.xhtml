@@ -12,6 +12,7 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h:form>
+			<c:if test="#{login.clearance>0}">
 				<c:if test="#{login.clearance>2}">
 				<h:commandButton styleClass="buttonStyle" value="Voeg werknemer toe"
 					action="werknemerToevoegen"></h:commandButton>
@@ -26,8 +27,7 @@
 				<br />
 				<br />
 				<br />
-<!-- 				<h:commandButton styleClass="buttonStyle" value="registreer" -->
-<!-- 					action="registreer"></h:commandButton> -->
+				</c:if>
 				<h:commandButton styleClass="buttonStyle" value="login"
 					action="login"></h:commandButton>
 			</h:form>

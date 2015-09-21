@@ -15,9 +15,9 @@ public class junittest1 {
 		driver.get("http://localhost:8080/vakantie/faces/login.xhtml");
 		Thread.sleep(2000);
 
-		driver.findElement(By.xpath("//input[@name='loginform:username']")).sendKeys(
+		driver.findElement(By.xpath("//input[@name='loginform:txtUsername']")).sendKeys(
 				"Hannes");		
-		driver.findElement(By.xpath("//input[@name='loginform:password']")).sendKeys(
+		driver.findElement(By.xpath("//input[@name='loginform:txtPassword']")).sendKeys(
 				"Hannes");
 		driver.findElement(By.xpath("//input[@name='loginform:submit']")).click();
 		Thread.sleep(2000);

@@ -5,7 +5,6 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
->
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Werknemer toevoegen</title>
@@ -20,10 +19,11 @@
 				<br />
 				<h:outputLabel for="voornaam" value="voornaam:"></h:outputLabel>
 				<h:inputText id="voornaam" value="#{werknemerToevoegenIO.voornaam}"></h:inputText>
-				
+
 				<h:outputLabel for="paswoord" value="paswoord:"></h:outputLabel>
-				
-				<h:inputSecret id="paswoord" value="#{credentialsIO.paswoord}" >   </h:inputSecret>
+
+				<h:inputSecret id="paswoord" value="#{credentialsIO.paswoord}">
+				</h:inputSecret>
 
 				<br />
 				<hr />
@@ -56,19 +56,15 @@
 				<h:inputText id="geboortedatum"
 					value="#{werknemerToevoegenIO.geboortedatum}"
 					a:placeholder="dd-mm-yyyy">
-					<!-- 			<f:convertDateTime pattern="d-M-yyyy" /> -->
-
-
-
-					<!--   placeholder="jjjjmmdd"> -->
 					<f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
 				</h:inputText>
 
 				<br />
 				<h:commandButton value="voeg werknemer toe"
 					action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
-					
-				<h:commandButton styleClass="buttonStyle" value="voeg team toe" action="team_toevoegen"></h:commandButton>
+
+				<h:commandButton styleClass="buttonStyle" value="voeg team toe"
+					action="team_toevoegen"></h:commandButton>
 			</h:form>
 
 

@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
+
 /**
  * 
  * 
@@ -23,15 +25,15 @@ import javax.persistence.OneToOne;
 public class Werknemer {
 
 	/**
-	 * De achternaam van de werknemer
-	 */
-	private String naam;
-
-	/**
 	 * De voornaam van de werknemer
 	 */
 	private String voornaam;
 
+	/**
+	 * De achternaam van de werknemer
+	 */
+	private String naam;
+	
 	/**
 	 * Het e-mail adres van de werknemer.
 	 */
@@ -77,24 +79,15 @@ public class Werknemer {
 	public Werknemer() {}
 
 	public Werknemer(String voornaam, String naam) {
-		this.naam = naam;
-		this.voornaam = voornaam;
+		setNaam(naam);
+		setVoornaam(voornaam);
 	}
 	
-	public Werknemer(String naam, String voornaam, String email, LocalDate geboortedatum, Adres adres) {
-		this.naam = naam;
-		this.voornaam = voornaam;
-		this.email = email;
-		this.geboortedatum = geboortedatum;
-		this.adres = adres;
-	}
-
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
+	public Werknemer(String voornaam, String naam, String email, LocalDate geboortedatum, Adres adres) throws GeboortedatumInDeToekomstException {
+		this(voornaam, naam);
+		setEmail(email);
+		setGeboortedatum(geboortedatum);
+		setAdres(adres);
 	}
 
 	public String getVoornaam() {
@@ -105,6 +98,14 @@ public class Werknemer {
 		this.voornaam = voornaam;
 	}
 
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -117,7 +118,7 @@ public class Werknemer {
 		return geboortedatum;
 	}
 
-	public void setGeboortedatum(LocalDate geboortedatum) {
+	public void setGeboortedatum(LocalDate geboortedatum) throws GeboortedatumInDeToekomstException {
 		this.geboortedatum = geboortedatum;
 	}
 

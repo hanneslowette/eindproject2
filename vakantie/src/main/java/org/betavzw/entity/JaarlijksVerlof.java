@@ -30,8 +30,8 @@ public class JaarlijksVerlof {
 	}
 
 	public JaarlijksVerlof(int jaar, int aantalDagen) {
-		this.jaar = jaar;
-		this.aantalDagen = aantalDagen;
+		setJaar(jaar);
+		setAantalDagen(aantalDagen);
 	}
 
 	public int getJaar() {

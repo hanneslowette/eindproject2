@@ -14,11 +14,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Team {
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+
+//	private int id;
 	
 	private String naam;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private String code;
 	@ManyToOne()
 	private Werknemer teamverantwoordelijke;
@@ -66,8 +67,8 @@ public class Team {
 		teamLeden.add(teamlid);
 	}
 
-	public int getId() {
-		return id;
-	}
+//	public int getId() {
+//		return id;
+//	}
 
 }

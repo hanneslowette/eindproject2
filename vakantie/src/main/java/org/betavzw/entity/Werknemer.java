@@ -22,7 +22,7 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
  * @author Koen De Voegt
  */
 @Entity
-public class Werknemer {
+public class Werknemer implements Comparable<Werknemer> {
 
 	/**
 	 * De voornaam van de werknemer
@@ -165,6 +165,26 @@ public class Werknemer {
 
 	public void addVerlofAanvraag(VerlofAanvraag verlofAanvraag) {
 		verlofAanvragen.add(verlofAanvraag);
+	}
+
+	@Override
+	public int compareTo(Werknemer werknemer) {
+		int compare;
+		compare = this.getNaam().compareTo(werknemer.getNaam());
+		if (compare != 0) {
+			return compare; 
+		} else {
+			compare = this.getVoornaam().compareTo(werknemer.getVoornaam());
+			if (compare != 0) {
+				return compare;
+			} else {
+				
+				System.out.println(this.getPersoneelsNr());
+				System.out.println(werknemer.getPersoneelsNr());
+				compare = Integer.compare(this.getPersoneelsNr(), werknemer.getPersoneelsNr());
+			}
+		}
+		return compare;
 	}
 
 }

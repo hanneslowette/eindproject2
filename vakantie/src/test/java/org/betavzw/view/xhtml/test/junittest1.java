@@ -11,14 +11,15 @@ public class junittest1 {
 
 	@Test
 	public void test() throws InterruptedException {
-		driver.manage().window().maximize();
+		//driver.manage().window().maximize();
 		driver.get("http://localhost:8080/vakantie/faces/login.xhtml");
+		Thread.sleep(2000);
 
-		driver.findElement(By.xpath("//input[@name='j_idt8:txtVoornaam']")).sendKeys(
+		driver.findElement(By.xpath("//input[@name='loginform:username']")).sendKeys(
 				"Hannes");		
-		driver.findElement(By.xpath("//input[@name='j_idt8:txtNaam']")).sendKeys(
+		driver.findElement(By.xpath("//input[@name='loginform:password']")).sendKeys(
 				"Hannes");
-		driver.findElement(By.xpath("//input[@name='j_idt8:j_idt14']")).click();
+		driver.findElement(By.xpath("//input[@name='loginform:submit']")).click();
 		Thread.sleep(2000);
 		System.out.print("junittest1 class is executed");
 		driver.quit();

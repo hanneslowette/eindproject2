@@ -84,28 +84,28 @@ public class WerknemerToevoegenIO {
 		Adres a = new Adres(straat, huisnummer, busnummer, postcode, gemeente);
 		Werknemer w;
 		try {
-			w = new Werknemer(naam, voornaam, email, geboortedatum
-					.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), a);
-		
-		werknemer_bean.offer(w);
+			w = new Werknemer(naam, voornaam, email, geboortedatum.toInstant()
+					.atZone(ZoneId.systemDefault()).toLocalDate(), a);
 
-		Credentials cred = new Credentials();
-		cred.setUsername(this.email);
-		cred.setWerknemer(w);
-		credential_bean.offer(cred);
-		// w.
-		return View.HOME;
+			werknemer_bean.offer(w);
+
+			Credentials cred = new Credentials();
+			cred.setUsername(this.email);
+			cred.setWerknemer(w);
+			credential_bean.offer(cred);
+			// w.
+			return View.HOME;
 		} catch (GeboortedatumInDeToekomstException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			
+			// e.printStackTrace();
+
 			FacesContext
-			.getCurrentInstance()
-			.addMessage(
-					null,
-					new FacesMessage(
-							"werknemer niet toegevoegd: geboortedatum mag niet in de toekomst liggen",
-							"toevoegen niet geslaagd"));
+					.getCurrentInstance()
+					.addMessage(
+							null,
+							new FacesMessage(
+									"werknemer niet toegevoegd: geboortedatum mag niet in de toekomst liggen",
+									"toevoegen niet geslaagd"));
 			return null;
 		}
 	}

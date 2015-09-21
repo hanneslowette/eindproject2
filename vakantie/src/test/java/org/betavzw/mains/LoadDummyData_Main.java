@@ -21,123 +21,158 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 
 public class LoadDummyData_Main {
 
-	public static void main(String[] args) throws GeboortedatumInDeToekomstException {
-		
+	public static void main(String[] args)
+			throws GeboortedatumInDeToekomstException {
+
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("unitName");
-		
+
 		EntityManager em = emf.createEntityManager();
 
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
+
 		Werknemer koen = new Werknemer();
 		koen.setNaam("De Voegt");
 		koen.setVoornaam("Koen");
-		
+
 		Adres adres = new Adres();
 		adres.setStraat("Zuidewendelaan");
 		adres.setHuisnummer("7");
 		adres.setBusnummer("");
 		adres.setGemeente("Hoboken");
 		adres.setPostcode("2660");
-		
+
 		em.persist(adres);
 		koen.setAdres(adres);
 		koen.setEmail("koen@devoegt.be");
 
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+		DateTimeFormatter formatter = DateTimeFormatter
+				.ofPattern("yyyy-MMM-dd");
 		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
 		koen.setGeboortedatum(date);
-		
+
 		Team teamRed = new Team();
 		teamRed.setNaam("Team Red");
 		teamRed.setCode("WIN");
 		em.persist(teamRed);
-		
+
 		Team teamBlue = new Team();
 		teamBlue.setNaam("Team Blue");
 		teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
-		
+
 		Werknemer thomas = new Werknemer();
 		thomas.setVoornaam("Thomas");
 		em.persist(thomas);
-		
+
 		teamRed.setTeamverantwoordelijke(thomas);
-		
+
 		Werknemer hannes = new Werknemer();
 		hannes.setVoornaam("Hannes");
+		hannes.setNaam("Lowette");
 		teamRed.addWerknemer(hannes);
 		em.persist(hannes);
-		
-		koen.setTeam(teamRed);
-		
+
+		Adres adresYannick = new Adres();
+		adresYannick.setStraat("Duwijckstraat");
+		adresYannick.setHuisnummer("7");
+		adresYannick.setBusnummer("");
+		adresYannick.setGemeente("Hoboken");
+		adresYannick.setPostcode("2660");
+
+		Werknemer yannick = new Werknemer();
+		yannick.setVoornaam("Yannick");
+		yannick.setNaam("Claes");
+		formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+		date = LocalDate.parse("14/07/1990", formatter);
+		yannick.setGeboortedatum(date);
+		yannick.setEmail("yannickclaes90@gmail.com");
+		yannick.setAdres(adresYannick);
+		yannick.setTeam(teamRed);
+
+		Credentials credentialsYannick = new Credentials();
+		credentialsYannick.setUsername("Yannick");
+		credentialsYannick.setPassword("Yannick");
+		credentialsYannick.setType(AccountType.ADMINISTRATOR);
+		credentialsYannick.setWerknemer(yannick);
+
+		VerlofAanvraag verlofAanvraagYannick = new VerlofAanvraag();
+		date = LocalDate.parse("01/04/2014", formatter);
+		verlofAanvraagYannick.setStartDatum(date);
+		date = LocalDate.parse("10/04/2014", formatter);
+		verlofAanvraagYannick.setEindDatum(date);
+		verlofAanvraagYannick.setWerknemer(yannick);
+
+		em.persist(yannick);
+		em.persist(adresYannick);
+		em.persist(credentialsYannick);
+		em.persist(verlofAanvraagYannick);
+
 		Werknemer brent = new Werknemer();
 		brent.setNaam("Courtois");
 		brent.setVoornaam("Brent");
 		brent.setTeam(teamBlue);
-		
+
 		em.persist(koen);
 		em.persist(brent);
-		
+
 		JaarlijksVerlof jv2014 = new JaarlijksVerlof();
 		jv2014.setJaar(2014);
 		jv2014.setAantalDagen(20);
-		
+
 		JaarlijksVerlof jv2014a = new JaarlijksVerlof();
 		jv2014a.setJaar(2014);
 		jv2014a.setAantalDagen(25);
-		
+
 		JaarlijksVerlof jv2015 = new JaarlijksVerlof();
 		jv2015.setJaar(2015);
 		jv2015.setAantalDagen(30);
-		
+
 		em.persist(jv2014);
 		em.persist(jv2014a);
 		em.persist(jv2015);
-		
+
 		koen.addJaarlijksVerlof(jv2014a);
 		koen.addJaarlijksVerlof(jv2015);
-		
+
 		hannes.addJaarlijksVerlof(jv2014);
-//		hannes.addJaarlijksVerlof(jv2015);
-		
+		// hannes.addJaarlijksVerlof(jv2015);
+
 		VerlofAanvraag va = new VerlofAanvraag();
 		date = LocalDate.parse("2014-apr-01", formatter);
 		va.setStartDatum(date);
 		date = LocalDate.parse("2014-apr-30", formatter);
 		va.setEindDatum(date);
 		va.setWerknemer(koen);
-		
+
 		em.persist(va);
-		
+
 		CollectiefVerlof cv = new CollectiefVerlof();
 		date = LocalDate.parse("2014-nov-01", formatter);
 		cv.setStartDatum(date);
 		date = LocalDate.parse("2014-nov-01", formatter);
 		cv.setEindDatum(date);
 		em.persist(cv);
-		
+
 		Feestdag f = new Feestdag();
 		date = LocalDate.parse("2015-dec-25", formatter);
 		f.setStartDatum(date);
 		f.setOmschrijving("Kerstmis");
 		em.persist(f);
-		
+
 		Credentials credentials = new Credentials();
 		credentials.setUsername("hannes");
 		credentials.setPassword("hannes");
 		credentials.setType(AccountType.ADMINISTRATOR);
 		credentials.setWerknemer(hannes);
 		em.persist(credentials);
-		
+
 		tx.commit();
-		
+
 		em.close();
 		emf.close();
-		
-		
+
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.Werknemer;
@@ -27,7 +28,8 @@ public class WerknemerBean extends AbstractBean<Werknemer> implements Serializab
 	public List<Werknemer> get(QueryBuilder query) {
 		return query.build(super.getEntityManager(), Werknemer.class).getResultList();
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(Werknemer entity) {
 		/*

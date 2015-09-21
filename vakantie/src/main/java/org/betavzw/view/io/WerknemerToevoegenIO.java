@@ -31,7 +31,6 @@ public class WerknemerToevoegenIO {
 	private String naam;
 	@NotEmpty(message = "email mag niet leeg zijn")
 	private String email;
-	@Temporal(TemporalType.DATE)
 	@NotEmpty(message = "geboortedatum mag niet leeg zijn")
 	private Date geboortedatum;
 	@NotEmpty(message = "straat mag niet leeg zijn")

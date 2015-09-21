@@ -33,6 +33,8 @@ public class LoginIO implements Serializable {
 			login.setAangemeld(true);
 			return View.VERSTUURD;
 		} catch (Exception ex) {
+			System.out.println("PROBLEEM?????");
+			System.out.println(ex);
 			return null;
 		}
 		

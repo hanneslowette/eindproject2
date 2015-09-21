@@ -23,10 +23,11 @@
 								value="#{werknemerToevoegenIO.voornaam}"></h:inputText>
 							<h:outputLabel for="naam" value="Naam:"></h:outputLabel>
 							<h:inputText id="naam" value="#{werknemerToevoegenIO.naam}"></h:inputText>
-							<h:outputLabel for="passwoord" value="password:"></h:outputLabel>
+							<h:outputLabel for="passwoord" value="Password:"></h:outputLabel>
 							<h:inputSecret id="passwoord" value="#{credentialsIO.paswoord}">
 							</h:inputSecret>
 						</h:panelGrid>
+						<br />
 						<hr />
 						<h3>Adres</h3>
 						<h:panelGrid columns="2">
@@ -49,9 +50,8 @@
 							<h:outputLabel for="geboortedatum" value="Geboortedatum:"></h:outputLabel>
 							<h:inputText id="geboortedatum"
 								value="#{werknemerToevoegenIO.geboortedatum}"
-								a:placeholder="dd/mm/yyyy">
-								<f:convertDateTime pattern="dd/mmm/yyyy" dateStyle="short"
-									type="date" />
+								a:placeholder="dd-MM-yyyy">
+								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:commandButton styleClass="buttonStyle"
 								value="voeg werknemer toe"

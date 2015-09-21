@@ -16,14 +16,15 @@
 			<c:choose>
 				<c:when test="#{login.clearance>2}">
 					<h:form>
+						<h3>Persoonsgegevens</h3>
 						<h:panelGrid columns="2">
 							<h:outputLabel for="naam" value="Naam:"></h:outputLabel>
 							<h:inputText id="naam" value="#{werknemerToevoegenIO.naam}"></h:inputText>
 							<h:outputLabel for="voornaam" value="voornaam:"></h:outputLabel>
 							<h:inputText id="voornaam"
 								value="#{werknemerToevoegenIO.voornaam}"></h:inputText>
-							<h:outputLabel for="paswoord" value="paswoord:"></h:outputLabel>
-							<h:inputSecret id="paswoord" value="#{credentialsIO.paswoord}">
+							<h:outputLabel for="passwoord" value="password:"></h:outputLabel>
+							<h:inputSecret id="passwoord" value="#{credentialsIO.paswoord}">
 							</h:inputSecret>
 						</h:panelGrid>
 						<hr />
@@ -31,34 +32,34 @@
 						<h:panelGrid columns="2">
 							<h:outputLabel for="straat" value="Straat:"></h:outputLabel>
 							<h:inputText id="straat" value="#{werknemerToevoegenIO.straat}"></h:inputText>
-							<h:outputLabel for="huisnummer" value="huisnummer:"></h:outputLabel>
+							<h:outputLabel for="huisnummer" value="Huisnummer:"></h:outputLabel>
 							<h:inputText id="huisnummer"
 								value="#{werknemerToevoegenIO.huisnummer}"></h:inputText>
-							<h:outputLabel for="busnummer" value="busnummer:"></h:outputLabel>
+							<h:outputLabel for="busnummer" value="Busnummer:"></h:outputLabel>
 							<h:inputText id="busnummer"
 								value="#{werknemerToevoegenIO.busnummer}"></h:inputText>
-							<h:outputLabel for="postcode" value="postcode:"></h:outputLabel>
+							<h:outputLabel for="postcode" value="Postcode:"></h:outputLabel>
 							<h:inputText id="postcode"
 								value="#{werknemerToevoegenIO.postcode}"></h:inputText>
-							<h:outputLabel for="gemeente" value="gemeente:"></h:outputLabel>
+							<h:outputLabel for="gemeente" value="Gemeente:"></h:outputLabel>
 							<h:inputText id="gemeente"
 								value="#{werknemerToevoegenIO.gemeente}"></h:inputText>
-							<h:outputLabel for="email" value="email:"></h:outputLabel>
+							<h:outputLabel for="email" value="E-mail:"></h:outputLabel>
 							<h:inputText id="email" value="#{werknemerToevoegenIO.email}"></h:inputText>
-							<h:outputLabel for="geboortedatum" value="geboortedatum:"></h:outputLabel>
+							<h:outputLabel for="geboortedatum" value="Geboortedatum:"></h:outputLabel>
 							<h:inputText id="geboortedatum"
 								value="#{werknemerToevoegenIO.geboortedatum}"
 								a:placeholder="dd/mm/yyyy">
-								<f:convertDateTime pattern="dd/mm/yyyy" dateStyle="short"
+								<f:convertDateTime pattern="dd/mmm/yyyy" dateStyle="short"
 									type="date" />
 							</h:inputText>
-						</h:panelGrid>
-						<h:commandButton styleClass="buttonStyle"
-							value="voeg werknemer toe"
-							action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
+							<h:commandButton styleClass="buttonStyle"
+								value="voeg werknemer toe"
+								action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
 
-						<h:commandButton styleClass="buttonStyle" value="voeg team toe"
-							action="team_toevoegen"></h:commandButton>
+							<h:commandButton styleClass="buttonStyle" value="voeg team toe"
+								action="team_toevoegen"></h:commandButton>
+						</h:panelGrid>
 					</h:form>
 					<h:selectOneMenu id="werknemers"
 						value="#{werknemerToevoegenIO.teamId}" var="tmp">

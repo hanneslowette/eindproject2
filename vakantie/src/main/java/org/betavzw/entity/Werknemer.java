@@ -23,15 +23,15 @@ import javax.persistence.OneToOne;
 public class Werknemer {
 
 	/**
-	 * De achternaam van de werknemer
-	 */
-	private String naam;
-
-	/**
 	 * De voornaam van de werknemer
 	 */
 	private String voornaam;
 
+	/**
+	 * De achternaam van de werknemer
+	 */
+	private String naam;
+	
 	/**
 	 * Het e-mail adres van de werknemer.
 	 */
@@ -88,14 +88,6 @@ public class Werknemer {
 		setAdres(adres);
 	}
 
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
-
 	public String getVoornaam() {
 		return voornaam;
 	}
@@ -104,6 +96,14 @@ public class Werknemer {
 		this.voornaam = voornaam;
 	}
 
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

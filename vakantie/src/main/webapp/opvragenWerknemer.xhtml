@@ -28,7 +28,8 @@
 					<h:commandButton value="zoek" action="#{werknemerOpvragenIO.zoek}"
 						styleClass="buttonStyle"></h:commandButton>
 				</h:panelGrid>
-				<h:dataTable styleClass="table" headerClass="tableHeader"
+				<h:dataTable rendered="#{not empty werknemerOpvragenIO.lijst}"
+					styleClass="table" headerClass="tableHeader"
 					rowClasses="tableEvenRow, tableOddRow"
 					value="#{werknemerOpvragenIO.lijst}" var="w">
 					<h:column>

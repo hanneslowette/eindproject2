@@ -9,6 +9,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.Credentials;
@@ -23,22 +25,20 @@ import org.hibernate.validator.constraints.NotEmpty;
 @RequestScoped
 public class WerknemerToevoegenIO {
 
-	@NotEmpty(message = "naam mag niet leeg zijn")
-	private String naam;
 	@NotEmpty(message = "voornaam mag niet leeg zijn")
 	private String voornaam;
+	@NotEmpty(message = "naam mag niet leeg zijn")
+	private String naam;
 	@NotEmpty(message = "email mag niet leeg zijn")
 	private String email;
-
+	@Temporal(TemporalType.DATE)
+	@NotEmpty(message = "geboortedatum mag niet leeg zijn")
 	private Date geboortedatum;
-
 	@NotEmpty(message = "straat mag niet leeg zijn")
 	private String straat;
 	@NotEmpty(message = "huisnummer mag niet leeg zijn")
 	private String huisnummer;
-	@NotEmpty(message = "busnummer mag niet leeg zijn")
 	private String busnummer;
-
 	@NotEmpty(message = "postcode mag niet leeg zijn")
 	private String postcode;
 	@NotEmpty(message = "gemeente mag niet leeg zijn")

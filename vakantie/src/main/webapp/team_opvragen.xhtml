@@ -51,6 +51,12 @@
 									<h:commandButton styleClass="buttonStyle" value="Beheer"
 										action="#{team_beheer.beheer(t.id)}"></h:commandButton>
 								</h:column>
+								
+								<h:column>
+									<f:facet name="header">Beheer</f:facet>
+									<h:commandButton styleClass="buttonStyle" value="verwijder"
+										action="#{team_beheer.verwijder(t.id)}"></h:commandButton>
+								</h:column>
 							</h:dataTable>
 						</c:if>
 					</h:form>

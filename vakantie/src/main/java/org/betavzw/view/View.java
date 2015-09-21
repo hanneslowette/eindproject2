@@ -53,7 +53,7 @@ public interface View {
 	 * De view die wordt weergegeven als de gebruiker voor het eerst verlof
 	 * aanvraagt
 	 */
-	public static final String VERSTUURD = "verlofaanvraagverstuurd";
+	public static final String VERSTUURD = "home";
 	/**
 	 * De view die wordt weergeven als de gebruiker een jaartal invoert (getal
 	 * van 4 cijfers) en het aantal verlofdagen waar de werknemer dat jaar recht

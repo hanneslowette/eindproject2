@@ -84,8 +84,7 @@ public class LoadDummyData_Main {
 		Werknemer yannick = new Werknemer();
 		yannick.setVoornaam("Yannick");
 		yannick.setNaam("Claes");
-		formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-		date = LocalDate.parse("14/07/1990", formatter);
+		date = LocalDate.parse("1990-jul-07", formatter);
 		yannick.setGeboortedatum(date);
 		yannick.setEmail("yannickclaes90@gmail.com");
 		yannick.setAdres(adresYannick);
@@ -98,9 +97,9 @@ public class LoadDummyData_Main {
 		credentialsYannick.setWerknemer(yannick);
 
 		VerlofAanvraag verlofAanvraagYannick = new VerlofAanvraag();
-		date = LocalDate.parse("01/04/2014", formatter);
+		date = LocalDate.parse("1995-apr-05", formatter);
 		verlofAanvraagYannick.setStartDatum(date);
-		date = LocalDate.parse("10/04/2014", formatter);
+		date = LocalDate.parse("1995-apr-15", formatter);
 		verlofAanvraagYannick.setEindDatum(date);
 		verlofAanvraagYannick.setWerknemer(yannick);
 
@@ -140,6 +139,7 @@ public class LoadDummyData_Main {
 		// hannes.addJaarlijksVerlof(jv2015);
 
 		VerlofAanvraag va = new VerlofAanvraag();
+		formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
 		date = LocalDate.parse("2014-apr-01", formatter);
 		va.setStartDatum(date);
 		date = LocalDate.parse("2014-apr-30", formatter);

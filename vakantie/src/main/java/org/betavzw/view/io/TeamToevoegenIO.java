@@ -9,6 +9,7 @@ import javax.inject.Named;
 import org.betavzw.entity.Team;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Voegt 
@@ -27,6 +28,7 @@ import org.betavzw.view.bean.Bean;
 	/**
 	 * De naam van het te invoeren team
 	 */
+	@NotEmpty(message = "Teamnaam mag niet leeg zijn")
 	private String naam;
 	
 	/**

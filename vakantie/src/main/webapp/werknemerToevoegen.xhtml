@@ -16,19 +16,16 @@
 			<c:choose>
 				<c:when test="#{login.clearance>2}">
 					<h:form>
-						<h:outputLabel for="naam" value="Naam:"></h:outputLabel>
-						<h:inputText id="naam" value="#{werknemerToevoegenIO.naam}"></h:inputText>
-						<br />
-						<h:outputLabel for="voornaam" value="voornaam:"></h:outputLabel>
-						<h:inputText id="voornaam"
-							value="#{werknemerToevoegenIO.voornaam}"></h:inputText>
-
-						<h:outputLabel for="paswoord" value="paswoord:"></h:outputLabel>
-
-						<h:inputSecret id="paswoord" value="#{credentialsIO.paswoord}">
-						</h:inputSecret>
-
-						<br />
+						<h:panelGrid columns="2">
+							<h:outputLabel for="naam" value="Naam:"></h:outputLabel>
+							<h:inputText id="naam" value="#{werknemerToevoegenIO.naam}"></h:inputText>
+							<h:outputLabel for="voornaam" value="voornaam:"></h:outputLabel>
+							<h:inputText id="voornaam"
+								value="#{werknemerToevoegenIO.voornaam}"></h:inputText>
+							<h:outputLabel for="paswoord" value="paswoord:"></h:outputLabel>
+							<h:inputSecret id="paswoord" value="#{credentialsIO.paswoord}">
+							</h:inputSecret>
+						</h:panelGrid>
 						<hr />
 						<h3>Adres</h3>
 						<h:outputLabel for="straat" value="Straat:"></h:outputLabel>
@@ -60,10 +57,10 @@
 						<h:outputLabel for="geboortedatum" value="geboortedatum:"></h:outputLabel>
 						<h:inputText id="geboortedatum"
 							value="#{werknemerToevoegenIO.geboortedatum}"
-							a:placeholder="dd-mm-yyyy">
-							<f:convertDateTime dateStyle="full" timeZone="EST" type="date" />
+							a:placeholder="dd/mm/yyyy">
+							<f:convertDateTime pattern="dd/mm/yy" dateStyle="short"
+								type="date" />
 						</h:inputText>
-
 						<br />
 						<h:commandButton styleClass="buttonStyle"
 							value="voeg werknemer toe"
@@ -72,8 +69,6 @@
 						<h:commandButton styleClass="buttonStyle" value="voeg team toe"
 							action="team_toevoegen"></h:commandButton>
 					</h:form>
-
-
 					<h:selectOneMenu id="werknemers"
 						value="#{werknemerToevoegenIO.teamId}" var="tmp">
 						<f:selectItems value="#{werknemerToevoegenIO.teams}" var="tmp"

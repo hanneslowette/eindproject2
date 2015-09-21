@@ -15,18 +15,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import org.betavzw.entity.VerlofAanvraag;
-import org.betavzw.entity.Werknemer;
-import org.betavzw.util.Filter;
 import org.betavzw.util.Toestand;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.betavzw.view.bean.LoginBean;
+import org.betavzw.view.bean.MailBean;
 
 @Named("verlofAanvraag")
 @SessionScoped
@@ -37,16 +34,10 @@ public class VerlofAanvraagIO implements Serializable {
 	@Inject
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 	@Inject
-	private Bean<Werknemer> werknemer_bean;
+	private MailBean mailbean;
+	@Inject
+	private LoginBean loginbean;
 
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige voornaam ingeven")
-	@NotEmpty(message = "Veld voornaam moet ingevuld zijn")
-	private String voornaam;
-	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige naam ingeven")
-	@NotEmpty(message = "Veld naam moet ingevuld zijn")
-	private String naam;
-	@Digits(integer = 3, fraction = 0, message = "Geldig personeelsnummer ingeven")
-	private int personeelsNr;
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld startdatum moet ingevuld zijn")
 	private Date startDatum;
@@ -100,12 +91,10 @@ public class VerlofAanvraagIO implements Serializable {
 					.atZone(ZoneId.systemDefault()).toLocalDate());
 			verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 			verlofAanvraag.setToestand(Toestand.PENDING);
-			Werknemer werknemer = werknemer_bean.getSingle(new Filter(
-					"personeelsNr", personeelsNr));
-			verlofAanvraag.setWerknemer(new Werknemer(werknemer.getVoornaam(),
-					werknemer.getNaam(), werknemer.getEmail(), werknemer
-							.getGeboortedatum(), werknemer.getAdres()));
+			verlofAanvraag.setWerknemer(loginbean.getWerknemer());
 			verlofAanvraag_bean.offer(verlofAanvraag);
+			mailbean.sendmail(loginbean.getWerknemer().getEmail(),
+					"Uw verlofaanvraag", "Uw verlofaanvraag is verstuurd.");
 			return View.VERSTUURD;
 		}
 	}
@@ -151,30 +140,6 @@ public class VerlofAanvraagIO implements Serializable {
 
 	public void setAanvraagDatum(LocalDate aanvraagDatum) {
 		this.aanvraagDatum = aanvraagDatum;
-	}
-
-	public String getVoornaam() {
-		return voornaam;
-	}
-
-	public void setVoornaam(String voornaam) {
-		this.voornaam = voornaam;
-	}
-
-	public String getNaam() {
-		return naam;
-	}
-
-	public void setNaam(String naam) {
-		this.naam = naam;
-	}
-
-	public int getPersoneelsNr() {
-		return personeelsNr;
-	}
-
-	public void setPersoneelsNr(int personeelsNr) {
-		this.personeelsNr = personeelsNr;
 	}
 
 	public Date getStartDatum() {

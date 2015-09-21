@@ -18,16 +18,6 @@
 				<c:when test="#{login.clearance>0}">
 					<h:form>
 						<h:panelGrid columns="2">
-							<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
-							<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"
-								a:placeholder="voornaam"></h:inputText>
-							<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
-							<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"
-								a:placeholder="naam"></h:inputText>
-							<h:outputLabel for="txtPersoneelsnummer"
-								value="Geef uw personeelsnummer: "></h:outputLabel>
-							<h:inputText id="txtPersoneelsnummer"
-								value="#{verlofAanvraag.personeelsNr}"></h:inputText>
 							<h:outputLabel for="txtStartDatum"
 								value="Geef startdatum van uw verlof: "></h:outputLabel>
 							<h:inputText id="txtStartDatum"

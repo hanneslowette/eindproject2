@@ -2,10 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title>Verlof aanvragen</title>
@@ -14,37 +14,42 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
 			<h1>Verlof aanvragen</h1>
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
-					<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"
-						a:placeholder="voornaam"></h:inputText>
-					<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
-					<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"
-						a:placeholder="naam"></h:inputText>
-					<h:outputLabel for="txtPersoneelsnummer"
-						value="Geef uw personeelsnummer: "></h:outputLabel>
-					<h:inputText id="txtPersoneelsnummer"
-						value="#{verlofAanvraag.personeelsNr}"></h:inputText>
-					<h:outputLabel for="txtStartDatum"
-						value="Geef startdatum van uw verlof: "></h:outputLabel>
-					<h:inputText id="txtStartDatum"
-						value="#{verlofAanvraag.startDatum}" a:placeholder="dd/mm/yyyy">
-						<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
-							type="date" />
-					</h:inputText>
-					<h:outputLabel for="txtEindDatum"
-						value="Geef einddatum van uw verlof: "></h:outputLabel>
-					<h:inputText id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"
-						a:placeholder="dd/mm/yyyy">
-						<f:convertDateTime pattern="dd/MM/yyyy" dateStyle="short"
-							type="date" />
-					</h:inputText>
-					<h:commandButton styleClass="buttonStyle" value="Verstuur"
-						action="#{verlofAanvraag.verstuur}"></h:commandButton>
-					<br />
-				</h:panelGrid>
-			</h:form>
+			<c:choose>
+				<c:when test="#{login.clearance>0}">
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel for="txtVoornaam" value="Geef uw voornaam: "></h:outputLabel>
+							<h:inputText id="txtVoornaam" value="#{verlofAanvraag.voornaam}"
+								a:placeholder="voornaam"></h:inputText>
+							<h:outputLabel for="txtNaam" value="Geef uw naam: "></h:outputLabel>
+							<h:inputText id="txtNaam" value="#{verlofAanvraag.naam}"
+								a:placeholder="naam"></h:inputText>
+							<h:outputLabel for="txtPersoneelsnummer"
+								value="Geef uw personeelsnummer: "></h:outputLabel>
+							<h:inputText id="txtPersoneelsnummer"
+								value="#{verlofAanvraag.personeelsNr}"></h:inputText>
+							<h:outputLabel for="txtStartDatum"
+								value="Geef startdatum van uw verlof: "></h:outputLabel>
+							<h:inputText id="txtStartDatum"
+								value="#{verlofAanvraag.startDatum}" a:placeholder="dd/mm/yyyy">
+								<f:convertDateTime pattern="dd/mm/yy" dateStyle="short"
+									type="date" />
+							</h:inputText>
+							<h:outputLabel for="txtEindDatum"
+								value="Geef einddatum van uw verlof: "></h:outputLabel>
+							<h:inputText id="txtEindDatum"
+								value="#{verlofAanvraag.eindDatum}" a:placeholder="dd/mm/yyyy">
+								<f:convertDateTime pattern="dd/mm/yy" dateStyle="short"
+									type="date" />
+							</h:inputText>
+							<h:commandButton styleClass="buttonStyle" value="Verstuur"
+								action="#{verlofAanvraag.verstuur}"></h:commandButton>
+							<br />
+						</h:panelGrid>
+					</h:form>
+				</c:when>
+				<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
+			</c:choose>
 		</ui:define>
 	</ui:composition>
 </h:body>

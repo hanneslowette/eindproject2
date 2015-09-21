@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +13,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
@@ -25,6 +23,7 @@ import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
 import org.betavzw.util.Toestand;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -37,6 +36,8 @@ public class VerlofAanvraagIO implements Serializable {
 
 	@Inject
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
+	@Inject
+	private Bean<Werknemer> werknemer_bean;
 
 	@Pattern(regexp = "[A-Z][a-zA-Z .,_-]*", message = "Geldige voornaam ingeven")
 	@NotEmpty(message = "Veld voornaam moet ingevuld zijn")
@@ -54,11 +55,17 @@ public class VerlofAanvraagIO implements Serializable {
 	private Date eindDatum;
 	private LocalDate aanvraagDatum = LocalDate.now();
 
+	public VerlofAanvraagIO() {
+		super();
+	}
+
 	/**
 	 * verstuurfunctie voor commandButton van verlofaanvragen.xhtml waar een
 	 * nieuwe verlofaanvraag wordt aangemaakt in de databank
+	 * 
+	 * @throws GeboortedatumInDeToekomstException
 	 */
-	public String verstuur() {
+	public String verstuur() throws GeboortedatumInDeToekomstException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
@@ -93,7 +100,11 @@ public class VerlofAanvraagIO implements Serializable {
 					.atZone(ZoneId.systemDefault()).toLocalDate());
 			verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 			verlofAanvraag.setToestand(Toestand.PENDING);
-			verlofAanvraag.setWerknemer(new Werknemer(voornaam, naam));
+			Werknemer werknemer = werknemer_bean.getSingle(new Filter(
+					"personeelsNr", personeelsNr));
+			verlofAanvraag.setWerknemer(new Werknemer(werknemer.getVoornaam(),
+					werknemer.getNaam(), werknemer.getEmail(), werknemer
+							.getGeboortedatum(), werknemer.getAdres()));
 			verlofAanvraag_bean.offer(verlofAanvraag);
 			return View.VERSTUURD;
 		}

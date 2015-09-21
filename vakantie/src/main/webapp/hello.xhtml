@@ -14,11 +14,11 @@
 <ui:define name="content">
 HELLO WORLD
 	</ui:define>
-	
+	<c:if test="#{login.clearance<1}">hallo bezoeker</c:if>
 	<c:if test="#{login.clearance>0}">hallo werknemer</c:if>
-	<c:if test="#{login.clearance>0}">hallo werknemer</c:if>
-	<c:if test="#{login.clearance>0}">hallo werknemer</c:if>
-	<c:if test="#{login.clearance>0}">hallo werknemer</c:if>
+	<c:if test="#{login.clearance>1}">hallo teamverantwoordelijke</c:if>
+	<c:if test="#{login.clearance>2}">hallo HR-rep</c:if>
+	<c:if test="#{login.clearance>3}">hallo Admin</c:if>
 	
 </ui:composition>
 </h:body>

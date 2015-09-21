@@ -57,6 +57,9 @@ public class LoginBean implements Serializable {
 	}
 	
 	public int getClearance(){
+		if (type==null) {
+			return 0;
+		}
 		return type.ordinal();
 	}
 

@@ -15,6 +15,7 @@ import javax.persistence.RollbackException;
 
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.Werknemer;
+import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.bean.AbstractBean;
 import org.betavzw.view.bean.WerknemerBean;
 import org.junit.After;
@@ -57,7 +58,7 @@ public class WerknemerBean_Tests {
 	}
 
 	@Before
-	public void setup() {
+	public void setup() throws GeboortedatumInDeToekomstException {
 
 		tx.begin();
 		Utils.purge((AbstractBean) werknemerBean);

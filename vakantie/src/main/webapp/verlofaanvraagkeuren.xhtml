@@ -7,21 +7,21 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Verlof keuren</title>
+	<title>Verlofaanvragen keuren</title>
 </h:head>
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
-		<ui:define name="title">Verlof keuren</ui:define>
+		<ui:define name="title">Verlofaanvragen keuren</ui:define>
 		<ui:define name="content">
-			<h1>Verlof keuren</h1>
+			<h1>Verlofaanvragen keuren</h1>
 			<c:choose>
 				<c:when test="#{login.clearance > 1}">
 					<h:form>
 						<h:dataTable
-							rendered="#{not empty verlofGoedkeuren.verlofAanvragen}"
+							rendered="#{not empty verlofAanvraagKeuren.verlofAanvragen}"
 							styleClass="table" headerClass="tableHeader"
 							rowClasses="tableEvenRow, tableOddRow"
-							value="#{verlofGoedkeuren.verlofAanvragen}" var="tmp">
+							value="#{verlofAanvraagKeuren.verlofAanvragen}" var="tmp">
 							<h:column>
 								<f:facet name="header">Personeelsnummer</f:facet>
 								<h:outputText value="#{tmp.werknemer.personeelsNr}"></h:outputText>
@@ -54,7 +54,7 @@
 							<h:column>
 								<f:facet name="header">Keuring</f:facet>
 								<h:selectOneMenu id="selToestand"
-									value="#{verlofGoedkeuren.keuring}">
+									value="#{verlofAanvraagKeuren.keuring}">
 									<f:selectItem itemValue="accept" itemLabel="Accept"></f:selectItem>
 									<f:selectItem itemValue="reject" itemLabel="Reject"></f:selectItem>
 									<f:selectItem itemValue="cancel" itemLabel="Cancel"></f:selectItem>
@@ -63,7 +63,7 @@
 							<h:column>
 								<f:facet name="header">Updaten</f:facet>
 								<h:commandButton styleClass="buttonStyle" value="Update"
-									action="#{verlof.Goedkeuren.update}"></h:commandButton>
+									action="#{verlofAanvraagKeuren.update}"></h:commandButton>
 							</h:column>
 						</h:dataTable>
 					</h:form>

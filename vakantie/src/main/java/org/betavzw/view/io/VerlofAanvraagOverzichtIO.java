@@ -11,9 +11,9 @@ import javax.inject.Named;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.view.bean.Bean;
 
-@Named("verlofGoedkeuren")
+@Named("verlofAanvraagOverzicht")
 @SessionScoped
-public class VerlofGoedkeurenIO implements Serializable {
+public class VerlofAanvraagOverzichtIO implements Serializable {
 
 	/**
 	 * Versie id van het geserialiseerd object

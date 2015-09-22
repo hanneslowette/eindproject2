@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class junittest1 {
+public class LoginErrorMessagesTests {
 
 	WebDriver driver = new FirefoxDriver();
 
@@ -78,6 +78,25 @@ public class junittest1 {
 
 		assertTrue(
 				"failure - doesn't return correct message when password is wrong",
-				message.contains("Username of password niet gevonden "));
+				message.contains("Username of password niet gevonden"));
+	}
+	
+	@Test
+	public void wrongUsername_Test() throws InterruptedException {
+		driver.findElement(By.xpath("//input[@name='loginform:txtUsername']"))
+				.sendKeys("sdfgsqdfgqsdfqsdfqsdf");
+		driver.findElement(By.xpath("//input[@name='loginform:txtPassword']"))
+				.sendKeys("Hannes");
+		driver.findElement(By.xpath("//input[@name='loginform:loginButton']"))
+				.click();
+
+		Thread.sleep(2000);
+
+		String message = driver.findElement(
+				By.xpath("//div[@class='messages']")).getText();
+
+		assertTrue(
+				"failure - doesn't return correct message when username is unknown",
+				message.contains("Username of password niet gevonden"));
 	}
 }

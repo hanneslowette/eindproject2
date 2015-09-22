@@ -15,7 +15,7 @@
 		<ui:define name="title">Login</ui:define>
 		<ui:define name="content">
 			<h1>Inloggen</h1>
-			<h:form>
+			<h:form id="loginform">
 				<h:panelGrid columns="2">
 					<h:outputLabel for="txtUsername" value="Username: "></h:outputLabel>
 					<h:inputText id="txtUsername" value="#{login_view.username}"
@@ -23,7 +23,7 @@
 					<h:outputLabel for="txtPassword" value="Password: "></h:outputLabel>
 					<h:inputSecret id="txtPassword" value="#{login_view.password}"
 						a:placeholder="******"></h:inputSecret>
-					<h:commandButton styleClass="buttonStyle" value="Log in"
+					<h:commandButton id="loginButton" styleClass="buttonStyle" value="Log in"
 						action="#{login_view.inloggen}"></h:commandButton>
 					<h:commandButton styleClass="buttonStyle" value="Annuleer"
 						action="home"></h:commandButton>

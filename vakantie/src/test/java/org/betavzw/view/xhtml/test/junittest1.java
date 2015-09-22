@@ -18,7 +18,7 @@ public class junittest1 {
 				"hANNES");		
 		driver.findElement(By.xpath("//input[@name='loginform:txtPassword']")).sendKeys(
 				"hANNES");
-		driver.findElement(By.xpath("//input[@name='loginform:submitButton']")).click();
+		driver.findElement(By.xpath("//input[@name='loginform:loginButton']")).click();
 		Thread.sleep(2000);
 		System.out.print("junittest1 class is executed");
 		driver.quit();

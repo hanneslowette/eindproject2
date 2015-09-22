@@ -13,12 +13,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.util.Filter;
+import org.betavzw.util.Mail;
 import org.betavzw.util.Toestand;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
@@ -94,8 +97,18 @@ public class VerlofAanvraagIO implements Serializable {
 			verlofAanvraag.setToestand(Toestand.PENDING);
 			verlofAanvraag.setWerknemer(loginbean.getWerknemer());
 			verlofAanvraag_bean.offer(verlofAanvraag);
-			mailbean.sendmail(loginbean.getWerknemer().getEmail(),
-					"Uw verlofaanvraag", "Uw verlofaanvraag is verstuurd.");
+			try {
+				Mail.send("teamredconfirmation", "needabijtnie", loginbean.getWerknemer().getEmail(), "Uw verlofaanvraag", "Uw verlofaanvraag is aangekomen");
+			} catch (AddressException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (MessagingException e) {
+				facesContext
+				.addMessage(
+						"",
+						new FacesMessage(
+								"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
+			}
 			return View.VERSTUURD;
 		}
 	}

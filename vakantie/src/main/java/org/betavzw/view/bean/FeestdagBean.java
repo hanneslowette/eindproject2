@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Feestdag;
 import org.betavzw.util.QueryBuilder;
 

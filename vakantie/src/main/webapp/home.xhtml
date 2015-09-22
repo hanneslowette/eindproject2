@@ -10,6 +10,7 @@
 </h:head>
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
+		<ui:define name="title">Home</ui:define>
 		<ui:define name="content">
 			<h:form>
 				<c:if test="#{login.clearance > 2}">

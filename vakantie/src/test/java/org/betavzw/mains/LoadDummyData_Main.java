@@ -23,7 +23,8 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 public class LoadDummyData_Main {
 
 	public static void main(String[] args)
-			throws GeboortedatumInDeToekomstException, FoutAantalVerlofdagenException {
+			throws GeboortedatumInDeToekomstException,
+			FoutAantalVerlofdagenException {
 
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("unitName");
@@ -55,12 +56,12 @@ public class LoadDummyData_Main {
 
 		Team teamRed = new Team();
 		teamRed.setNaam("Team Red");
-//		teamRed.setCode("WIN");
+		// teamRed.setCode("WIN");
 		em.persist(teamRed);
 
 		Team teamBlue = new Team();
 		teamBlue.setNaam("Team Blue");
-//		teamBlue.setCode("LOSE");
+		// teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
 
 		Werknemer thomas = new Werknemer();
@@ -75,12 +76,38 @@ public class LoadDummyData_Main {
 		teamRed.addWerknemer(hannes);
 		em.persist(hannes);
 
+		Adres adresJorik = new Adres();
+		adresJorik.setStraat("Klaprozenweg");
+		adresJorik.setHuisnummer("53");
+		adresJorik.setBusnummer("b");
+		adresJorik.setGemeente("Hoboken");
+		adresJorik.setPostcode("2660");
+
+		Werknemer jorik = new Werknemer();
+		jorik.setVoornaam("Jorik");
+		jorik.setNaam("Janssens");
+		date = LocalDate.parse("1985-apr-10", formatter);
+		jorik.setGeboortedatum(date);
+		jorik.setEmail("jorikjanssens@hotmail.com");
+		jorik.setAdres(adresJorik);
+		jorik.setTeam(teamBlue);
+
+		Credentials credentialsJorik = new Credentials();
+		credentialsJorik.setUsername("Jorik");
+		credentialsJorik.setPassword("Jorik");
+		credentialsJorik.setType(AccountType.WERKNEMER);
+		credentialsJorik.setWerknemer(jorik);
+
+		em.persist(jorik);
+		em.persist(adresJorik);
+		em.persist(credentialsJorik);
+
 		Adres adresYannick = new Adres();
 		adresYannick.setStraat("Duwijckstraat");
-		adresYannick.setHuisnummer("7");
+		adresYannick.setHuisnummer("18");
 		adresYannick.setBusnummer("");
-		adresYannick.setGemeente("Hoboken");
-		adresYannick.setPostcode("2660");
+		adresYannick.setGemeente("Lier");
+		adresYannick.setPostcode("2500");
 
 		Werknemer yannick = new Werknemer();
 		yannick.setVoornaam("Yannick");

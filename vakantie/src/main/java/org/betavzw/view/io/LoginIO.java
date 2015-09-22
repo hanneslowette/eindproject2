@@ -3,8 +3,10 @@ package org.betavzw.view.io;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
@@ -18,16 +20,22 @@ public class LoginIO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject private Bean<Credentials> credential_bean;
-	@Inject private LoginBean login;
+	@Inject
+	private Bean<Credentials> credential_bean;
+	@Inject
+	private LoginBean login;
+
+	@Inject
+	HttpSession session;
 
 	private String username;
 	private String password;
 
 	public String aanmelden() {
 		try {
-			Credentials credentials = credential_bean.getSingle(new Filter("username", username), new Filter("password", password));
-			
+			Credentials credentials = credential_bean.getSingle(new Filter(
+					"username", username), new Filter("password", password));
+
 			login.setType(credentials.getType());
 			login.setWerknemer(credentials.getWerknemer());
 			login.setAangemeld(true);
@@ -37,7 +45,13 @@ public class LoginIO implements Serializable {
 			System.out.println(ex);
 			return null;
 		}
-		
+	}
+
+	public String afmelden() {
+		session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		session.invalidate();
+		return null;
 	}
 
 	public String getUsername() {

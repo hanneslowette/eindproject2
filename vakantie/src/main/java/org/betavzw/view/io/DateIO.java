@@ -8,18 +8,10 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-/**
- * 
- * 
- * @author user104
- */
 @Named("date")
 @RequestScoped
 public class DateIO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private LocalDate date = LocalDate.now();
@@ -29,11 +21,13 @@ public class DateIO implements Serializable {
 	}
 
 	public Date getDate() {
-		return Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+		return Date.from(date.atStartOfDay().atZone(ZoneId.systemDefault())
+				.toInstant());
 	}
 
 	public void setDate(Date date) {
-		this.date = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		this.date = date.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
 	}
 
 }

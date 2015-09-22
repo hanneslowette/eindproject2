@@ -26,6 +26,10 @@ public class LoginIO implements Serializable {
 	private String username;
 	private String password;
 
+	/**
+	 * 
+	 * 
+	 */
 	public String aanmelden() {
 		try {
 			Credentials credentials = credential_bean.getSingle(new Filter(

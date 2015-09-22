@@ -3,6 +3,8 @@ package org.betavzw.view.io;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,8 +23,14 @@ public class TeamBeheerIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 */
 	@Inject private Bean<Team> teams;
 
+	/**
+	 * 
+	 */
 	@Inject private Bean<Werknemer> werknemers;
 
 	/**
@@ -52,6 +60,7 @@ public class TeamBeheerIO implements Serializable {
 	}
 
 	/**
+	 * Update een team
 	 * 
 	 * @return
 	 */
@@ -59,6 +68,35 @@ public class TeamBeheerIO implements Serializable {
 		this.team.setNaam(naam);
 		this.team.setTeamverantwoordelijke(werknemers.getSingle(new Filter("personeelsNr", verantwoordelijkeId)));
 		this.teams.update(team);
+		return View.HOME;
+	}
+
+	/**
+	 * Selecteerd een team en vraagt een bevestiging om te verwijderen
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String select(int id) {
+		this.team = teams.getSingle(new Filter("id", id));
+		return "team_bevestiging";
+	}
+
+	/**
+	 * Wordt opgeroepen wanneer de gebruiker zijn keuze bevestigd tijdens het verwijderen van de entity
+	 * 
+	 * @param delete
+	 * @return
+	 */
+	public String confirm(boolean delete) {
+		if (delete) {
+			if (team.getTeamLeden().isEmpty() && team.getTeamverantwoordelijke() == null) {
+				teams.delete(team);
+			}
+			else {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Team kon niet worden verwijderd: Er waren nog teamleden aanwezig in dit team.", "update geslaagd"));
+			}
+		}
 		return View.HOME;
 	}
 

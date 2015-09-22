@@ -27,7 +27,7 @@ public interface View {
 	/**
 	 * De view waar je werknemers kunt zoeken
 	 */
-	public static final String WERKNEMER_OPVRAGEN = "opvragenWerknemer";
+	public static final String WERKNEMER_OPVRAGEN = "werknemerOpvragen";
 
 	/**
 	 * view om een werknemer toe te voegen
@@ -37,7 +37,7 @@ public interface View {
 	/**
 	 * De view die de werknemer bewerkt
 	 */
-	public static final String WERKNEMER_WIJZIGEN = "wijzigen";
+	public static final String WERKNEMER_WIJZIGEN = "werknemerWijzigen";
 
 	/**
 	 * View om een verlof aan te vragen

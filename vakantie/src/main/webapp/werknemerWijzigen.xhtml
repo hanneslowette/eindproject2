@@ -33,6 +33,18 @@
 							<f:convertDateTime pattern="dd-MM-yyyy" />
 						</h:inputText>
 						<br />
+						<h:outputLabel for="txtStraat" value="Straat"></h:outputLabel>
+						<h:inputText
+							value="#{werknemerOpvragenIO.werknemer.adres.straat}"></h:inputText>
+						<br />
+						<h:outputLabel for="txtHuisnummer" value="Huisnummer"></h:outputLabel>
+						<h:inputText
+							value="#{werknemerOpvragenIO.werknemer.adres.huisnummer}"></h:inputText>
+						<br />
+						<h:outputLabel for="txtBusnummer" value="Busnummer"></h:outputLabel>
+						<h:inputText
+							value="#{werknemerOpvragenIO.werknemer.adres.busnummer}"></h:inputText>
+						<br />
 						<h:outputLabel for="txtPostcode" value="Postcode"></h:outputLabel>
 						<h:inputText
 							value="#{werknemerOpvragenIO.werknemer.adres.postcode}"></h:inputText>
@@ -49,8 +61,8 @@
 						<h:commandButton styleClass="buttonStyle" value="save"
 							action="#{werknemerOpvragenIO.save}"></h:commandButton>
 					</h:form>
-					</c:when>
-			<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
+				</c:when>
+				<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>
 			</c:choose>
 		</ui:define>
 	</ui:composition>

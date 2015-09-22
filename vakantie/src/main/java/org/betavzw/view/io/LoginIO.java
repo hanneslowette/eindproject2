@@ -18,12 +18,26 @@ public class LoginIO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * De bean die verantwoordelijk is voor credentials
+	 */
 	@Inject
 	private Bean<Credentials> credential_bean;
+
+	/**
+	 * De bean die verantwoordelijk is voor login
+	 */
 	@Inject
 	private LoginBean login;
 
+	/**
+	 * De username om in te loggen
+	 */
 	private String username;
+
+	/**
+	 * Het password om in te loggen
+	 */
 	private String password;
 
 	/**

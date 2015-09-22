@@ -175,9 +175,9 @@ public class WerknemerToevoegenIO implements Serializable{
 			werknemer.setTeam(team_bean.getSingle(new QueryBuilder()
 					.addFilter(new Filter("id", teamId))));
 			werknemer_bean.offer(werknemer);
-			ctx.addMessage(null, new FacesMessage("werknemer aangepast",
-					"update geslaagd"));
-			return View.WERKNEMER_OPVRAGEN;
+			ctx.addMessage(null, new FacesMessage("werknemer toegevoegd",
+					"werknemer toegevoegd"));
+			return View.HOME;
 		}
 	}
 	

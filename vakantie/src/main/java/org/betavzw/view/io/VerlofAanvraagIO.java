@@ -126,32 +126,20 @@ public class VerlofAanvraagIO implements Serializable {
 						.getPersoneelsNr()));
 		List<org.betavzw.util.Period> periodes = new ArrayList<org.betavzw.util.Period>();
 		for (VerlofAanvraag verlofAanvraag : verlofAanvragen) {
-				java.sql.Date sqlStartDatum = java.sql.Date
-						.valueOf(verlofAanvraag.getStartDatum());
-				java.sql.Date sqlEindDatum = java.sql.Date
-						.valueOf(verlofAanvraag.getEindDatum());
-				periodes.add( new org.betavzw.util.Period(sqlStartDatum,sqlEindDatum) ); 
+			java.sql.Date sqlStartDatum = java.sql.Date.valueOf(verlofAanvraag
+					.getStartDatum());
+			java.sql.Date sqlEindDatum = java.sql.Date.valueOf(verlofAanvraag
+					.getEindDatum());
+			periodes.add(new org.betavzw.util.Period(sqlStartDatum,
+					sqlEindDatum));
 		}
-
+		boolean overlaps = false;
 		for (org.betavzw.util.Period period : periodes) {
-
-			
-			periode.overlaptStommeDatum(period);
+			if (periode.overlaps(period)) {
+				overlaps = true;
+			}
 		}
-
-		
-		
-		
-		// start1.before(end2) && start2.before(end1);
-		// LocalDate startDatumtmp = startDatum.toInstant()
-		// .atZone(ZoneId.systemDefault()).toLocalDate();
-		// LocalDate eindDatumtmp = eindDatum.toInstant()
-		// .atZone(ZoneId.systemDefault()).toLocalDate();
-		// List<LocalDate> startdatums = new ArrayList<LocalDate>();
-		// List<LocalDate> einddatums = new ArrayList<LocalDate>();
-
-		// return startDatum.before(when) && .before(eindDatum) ? true : false;
-		return false;
+		return overlaps;
 	}
 
 	/**

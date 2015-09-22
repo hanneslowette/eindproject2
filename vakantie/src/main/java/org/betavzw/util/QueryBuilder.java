@@ -14,7 +14,6 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
 
-
 public class QueryBuilder {
 
 	/**
@@ -26,7 +25,7 @@ public class QueryBuilder {
 	 * De filters die moeten worden gebruikt in de query
 	 */
 	private final Map<String, Object> filters = new HashMap<>();
-	
+
 	/**
 	 * De kolommen waarop gesorteerd moet worden
 	 */
@@ -40,117 +39,133 @@ public class QueryBuilder {
 	 */
 	public <T> TypedQuery<T> build(EntityManager manager, Class<T> c) {
 		/*
-		 * Maak een nieuwe StringBuilder met als waarde de standaard select zonder voorwaarded (SELECT o FROM Class o).
+		 * Maak een nieuwe StringBuilder met als waarde de standaard select
+		 * zonder voorwaarded (SELECT o FROM Class o).
 		 */
-		StringBuilder query_builder = new StringBuilder("SELECT o FROM ").append(c.getSimpleName()).append(" o");
-		
+		StringBuilder query_builder = new StringBuilder("SELECT o FROM ")
+				.append(c.getSimpleName()).append(" o");
+
 		/*
-		 * Als de map leeg is, betekent dit dat er geen parameters moeten worden toegevoegd. Anders moeten
-		 * de parameters worden ingevuld in de query
+		 * Als de map leeg is, betekent dit dat er geen parameters moeten worden
+		 * toegevoegd. Anders moeten de parameters worden ingevuld in de query
 		 */
 		if (!filters.isEmpty()) {
 			/*
-			 * De voorwaarden worden meegegeven na het WHERE keywoord (SELECT o FROM Class o WHERE ...)
+			 * De voorwaarden worden meegegeven na het WHERE keywoord (SELECT o
+			 * FROM Class o WHERE ...)
 			 */
 			query_builder.append(" WHERE ");
-			
+
 			/*
 			 * Voeg alle parameters toe
 			 */
-			for (Iterator<Entry<String, Object>> iterator = filters.entrySet().iterator(); iterator.hasNext(); ) {
+			for (Iterator<Entry<String, Object>> iterator = filters.entrySet()
+					.iterator(); iterator.hasNext();) {
 				Entry<String, Object> entry = iterator.next();
-				
+
 				/*
 				 * Voeg de kolom waar de waarde in opgeslagen zit toe
 				 */
 				query_builder.append("o.").append(entry.getKey());
-				
+
 				/*
-				 * Strings worden vergeleken met het "LIKE" keyword. De rest wordt vergeleken met het "=" teken
+				 * Strings worden vergeleken met het "LIKE" keyword. De rest
+				 * wordt vergeleken met het "=" teken
 				 */
 				if (!(entry.getValue() instanceof Period)) {
-					query_builder.append(entry.getValue() instanceof String ? " LIKE " : "= ");
-				
+					query_builder
+							.append(entry.getValue() instanceof String ? " LIKE "
+									: "= ");
+
 					/*
-					 * De variabele naam is de naam van de voorwaarde met een : ervoor
+					 * De variabele naam is de naam van de voorwaarde met een :
+					 * ervoor
 					 */
-					query_builder.append(":").append(formatParameter(entry.getKey()));
+					query_builder.append(":").append(
+							formatParameter(entry.getKey()));
+				} else {
+					query_builder.append(" BETWEEN ").append(":")
+							.append(formatParameter(entry.getKey()))
+							.append("_start").append(" AND ").append(":")
+							.append(formatParameter(entry.getKey()))
+							.append("_end");
 				}
-				else {
-					query_builder.append(" BETWEEN ")
-					.append(":").append(formatParameter(entry.getKey())).append("_start")
-					.append(" AND ")
-					.append(":").append(formatParameter(entry.getKey())).append("_end");
-				}
-				
+
 				/*
-				 * Als er nog andere voorwaarden volgen, worden deze gescheiden met het "AND" keyword
+				 * Als er nog andere voorwaarden volgen, worden deze gescheiden
+				 * met het "AND" keyword
 				 */
 				if (iterator.hasNext()) {
 					query_builder.append(" AND ");
 				}
 			}
 		}
-		
+
 		/*
-		 * Er moet enkel gesorteerd worden als er sort columns gespecifieerd zijn
+		 * Er moet enkel gesorteerd worden als er sort columns gespecifieerd
+		 * zijn
 		 */
 		if (!sort_columns.isEmpty()) {
-			
+
 			/*
 			 * Het sleutelwoord om te sorteren is "ORDER BY"
 			 */
 			query_builder.append(" ORDER BY ");
-			
+
 			/*
 			 * Loop door alle sort kolommen en voeg deze toe aan de query
 			 */
-			for (Iterator<String> iterator = sort_columns.iterator(); iterator.hasNext(); ) {
+			for (Iterator<String> iterator = sort_columns.iterator(); iterator
+					.hasNext();) {
 				String column = iterator.next();
-				
+
 				/*
 				 * Voeg de kolom toe
 				 */
 				query_builder.append("o.").append(column);
-				
+
 				/*
-				 * Als er meerdere kolommen zijn waarop gesorteerd moet worden, dan moeten
-				 * deze gescheiden worden met een komma
+				 * Als er meerdere kolommen zijn waarop gesorteerd moet worden,
+				 * dan moeten deze gescheiden worden met een komma
 				 */
 				if (iterator.hasNext()) {
 					query_builder.append(", ");
 				}
 			}
 		}
-		
+
 		/*
 		 * Debug info voor de sysadmin
 		 */
 		logger.info("created query: " + query_builder.toString());
-			
+
 		/*
 		 * Maak de query aan in de opgegeven entity manager
 		 */
 		TypedQuery<T> query = manager.createQuery(query_builder.toString(), c);
-		
+
 		/*
 		 * Vul de waarden van de voorwaarden in.
 		 */
-		for (Iterator<Entry<String, Object>> iterator = filters.entrySet().iterator(); iterator.hasNext(); ) {
+		for (Iterator<Entry<String, Object>> iterator = filters.entrySet()
+				.iterator(); iterator.hasNext();) {
 			Entry<String, Object> entry = iterator.next();
-			
+
 			if (entry.getValue() instanceof Period) {
 				Period period = (Period) entry.getValue();
-				
-				query.setParameter(formatParameter(entry.getKey()) + "_start", period.getStart());
-				query.setParameter(formatParameter(entry.getKey()) + "_end", period.getEnd());
+
+				query.setParameter(formatParameter(entry.getKey()) + "_start",
+						period.getStart());
+				query.setParameter(formatParameter(entry.getKey()) + "_end",
+						period.getEnd());
 			}
-			
+
 			else {
 				/*
 				 * Vul de waarde van de parameter in
 				 */
-				query.setParameter(formatParameter(entry.getKey()), entry.getValue());
+				query.setParameter(formatParameter(entry.getKey()),
+						entry.getValue());
 			}
 		}
 

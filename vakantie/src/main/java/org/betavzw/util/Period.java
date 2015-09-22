@@ -29,11 +29,10 @@ public class Period {
 		this.end = end;
 	}
 
-	public boolean overlaptStommeDatum(org.betavzw.util.Period period) {
-		// i1.endTime.before(i2.beginTime) || i1.beginTime.after(i2.endTime);
+	// Tip: start1.before(end2) || start2.before(end1);
+	public boolean overlaps(org.betavzw.util.Period period) {
+		// return start.before(period.end) || period.start.before(end);
 		return end.before(period.start) || start.after(period.end);
 	}
-
-	// Tip: van start1.before(end2) && start2.before(end1);
 
 }

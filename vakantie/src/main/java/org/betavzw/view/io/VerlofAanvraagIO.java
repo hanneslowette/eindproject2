@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.util.Filter;
 import org.betavzw.util.Toestand;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
@@ -68,7 +69,7 @@ public class VerlofAanvraagIO implements Serializable {
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
 			return View.VERLOFAANVRAGEN;
 		}
-		if (isNietOverlappend()) {
+		if (isOverlappend()) {
 			facesContext
 					.addMessage(
 							"",
@@ -113,14 +114,41 @@ public class VerlofAanvraagIO implements Serializable {
 	 * functie die true weergeeft als er geen overlappende verlofaanvraag is die
 	 * al geannuleerd of afgekeurd is
 	 */
-	public boolean isNietOverlappend() {
+	public boolean isOverlappend() {
+		java.sql.Date sqlInputStartDatum = new java.sql.Date(
+				startDatum.getTime());
+		java.sql.Date sqlInputEindDatum = new java.sql.Date(eindDatum.getTime());
+		org.betavzw.util.Period periode = new org.betavzw.util.Period(
+				sqlInputStartDatum, sqlInputEindDatum);
+		List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
+		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+				"werknemer_personeelsNr", loginbean.getWerknemer()
+						.getPersoneelsNr()));
+		List<org.betavzw.util.Period> periodes = new ArrayList<org.betavzw.util.Period>();
+		for (VerlofAanvraag verlofAanvraag : verlofAanvragen) {
+				java.sql.Date sqlStartDatum = java.sql.Date
+						.valueOf(verlofAanvraag.getStartDatum());
+				java.sql.Date sqlEindDatum = java.sql.Date
+						.valueOf(verlofAanvraag.getEindDatum());
+				periodes.add( new org.betavzw.util.Period(sqlStartDatum,sqlEindDatum) ); 
+		}
+
+		for (org.betavzw.util.Period period : periodes) {
+
+			
+			periode.overlaptStommeDatum(period);
+		}
+
+		
+		
+		
 		// start1.before(end2) && start2.before(end1);
-		LocalDate startDatumtmp = startDatum.toInstant()
-				.atZone(ZoneId.systemDefault()).toLocalDate();
-		LocalDate eindDatumtmp = eindDatum.toInstant()
-				.atZone(ZoneId.systemDefault()).toLocalDate();
-		List<LocalDate> startdatums = new ArrayList<LocalDate>();
-		List<LocalDate> einddatums = new ArrayList<LocalDate>();
+		// LocalDate startDatumtmp = startDatum.toInstant()
+		// .atZone(ZoneId.systemDefault()).toLocalDate();
+		// LocalDate eindDatumtmp = eindDatum.toInstant()
+		// .atZone(ZoneId.systemDefault()).toLocalDate();
+		// List<LocalDate> startdatums = new ArrayList<LocalDate>();
+		// List<LocalDate> einddatums = new ArrayList<LocalDate>();
 
 		// return startDatum.before(when) && .before(eindDatum) ? true : false;
 		return false;

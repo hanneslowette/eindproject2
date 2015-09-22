@@ -29,4 +29,10 @@ public class Period {
 		this.end = end;
 	}
 
+	public boolean overlaptStommeDatum(org.betavzw.util.Period period) {
+		return true;
+	}
+
+	// Tip: van start1.before(end2) && start2.before(end1);
+
 }

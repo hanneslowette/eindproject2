@@ -28,27 +28,52 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Aanvraagdatum</f:facet>
-								<h:outputText value="#{tmp.aanvraagDatum}">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
+								<c:choose>
+									<c:when test="#{not empty tmp.aanvraagDatum}">
+										<f:facet name="header">Aanvraagdatum</f:facet>
+										<h:outputText value="#{tmp.aanvraagDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</c:when>
+									<c:otherwise>
+										<h:outputText value="null"></h:outputText>
+									</c:otherwise>
+								</c:choose>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Startdatum</f:facet>
-								<h:outputText value="#{tmp.startDatum}">
-									<<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
+								<c:choose>
+									<c:when test="#{not empty tmp.startDatum}">
+										<f:facet name="header">Startdatum</f:facet>
+										<h:outputText value="#{tmp.startDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</c:when>
+									<c:otherwise>
+										<h:outputText value="null"></h:outputText>
+									</c:otherwise>
+								</c:choose>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Einddatum</f:facet>
-								<h:outputText value="#{tmp.eindDatum}">
-									<f:convertDateTime pattern="dd-MM-yyyy" />
-								</h:outputText>
+								<c:choose>
+									<c:when test="#{not empty tmp.eindDatum}">
+										<f:facet name="header">Einddatum</f:facet>
+										<h:outputText value="#{tmp.eindDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</c:when>
+									<c:otherwise>
+										<h:outputText value="null"></h:outputText>
+									</c:otherwise>
+								</c:choose>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Toestand</f:facet>
 								<h:outputText value="#{tmp.toestand}"></h:outputText>
 							</h:column>
 							<h:column>
+								<f:facet name="header">Cancellen</f:facet>
 								<h:commandButton value="Cancel"
 									action="#{verlofAanvraagOverzicht.cancel}"></h:commandButton>
 							</h:column>

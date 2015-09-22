@@ -29,31 +29,31 @@ public class WerknemerDAO implements Serializable {
 	@Inject
 	private Bean<Team> team_bean;
 
-	@NotEmpty
+	@NotEmpty(message="Voornaam moet ingevuld worden")
 	@NotNull
 	private String voornaam;
-	@NotEmpty
+	@NotEmpty(message="Naam moet ingevuld worden")
 	@NotNull
 	private String naam;
-	@NotEmpty
+	@NotEmpty(message="Email moet ingevuld worden")
 	@NotNull
 	private String email;
-	@NotNull
+	@NotNull(message="Geboortedatum moet ingevuld worden")
 	private Date geboortedatum;
-	@NotEmpty
+	@NotEmpty(message="Straat moet ingevuld worden")
 	@NotNull
 	private String straat;
-	@NotEmpty
+	@NotEmpty(message="Huisnummer moet ingevuld worden")
 	@NotNull
 	private String huisnummer;
 	private String busnummer;
-	@NotEmpty
+	@NotEmpty(message="Postcode moet ingevuld worden")
 	@NotNull
 	private String postcode;
-	@NotEmpty
+	@NotEmpty(message="Gemeente moet ingevuld worden")
 	@NotNull
 	private String gemeente;
-	private int teamid = 3;
+	private int teamid;
 
 	public Werknemer getEntity() throws GeboortedatumInDeToekomstException {
 		Werknemer werknemer = new Werknemer();

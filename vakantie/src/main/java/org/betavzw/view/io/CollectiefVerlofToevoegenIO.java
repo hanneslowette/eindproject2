@@ -15,9 +15,9 @@ public class CollectiefVerlofToevoegenIO implements Serializable {
 
 	private static final long serialVersionUID = 1857446570390400499L;
 
-	@Inject
-	private Bean<CollectiefVerlof> collectiefVerlof_bean;
+//	@Inject
+//	private Bean<CollectiefVerlof> collectiefVerlof_bean;
 	
-	private CollectiefVerlof collectiefVerlof;
+//	private CollectiefVerlof collectiefVerlof;
 	
 }

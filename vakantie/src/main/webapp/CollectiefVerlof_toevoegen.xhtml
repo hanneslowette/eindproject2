@@ -20,8 +20,7 @@
 					<h:form>
 						<h:panelGrid columns="2">
 							<h:outputLabel for="colverlof_omschrijving" value="Omschrijving:" />
-							<h:inputText id="colverlof_omschrijving"
-								value="#{CollectiefVerlofToevoegenIO.collectiefVerlof.omschrijving}" />
+							<h:inputText id="colverlof_omschrijving" />
 							<h:outputLabel for="colverlof_startdatum" value="(Start) Datum:" />
 							<h:inputText id="colverlof_startdatum" value=""
 								a:placeholder="dd-mm-yyyy">
@@ -30,12 +29,12 @@
 							<h:outputLabel for="colverlof_einddatum" value="Eind Datum:" />
 							<h:inputText id="colverlof_einddatum" value=""
 								a:placeholder="dd-mm-yyyy">
-								<f:convertDateTime pattern="dd-MM-yyyy" />
+													<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:outputLabel for="colverlof_terugkerend"
 								value="Jaarlijks terugkerend:" />
 							<h:selectBooleanCheckbox id="colverlof_terugkerend"
-								value="#{user.rememberMe}" />
+								value="" />
 							<h:commandButton styleClass="buttonStyle" value="Submit" />
 						</h:panelGrid>
 					</h:form>

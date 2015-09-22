@@ -29,12 +29,12 @@
 							<h:outputLabel for="colverlof_einddatum" value="Eind Datum:" />
 							<h:inputText id="colverlof_einddatum" value=""
 								a:placeholder="dd-mm-yyyy">
-													<f:convertDateTime pattern="dd-MM-yyyy" />
+								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:outputLabel for="colverlof_terugkerend"
 								value="Jaarlijks terugkerend:" />
 							<h:selectBooleanCheckbox id="colverlof_terugkerend"
-								value="" />
+								value="CollectiefVerlofToevoegenIO.collectiefVerlof.terugkerend" />
 							<h:commandButton styleClass="buttonStyle" value="Submit" />
 						</h:panelGrid>
 					</h:form>

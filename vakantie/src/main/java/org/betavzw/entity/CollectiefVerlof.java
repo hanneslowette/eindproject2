@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 @Entity
 public class CollectiefVerlof extends CollectieveSluiting {
 	
+	private static final long serialVersionUID = -1348741390310980710L;
+
 	private LocalDate eindDatum;
 
 	public LocalDate getEindDatum() {

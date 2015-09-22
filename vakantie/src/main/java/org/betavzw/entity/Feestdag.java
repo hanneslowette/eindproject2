@@ -10,4 +10,6 @@ import javax.persistence.Entity;
 @Entity
 public class Feestdag extends CollectieveSluiting {
 
+	private static final long serialVersionUID = -6298631620291534340L;
+
 }

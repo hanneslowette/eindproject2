@@ -25,6 +25,14 @@
 					<h:commandButton styleClass="buttonStyle" value="Team toevoegen"
 						action="team_toevoegen"></h:commandButton>
 				</c:if>
+				
+				
+				<c:if test="#{login.clearance > 1}">
+					<h:commandButton styleClass="buttonStyle"
+						value="Team opvragen" action="team_opvragen"></h:commandButton>
+				</c:if>
+				
+				
 				<c:if test="#{login.clearance > 0}">
 					<h:commandButton styleClass="buttonStyle" value="Verlof aanvragen"
 						action="verlofaanvraag"></h:commandButton>
@@ -34,10 +42,6 @@
 						value="Verlof overzien" action="verlofaanvraagoverzicht"></h:commandButton>
 				</c:if>
 				
-				<c:if test="#{login.clearance > 1}">
-					<h:commandButton styleClass="buttonStyle"
-						value="Team opvragen" action="team_opvragen"></h:commandButton>
-				</c:if>
 				
 				
 				<c:if test="#{login.clearance > 1}">

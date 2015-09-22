@@ -11,8 +11,9 @@
 </h:head>
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
+		<ui:define name="title">Overzicht verlofaanvragen</ui:define>
 		<ui:define name="content">
-			<h1>Verlofaanvraagoverzicht</h1>
+			<h1>Overzicht verlofaanvragen</h1>
 			<c:choose>
 				<c:when test="#{login.clearance > 0}">
 					<h:form>

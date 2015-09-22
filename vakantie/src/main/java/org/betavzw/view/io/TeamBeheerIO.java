@@ -90,7 +90,7 @@ public class TeamBeheerIO implements Serializable {
 	 */
 	public String confirm(boolean delete) {
 		if (delete) {
-			if (team.getTeamLeden().isEmpty() && team.getTeamverantwoordelijke() == null) {
+			if (team.getTeamLeden().isEmpty()) {
 				teams.delete(team);
 			}
 			else {

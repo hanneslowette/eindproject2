@@ -63,17 +63,25 @@ public class QueryBuilder {
 				/*
 				 * Voeg de kolom waar de waarde in opgeslagen zit toe
 				 */
-				query_builder.append("o.").append(entry.getKey())
+				query_builder.append("o.").append(entry.getKey());
 				
 				/*
 				 * Strings worden vergeleken met het "LIKE" keyword. De rest wordt vergeleken met het "=" teken
 				 */
-				.append(entry.getValue() instanceof String ? " LIKE " : "= ")
+				if (!(entry.getValue() instanceof Period)) {
+					query_builder.append(entry.getValue() instanceof String ? " LIKE " : "= ");
 				
-				/*
-				 * De variabele naam is de naam van de voorwaarde met een : ervoor
-				 */
-				.append(":").append(formatParameter(entry.getKey()));
+					/*
+					 * De variabele naam is de naam van de voorwaarde met een : ervoor
+					 */
+					query_builder.append(":").append(formatParameter(entry.getKey()));
+				}
+				else {
+					query_builder.append(" BETWEEN ")
+					.append(":").append(formatParameter(entry.getKey())).append("_start")
+					.append(" AND ")
+					.append(":").append(formatParameter(entry.getKey())).append("_end");
+				}
 				
 				/*
 				 * Als er nog andere voorwaarden volgen, worden deze gescheiden met het "AND" keyword
@@ -131,10 +139,19 @@ public class QueryBuilder {
 		for (Iterator<Entry<String, Object>> iterator = filters.entrySet().iterator(); iterator.hasNext(); ) {
 			Entry<String, Object> entry = iterator.next();
 			
-			/*
-			 * Vul de waarde van de parameter in
-			 */
-			query.setParameter(formatParameter(entry.getKey()), entry.getValue());
+			if (entry.getValue() instanceof Period) {
+				Period period = (Period) entry.getValue();
+				
+				query.setParameter(formatParameter(entry.getKey()) + "_start", period.getStart());
+				query.setParameter(formatParameter(entry.getKey()) + "_end", period.getEnd());
+			}
+			
+			else {
+				/*
+				 * Vul de waarde van de parameter in
+				 */
+				query.setParameter(formatParameter(entry.getKey()), entry.getValue());
+			}
 		}
 
 		/*

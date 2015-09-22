@@ -14,24 +14,26 @@ public class Credentials {
 	/**
 	 * Primary key
 	 */
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Id private int id;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	private int id;
+
 	/**
 	 * De gebruikersnaam van de gebruiker
 	 */
 	private String username;
-	
+
 	/**
 	 * Het wachtwoord van de gebruiker
 	 */
 	private String password;
-	
+
 	/**
 	 * De werknemer voor deze credentials
 	 */
-	@OneToOne private Werknemer werknemer;
-	
+	@OneToOne
+	private Werknemer werknemer;
+
 	/**
 	 * Het type van de accounts
 	 */

@@ -16,7 +16,7 @@ public class LoginBean implements Serializable {
 	 * De versie id van het geserialiseerd object
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * Het type van account
 	 */
@@ -26,7 +26,7 @@ public class LoginBean implements Serializable {
 	 * De aangemelde werknemer
 	 */
 	private Werknemer werknemer;
-	
+
 	/**
 	 * Laat zien of de gebruiker is aangemeld of niet
 	 */
@@ -43,7 +43,7 @@ public class LoginBean implements Serializable {
 	public AccountType getType() {
 		return type;
 	}
-	
+
 	public void setType(AccountType type) {
 		this.type = type;
 	}
@@ -55,9 +55,9 @@ public class LoginBean implements Serializable {
 	public void setAangemeld(boolean aangemeld) {
 		this.aangemeld = aangemeld;
 	}
-	
-	public int getClearance(){
-		if (type==null) {
+
+	public int getClearance() {
+		if (type == null) {
 			return 0;
 		}
 		return type.ordinal();

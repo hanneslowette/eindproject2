@@ -45,9 +45,9 @@
 							action="login"></h:commandButton>
 					</c:when>
 					<c:otherwise>
-						<h:outputText>U bent ingelod als #{login_view.username}</h:outputText>
+						<h:outputText value="U bent ingelogd als #{login_view.username}"></h:outputText>
 						<h:commandButton styleClass="buttonStyle" value="Log out"
-							action="#{login_view.afmelden}"></h:commandButton>
+							action="#{login_view.afmelden}" immediate="true"></h:commandButton>
 						<h:commandButton styleClass="buttonStyle" value="Switch user"
 							action="login"></h:commandButton>
 					</c:otherwise>

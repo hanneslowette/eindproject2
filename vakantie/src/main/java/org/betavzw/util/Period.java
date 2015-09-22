@@ -30,7 +30,8 @@ public class Period {
 	}
 
 	public boolean overlaptStommeDatum(org.betavzw.util.Period period) {
-		return true;
+		// i1.endTime.before(i2.beginTime) || i1.beginTime.after(i2.endTime);
+		return end.before(period.start) || start.after(period.end);
 	}
 
 	// Tip: van start1.before(end2) && start2.before(end1);

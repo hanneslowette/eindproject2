@@ -33,6 +33,13 @@
 					<h:commandButton styleClass="buttonStyle"
 						value="Verlof overzien" action="verlofaanvraagoverzicht"></h:commandButton>
 				</c:if>
+				
+				<c:if test="#{login.clearance > 1}">
+					<h:commandButton styleClass="buttonStyle"
+						value="Team opvragen" action="team_opvragen"></h:commandButton>
+				</c:if>
+				
+				
 				<c:if test="#{login.clearance > 1}">
 					<h:commandButton styleClass="buttonStyle" value="Verlof keuren"
 						action="verlofaanvraagkeuren"></h:commandButton>

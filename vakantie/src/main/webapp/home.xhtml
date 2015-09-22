@@ -13,18 +13,18 @@
 		<ui:define name="title">Home</ui:define>
 		<ui:define name="content">
 			<h1>Home</h1>
-			<h:form>
+			<h:form id="homeform">
 				<c:if test="#{login.clearance > 2}">
-					<h:commandButton styleClass="buttonStyle"
+					<h:commandButton id="werknemerToevoegen" styleClass="buttonStyle"
 						value="Werknemer toevoegen" action="werknemerToevoegen"></h:commandButton>
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
-					<h:commandButton styleClass="buttonStyle"
+					<h:commandButton id="werknemerOpvragen" styleClass="buttonStyle"
 						value="Werknemer opvragen" action="werknemerOpvragen"></h:commandButton>
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
-					<h:commandButton styleClass="buttonStyle" value="Team toevoegen"
-						action="team_toevoegen"></h:commandButton>
+					<h:commandButton id="team_toevoegen" styleClass="buttonStyle"
+						value="Team toevoegen" action="team_toevoegen"></h:commandButton>
 				</c:if>
 				<c:if test="#{login.clearance > 1}">
 					<h:commandButton styleClass="buttonStyle" value="Team opvragen"
@@ -39,8 +39,8 @@
 						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht"></h:commandButton>
 				</c:if>
 				<c:if test="#{login.clearance > 1}">
-					<h:commandButton styleClass="buttonStyle" value="Verlofaanvragen keuren"
-						action="verlofaanvraagkeuren"></h:commandButton>
+					<h:commandButton styleClass="buttonStyle"
+						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren"></h:commandButton>
 				</c:if>
 				<br />
 				<br />

@@ -12,11 +12,6 @@ import org.betavzw.util.QueryBuilder;
 @ApplicationScoped
 public class CredentialsBean extends AbstractBean<Credentials> {
 
-	/**
-	 * De entity manager
-	 */
-	@PersistenceContext private EntityManager manager;
-
 	@Override
 	public List<Credentials> get(QueryBuilder builder) {
 		return builder.build(super.getEntityManager(), Credentials.class).getResultList();

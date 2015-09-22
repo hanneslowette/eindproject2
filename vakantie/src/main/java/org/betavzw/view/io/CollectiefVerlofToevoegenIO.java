@@ -20,8 +20,8 @@ public class CollectiefVerlofToevoegenIO implements Serializable {
 	// @Inject
 	// private Bean<Werknemer> werknemer_bean;
 
-//	@Inject
-	private Bean<CollectieveSluiting> collectiefVerlof_bean;
+	@Inject
+	private Bean<Feestdag> collectiefVerlof_bean;
 
 	private CollectiefVerlof collectiefVerlof;
 	private Feestdag feestdag;
@@ -42,13 +42,13 @@ public class CollectiefVerlofToevoegenIO implements Serializable {
 		this.collectiefVerlof = collectiefVerlof;
 	}
 
-//	public Bean<Feestdag> getCollectiefVerlof_bean() {
-//		return collectiefVerlof_bean;
-//	}
-//
-//	public void setCollectiefVerlof_bean(Bean<Feestdag> collectiefVerlof_bean) {
-//		this.collectiefVerlof_bean = collectiefVerlof_bean;
-//	}
+	public Bean<Feestdag> getCollectiefVerlof_bean() {
+		return collectiefVerlof_bean;
+	}
+
+	public void setCollectiefVerlof_bean(Bean<Feestdag> collectiefVerlof_bean) {
+		this.collectiefVerlof_bean = collectiefVerlof_bean;
+	}
 
 	// public Bean<CollectieveSluiting> getCollectiefVerlof_bean() {
 	// return collectiefVerlof_bean;

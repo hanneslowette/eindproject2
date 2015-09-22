@@ -16,7 +16,11 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.WerknemerDAO;
-
+/**
+ * 
+ * @author user107
+ *
+ */
 @Named
 @SessionScoped
 public class WerknemerToevoegenIO implements Serializable{

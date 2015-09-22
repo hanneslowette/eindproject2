@@ -17,5 +17,18 @@
 		
 		<h:commandButton styleClass="buttonStyle" action="#{date.syso}"></h:commandButton>
 	</h:form>
+	
+	<br/>
+	<br/>
+	<br/>
+	<h:form>
+	To:
+	<h:inputText value="#{blabla.to}"></h:inputText><br/>
+	Subject:
+	<h:inputText value="#{blabla.subject}"></h:inputText><br/>
+	Body:<br/>
+	<h:inputTextarea value="#{blabla.body}"></h:inputTextarea><br/>
+	<h:commandButton value="Send" aciton="#{blabla.send}"></h:commandButton>
+	</h:form>
 </body>
 </html>

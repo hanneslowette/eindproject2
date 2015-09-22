@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.view.bean.Bean;
+import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraagKeuren")
 @SessionScoped
@@ -20,11 +21,13 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	private LoginBean loginbean;
 	/**
 	 * De bean die verantwoordelijk is voor verlofaanvragen
 	 */
 	@Inject
-	private Bean<VerlofAanvraag> bean;
+	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 
 	private String keuring;
 
@@ -42,7 +45,7 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		verlofAanvragen = bean.get();
+		verlofAanvragen = verlofAanvraag_bean.get();
 		return verlofAanvragen;
 	}
 

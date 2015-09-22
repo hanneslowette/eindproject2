@@ -29,22 +29,25 @@
 							<h:column>
 								<f:facet name="header">Aanvraagdatum</f:facet>
 								<h:outputText value="#{tmp.aanvraagDatum}">
-									<f:converter converterId="extendedDateTimeConverter" />
-									<f:attribute name="pattern" value="dd/MM/yyyy" />
+									<f:converter converterId="extendedDateTimeConverter">
+										<f:attribute name="pattern" value="dd-MM-yyyy" />
+									</f:converter>
 								</h:outputText>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Startdatum</f:facet>
 								<h:outputText value="#{tmp.startDatum}">
-									<f:converter converterId="extendedDateTimeConverter" />
-									<f:attribute name="pattern" value="dd-MM-yyyy" />
+									<f:converter converterId="extendedDateTimeConverter">
+										<f:attribute name="pattern" value="dd-MM-yyyy" />
+									</f:converter>
 								</h:outputText>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Einddatum</f:facet>
 								<h:outputText value="#{tmp.eindDatum}">
-									<f:converter converterId="extendedDateTimeConverter" />
-									<f:attribute name="pattern" value="dd-MM-yyyy" />
+									<f:converter converterId="extendedDateTimeConverter">
+										<f:attribute name="pattern" value="dd-MM-yyyy" />
+									</f:converter>
 								</h:outputText>
 							</h:column>
 							<h:column>

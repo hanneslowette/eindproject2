@@ -9,7 +9,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.util.Filter;
 import org.betavzw.view.bean.Bean;
+import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraagOverzicht")
 @SessionScoped
@@ -20,13 +22,21 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+	private LoginBean loginbean;
+
 	/**
 	 * De bean die verantwoordelijk is voor verlofaanvragen
 	 */
 	@Inject
-	private Bean<VerlofAanvraag> bean;
+	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 
 	private String keuring;
+
+	/**
+	 * De opgevraagde lijst met verlofaanvragen
+	 */
+	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 
 	public String getKeuring() {
 		return keuring;
@@ -36,13 +46,10 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		this.keuring = keuring;
 	}
 
-	/**
-	 * De opgevraagde lijst met verlofaanvragen
-	 */
-	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
-
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		verlofAanvragen = bean.get();
+		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+				"werknemer_personeelsNr", loginbean.getWerknemer()
+						.getPersoneelsNr()));
 		return verlofAanvragen;
 	}
 
@@ -53,17 +60,9 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Verstuur" klikt in de view
 	 */
+	public String cancel() {
+//		verlofAanvraag_bean.update(entity);
 
-	public String update() {
-		if (keuring.equalsIgnoreCase("accept")) {
-
-		} else if (keuring.equalsIgnoreCase("reject")) {
-
-		} else if (keuring.equalsIgnoreCase("cancel")) {
-
-		}
-		// TODO: toestand updaten bij juist DataTable Column entiteit van
-		// verlofaanvraag
 		return null;
 	}
 

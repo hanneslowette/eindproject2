@@ -8,6 +8,11 @@ public interface View {
 	public static final String HOME = "home";
 
 	/**
+	 * View voor gebruiker om in te loggen
+	 */
+	public static final String LOGIN = "login";
+
+	/**
 	 * View om een team op te vragen
 	 */
 	public static final String TEAM_OPVRAGEN = "team_opvragen";

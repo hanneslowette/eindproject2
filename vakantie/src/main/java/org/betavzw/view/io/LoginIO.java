@@ -3,6 +3,7 @@ package org.betavzw.view.io;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -48,17 +49,29 @@ public class LoginIO implements Serializable {
 	 * @return null
 	 */
 	public String inloggen() {
-		try {
-			Credentials credentials = credential_bean.getSingle(new Filter(
-					"username", username), new Filter("password", password));
-
-			login.setType(credentials.getType());
-			login.setWerknemer(credentials.getWerknemer());
-			login.setAangemeld(true);
-			return View.VERSTUURD;
-		} catch (Exception ex) {
-			System.out.println("PROBLEEM?????");
-			System.out.println(ex);
+		if (!password.equals("") && !username.equals("")) {
+			try {
+				Credentials credentials = credential_bean
+						.getSingle(new Filter("username", username),
+								new Filter("password", password));
+				login.setType(credentials.getType());
+				login.setWerknemer(credentials.getWerknemer());
+				login.setAangemeld(true);
+				return View.VERSTUURD;
+			} catch (Exception ex) {
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				facesContext.addMessage("", new FacesMessage(
+						"Username of password niet gevonden"));
+				System.out
+						.println("PROBLEEM??? Username of password niet gevonden in database");
+				System.out.println(ex);
+				return null;
+			}
+			// }
+		} else {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			facesContext.addMessage("", new FacesMessage(
+					"Gelieve username en password in te voeren"));
 			return null;
 		}
 	}

@@ -124,17 +124,29 @@ public class LoadDummyData_Main {
 		credentialsYannick.setType(AccountType.ADMINISTRATOR);
 		credentialsYannick.setWerknemer(yannick);
 
-		VerlofAanvraag verlofAanvraagYannick = new VerlofAanvraag();
+		VerlofAanvraag verlofAanvraagYannick1 = new VerlofAanvraag();
 		date = LocalDate.parse("1995-apr-05", formatter);
-		verlofAanvraagYannick.setStartDatum(date);
+		verlofAanvraagYannick1.setStartDatum(date);
 		date = LocalDate.parse("1995-apr-15", formatter);
-		verlofAanvraagYannick.setEindDatum(date);
-		verlofAanvraagYannick.setWerknemer(yannick);
+		verlofAanvraagYannick1.setEindDatum(date);
+		date = LocalDate.parse("1995-apr-10", formatter);
+		verlofAanvraagYannick1.setAanvraagDatum(date);
+		verlofAanvraagYannick1.setWerknemer(yannick);
+
+		VerlofAanvraag verlofAanvraagYannick2 = new VerlofAanvraag();
+		date = LocalDate.parse("2003-dec-12", formatter);
+		verlofAanvraagYannick2.setStartDatum(date);
+		date = LocalDate.parse("2003-dec-20", formatter);
+		verlofAanvraagYannick2.setEindDatum(date);
+		date = LocalDate.parse("2003-dec-29", formatter);
+		verlofAanvraagYannick2.setAanvraagDatum(date);
+		verlofAanvraagYannick2.setWerknemer(yannick);
 
 		em.persist(yannick);
 		em.persist(adresYannick);
 		em.persist(credentialsYannick);
-		em.persist(verlofAanvraagYannick);
+		em.persist(verlofAanvraagYannick1);
+		em.persist(verlofAanvraagYannick2);
 
 		Werknemer brent = new Werknemer();
 		brent.setNaam("Courtois");

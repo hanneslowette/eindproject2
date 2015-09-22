@@ -31,6 +31,11 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 
 	private String keuring;
 
+	/**
+	 * De opgevraagde lijst met verlofaanvragen
+	 */
+	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
+
 	public String getKeuring() {
 		return keuring;
 	}
@@ -39,24 +44,18 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 		this.keuring = keuring;
 	}
 
-	/**
-	 * De opgevraagde lijst met verlofaanvragen
-	 */
-	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
-
 	public List<VerlofAanvraag> getVerlofAanvragen() {
 		verlofAanvragen = verlofAanvraag_bean.get();
 		return verlofAanvragen;
 	}
 
-	public void setVerlofPeriodes(List<VerlofAanvraag> verlofAanvragen) {
-		this.verlofAanvragen = verlofAanvragen;
+	public void setVerlofPeriodes() {
+		this.verlofAanvragen = verlofAanvraag_bean.get();
 	}
 
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Verstuur" klikt in de view
 	 */
-
 	public String update() {
 		if (keuring.equalsIgnoreCase("accept")) {
 

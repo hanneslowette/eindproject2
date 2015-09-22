@@ -31,38 +31,32 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	@Inject
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 
-	private String keuring;
-
 	/**
 	 * De opgevraagde lijst met verlofaanvragen
 	 */
 	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 
-	public String getKeuring() {
-		return keuring;
-	}
-
-	public void setKeuring(String keuring) {
-		this.keuring = keuring;
-	}
-
 	public List<VerlofAanvraag> getVerlofAanvragen() {
 		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"werknemer_personeelsNr", loginbean.getWerknemer()
+				"werknemer.personeelsNr", loginbean.getWerknemer()
 						.getPersoneelsNr()));
 		return verlofAanvragen;
 	}
 
-	public void setVerlofPeriodes(List<VerlofAanvraag> verlofAanvragen) {
-		this.verlofAanvragen = verlofAanvragen;
+	public void setVerlofPeriodes() {
+		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+				"werknemer.personeelsNr", loginbean.getWerknemer()
+						.getPersoneelsNr()));
 	}
 
 	/**
-	 * De actie die gebeurt wanneer de gebruiker op "Verstuur" klikt in de view
+	 * De actie die gebeurt wanneer de gebruiker op "Cancel" klikt in de view
 	 */
 	public String cancel() {
-//		verlofAanvraag_bean.update(entity);
-
+		// VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
+		// .getSingle(new Filter("", value));
+		// verlofAanvraag.setToestand(Toestand.CANCELED);
+		// verlofAanvraag_bean.update(verlofAanvraag);
 		return null;
 	}
 

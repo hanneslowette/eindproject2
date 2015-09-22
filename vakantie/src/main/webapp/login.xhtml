@@ -8,22 +8,22 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Verlof aanvragen</title>
+	<title>Inloggen</title>
 </h:head>
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="content">
-			<h1>Aanmelden</h1>
-			<h:form id="loginform">
+			<h1>Inloggen</h1>
+			<h:form>
 				<h:panelGrid columns="2">
 					<h:outputLabel for="txtUsername" value="Username: "></h:outputLabel>
 					<h:inputText id="txtUsername" value="#{login_view.username}"
 						a:placeholder="username"></h:inputText>
 					<h:outputLabel for="txtPassword" value="Password: "></h:outputLabel>
 					<h:inputSecret id="txtPassword" value="#{login_view.password}"
-						a:placeholder="*****"></h:inputSecret>
-					<br />
-					<h:commandButton styleClass="buttonStyle" value="Aanmelden" action="#{login_view.aanmelden}" id="submitButton"></h:commandButton>
+						a:placeholder="******"></h:inputSecret>
+					<h:commandButton styleClass="buttonStyle" value="Inloggen"
+						action="#{login_view.inloggen}" id="submitButton"></h:commandButton>
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

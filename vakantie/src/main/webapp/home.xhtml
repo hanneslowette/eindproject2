@@ -41,15 +41,15 @@
 				<br />
 				<c:choose>
 					<c:when test="#{empty login_view.username}">
-						<h:commandButton styleClass="buttonStyle" value="Log in"
+						<h:commandButton styleClass="buttonStyle" value="Inloggen"
 							action="login"></h:commandButton>
 					</c:when>
 					<c:otherwise>
 						<h:outputText value="U bent ingelogd als #{login_view.username}"></h:outputText>
-						<h:commandButton styleClass="buttonStyle" value="Log out"
-							action="#{login_view.afmelden}" immediate="true"></h:commandButton>
-						<h:commandButton styleClass="buttonStyle" value="Switch user"
-							action="login"></h:commandButton>
+						<h:commandButton styleClass="buttonStyle" value="Uitloggen"
+							action="#{login_view.uitloggen}" immediate="true"></h:commandButton>
+						<h:commandButton styleClass="buttonStyle"
+							value="Verander gebruiker" action="login"></h:commandButton>
 					</c:otherwise>
 				</c:choose>
 			</h:form>

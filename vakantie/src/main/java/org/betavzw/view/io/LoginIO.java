@@ -3,8 +3,10 @@ package org.betavzw.view.io;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
@@ -41,10 +43,11 @@ public class LoginIO implements Serializable {
 	private String password;
 
 	/**
+	 * Meld de gebruiker aan
 	 * 
-	 * 
+	 * @return null
 	 */
-	public String aanmelden() {
+	public String inloggen() {
 		try {
 			Credentials credentials = credential_bean.getSingle(new Filter(
 					"username", username), new Filter("password", password));
@@ -60,12 +63,27 @@ public class LoginIO implements Serializable {
 		}
 	}
 
-	public String afmelden() {
-
+	/**
+	 * Meld de gebruiker af en geeft dezelfde pagina weer
+	 * 
+	 * @return null
+	 */
+	public String uitloggen() {
 		login.setType(null);
 		username = null;
-
 		return null;
+	}
+
+	/**
+	 * Meld de gebruiker af en gaat naar de loginpagina
+	 * 
+	 * @return "login"
+	 */
+	public String uitloggen2() {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		session.invalidate();
+		return "login";
 	}
 
 	public String getUsername() {
@@ -82,10 +100,6 @@ public class LoginIO implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

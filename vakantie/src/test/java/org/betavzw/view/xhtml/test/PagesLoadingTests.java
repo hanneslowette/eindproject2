@@ -43,9 +43,7 @@ public class PagesLoadingTests {
 
 	@Test
 	public void test() {
-		
-		System.out.println(driver.getPageSource());
-		
+				
 		driver.findElement(By.xpath("//input[@name='homeform:werknemerToevoegen']"));
 		driver.findElement(By.xpath("//input[@name='homeform:werknemerOpvragen']"));
 		driver.findElement(By.xpath("//input[@name='homeform:team_toevoegen']"));

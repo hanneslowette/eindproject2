@@ -157,6 +157,7 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		return null;
 	}
 
+	// TODO: functie aanpassen
 	/**
 	 * Toont cancel-knop
 	 */

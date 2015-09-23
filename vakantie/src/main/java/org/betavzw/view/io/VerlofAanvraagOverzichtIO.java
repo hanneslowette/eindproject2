@@ -26,16 +26,6 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int id;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	@Inject
 	private LoginBean loginbean;
 
@@ -113,7 +103,7 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Cancel" klikt in de view
 	 */
-	public String cancel() {
+	public String cancel(int id) {
 		VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
 				.getSingle(new Filter("id", id));
 		// VerlofAanvraag verlofAanvraag = verlofAanvragen.get(Integer
@@ -122,5 +112,4 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		verlofAanvraag_bean.update(verlofAanvraag);
 		return null;
 	}
-
 }

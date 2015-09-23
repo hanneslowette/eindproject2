@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.util.Filter;
 import org.betavzw.util.Mail;
@@ -26,6 +27,7 @@ import org.betavzw.util.Toestand;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
+import org.betavzw.view.bean.JaarlijksVerlofBean;
 import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraag")
@@ -38,6 +40,8 @@ public class VerlofAanvraagIO implements Serializable {
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 	@Inject
 	private LoginBean loginbean;
+	@Inject
+	private JaarlijksVerlofBean jaarbean;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld startdatum moet ingevuld zijn")
@@ -69,14 +73,14 @@ public class VerlofAanvraagIO implements Serializable {
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
 			return View.VERLOFAANVRAAG;
 		}
-		 if (isOverlappend()) {
-		 facesContext
-		 .addMessage(
-		 "",
-		 new FacesMessage(
-		 "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
-		 return View.VERLOFAANVRAAG;
-		 }
+		if (isOverlappend()) {
+			facesContext
+					.addMessage(
+							"",
+							new FacesMessage(
+									"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+			return View.VERLOFAANVRAAG;
+		}
 		// if (isGenoegVerlofdagen()) {
 		// facesContext
 		// .addMessage(
@@ -123,7 +127,8 @@ public class VerlofAanvraagIO implements Serializable {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
 		Period tussenperiode = Period.between(aanvraagDatum, start);
-		if (tussenperiode.getYears()>0||tussenperiode.getMonths()>0||tussenperiode.getDays()>14) {
+		if (tussenperiode.getYears() > 0 || tussenperiode.getMonths() > 0
+				|| tussenperiode.getDays() > 14) {
 			return true;
 		}
 		return false;
@@ -165,10 +170,22 @@ public class VerlofAanvraagIO implements Serializable {
 
 	/**
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
+	 * Deze werkt mogelijk nog niet
 	 */
 	public boolean isGenoegVerlofdagen() {
-		
-		return false;
+		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		LocalDate eind = eindDatum.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		Period periode = Period.between(start, eind);
+		int aanvraagdagen = periode.getYears() * 365 + periode.getMonths() * 30
+				+ periode.getDays();
+		if (aanvraagdagen > (jaarbean.getSingle(new Filter(
+				"werknemer.personeelNr", String.valueOf(loginbean
+						.getWerknemer().getPersoneelsNr()))).getAantalDagen())) {
+			return false;
+		}
+		return true;
 	}
 
 	public LocalDate getAanvraagDatum() {

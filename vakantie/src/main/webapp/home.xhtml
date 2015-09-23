@@ -38,7 +38,7 @@
 					<h:commandButton id="verlofaanvraagoverzicht" styleClass="buttonStyle"
 						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht" />
 				</c:if>
-				<c:if test="#{login.clearance == 2 || login.clearance > 3}">
+				<c:if test="#{login.clearance == 2}">
 					<h:commandButton id="verlofaanvraagkeuren" styleClass="buttonStyle"
 						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren" />
 				</c:if>

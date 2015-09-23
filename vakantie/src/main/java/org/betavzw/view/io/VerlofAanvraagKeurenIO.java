@@ -14,6 +14,7 @@ import javax.inject.Named;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
+import org.betavzw.util.Toestand;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.LoginBean;
 
@@ -133,23 +134,35 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 		this.keuring = keuring;
 	}
 
+	// TODO: toestand updaten bij juist DataTable Column entiteit van
+	// verlofaanvraag
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Update" klikt in de view
 	 */
-	public String update() {
-		if (keuring.equalsIgnoreCase("accept")) {
-			// VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
-			// .getSingle(new Filter("id", Integer.parseInt(id)));
-			// verlofAanvraag.setToestand(Toestand.CANCELED);
-			// verlofAanvraag_bean.update(verlofAanvraag);
-			// return null;
-		} else if (keuring.equalsIgnoreCase("reject")) {
-
-		} else if (keuring.equalsIgnoreCase("cancel")) {
-
+	public String update(String id) {
+		if (keuring != null) {
+			if (keuring.equalsIgnoreCase("accept")) {
+				VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
+						.getSingle(new Filter("id", Integer.parseInt(id)));
+				verlofAanvraag.setToestand(Toestand.ACCEPTED);
+				verlofAanvraag_bean.update(verlofAanvraag);
+				return null;
+			} else if (keuring.equalsIgnoreCase("reject")) {
+				VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
+						.getSingle(new Filter("id", Integer.parseInt(id)));
+				verlofAanvraag.setToestand(Toestand.REJECTED);
+				verlofAanvraag_bean.update(verlofAanvraag);
+				return null;
+			} else if (keuring.equalsIgnoreCase("cancel")) {
+				VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
+						.getSingle(new Filter("id", Integer.parseInt(id)));
+				verlofAanvraag.setToestand(Toestand.CANCELED);
+				verlofAanvraag_bean.update(verlofAanvraag);
+				return null;
+			}
+		} else {
+			return null;
 		}
-		// TODO: toestand updaten bij juist DataTable Column entiteit van
-		// verlofaanvraag
 		return null;
 	}
 

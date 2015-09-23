@@ -12,7 +12,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.entity.Werknemer;
+import org.betavzw.util.Filter;
 import org.betavzw.view.bean.Bean;
+import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraagKeuren")
 @SessionScoped
@@ -24,10 +27,22 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * De bean die verantwoordelijk is voor login
+	 */
+	@Inject
+	private LoginBean loginbean;
+
+	/**
 	 * De bean die verantwoordelijk is voor verlofaanvragen
 	 */
 	@Inject
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
+
+	/**
+	 * De bean die verantwoordelijk is voor werknemers
+	 */
+	@Inject
+	private Bean<Werknemer> werknemer_bean;
 
 	/**
 	 * De opgevraagde lijst met verlofaanvragen
@@ -37,12 +52,30 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	private String keuring;
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		verlofAanvragen = verlofAanvraag_bean.get();
+		List<Werknemer> werknemers = new ArrayList<Werknemer>();
+		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+				.getWerknemer().getTeam().getId()));
+		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
+				.hasNext();) {
+			Werknemer werknemer = iterator.next();
+			verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		}
 		return verlofAanvragen;
 	}
 
 	public void setVerlofPeriodes() {
-		this.verlofAanvragen = verlofAanvraag_bean.get();
+		List<Werknemer> werknemers = new ArrayList<Werknemer>();
+		List<VerlofAanvraag> verlofAanvragenTeam = new ArrayList<VerlofAanvraag>();
+		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+				.getWerknemer().getTeam().getId()));
+		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
+				.hasNext();) {
+			Werknemer werknemer = iterator.next();
+			verlofAanvragenTeam = verlofAanvraag_bean.get(new Filter(
+					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		}
+		this.verlofAanvragen = verlofAanvragenTeam;
 	}
 
 	/**
@@ -105,7 +138,11 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	 */
 	public String update() {
 		if (keuring.equalsIgnoreCase("accept")) {
-
+			// VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
+			// .getSingle(new Filter("id", Integer.parseInt(id)));
+			// verlofAanvraag.setToestand(Toestand.CANCELED);
+			// verlofAanvraag_bean.update(verlofAanvraag);
+			// return null;
 		} else if (keuring.equalsIgnoreCase("reject")) {
 
 		} else if (keuring.equalsIgnoreCase("cancel")) {

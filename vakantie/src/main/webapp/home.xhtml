@@ -12,7 +12,7 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="title">Home</ui:define>
 		<ui:define name="content">
-			<h1>Home</h1>/
+			<h1>Home</h1>
 			<h:form id="homeform">
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton id="werknemerToevoegen" styleClass="buttonStyle"
@@ -27,19 +27,19 @@
 						value="Team toevoegen" action="team_toevoegen" />
 				</c:if>
 				<c:if test="#{login.clearance > 1}">
-					<h:commandButton styleClass="buttonStyle" value="Team opvragen"
+					<h:commandButton id="team_opvragen" styleClass="buttonStyle" value="Team opvragen"
 						action="team_opvragen" />
 				</c:if>
 				<c:if test="#{login.clearance > 0}">
-					<h:commandButton styleClass="buttonStyle" value="Verlof aanvragen"
+					<h:commandButton id="verlofaanvraag" styleClass="buttonStyle" value="Verlof aanvragen"
 						action="verlofaanvraag" />
 				</c:if>
 				<c:if test="#{login.clearance > 0}">
-					<h:commandButton styleClass="buttonStyle"
+					<h:commandButton id="verlofaanvraagoverzicht" styleClass="buttonStyle"
 						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht" />
 				</c:if>
 				<c:if test="#{login.clearance == 2 || login.clearance > 3}">
-					<h:commandButton styleClass="buttonStyle"
+					<h:commandButton id="verlofaanvraagkeuren" styleClass="buttonStyle"
 						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren" />
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
@@ -56,8 +56,6 @@
 					</c:when>
 					<c:otherwise>
 						<h:outputText value="U bent ingelogd als #{login_view.username}" />
-						<h:commandButton styleClass="buttonStyle" value="Log uit"
-							action="#{login_view.uitloggen}" immediate="true" />
 						<h:commandButton styleClass="buttonStyle"
 							value="Verander gebruiker" action="login" />
 					</c:otherwise>

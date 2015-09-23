@@ -43,13 +43,16 @@ public class PagesLoadingTests {
 
 	@Test
 	public void test() {
-		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
-//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerOpvragen']"));
-//		driver.findElement(By.xpath("//ipnut[@name='homeform:homeform:team_toevoegen']"));
-//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
-//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
-				
 		
+		System.out.println(driver.getPageSource());
+		
+		driver.findElement(By.xpath("//input[@name='homeform:werknemerToevoegen']"));
+		driver.findElement(By.xpath("//input[@name='homeform:werknemerOpvragen']"));
+		driver.findElement(By.xpath("//input[@name='homeform:team_toevoegen']"));
+		driver.findElement(By.xpath("//input[@name='homeform:team_opvragen']"));
+		driver.findElement(By.xpath("//input[@name='homeform:verlofaanvraag']"));
+		driver.findElement(By.xpath("//input[@name='homeform:verlofaanvraagoverzicht']"));				
+		driver.findElement(By.xpath("//input[@name='homeform:verlofaanvraagkeuren']"));
 		
 	}
 

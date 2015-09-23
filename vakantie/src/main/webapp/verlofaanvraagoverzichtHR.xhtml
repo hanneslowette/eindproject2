@@ -42,6 +42,14 @@
 								<f:facet name="header">Toestand</f:facet>
 								<h:outputText value="#{tmp.toestand}"></h:outputText>
 							</h:column>
+							<h:column>
+								<f:facet name="header">Cancellen</f:facet>
+								<c:if test="#{verlofAanvraagOverzicht.toonCancel(tmp.nummer)}">
+									<h:commandButton value="Cancel"
+										action="#{verlofAanvraagOverzicht.cancel(tmp.id)}">
+									</h:commandButton>
+								</c:if>
+							</h:column>
 						</h:dataTable>
 					</h:form>
 				</c:when>

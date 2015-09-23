@@ -156,4 +156,20 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		verlofAanvraag_bean.update(verlofAanvraag);
 		return null;
 	}
+
+	/**
+	 * Toont cancel-knop
+	 */
+	public boolean toonCancel(String nummer) {
+		boolean cancel = false;
+		for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator(); iterator
+				.hasNext();) {
+			VerlofAanvraag verlofAanvraag = iterator.next();
+			if (loginbean.getWerknemer().getPersoneelsNr() == verlofAanvraag
+					.getWerknemer().getPersoneelsNr()) {
+				cancel = true;
+			}
+		}
+		return cancel;
+	}
 }

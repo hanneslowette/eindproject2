@@ -64,6 +64,7 @@ public class LoginErrorMessagesTests {
 
 	@Test
 	public void wrongPassword_Test() throws InterruptedException {
+		
 		driver.findElement(By.xpath("//input[@name='loginform:txtUsername']"))
 				.sendKeys("Hannes");
 		driver.findElement(By.xpath("//input[@name='loginform:txtPassword']"))
@@ -83,6 +84,7 @@ public class LoginErrorMessagesTests {
 	
 	@Test
 	public void wrongUsername_Test() throws InterruptedException {
+		
 		driver.findElement(By.xpath("//input[@name='loginform:txtUsername']"))
 				.sendKeys("sdfgsqdfgqsdfqsdfqsdf");
 		driver.findElement(By.xpath("//input[@name='loginform:txtPassword']"))

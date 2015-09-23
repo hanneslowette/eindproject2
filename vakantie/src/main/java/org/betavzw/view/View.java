@@ -42,29 +42,30 @@ public interface View {
 	/**
 	 * View om een verlof aan te vragen
 	 */
-	public static final String VERLOFAANVRAGEN = "verlofaanvraag";
+	public static final String VERLOFAANVRAAG = "verlofaanvraag";
 
 	/**
 	 * De view die wordt weergegeven als de gebruiker voor het eerst verlof
-	 * aanvraagt en deze wordt afgekeurd
+	 * aanvraagt en nog niet gekeurd is
+	 */
+	public static final String PENDING = "verlofaanvraagpending";
+
+	/**
+	 * De view die wordt weergegeven als de teamverantwoordelijke een verlof
+	 * afkeurt
 	 */
 	public static final String REJECTED = "verlofaanvraagafgekeurd";
 
 	/**
-	 * De view die wordt weergegeven als de administrator een verlof goedkeurt
+	 * De view die wordt weergegeven als de teamverantwoordelijke een verlof
+	 * goedkeurt
 	 */
 	public static final String ACCEPTED = "verlofaanvraaggoedgekeurd";
 
 	/**
 	 * view om een verlof goed te keuren / af te keuren / cancellen
 	 */
-	public static final String VERLOFGOEDKEUREN = "verlofaanvraagkeuren";
-
-	/**
-	 * De view die wordt weergegeven als de gebruiker voor het eerst verlof
-	 * aanvraagt
-	 */
-	public static final String PENDING = "verlofaanvraagpending";
+	public static final String KEUREN = "verlofaanvraagkeuren";
 
 	/**
 	 * De view die wordt weergegeven als de gebruiker voor het eerst verlof

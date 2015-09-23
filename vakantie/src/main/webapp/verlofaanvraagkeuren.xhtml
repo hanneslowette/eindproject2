@@ -15,7 +15,7 @@
 		<ui:define name="content">
 			<h1>Verlofaanvragen keuren</h1>
 			<c:choose>
-				<c:when test="#{login.clearance > 1}">
+				<c:when test="#{login.clearance == 2 || login.clearance = 4}">
 					<h:form>
 						<h:dataTable
 							rendered="#{not empty verlofAanvraagKeuren.verlofAanvragen}"
@@ -28,27 +28,36 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Aanvraagdatum</f:facet>
-								<h:outputText value="#{tmp.aanvraagDatum}">
-									<f:converter converterId="extendedDateTimeConverter">
-										<f:attribute name="pattern" value="dd/MM/yyyy" />
-									</f:converter>
-								</h:outputText>
+								<h:dataTable value="#{verlofAanvraagKeuren.aanvraagDatums}"
+									var="aanvraagDatum">
+									<h:column>
+										<h:outputText value="#{aanvraagDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</h:column>
+								</h:dataTable>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Startdatum</f:facet>
-								<h:outputText value="#{tmp.startDatum}">
-									<f:converter converterId="extendedDateTimeConverter">
-										<f:attribute name="pattern" value="dd-MM-yyyy" />
-									</f:converter>
-								</h:outputText>
+								<h:dataTable value="#{verlofAanvraagKeuren.startDatums}"
+									var="startDatum">
+									<h:column>
+										<h:outputText value="#{startDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</h:column>
+								</h:dataTable>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Einddatum</f:facet>
-								<h:outputText value="#{tmp.eindDatum}">
-									<f:converter converterId="extendedDateTimeConverter">
-										<f:attribute name="pattern" value="dd-MM-yyyy" />
-									</f:converter>
-								</h:outputText>
+								<h:dataTable value="#{verlofAanvraagKeuren.eindDatums}"
+									var="eindDatum">
+									<h:column>
+										<h:outputText value="#{eindDatum}">
+											<f:convertDateTime pattern="dd-MM-yyyy" />
+										</h:outputText>
+									</h:column>
+								</h:dataTable>
 							</h:column>
 							<h:column>
 								<f:facet name="header">Toestand</f:facet>
@@ -66,7 +75,7 @@
 							<h:column>
 								<f:facet name="header">Updaten</f:facet>
 								<h:commandButton styleClass="buttonStyle" value="Update"
-									action="#{verlofAanvraagKeuren.update}"></h:commandButton>
+									action="#{verlofAanvraagKeuren.update(tmp.id)}"></h:commandButton>
 							</h:column>
 						</h:dataTable>
 					</h:form>

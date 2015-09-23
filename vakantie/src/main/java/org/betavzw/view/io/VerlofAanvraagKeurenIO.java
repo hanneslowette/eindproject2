@@ -12,9 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
-import org.betavzw.util.Filter;
 import org.betavzw.view.bean.Bean;
-import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraagKeuren")
 @SessionScoped

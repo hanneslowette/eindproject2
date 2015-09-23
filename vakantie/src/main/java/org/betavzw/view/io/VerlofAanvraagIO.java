@@ -69,14 +69,14 @@ public class VerlofAanvraagIO implements Serializable {
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
 			return View.VERLOFAANVRAGEN;
 		}
-		// if (isOverlappend()) {
-		// facesContext
-		// .addMessage(
-		// "",
-		// new FacesMessage(
-		// "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
-		// return View.VERLOFAANVRAGEN;
-		// }
+//		 if (isOverlappend()) {
+//		 facesContext
+//		 .addMessage(
+//		 "",
+//		 new FacesMessage(
+//		 "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+//		 return View.VERLOFAANVRAGEN;
+//		 }
 		// if (isGenoegVerlofdagen()) {
 		// facesContext
 		// .addMessage(

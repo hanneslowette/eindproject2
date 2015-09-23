@@ -2,6 +2,8 @@ package org.betavzw.mains;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -53,6 +55,11 @@ public class LoadDummyData_Main {
 		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
 		koen.setGeboortedatum(date);
 
+		Team HR = new Team();
+		HR.setNaam("Human Resources");
+		HR.setCode("HR");
+		em.persist(HR);
+
 		Team teamRed = new Team();
 		teamRed.setNaam("Team Red");
 		// teamRed.setCode("WIN");
@@ -94,7 +101,7 @@ public class LoadDummyData_Main {
 		Credentials credentialsJorik = new Credentials();
 		credentialsJorik.setUsername("Jorik");
 		credentialsJorik.setPassword("Jorik");
-//		credentialsJorik.setType(AccountType.WERKNEMER);
+		// credentialsJorik.setType(AccountType.WERKNEMER);
 		credentialsJorik.setWerknemer(jorik);
 
 		em.persist(jorik);
@@ -120,7 +127,8 @@ public class LoadDummyData_Main {
 		Credentials credentialsYannick = new Credentials();
 		credentialsYannick.setUsername("Yannick");
 		credentialsYannick.setPassword("Yannick");
-//		credentialsYannick.setType(AccountType.ADMINISTRATOR);
+
+		// credentialsYannick.setType(AccountType.ADMINISTRATOR);
 		credentialsYannick.setWerknemer(yannick);
 
 		VerlofAanvraag verlofAanvraagYannick1 = new VerlofAanvraag();
@@ -140,6 +148,13 @@ public class LoadDummyData_Main {
 		date = LocalDate.parse("2003-dec-29", formatter);
 		verlofAanvraagYannick2.setAanvraagDatum(date);
 		verlofAanvraagYannick2.setWerknemer(yannick);
+
+		Set<Werknemer> teamLeden = new HashSet<Werknemer>();
+		teamLeden.add(koen);
+
+		HR.setTeamverantwoordelijke(yannick);
+		HR.setTeamLeden(teamLeden);
+		em.persist(HR);
 
 		em.persist(yannick);
 		em.persist(adresYannick);
@@ -203,7 +218,7 @@ public class LoadDummyData_Main {
 		Credentials credentials = new Credentials();
 		credentials.setUsername("hannes");
 		credentials.setPassword("hannes");
-//		credentials.setType(AccountType.ADMINISTRATOR);
+		// credentials.setType(AccountType.ADMINISTRATOR);
 		credentials.setWerknemer(hannes);
 		em.persist(credentials);
 

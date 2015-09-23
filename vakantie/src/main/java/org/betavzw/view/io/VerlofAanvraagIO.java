@@ -145,7 +145,7 @@ public class VerlofAanvraagIO implements Serializable {
 				sqlInputStartDatum, sqlInputEindDatum);
 		List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"werknemer_personeelsNr", loginbean.getWerknemer()
+				"personeelsNr", loginbean.getWerknemer()
 						.getPersoneelsNr()));
 		List<org.betavzw.util.Period> periodes = new ArrayList<org.betavzw.util.Period>();
 		for (VerlofAanvraag verlofAanvraag : verlofAanvragen) {

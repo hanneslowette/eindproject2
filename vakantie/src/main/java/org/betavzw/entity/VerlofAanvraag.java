@@ -82,7 +82,6 @@ public class VerlofAanvraag {
 	}
 
 	public void setWerknemer(Werknemer werknemer) {
-		werknemer.addVerlofAanvraag(this);
 		this.werknemer = werknemer;
 	}
 

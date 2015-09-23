@@ -7,7 +7,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Overzicht verlofaanvragen</title>
+<!-- 	<title>Overzicht verlofaanvragen</title> -->
 </h:head>
 <h:body>
 	<ui:composition template="./TEMPLATE.xhtml">
@@ -25,39 +25,43 @@
 							<h:column>
 								<f:facet name="header">Personeelsnummer</f:facet>
 								<h:outputText value="#{tmp.werknemer.personeelsNr}"></h:outputText>
+								
 							</h:column>
 							<h:column>
 								<f:facet name="header">Aanvraagdatum</f:facet>
-								<h:dataTable value="#{verlofAanvraagOverzicht.aanvraagDatums}"
-									var="aanvraagDatum">
-									<h:column>
-										<h:outputText value="#{aanvraagDatum}">
-											<f:convertDateTime pattern="dd-MM-yyyy" />
-										</h:outputText>
-									</h:column>
-								</h:dataTable>
+								<h:outputText value="#{tmp.aanvraagDatum}"></h:outputText>
+<!-- 								<h:dataTable value="#{verlofAanvraagOverzicht.aanvraagDatums}" -->
+<!-- 									var="aanvraagDatum"> -->
+<!-- 									<h:column>  -->
+<!-- 										<h:outputText value="#{aanvraagDatum}"> -->
+<!-- 											<f:convertDateTime pattern="dd-MM-yyyy" /> -->
+<!-- 										</h:outputText> -->
+<!--  									</h:column>  -->
+<!-- 								</h:dataTable> -->
 							</h:column>
 							<h:column>
 								<f:facet name="header">Startdatum</f:facet>
-								<h:dataTable value="#{verlofAanvraagOverzicht.startDatums}"
-									var="startDatum">
-									<h:column>
-										<h:outputText value="#{startDatum}">
-											<f:convertDateTime pattern="dd-MM-yyyy" />
-										</h:outputText>
-									</h:column>
-								</h:dataTable>
+								<h:outputText value="#{tmp.startDatum}"></h:outputText>
+<!-- 								<h:dataTable value="#{verlofAanvraagOverzicht.startDatums}" -->
+<!-- 									var="startDatum"> -->
+<!-- 									<h:column> -->
+<!-- 										<h:outputText value="#{startDatum}"> -->
+<!-- 											<f:convertDateTime pattern="dd-MM-yyyy" /> -->
+<!-- 										</h:outputText> -->
+<!-- 									</h:column> -->
+<!-- 								</h:dataTable> -->
 							</h:column>
 							<h:column>
 								<f:facet name="header">Einddatum</f:facet>
-								<h:dataTable value="#{verlofAanvraagOverzicht.eindDatums}"
-									var="eindDatum">
-									<h:column>
-										<h:outputText value="#{eindDatum}">
-											<f:convertDateTime pattern="dd-MM-yyyy" />
-										</h:outputText>
-									</h:column>
-								</h:dataTable>
+								<h:outputText value="#{tmp.eindDatum}"></h:outputText>
+<!-- 								<h:dataTable value="#{verlofAanvraagOverzicht.eindDatums}" -->
+<!-- 									var="eindDatum"> -->
+<!-- 									<h:column> -->
+<!-- 										<h:outputText value="#{eindDatum}"> -->
+<!-- 											<f:convertDateTime pattern="dd-MM-yyyy" /> -->
+<!-- 										</h:outputText> -->
+<!-- 									</h:column> -->
+<!-- 								</h:dataTable> -->
 							</h:column>
 							<h:column>
 								<f:facet name="header">Toestand</f:facet>

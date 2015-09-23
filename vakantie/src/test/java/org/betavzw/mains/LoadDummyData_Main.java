@@ -169,27 +169,27 @@ public class LoadDummyData_Main {
 		
 		Credentials credentialsBrent = new Credentials();
 		credentialsBrent.setUsername("brent");
-		credentialsA.setPassword(DigestUtils.md5Hex("brent"));
+		credentialsBrent.setPassword(DigestUtils.md5Hex("brent"));
 		credentialsBrent.setWerknemer(brent);
 
 		Credentials credentialsKoen = new Credentials();
 		credentialsKoen.setUsername("koen");
-		credentialsA.setPassword(DigestUtils.md5Hex("koen"));
+		credentialsKoen.setPassword(DigestUtils.md5Hex("koen"));
 		credentialsKoen.setWerknemer(koen);
 
 		Credentials credentialsHannes = new Credentials();
 		credentialsHannes.setUsername("hannes");
-		credentialsA.setPassword(DigestUtils.md5Hex("hannes"));
+		credentialsHannes.setPassword(DigestUtils.md5Hex("hannes"));
 		credentialsHannes.setWerknemer(hannes);
 
 		Credentials credentialsThomas = new Credentials();
 		credentialsThomas.setUsername("thomas");
-		credentialsA.setPassword(DigestUtils.md5Hex("thomas"));
+		credentialsThomas.setPassword(DigestUtils.md5Hex("thomas"));
 		credentialsThomas.setWerknemer(thomas);
 
 		Credentials credentialsYannick = new Credentials();
 		credentialsYannick.setUsername("yannick");
-		credentialsA.setPassword(DigestUtils.md5Hex("yannick"));
+		credentialsYannick.setPassword(DigestUtils.md5Hex("yannick"));
 		credentialsYannick.setWerknemer(yannick);
 
 

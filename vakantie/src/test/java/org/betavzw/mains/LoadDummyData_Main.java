@@ -62,12 +62,12 @@ public class LoadDummyData_Main {
 
 		Team teamRed = new Team();
 		teamRed.setNaam("Team Red");
-		// teamRed.setCode("WIN");
+		teamRed.setCode("WIN");
 		em.persist(teamRed);
 
 		Team teamBlue = new Team();
 		teamBlue.setNaam("Team Blue");
-		// teamBlue.setCode("LOSE");
+		teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
 
 		Werknemer thomas = new Werknemer();

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.betavzw.util.Toestand;
@@ -41,6 +42,7 @@ public class VerlofAanvraag {
 	 * De werknemer die deze verlofaanvraag maakt
 	 */
 	@ManyToOne
+	@JoinColumn(name="personeelsNr")
 	private Werknemer werknemer;
 
 	public LocalDate getStartDatum() {

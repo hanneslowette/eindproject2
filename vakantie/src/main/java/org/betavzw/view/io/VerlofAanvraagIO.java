@@ -93,7 +93,9 @@ public class VerlofAanvraagIO implements Serializable {
 		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
 		verlofAanvraag.setToestand(Toestand.PENDING);
 		verlofAanvraag.setWerknemer(loginbean.getWerknemer());
+		System.out.println("pre-offer");
 		verlofAanvraag_bean.offer(verlofAanvraag);
+		System.out.println("post-offer");
 		try {
 			Mail.send("teamredconfirmation", "needabijtnie", loginbean
 					.getWerknemer().getEmail(), "Uw verlofaanvraag",
@@ -120,7 +122,11 @@ public class VerlofAanvraagIO implements Serializable {
 	public boolean isOpTijdAangevraagd() {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
-		Period tussenperiode = Period.between(start, aanvraagDatum);
+		Period tussenperiode = Period.between(aanvraagDatum, start);
+//		System.out.println("tussenperiode:"+tussenperiode);
+//		System.out.println(tussenperiode.getYears());
+//		System.out.println(tussenperiode.getMonths());
+//		System.out.println(tussenperiode.getDays());
 		if (tussenperiode.getYears()>0||tussenperiode.getMonths()>0||tussenperiode.getDays()>14) {
 			return true;
 		}

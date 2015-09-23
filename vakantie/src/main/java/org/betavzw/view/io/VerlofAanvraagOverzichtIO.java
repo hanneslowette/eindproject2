@@ -91,16 +91,12 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	}
 
 	public List<VerlofAanvraag> getVerlofAanvragenHR() {
-		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"werknemer.personeelsNr", loginbean.getWerknemer()
-						.getPersoneelsNr()));
+		verlofAanvragen = verlofAanvraag_bean.get();
 		return verlofAanvragen;
 	}
 
 	public void setVerlofAanvragenHR() {
-		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"werknemer.personeelsNr", loginbean.getWerknemer()
-						.getPersoneelsNr()));
+		this.verlofAanvragen = verlofAanvraag_bean.get();
 	}
 
 	/**

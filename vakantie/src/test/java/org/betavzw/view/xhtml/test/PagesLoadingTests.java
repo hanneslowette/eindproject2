@@ -44,10 +44,10 @@ public class PagesLoadingTests {
 	@Test
 	public void test() {
 		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
-		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerOpvragen']"));
-		driver.findElement(By.xpath("//ipnut[@name='homeform:homeform:team_toevoegen']"));
-		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
-		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
+//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerOpvragen']"));
+//		driver.findElement(By.xpath("//ipnut[@name='homeform:homeform:team_toevoegen']"));
+//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
+//		driver.findElement(By.xpath("//ipnut[@name='homeform:werknemerToevoegen']"));
 				
 		
 		

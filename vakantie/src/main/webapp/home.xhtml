@@ -12,8 +12,8 @@
 	<ui:composition template="./TEMPLATE.xhtml">
 		<ui:define name="title">Home</ui:define>
 		<ui:define name="content">
-			<h1>Home</h1>
-			<h:form id="loginform">
+			<h1>Home</h1>/
+			<h:form id="homeform">
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton id="werknemerToevoegen" styleClass="buttonStyle"
 						value="Werknemer toevoegen" action="werknemerToevoegen" />

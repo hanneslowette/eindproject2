@@ -2,14 +2,13 @@ package org.betavzw.mains;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.betavzw.entity.Adres;
 import org.betavzw.entity.CollectiefVerlof;
 import org.betavzw.entity.Credentials;
@@ -35,26 +34,92 @@ public class LoadDummyData_Main {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 
+		DateTimeFormatter formatter = DateTimeFormatter
+				.ofPattern("yyyy-MMM-dd");
+		
+		/**
+		 * a
+		 */
+		Werknemer a = new Werknemer();
+		a.setNaam("Adams");
+		a.setVoornaam("a");
+		a.setEmail("brentcourtois@gmail.com");
+		Adres aAdres = new Adres("straat", "nummer", "busnummer", "postcode", "gemeente");
+		a.setGeboortedatum(LocalDate.parse("2000-jan-01", formatter));
+		
+		/**
+		 * Brent
+		 */
+		Werknemer brent = new Werknemer();
+		brent.setNaam("Courtois");
+		brent.setVoornaam("Brent");
+		brent.setEmail("brentcourtois@gmail.com");
+		Adres brentAdres = new Adres("Ibisstraat", "19", "3", "2170", "Merksem");
+		brent.setGeboortedatum(LocalDate.parse("1993-jun-19", formatter));
+
+		/**
+		 * Koen
+		 */
 		Werknemer koen = new Werknemer();
 		koen.setNaam("De Voegt");
 		koen.setVoornaam("Koen");
-
-		Adres adres = new Adres();
-		adres.setStraat("Zuidewendelaan");
-		adres.setHuisnummer("7");
-		adres.setBusnummer("");
-		adres.setGemeente("Hoboken");
-		adres.setPostcode("2660");
-
-		em.persist(adres);
-		koen.setAdres(adres);
 		koen.setEmail("koen@devoegt.be");
+		Adres koenAdres = new Adres("Zuidewendelaan", "7", "", "2660",
+				"Hoboken");
+		koen.setGeboortedatum(LocalDate.parse("1980-apr-13", formatter));
 
-		DateTimeFormatter formatter = DateTimeFormatter
-				.ofPattern("yyyy-MMM-dd");
-		LocalDate date = LocalDate.parse("1980-apr-13", formatter);
-		koen.setGeboortedatum(date);
+		/**
+		 * Hannes
+		 */
+		Werknemer hannes = new Werknemer();
+		hannes.setNaam("Lowette");
+		hannes.setVoornaam("Hannes");
+		hannes.setEmail("hanneslowette@live.be");
+		Adres hannesAdres = new Adres("Sesamstraat", "420", "xxx", "6969",
+				"Swagville");
+		hannes.setGeboortedatum(LocalDate.parse("1911-apr-20", formatter));
 
+		/**
+		 * Thomas
+		 */
+		Werknemer thomas = new Werknemer();
+		thomas.setNaam("Verhulst");
+		thomas.setVoornaam("Thomas");
+		thomas.setEmail("thomas@rothbard");
+		Adres thomasAdres = new Adres("Kareloomstraat", "xxx", "aa", "1111",
+				"Geheim");
+		thomas.setGeboortedatum(LocalDate.parse("1985-jan-01", formatter));
+
+		/**
+		 * Yannick
+		 */
+		Werknemer yannick = new Werknemer();
+		yannick.setNaam("Claes");
+		yannick.setVoornaam("Yannick");
+		yannick.setEmail("yannickclaes90@gmail.com");
+		Adres yannickAdres = new Adres("Duwijckstraat", "18", "", "2500",
+				"Lier");
+		yannick.setGeboortedatum(LocalDate.parse("1990-jul-07", formatter));
+
+		/**
+		 * adressen persisten
+		 */
+		a.setAdres(aAdres);
+		em.persist(aAdres);
+		brent.setAdres(brentAdres);
+		em.persist(brentAdres);
+		koen.setAdres(koenAdres);
+		em.persist(koenAdres);
+		hannes.setAdres(hannesAdres);
+		em.persist(hannesAdres);
+		thomas.setAdres(thomasAdres);
+		em.persist(thomasAdres);
+		yannick.setAdres(yannickAdres);
+		em.persist(yannickAdres);
+
+		/**
+		 * teams
+		 */
 		Team HR = new Team();
 		HR.setNaam("Human Resources");
 		HR.setCode("HR");
@@ -69,107 +134,95 @@ public class LoadDummyData_Main {
 		teamBlue.setNaam("Team Blue");
 		teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
-
-		Werknemer thomas = new Werknemer();
-		thomas.setVoornaam("Thomas");
-		em.persist(thomas);
-
-		teamRed.setTeamverantwoordelijke(thomas);
-
-		Werknemer hannes = new Werknemer();
-		hannes.setVoornaam("Hannes");
-		hannes.setNaam("Lowette");
+		
+		/**
+		 * werknemers aan teams toevoegen
+		 */
+		teamRed.addWerknemer(brent);
 		teamRed.addWerknemer(hannes);
-		em.persist(hannes);
+		HR.addWerknemer(thomas);
+		HR.addWerknemer(a);
+		teamBlue.addWerknemer(koen);
+		teamBlue.addWerknemer(yannick);
+		
+		
+		/**
+		 * teamverantwoordelijken
+		 */
+		
+		teamRed.setTeamverantwoordelijke(brent);
+		HR.setTeamverantwoordelijke(thomas);
+		teamBlue.setTeamverantwoordelijke(koen);
+		
+		em.persist(teamRed);
+		em.persist(HR);
+		em.persist(teamBlue);
 
-		Adres adresJorik = new Adres();
-		adresJorik.setStraat("Klaprozenweg");
-		adresJorik.setHuisnummer("53");
-		adresJorik.setBusnummer("b");
-		adresJorik.setGemeente("Hoboken");
-		adresJorik.setPostcode("2660");
+		/**
+		 * credentials
+		 */
+		Credentials credentialsA = new Credentials();
+		credentialsA.setUsername("a");
+		credentialsA.setPassword(DigestUtils.md5Hex("a"));
+		credentialsA.setWerknemer(a);
+		
+		
+		Credentials credentialsBrent = new Credentials();
+		credentialsBrent.setUsername("brent");
+		credentialsA.setPassword(DigestUtils.md5Hex("brent"));
+		credentialsBrent.setWerknemer(brent);
 
-		Werknemer jorik = new Werknemer();
-		jorik.setVoornaam("Jorik");
-		jorik.setNaam("Janssens");
-		date = LocalDate.parse("1985-apr-10", formatter);
-		jorik.setGeboortedatum(date);
-		jorik.setEmail("jorikjanssens@hotmail.com");
-		jorik.setAdres(adresJorik);
-		jorik.setTeam(teamBlue);
+		Credentials credentialsKoen = new Credentials();
+		credentialsKoen.setUsername("koen");
+		credentialsA.setPassword(DigestUtils.md5Hex("koen"));
+		credentialsKoen.setWerknemer(koen);
 
-		Credentials credentialsJorik = new Credentials();
-		credentialsJorik.setUsername("Jorik");
-		credentialsJorik.setPassword("Jorik");
-		// credentialsJorik.setType(AccountType.WERKNEMER);
-		credentialsJorik.setWerknemer(jorik);
+		Credentials credentialsHannes = new Credentials();
+		credentialsHannes.setUsername("hannes");
+		credentialsA.setPassword(DigestUtils.md5Hex("hannes"));
+		credentialsHannes.setWerknemer(hannes);
 
-		em.persist(jorik);
-		em.persist(adresJorik);
-		em.persist(credentialsJorik);
-
-		Adres adresYannick = new Adres();
-		adresYannick.setStraat("Duwijckstraat");
-		adresYannick.setHuisnummer("18");
-		adresYannick.setBusnummer("");
-		adresYannick.setGemeente("Lier");
-		adresYannick.setPostcode("2500");
-
-		Werknemer yannick = new Werknemer();
-		yannick.setVoornaam("Yannick");
-		yannick.setNaam("Claes");
-		date = LocalDate.parse("1990-jul-07", formatter);
-		yannick.setGeboortedatum(date);
-		yannick.setEmail("yannickclaes90@gmail.com");
-		yannick.setAdres(adresYannick);
-		yannick.setTeam(teamRed);
+		Credentials credentialsThomas = new Credentials();
+		credentialsThomas.setUsername("thomas");
+		credentialsA.setPassword(DigestUtils.md5Hex("thomas"));
+		credentialsThomas.setWerknemer(thomas);
 
 		Credentials credentialsYannick = new Credentials();
-		credentialsYannick.setUsername("Yannick");
-		credentialsYannick.setPassword("Yannick");
-
-		// credentialsYannick.setType(AccountType.ADMINISTRATOR);
+		credentialsYannick.setUsername("yannick");
+		credentialsA.setPassword(DigestUtils.md5Hex("yannick"));
 		credentialsYannick.setWerknemer(yannick);
 
-		VerlofAanvraag verlofAanvraagYannick1 = new VerlofAanvraag();
-		date = LocalDate.parse("1995-apr-05", formatter);
-		verlofAanvraagYannick1.setStartDatum(date);
-		date = LocalDate.parse("1995-apr-15", formatter);
-		verlofAanvraagYannick1.setEindDatum(date);
-		date = LocalDate.parse("1995-apr-10", formatter);
-		verlofAanvraagYannick1.setAanvraagDatum(date);
-		verlofAanvraagYannick1.setWerknemer(yannick);
 
-		VerlofAanvraag verlofAanvraagYannick2 = new VerlofAanvraag();
-		date = LocalDate.parse("2003-dec-12", formatter);
-		verlofAanvraagYannick2.setStartDatum(date);
-		date = LocalDate.parse("2003-dec-20", formatter);
-		verlofAanvraagYannick2.setEindDatum(date);
-		date = LocalDate.parse("2003-dec-29", formatter);
-		verlofAanvraagYannick2.setAanvraagDatum(date);
-		verlofAanvraagYannick2.setWerknemer(yannick);
+		/**
+		 * voorbeeld verlofaanvragen
+		 */
+		VerlofAanvraag vaYannick1 = new VerlofAanvraag();
+		vaYannick1.setStartDatum(LocalDate.parse("1995-apr-05",
+				formatter));
+		vaYannick1.setEindDatum(LocalDate.parse("1995-apr-15",
+				formatter));
+		vaYannick1.setAanvraagDatum(LocalDate.parse("1995-apr-10",
+				formatter));
+		vaYannick1.setWerknemer(yannick);
 
-		Set<Werknemer> teamLeden = new HashSet<Werknemer>();
-		teamLeden.add(koen);
+		VerlofAanvraag vaYannick2 = new VerlofAanvraag();
+		vaYannick2.setStartDatum(LocalDate.parse("2003-dec-12",
+				formatter));
+		vaYannick2.setEindDatum(LocalDate.parse("2003-dec-20",
+				formatter));
+		vaYannick2.setAanvraagDatum(LocalDate.parse("2003-dec-29",
+				formatter));
+		vaYannick2.setWerknemer(yannick);
+		
+		VerlofAanvraag va = new VerlofAanvraag();
+		va.setStartDatum(LocalDate.parse("2014-apr-01", formatter));
+		va.setEindDatum(LocalDate.parse("2014-apr-30", formatter));
+		va.setWerknemer(koen);
 
-		HR.setTeamverantwoordelijke(yannick);
-		HR.setTeamLeden(teamLeden);
-		em.persist(HR);
-
-		em.persist(yannick);
-		em.persist(adresYannick);
-		em.persist(credentialsYannick);
-		em.persist(verlofAanvraagYannick1);
-		em.persist(verlofAanvraagYannick2);
-
-		Werknemer brent = new Werknemer();
-		brent.setNaam("Courtois");
-		brent.setVoornaam("Brent");
-		brent.setTeam(teamBlue);
-
-		em.persist(koen);
-		em.persist(brent);
-
+		/**
+		 * jaarlijkse verloven
+		 */
+		
 		JaarlijksVerlof jv2014 = new JaarlijksVerlof();
 		jv2014.setJaar(2014);
 		jv2014.setAantalDagen(20);
@@ -185,43 +238,60 @@ public class LoadDummyData_Main {
 		em.persist(jv2014);
 		em.persist(jv2014a);
 		em.persist(jv2015);
-
+		
+		hannes.addJaarlijksVerlof(jv2014);
 		koen.addJaarlijksVerlof(jv2014a);
 		koen.addJaarlijksVerlof(jv2015);
-
-		hannes.addJaarlijksVerlof(jv2014);
-		// hannes.addJaarlijksVerlof(jv2015);
-
-		VerlofAanvraag va = new VerlofAanvraag();
-		formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-		date = LocalDate.parse("2014-apr-01", formatter);
-		va.setStartDatum(date);
-		date = LocalDate.parse("2014-apr-30", formatter);
-		va.setEindDatum(date);
-		va.setWerknemer(koen);
-
-		em.persist(va);
-
-		CollectiefVerlof cv = new CollectiefVerlof();
-		date = LocalDate.parse("2014-nov-01", formatter);
-		cv.setStartDatum(date);
-		date = LocalDate.parse("2014-nov-01", formatter);
-		cv.setEindDatum(date);
-		em.persist(cv);
-
+		
+		/**
+		 * feestdag
+		 */
+		
 		Feestdag f = new Feestdag();
-		date = LocalDate.parse("2015-dec-25", formatter);
-		f.setStartDatum(date);
+		f.setStartDatum(LocalDate.parse("2015-dec-25", formatter));
 		f.setOmschrijving("Kerstmis");
 		em.persist(f);
+		
+		/**
+		 * collectief verlof
+		 */
+		
+		CollectiefVerlof cv = new CollectiefVerlof();
+		cv.setStartDatum(LocalDate.parse("2014-nov-01", formatter));
+		cv.setEindDatum(LocalDate.parse("2014-nov-01", formatter));
+		em.persist(cv);
+		
+		/**
+		 * persisting
+		 */
+		
+		em.persist(a);
+		em.persist(credentialsA);
+		
+		em.persist(brent);
+		em.persist(credentialsBrent);
+		
+		em.persist(koen);
+		em.persist(credentialsKoen);
+		
+		em.persist(hannes);
+		em.persist(credentialsHannes);
+		
+		em.persist(thomas);
+		em.persist(credentialsThomas);
+		
+		em.persist(yannick);
+		em.persist(credentialsYannick);
+		em.persist(vaYannick1);
+		em.persist(vaYannick2);
+		
+		
+		
+		
 
-		Credentials credentials = new Credentials();
-		credentials.setUsername("hannes");
-		credentials.setPassword("hannes");
-		// credentials.setType(AccountType.ADMINISTRATOR);
-		credentials.setWerknemer(hannes);
-		em.persist(credentials);
-
+		/**
+		 * commit & close
+		 */
 		tx.commit();
 
 		em.close();

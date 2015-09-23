@@ -62,12 +62,12 @@ public class VerlofAanvraagIO implements Serializable {
 		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
 					"De startdatum moet voor de einddatum liggen"));
-			return View.VERLOFAANVRAGEN;
+			return View.VERLOFAANVRAAG;
 		}
 		if (!isOpTijdAangevraagd()) {
 			facesContext.addMessage("", new FacesMessage(
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
-			return View.VERLOFAANVRAGEN;
+			return View.VERLOFAANVRAAG;
 		}
 //		 if (isOverlappend()) {
 //		 facesContext

@@ -17,16 +17,16 @@
 			<h1>Inloggen</h1>
 			<h:form id="loginform">
 				<h:panelGrid columns="2">
-					<h:outputLabel for="txtUsername" value="Username: "></h:outputLabel>
+					<h:outputLabel for="txtUsername" value="Username: " />
 					<h:inputText id="txtUsername" value="#{login_view.username}"
-						a:placeholder="username"></h:inputText>
-					<h:outputLabel for="txtPassword" value="Password: "></h:outputLabel>
+						a:placeholder="username" />
+					<h:outputLabel for="txtPassword" value="Password: " />
 					<h:inputSecret id="txtPassword" value="#{login_view.password}"
-						a:placeholder="******"></h:inputSecret>
+						a:placeholder="******" />
 					<h:commandButton id="loginButton" styleClass="buttonStyle" value="Log in"
-						action="#{login_view.inloggen}"></h:commandButton>
+						action="#{login_view.inloggen}" />
 					<h:commandButton styleClass="buttonStyle" value="Annuleer"
-						action="home"></h:commandButton>
+						action="home" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

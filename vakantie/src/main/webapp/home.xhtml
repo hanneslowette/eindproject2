@@ -16,35 +16,35 @@
 			<h:form id="loginform">
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton id="werknemerToevoegen" styleClass="buttonStyle"
-						value="Werknemer toevoegen" action="werknemerToevoegen"></h:commandButton>
+						value="Werknemer toevoegen" action="werknemerToevoegen" />
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton id="werknemerOpvragen" styleClass="buttonStyle"
-						value="Werknemer opvragen" action="werknemerOpvragen"></h:commandButton>
+						value="Werknemer opvragen" action="werknemerOpvragen" />
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton id="team_toevoegen" styleClass="buttonStyle"
-						value="Team toevoegen" action="team_toevoegen"></h:commandButton>
+						value="Team toevoegen" action="team_toevoegen" />
 				</c:if>
 				<c:if test="#{login.clearance > 1}">
 					<h:commandButton styleClass="buttonStyle" value="Team opvragen"
-						action="team_opvragen"></h:commandButton>
+						action="team_opvragen" />
 				</c:if>
 				<c:if test="#{login.clearance > 0}">
 					<h:commandButton styleClass="buttonStyle" value="Verlof aanvragen"
-						action="verlofaanvraag"></h:commandButton>
+						action="verlofaanvraag" />
 				</c:if>
 				<c:if test="#{login.clearance > 0}">
 					<h:commandButton styleClass="buttonStyle"
-						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht"></h:commandButton>
+						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht" />
 				</c:if>
 				<c:if test="#{login.clearance == 2 || login.clearance > 3}">
 					<h:commandButton styleClass="buttonStyle"
-						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren"></h:commandButton>
+						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren" />
 				</c:if>
 				<c:if test="#{login.clearance > 2}">
 					<h:commandButton styleClass="buttonStyle"
-						value="Verlofaanvragen keuren"></h:commandButton>
+						value="Verlofaanvragen keuren" />
 				</c:if>
 				<br />
 				<br />
@@ -52,14 +52,14 @@
 				<c:choose>
 					<c:when test="#{empty login_view.username}">
 						<h:commandButton styleClass="buttonStyle" value="Log in"
-							action="login"></h:commandButton>
+							action="login" />
 					</c:when>
 					<c:otherwise>
-						<h:outputText value="U bent ingelogd als #{login_view.username}"></h:outputText>
+						<h:outputText value="U bent ingelogd als #{login_view.username}" />
 						<h:commandButton styleClass="buttonStyle" value="Log uit"
-							action="#{login_view.uitloggen}" immediate="true"></h:commandButton>
+							action="#{login_view.uitloggen}" immediate="true" />
 						<h:commandButton styleClass="buttonStyle"
-							value="Verander gebruiker" action="login"></h:commandButton>
+							value="Verander gebruiker" action="login" />
 					</c:otherwise>
 				</c:choose>
 			</h:form>

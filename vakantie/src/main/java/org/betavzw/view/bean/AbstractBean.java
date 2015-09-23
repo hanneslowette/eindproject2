@@ -27,7 +27,7 @@ public abstract class AbstractBean<T> implements Bean<T> {
 	}
 	
 	@Override
-	public void update(T entity) {
+	@Transactional public void update(T entity) {
 		manager.merge(entity);
 	}
 

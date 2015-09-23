@@ -27,7 +27,6 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.LoginBean;
-import org.betavzw.view.bean.MailBean;
 
 @Named("verlofAanvraag")
 @SessionScoped
@@ -37,8 +36,6 @@ public class VerlofAanvraagIO implements Serializable {
 
 	@Inject
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
-	@Inject
-	private MailBean mailbean;
 	@Inject
 	private LoginBean loginbean;
 

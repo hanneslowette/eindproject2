@@ -80,11 +80,6 @@ public class WerknemerOpvragenIO implements Serializable {
 	private List<Werknemer> lijst = new ArrayList<Werknemer>();
 
 	/**
-	 * datum van de werknemer
-	 */
-	private Date datum;
-
-	/**
 	 * De code die wordt uitgevoerd wanneer de gebruiker op "zoek" klikt
 	 */
 	public String zoek() {
@@ -273,7 +268,6 @@ public class WerknemerOpvragenIO implements Serializable {
 	}
 
 	public void setDatum(Date datum) {
-		this.datum = datum;
 		try {
 			LocalDate localdate = datum.toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();

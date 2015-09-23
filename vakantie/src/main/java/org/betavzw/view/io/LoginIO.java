@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.betavzw.entity.Credentials;
 import org.betavzw.util.Filter;
 import org.betavzw.view.View;
@@ -49,11 +50,12 @@ public class LoginIO implements Serializable {
 	 * @return null
 	 */
 	public String inloggen() {
+		System.out.println(DigestUtils.md5Hex(password));
 		if (!password.equals("") && !username.equals("")) {
 			try {
 				Credentials credentials = credential_bean
 						.getSingle(new Filter("username", username),
-								new Filter("password", password));
+								new Filter("password", DigestUtils.md5Hex(password)));
 				login.setType(credentials.getType());
 				login.setWerknemer(credentials.getWerknemer());
 				login.setAangemeld(true);

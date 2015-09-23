@@ -30,11 +30,11 @@
 					<h:commandButton id="team_opvragen" styleClass="buttonStyle" value="Team opvragen"
 						action="team_opvragen" />
 				</c:if>
-				<c:if test="#{login.clearance >= 0}">
+				<c:if test="#{login.clearance > 0}">
 					<h:commandButton id="verlofaanvraag" styleClass="buttonStyle" value="Verlof aanvragen"
 						action="verlofaanvraag" />
 				</c:if>
-				<c:if test="#{login.clearance >= 0}">
+				<c:if test="#{login.clearance > 0}">
 					<h:commandButton id="verlofaanvraagoverzicht" styleClass="buttonStyle"
 						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht" />
 				</c:if>

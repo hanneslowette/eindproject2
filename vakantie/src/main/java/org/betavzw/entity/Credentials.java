@@ -60,11 +60,15 @@ public class Credentials {
 	}
 
 	public AccountType getType() {
+		if (werknemer.getTeam() != null && werknemer.getTeam().getCode() != null
+				&& werknemer.getTeam().getCode().equals("HR")) {
+			return AccountType.HR;
+		}
+		else if (werknemer.getTeam() != null && werknemer.getTeam().getTeamverantwoordelijke() != null
+				&& werknemer.getTeam().getTeamverantwoordelijke().getPersoneelsNr() == werknemer.getPersoneelsNr()) {
+			return AccountType.TEAMVERANTWOORDELIJKE;
+		}
 		return type;
-	}
-
-	public void setType(AccountType type) {
-		this.type = type;
 	}
 
 	public Werknemer getWerknemer() {

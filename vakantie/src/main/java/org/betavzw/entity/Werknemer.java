@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
+import org.eclipse.persistence.jpa.config.Cascade;
 
 /**
  * 
@@ -67,7 +69,7 @@ public class Werknemer implements Comparable<Werknemer> {
 	/**
 	 * Het aantal verlofdagen dat deze werknemer in gegeven jaar heeft
 	 */
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL } )
 	private Set<JaarlijksVerlof> jaarlijkseVerloven = new HashSet<JaarlijksVerlof>();
 
 	/**

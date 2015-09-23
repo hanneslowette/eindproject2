@@ -219,29 +219,7 @@ public class LoadDummyData_Main {
 		va.setEindDatum(LocalDate.parse("2014-apr-30", formatter));
 		va.setWerknemer(koen);
 
-		/**
-		 * jaarlijkse verloven
-		 */
 		
-		JaarlijksVerlof jv2014 = new JaarlijksVerlof();
-		jv2014.setJaar(2014);
-		jv2014.setAantalDagen(20);
-
-		JaarlijksVerlof jv2014a = new JaarlijksVerlof();
-		jv2014a.setJaar(2014);
-		jv2014a.setAantalDagen(25);
-
-		JaarlijksVerlof jv2015 = new JaarlijksVerlof();
-		jv2015.setJaar(2015);
-		jv2015.setAantalDagen(30);
-
-		em.persist(jv2014);
-		em.persist(jv2014a);
-		em.persist(jv2015);
-		
-		hannes.addJaarlijksVerlof(jv2014);
-		koen.addJaarlijksVerlof(jv2014a);
-		koen.addJaarlijksVerlof(jv2015);
 		
 		/**
 		 * feestdag
@@ -286,7 +264,29 @@ public class LoadDummyData_Main {
 		em.persist(vaYannick2);
 		
 		
+		/**
+		 * jaarlijkse verloven
+		 */
 		
+		JaarlijksVerlof jv2014 = new JaarlijksVerlof();
+		jv2014.setJaar(2014);
+		jv2014.setAantalDagen(20);
+
+		JaarlijksVerlof jv2014a = new JaarlijksVerlof();
+		jv2014a.setJaar(2014);
+		jv2014a.setAantalDagen(25);
+
+		JaarlijksVerlof jv2015 = new JaarlijksVerlof();
+		jv2015.setJaar(2015);
+		jv2015.setAantalDagen(30);
+
+//		em.persist(jv2014);
+//		em.persist(jv2014a);
+//		em.persist(jv2015);
+		
+		hannes.addJaarlijksVerlof(jv2014);
+		koen.addJaarlijksVerlof(jv2014a);
+		koen.addJaarlijksVerlof(jv2015);
 		
 
 		/**

@@ -167,7 +167,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
 	 */
 	public boolean isGenoegVerlofdagen() {
-		// TODO: genoeg verlofdagen halen uit datatabel
+		
 		return false;
 	}
 

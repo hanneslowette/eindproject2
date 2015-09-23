@@ -69,14 +69,14 @@ public class VerlofAanvraagIO implements Serializable {
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
 			return View.VERLOFAANVRAAG;
 		}
-//		 if (isOverlappend()) {
-//		 facesContext
-//		 .addMessage(
-//		 "",
-//		 new FacesMessage(
-//		 "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
-//		 return View.VERLOFAANVRAGEN;
-//		 }
+		 if (isOverlappend()) {
+		 facesContext
+		 .addMessage(
+		 "",
+		 new FacesMessage(
+		 "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+		 return View.VERLOFAANVRAAG;
+		 }
 		// if (isGenoegVerlofdagen()) {
 		// facesContext
 		// .addMessage(
@@ -123,10 +123,6 @@ public class VerlofAanvraagIO implements Serializable {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
 		Period tussenperiode = Period.between(aanvraagDatum, start);
-//		System.out.println("tussenperiode:"+tussenperiode);
-//		System.out.println(tussenperiode.getYears());
-//		System.out.println(tussenperiode.getMonths());
-//		System.out.println(tussenperiode.getDays());
 		if (tussenperiode.getYears()>0||tussenperiode.getMonths()>0||tussenperiode.getDays()>14) {
 			return true;
 		}
@@ -134,7 +130,7 @@ public class VerlofAanvraagIO implements Serializable {
 	}
 
 	/**
-	 * functie die true weergeeft als er geen overlappende verlofaanvraag is die
+	 * functie die true weergeeft als er een overlappende verlofaanvraag is die
 	 * al geannuleerd of afgekeurd is
 	 */
 	public boolean isOverlappend() {
@@ -145,7 +141,7 @@ public class VerlofAanvraagIO implements Serializable {
 				sqlInputStartDatum, sqlInputEindDatum);
 		List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"personeelsNr", loginbean.getWerknemer()
+				"werknemer.personeelsNr", loginbean.getWerknemer()
 						.getPersoneelsNr()));
 		List<org.betavzw.util.Period> periodes = new ArrayList<org.betavzw.util.Period>();
 		for (VerlofAanvraag verlofAanvraag : verlofAanvragen) {

@@ -32,7 +32,7 @@ public class Period {
 	// Tip: start1.before(end2) || start2.before(end1);
 	public boolean overlaps(org.betavzw.util.Period period) {
 		// return start.before(period.end) || period.start.before(end);
-		return end.before(period.start) || start.after(period.end);
+		return !(end.before(period.start) || start.after(period.end));
 	}
 
 }

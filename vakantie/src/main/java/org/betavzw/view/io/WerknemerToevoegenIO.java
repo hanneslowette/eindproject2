@@ -9,7 +9,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.betavzw.entity.Adres;
+import org.betavzw.entity.Credentials;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.Werknemer;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
@@ -40,6 +42,12 @@ public class WerknemerToevoegenIO implements Serializable{
 	private Bean<Adres> adres_bean;
 	
 	@Inject
+	private Bean<Credentials> credentials_bean;
+	
+	@Inject
+	private CredentialsIO creds;
+	
+	@Inject
 	private WerknemerDAO wndao;
 	
 	public List<Team> getTeams() {
@@ -51,6 +59,12 @@ public class WerknemerToevoegenIO implements Serializable{
 			Werknemer tmp = wndao.getEntity();
 			adres_bean.offer(tmp.getAdres());
 			werknemer_bean.offer(tmp);
+			
+			Credentials credentials = new Credentials();
+			credentials.setUsername(wndao.getEmail());
+			credentials.setPassword(DigestUtils.md5Hex(creds.getPaswoord()));
+			credentials.setWerknemer(tmp);
+			credentials_bean.offer(credentials);
 		} catch (GeboortedatumInDeToekomstException e) {
 			return View.WERKNEMER_WIJZIGEN;
 		}

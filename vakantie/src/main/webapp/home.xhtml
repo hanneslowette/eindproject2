@@ -27,16 +27,27 @@
 						value="Team toevoegen" action="team_toevoegen" />
 				</c:if>
 				<c:if test="#{login.clearance > 1}">
-					<h:commandButton id="team_opvragen" styleClass="buttonStyle" value="Team opvragen"
-						action="team_opvragen" />
+					<h:commandButton id="team_opvragen" styleClass="buttonStyle"
+						value="Team opvragen" action="team_opvragen" />
 				</c:if>
 				<c:if test="#{login.clearance > 0}">
-					<h:commandButton id="verlofaanvraag" styleClass="buttonStyle" value="Verlof aanvragen"
-						action="verlofaanvraag" />
+					<h:commandButton id="verlofaanvraag" styleClass="buttonStyle"
+						value="Verlof aanvragen" action="verlofaanvraag" />
 				</c:if>
-				<c:if test="#{login.clearance > 0}">
-					<h:commandButton id="verlofaanvraagoverzicht" styleClass="buttonStyle"
-						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht" />
+				<c:if test="#{login.clearance == 1}">
+					<h:commandButton id="verlofaanvraagoverzicht"
+						styleClass="buttonStyle" value="Overzicht verlofaanvragen"
+						action="verlofaanvraagoverzicht" />
+				</c:if>
+				<c:if test="#{login.clearance == 2}">
+					<h:commandButton id="verlofaanvraagoverzicht"
+						styleClass="buttonStyle" value="Overzicht verlofaanvragen"
+						action="verlofaanvraagoverzichtteamverantwoordelijken" />
+				</c:if>
+				<c:if test="#{login.clearance == 3}">
+					<h:commandButton id="verlofaanvraagoverzicht"
+						styleClass="buttonStyle" value="Overzicht verlofaanvragen"
+						action="verlofaanvraagoverzichtHR" />
 				</c:if>
 				<c:if test="#{login.clearance == 2}">
 					<h:commandButton id="verlofaanvraagkeuren" styleClass="buttonStyle"

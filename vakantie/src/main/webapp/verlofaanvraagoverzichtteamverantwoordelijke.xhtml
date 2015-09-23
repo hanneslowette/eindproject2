@@ -15,13 +15,13 @@
 		<ui:define name="content">
 			<h1>Overzicht verlofaanvragen</h1>
 			<c:choose>
-				<c:when test="#{login.clearance == 1}">
+				<c:when test="#{login.clearance == 2}">
 					<h:form>
 						<h:dataTable
-							rendered="#{not empty verlofAanvraagOverzicht.verlofAanvragenWerknemer}"
+							rendered="#{not empty verlofAanvraagOverzicht.verlofAanvragenTeamverantwoordelijke}"
 							styleClass="table" headerClass="tableHeader"
 							rowClasses="tableEvenRow, tableOddRow"
-							value="#{verlofAanvraagOverzicht.verlofAanvragenWerknemer}"
+							value="#{verlofAanvraagOverzicht.verlofAanvragenTeamverantwoordelijke}"
 							var="tmp">
 							<h:column>
 								<f:facet name="header">Personeelsnummer</f:facet>
@@ -42,12 +42,6 @@
 							<h:column>
 								<f:facet name="header">Toestand</f:facet>
 								<h:outputText value="#{tmp.toestand}"></h:outputText>
-							</h:column>
-							<h:column>
-								<f:facet name="header">Cancellen</f:facet>
-								<h:commandButton value="Cancel"
-									action="#{verlofAanvraagOverzicht.cancel(tmp.id)}">
-								</h:commandButton>
 							</h:column>
 						</h:dataTable>
 					</h:form>

@@ -65,7 +65,7 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 		return verlofAanvragen;
 	}
 
-	public void setVerlofPeriodes() {
+	public void setVerlofAanvragen() {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
 		List<VerlofAanvraag> verlofAanvragenTeam = new ArrayList<VerlofAanvraag>();
 		werknemers = werknemer_bean.get(new Filter("team_id", loginbean

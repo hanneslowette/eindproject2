@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.betavzw.entity.VerlofAanvraag;
+import org.betavzw.entity.Werknemer;
 import org.betavzw.util.Filter;
 import org.betavzw.util.Toestand;
 import org.betavzw.view.bean.Bean;
@@ -33,6 +34,12 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	private LoginBean loginbean;
 
 	/**
+	 * De bean die verantwoordelijk is voor werknemers
+	 */
+	@Inject
+	private Bean<Werknemer> werknemer_bean;
+
+	/**
 	 * De bean die verantwoordelijk is voor verlofaanvragen
 	 */
 	@Inject
@@ -43,14 +50,54 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	 */
 	private List<VerlofAanvraag> verlofAanvragen = new ArrayList<VerlofAanvraag>();
 
-	public List<VerlofAanvraag> getVerlofAanvragen() {
+	public List<VerlofAanvraag> getVerlofAanvragenWerknemer() {
 		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
 				"werknemer.personeelsNr", loginbean.getWerknemer()
 						.getPersoneelsNr()));
 		return verlofAanvragen;
 	}
 
-	public void setVerlofPeriodes() {
+	public void setVerlofAanvragenWerknemer() {
+		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+				"werknemer.personeelsNr", loginbean.getWerknemer()
+						.getPersoneelsNr()));
+	}
+
+	public List<VerlofAanvraag> getVerlofAanvragenTeamverantwoordelijke() {
+		List<Werknemer> werknemers = new ArrayList<Werknemer>();
+		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+				.getWerknemer().getTeam().getId()));
+		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
+				.hasNext();) {
+			Werknemer werknemer = iterator.next();
+			verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		}
+		return verlofAanvragen;
+	}
+
+	public void setVerlofAanvragenTeamverantwoordelijke() {
+		List<Werknemer> werknemers = new ArrayList<Werknemer>();
+		List<VerlofAanvraag> verlofAanvragenTeam = new ArrayList<VerlofAanvraag>();
+		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+				.getWerknemer().getTeam().getId()));
+		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
+				.hasNext();) {
+			Werknemer werknemer = iterator.next();
+			verlofAanvragenTeam = verlofAanvraag_bean.get(new Filter(
+					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		}
+		this.verlofAanvragen = verlofAanvragenTeam;
+	}
+
+	public List<VerlofAanvraag> getVerlofAanvragenHR() {
+		verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+				"werknemer.personeelsNr", loginbean.getWerknemer()
+						.getPersoneelsNr()));
+		return verlofAanvragen;
+	}
+
+	public void setVerlofAanvragenHR() {
 		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
 				"werknemer.personeelsNr", loginbean.getWerknemer()
 						.getPersoneelsNr()));

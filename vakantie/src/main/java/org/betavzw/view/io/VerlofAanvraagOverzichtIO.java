@@ -26,6 +26,9 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * De bean die verantwoordelijk is voor login
+	 */
 	@Inject
 	private LoginBean loginbean;
 

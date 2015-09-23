@@ -34,13 +34,18 @@
 					<h:commandButton styleClass="buttonStyle" value="Verlof aanvragen"
 						action="verlofaanvraag"></h:commandButton>
 				</c:if>
-				<c:if test="#{login.clearance > 1}">
+				<c:if test="#{login.clearance > 0}">
 					<h:commandButton styleClass="buttonStyle"
 						value="Overzicht verlofaanvragen" action="verlofaanvraagoverzicht"></h:commandButton>
 				</c:if>
-				<c:if test="#{login.clearance > 1}">
+				<c:if test="#{login.clearance == 2 || login.clearance > 3}">
 					<h:commandButton styleClass="buttonStyle"
 						value="Verlofaanvragen keuren" action="verlofaanvraagkeuren"></h:commandButton>
+				</c:if>
+				</c:if>
+				<c:if test="#{login.clearance > 2}">
+					<h:commandButton styleClass="buttonStyle"
+						value="Verlofaanvragen keuren"></h:commandButton>
 				</c:if>
 				<br />
 				<br />

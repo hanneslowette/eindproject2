@@ -65,19 +65,19 @@ public class CollectiefVerlofToevoegenIO implements Serializable {
 //	}
 
 	public void setDatum(Date datum) {
-		try {
+//		try {
 			LocalDate localdate = datum.toInstant()
 					.atZone(ZoneId.systemDefault()).toLocalDate();
 			feestdag.setStartDatum(localdate);  //.setGeboortedatum(localdate);
-		} catch (FoutFeestdagToevoegenException e) {
-			FacesContext
-					.getCurrentInstance()
-					.addMessage(
-							null,
-							new FacesMessage(
-									"werknemer niet aangepast: geboortedatum mag niet in de toekomst liggen",
-									"update geslaagd"));
-		}
+//		} catch (FoutFeestdagToevoegenException e) {
+//			FacesContext
+//					.getCurrentInstance()
+//					.addMessage(
+//							null,
+//							new FacesMessage(
+//									"werknemer niet aangepast: geboortedatum mag niet in de toekomst liggen",
+//									"update geslaagd"));
+//		}
 	}
 	
 	

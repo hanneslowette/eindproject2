@@ -16,7 +16,6 @@ import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.Team;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.entity.Werknemer;
-import org.betavzw.util.AccountType;
 import org.betavzw.util.exceptions.FoutAantalVerlofdagenException;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 
@@ -95,7 +94,7 @@ public class LoadDummyData_Main {
 		Credentials credentialsJorik = new Credentials();
 		credentialsJorik.setUsername("Jorik");
 		credentialsJorik.setPassword("Jorik");
-		credentialsJorik.setType(AccountType.WERKNEMER);
+//		credentialsJorik.setType(AccountType.WERKNEMER);
 		credentialsJorik.setWerknemer(jorik);
 
 		em.persist(jorik);
@@ -121,7 +120,7 @@ public class LoadDummyData_Main {
 		Credentials credentialsYannick = new Credentials();
 		credentialsYannick.setUsername("Yannick");
 		credentialsYannick.setPassword("Yannick");
-		credentialsYannick.setType(AccountType.ADMINISTRATOR);
+//		credentialsYannick.setType(AccountType.ADMINISTRATOR);
 		credentialsYannick.setWerknemer(yannick);
 
 		VerlofAanvraag verlofAanvraagYannick1 = new VerlofAanvraag();
@@ -204,7 +203,7 @@ public class LoadDummyData_Main {
 		Credentials credentials = new Credentials();
 		credentials.setUsername("hannes");
 		credentials.setPassword("hannes");
-		credentials.setType(AccountType.ADMINISTRATOR);
+//		credentials.setType(AccountType.ADMINISTRATOR);
 		credentials.setWerknemer(hannes);
 		em.persist(credentials);
 

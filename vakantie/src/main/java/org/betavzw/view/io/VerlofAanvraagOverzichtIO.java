@@ -103,11 +103,9 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	/**
 	 * De actie die gebeurt wanneer de gebruiker op "Cancel" klikt in de view
 	 */
-	public String cancel(int id) {
+	public String cancel(String id) {
 		VerlofAanvraag verlofAanvraag = verlofAanvraag_bean
-				.getSingle(new Filter("id", id));
-		// VerlofAanvraag verlofAanvraag = verlofAanvragen.get(Integer
-		// .parseInt("id"));
+				.getSingle(new Filter("id", Integer.parseInt(id)));
 		verlofAanvraag.setToestand(Toestand.CANCELED);
 		verlofAanvraag_bean.update(verlofAanvraag);
 		return null;

@@ -15,9 +15,9 @@ import org.betavzw.util.Toestand;
 public class VerlofAanvraag {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
+
 	/**
 	 * De start datum van de aanvraag van verlof
 	 */
@@ -42,7 +42,7 @@ public class VerlofAanvraag {
 	 * De werknemer die deze verlofaanvraag maakt
 	 */
 	@ManyToOne
-	@JoinColumn(name="personeelsNr")
+	@JoinColumn(name = "personeelsNr")
 	private Werknemer werknemer;
 
 	public LocalDate getStartDatum() {
@@ -83,6 +83,14 @@ public class VerlofAanvraag {
 
 	public void setWerknemer(Werknemer werknemer) {
 		this.werknemer = werknemer;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

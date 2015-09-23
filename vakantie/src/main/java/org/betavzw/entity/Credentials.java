@@ -37,6 +37,7 @@ public class Credentials {
 	/**
 	 * Het type van de accounts
 	 */
+	@SuppressWarnings("unused")
 	private AccountType type;
 
 	public int getId() {
@@ -68,7 +69,7 @@ public class Credentials {
 				&& werknemer.getTeam().getTeamverantwoordelijke().getPersoneelsNr() == werknemer.getPersoneelsNr()) {
 			return AccountType.TEAMVERANTWOORDELIJKE;
 		}
-		return type;
+		return AccountType.WERKNEMER;
 	}
 
 	public Werknemer getWerknemer() {

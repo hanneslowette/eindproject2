@@ -15,7 +15,7 @@
 		<ui:define name="content">
 			<h1>Verlofaanvragen keuren</h1>
 			<c:choose>
-				<c:when test="#{login.clearance == 2 || login.clearance = 4}">
+				<c:when test="#{login.clearance == 2 || login.clearance > 4}">
 					<h:form>
 						<h:dataTable
 							rendered="#{not empty verlofAanvraagKeuren.verlofAanvragen}"

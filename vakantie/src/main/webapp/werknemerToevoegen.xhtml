@@ -51,17 +51,16 @@
 								value="voeg werknemer toe"
 								action="#{werknemerToevoegenIO.voegWerknemerToe()}"></h:commandButton>
 						</h:panelGrid>
-					</h:form>
-					<h:form>
-						<h:commandButton styleClass="buttonStyle" value="voeg team toe"
-							action="team_toevoegen"></h:commandButton>
-
-					</h:form>
-					<h:form>
+						<h:form>
 						<h:selectOneMenu id="werknemers" value="#{wndao.teamid}">
 							<f:selectItems value="#{werknemerToevoegenIO.teams}" var="tmp"
 								itemLabel="#{tmp.naam}" itemValue="#{tmp.id}" />
 						</h:selectOneMenu>
+					</h:form>
+					</h:form>
+					<h:form>
+						<h:commandButton styleClass="buttonStyle" value="voeg team toe"
+							action="team_toevoegen"></h:commandButton>
 					</h:form>
 				</c:when>
 				<c:otherwise>U mag hier helemaal niet zijn!</c:otherwise>

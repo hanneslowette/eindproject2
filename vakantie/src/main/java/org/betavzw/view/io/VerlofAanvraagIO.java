@@ -57,7 +57,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 * 
 	 * @throws GeboortedatumInDeToekomstException
 	 */
-	public String verstuur() throws GeboortedatumInDeToekomstException {
+	public String verstuur() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
@@ -69,45 +69,48 @@ public class VerlofAanvraagIO implements Serializable {
 					"Het verlof moet 14 dagen op voorhand aangevraagd worden"));
 			return View.VERLOFAANVRAGEN;
 		}
-		if (isOverlappend()) {
+		// if (isOverlappend()) {
+		// facesContext
+		// .addMessage(
+		// "",
+		// new FacesMessage(
+		// "De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
+		// return View.VERLOFAANVRAGEN;
+		// }
+		// if (isGenoegVerlofdagen()) {
+		// facesContext
+		// .addMessage(
+		// "",
+		// new FacesMessage(
+		// "Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
+		// return View.VERLOFAANVRAGEN;
+		// } else {
+		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
+		verlofAanvraag.setStartDatum(startDatum.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate());
+		verlofAanvraag.setEindDatum(eindDatum.toInstant()
+				.atZone(ZoneId.systemDefault()).toLocalDate());
+		verlofAanvraag.setAanvraagDatum(aanvraagDatum);
+		verlofAanvraag.setToestand(Toestand.PENDING);
+		verlofAanvraag.setWerknemer(loginbean.getWerknemer());
+		verlofAanvraag_bean.offer(verlofAanvraag);
+		try {
+			Mail.send("teamredconfirmation", "needabijtnie", loginbean
+					.getWerknemer().getEmail(), "Uw verlofaanvraag",
+					"Uw verlofaanvraag is aangekomen");
+		} catch (AddressException e) {
+			System.out.println("AddressException has been caught:");
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			System.out.println("MessagingException has been caught:");
 			facesContext
 					.addMessage(
 							"",
 							new FacesMessage(
-									"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
-			return View.VERLOFAANVRAGEN;
+									"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
 		}
-		if (isGenoegVerlofdagen()) {
-			facesContext
-					.addMessage(
-							"",
-							new FacesMessage(
-									"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
-			return View.VERLOFAANVRAGEN;
-		} else {
-			VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
-			verlofAanvraag.setStartDatum(startDatum.toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate());
-			verlofAanvraag.setEindDatum(eindDatum.toInstant()
-					.atZone(ZoneId.systemDefault()).toLocalDate());
-			verlofAanvraag.setAanvraagDatum(aanvraagDatum);
-			verlofAanvraag.setToestand(Toestand.PENDING);
-			verlofAanvraag.setWerknemer(loginbean.getWerknemer());
-			verlofAanvraag_bean.offer(verlofAanvraag);
-			try {
-				Mail.send("teamredconfirmation", "needabijtnie", loginbean.getWerknemer().getEmail(), "Uw verlofaanvraag", "Uw verlofaanvraag is aangekomen");
-			} catch (AddressException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (MessagingException e) {
-				facesContext
-				.addMessage(
-						"",
-						new FacesMessage(
-								"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
-			}
-			return View.VERSTUURD;
-		}
+		return View.VERSTUURD;
+		// }
 	}
 
 	/**
@@ -117,7 +120,11 @@ public class VerlofAanvraagIO implements Serializable {
 	public boolean isOpTijdAangevraagd() {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
-		return Period.between(start, aanvraagDatum).getDays() < 14;
+		Period tussenperiode = Period.between(start, aanvraagDatum);
+		if (tussenperiode.getYears()>0||tussenperiode.getMonths()>0||tussenperiode.getDays()>14) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -151,6 +158,8 @@ public class VerlofAanvraagIO implements Serializable {
 		}
 		return overlaps;
 	}
+
+	// public boolean isOverlappend()
 
 	/**
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft

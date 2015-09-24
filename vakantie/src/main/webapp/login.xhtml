@@ -23,10 +23,10 @@
 					<h:outputLabel for="txtPassword" value="Password: " />
 					<h:inputSecret id="txtPassword" value="#{login_view.password}"
 						a:placeholder="******" />
-					<h:commandButton id="loginButton" styleClass="buttonStyle" value="Log in"
-						action="#{login_view.inloggen}" />
+					<h:commandButton id="loginButton" styleClass="buttonStyle"
+						value="Log in" action="#{login_view.inloggen}" />
 					<h:commandButton styleClass="buttonStyle" value="Annuleer"
-						action="home" />
+						action="#{login_view.annuleren}" />
 				</h:panelGrid>
 			</h:form>
 		</ui:define>

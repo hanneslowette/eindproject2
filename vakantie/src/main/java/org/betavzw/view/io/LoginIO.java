@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.betavzw.entity.Credentials;
+import org.betavzw.entity.Werknemer;
+import org.betavzw.util.AccountType;
 import org.betavzw.util.Filter;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
@@ -32,7 +34,7 @@ public class LoginIO implements Serializable {
 	 * De bean die verantwoordelijk is voor login
 	 */
 	@Inject
-	private LoginBean login;
+	private LoginBean login_bean;
 
 	/**
 	 * De username om in te loggen
@@ -53,12 +55,12 @@ public class LoginIO implements Serializable {
 		System.out.println(DigestUtils.md5Hex(password));
 		if (!password.equals("") && !username.equals("")) {
 			try {
-				Credentials credentials = credential_bean
-						.getSingle(new Filter("username", username),
-								new Filter("password", DigestUtils.md5Hex(password)));
-				login.setType(credentials.getType());
-				login.setWerknemer(credentials.getWerknemer());
-				login.setAangemeld(true);
+				Credentials credentials = credential_bean.getSingle(new Filter(
+						"username", username), new Filter("password",
+						DigestUtils.md5Hex(password)));
+				login_bean.setType(credentials.getType());
+				login_bean.setWerknemer(credentials.getWerknemer());
+				login_bean.setAangemeld(true);
 				return View.VERSTUURD;
 			} catch (Exception ex) {
 				FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -84,21 +86,21 @@ public class LoginIO implements Serializable {
 	 * @return null
 	 */
 	public String uitloggen() {
-		login.setType(null);
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+				.getExternalContext().getSession(false);
+		login_bean.setType(null);
 		username = null;
+		session.invalidate();
 		return null;
 	}
 
 	/**
-	 * Meld de gebruiker af en gaat naar de loginpagina
+	 * Annuleert het veranderen van de gebruiker
 	 * 
-	 * @return "login"
+	 * @return null
 	 */
-	public String uitloggen2() {
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-				.getExternalContext().getSession(false);
-		session.invalidate();
-		return "login";
+	public String annuleren() {
+		return "home";
 	}
 
 	public String getUsername() {

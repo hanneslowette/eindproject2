@@ -152,15 +152,14 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 
 	// TODO: functie aanpassen
 	/**
-	 * Toont cancel-knop
+	 * Toont cancel-knop voor ingelogde gebruiker
 	 */
-	public boolean toonCancelTeamverantwoordelijke(String nummer) {
+	public boolean toonCancel(int personeelsNr) {
 		boolean cancel = false;
-		if (loginbean.getWerknemer().getPersoneelsNr() == Integer
-				.parseInt(nummer)) {
+		// int personeelsNummer = Integer.parseInt(personeelsNr);
+		if (loginbean.getWerknemer().getPersoneelsNr() == personeelsNr) {
 			cancel = true;
 		}
-
 		// for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator();
 		// iterator
 		// .hasNext();) {
@@ -172,24 +171,4 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		// }
 		return cancel;
 	}
-
-	public boolean toonCancelHR(String nummer) {
-		boolean cancel = false;
-		if (loginbean.getWerknemer().getPersoneelsNr() == Integer
-				.parseInt(nummer)) {
-			cancel = true;
-		}
-
-		// for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator();
-		// iterator
-		// .hasNext();) {
-		// VerlofAanvraag verlofAanvraag = iterator.next();
-		// if (loginbean.getWerknemer().getPersoneelsNr() == verlofAanvraag
-		// .getWerknemer().getPersoneelsNr()) {
-		// cancel = true;
-		// }
-		// }
-		return cancel;
-	}
-
 }

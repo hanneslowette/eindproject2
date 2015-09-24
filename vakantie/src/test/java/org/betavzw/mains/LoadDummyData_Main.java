@@ -36,7 +36,7 @@ public class LoadDummyData_Main {
 
 		DateTimeFormatter formatter = DateTimeFormatter
 				.ofPattern("yyyy-MMM-dd");
-		
+
 		/**
 		 * a
 		 */
@@ -44,9 +44,10 @@ public class LoadDummyData_Main {
 		a.setNaam("Adams");
 		a.setVoornaam("a");
 		a.setEmail("brentcourtois@gmail.com");
-		Adres aAdres = new Adres("straat", "nummer", "busnummer", "postcode", "gemeente");
+		Adres aAdres = new Adres("straat", "nummer", "busnummer", "postcode",
+				"gemeente");
 		a.setGeboortedatum(LocalDate.parse("2000-jan-01", formatter));
-		
+
 		/**
 		 * Brent
 		 */
@@ -134,7 +135,7 @@ public class LoadDummyData_Main {
 		teamBlue.setNaam("Team Blue");
 		teamBlue.setCode("LOSE");
 		em.persist(teamBlue);
-		
+
 		/**
 		 * werknemers aan teams toevoegen
 		 */
@@ -144,16 +145,15 @@ public class LoadDummyData_Main {
 		HR.addWerknemer(a);
 		teamBlue.addWerknemer(koen);
 		teamBlue.addWerknemer(yannick);
-		
-		
+
 		/**
 		 * teamverantwoordelijken
 		 */
-		
+
 		teamRed.setTeamverantwoordelijke(brent);
 		HR.setTeamverantwoordelijke(thomas);
 		teamBlue.setTeamverantwoordelijke(koen);
-		
+
 		em.persist(teamRed);
 		em.persist(HR);
 		em.persist(teamBlue);
@@ -165,8 +165,7 @@ public class LoadDummyData_Main {
 		credentialsA.setUsername("a");
 		credentialsA.setPassword(DigestUtils.md5Hex("a"));
 		credentialsA.setWerknemer(a);
-		
-		
+
 		Credentials credentialsBrent = new Credentials();
 		credentialsBrent.setUsername("brent");
 		credentialsBrent.setPassword(DigestUtils.md5Hex("brent"));
@@ -192,82 +191,72 @@ public class LoadDummyData_Main {
 		credentialsYannick.setPassword(DigestUtils.md5Hex("yannick"));
 		credentialsYannick.setWerknemer(yannick);
 
-
 		/**
 		 * voorbeeld verlofaanvragen
 		 */
 		VerlofAanvraag vaYannick1 = new VerlofAanvraag();
-		vaYannick1.setStartDatum(LocalDate.parse("1995-apr-05",
-				formatter));
-		vaYannick1.setEindDatum(LocalDate.parse("1995-apr-15",
-				formatter));
-		vaYannick1.setAanvraagDatum(LocalDate.parse("1995-apr-10",
-				formatter));
+		vaYannick1.setStartDatum(LocalDate.parse("1995-apr-05", formatter));
+		vaYannick1.setEindDatum(LocalDate.parse("1995-apr-15", formatter));
+		vaYannick1.setAanvraagDatum(LocalDate.parse("1995-apr-10", formatter));
 		vaYannick1.setWerknemer(yannick);
 
 		VerlofAanvraag vaYannick2 = new VerlofAanvraag();
-		vaYannick2.setStartDatum(LocalDate.parse("2003-dec-12",
-				formatter));
-		vaYannick2.setEindDatum(LocalDate.parse("2003-dec-20",
-				formatter));
-		vaYannick2.setAanvraagDatum(LocalDate.parse("2003-dec-29",
-				formatter));
+		vaYannick2.setStartDatum(LocalDate.parse("2003-dec-12", formatter));
+		vaYannick2.setEindDatum(LocalDate.parse("2003-dec-20", formatter));
+		vaYannick2.setAanvraagDatum(LocalDate.parse("2003-dec-29", formatter));
 		vaYannick2.setWerknemer(yannick);
-		
+
 		VerlofAanvraag va = new VerlofAanvraag();
 		va.setStartDatum(LocalDate.parse("2014-apr-01", formatter));
 		va.setEindDatum(LocalDate.parse("2014-apr-30", formatter));
 		va.setWerknemer(koen);
 
-		
-		
 		/**
 		 * feestdag
 		 */
-		
+
 		Feestdag f = new Feestdag();
 		f.setStartDatum(LocalDate.parse("2015-dec-25", formatter));
 		f.setOmschrijving("Kerstmis");
 		em.persist(f);
-		
+
 		/**
 		 * collectief verlof
 		 */
-		
+
 		CollectiefVerlof cv = new CollectiefVerlof();
 		cv.setStartDatum(LocalDate.parse("2014-nov-01", formatter));
 		cv.setEindDatum(LocalDate.parse("2014-nov-01", formatter));
 		em.persist(cv);
-		
+
 		/**
 		 * persisting
 		 */
-		
+
 		em.persist(a);
 		em.persist(credentialsA);
-		
+
 		em.persist(brent);
 		em.persist(credentialsBrent);
-		
+
 		em.persist(koen);
 		em.persist(credentialsKoen);
-		
+
 		em.persist(hannes);
 		em.persist(credentialsHannes);
-		
+
 		em.persist(thomas);
 		em.persist(credentialsThomas);
-		
+
 		em.persist(yannick);
 		em.persist(credentialsYannick);
 		em.persist(vaYannick1);
 		em.persist(vaYannick2);
-		
-		
+
 		/**
 		 * jaarlijkse verloven
 		 */
-		
+
 		JaarlijksVerlof jv2014 = new JaarlijksVerlof();
 		jv2014.setJaar(2014);
 		jv2014.setAantalDagen(20);
@@ -279,11 +268,11 @@ public class LoadDummyData_Main {
 		JaarlijksVerlof jv2015 = new JaarlijksVerlof();
 		jv2015.setJaar(2015);
 		jv2015.setAantalDagen(30);
-		
+
 		JaarlijksVerlof jv2015b = new JaarlijksVerlof();
 		jv2015b.setJaar(2015);
 		jv2015b.setAantalDagen(20);
-		
+
 		JaarlijksVerlof jv2016 = new JaarlijksVerlof();
 		jv2016.setJaar(2016);
 		jv2016.setAantalDagen(21);
@@ -293,7 +282,6 @@ public class LoadDummyData_Main {
 		koen.addJaarlijksVerlof(jv2015);
 		a.addJaarlijksVerlof(jv2015b);
 		a.addJaarlijksVerlof(jv2016);
-		
 
 		/**
 		 * commit & close

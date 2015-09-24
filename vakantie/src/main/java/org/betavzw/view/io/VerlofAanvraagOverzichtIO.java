@@ -57,11 +57,11 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		return verlofAanvragen;
 	}
 
-	public void setVerlofAanvragenWerknemer() {
-		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-				"werknemer.personeelsNr", loginbean.getWerknemer()
-						.getPersoneelsNr()));
-	}
+//	public void setVerlofAanvragenWerknemer() {
+//		this.verlofAanvragen = verlofAanvraag_bean.get(new Filter(
+//				"werknemer.personeelsNr", loginbean.getWerknemer()
+//						.getPersoneelsNr()));
+//	}
 
 	public List<VerlofAanvraag> getVerlofAanvragenTeamverantwoordelijke() {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
@@ -73,24 +73,24 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		return verlofAanvragen;
 	}
 
-	public void setVerlofAanvragenTeamverantwoordelijke() {
-		List<Werknemer> werknemers = new ArrayList<Werknemer>();
-		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
-				.getWerknemer().getTeam().getId()));
-		for (Werknemer werknemer : werknemers) {
-			verlofAanvragen.addAll(werknemer.getVerlofAanvragen());
-		}
-		this.verlofAanvragen = verlofAanvragen;
-	}
+//	public void setVerlofAanvragenTeamverantwoordelijke() {
+//		List<Werknemer> werknemers = new ArrayList<Werknemer>();
+//		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
+//				.getWerknemer().getTeam().getId()));
+//		for (Werknemer werknemer : werknemers) {
+//			verlofAanvragen.addAll(werknemer.getVerlofAanvragen());
+//		}
+//		this.verlofAanvragen = verlofAanvragen;
+//	}
 
 	public List<VerlofAanvraag> getVerlofAanvragenHR() {
 		verlofAanvragen = verlofAanvraag_bean.get();
 		return verlofAanvragen;
 	}
 
-	public void setVerlofAanvragenHR() {
-		this.verlofAanvragen = verlofAanvraag_bean.get();
-	}
+//	public void setVerlofAanvragenHR() {
+//		this.verlofAanvragen = verlofAanvraag_bean.get();
+//	}
 
 	/**
 	 * De opgevraagde lijst met aanvraagdatums

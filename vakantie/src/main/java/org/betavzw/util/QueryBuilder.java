@@ -42,8 +42,7 @@ public class QueryBuilder {
 		 * Maak een nieuwe StringBuilder met als waarde de standaard select
 		 * zonder voorwaarded (SELECT o FROM Class o).
 		 */
-		StringBuilder query_builder = new StringBuilder("SELECT o FROM ")
-				.append(c.getSimpleName()).append(" o");
+		StringBuilder query_builder = new StringBuilder("SELECT o FROM ").append(c.getSimpleName()).append(" o");
 
 		/*
 		 * Als de map leeg is, betekent dit dat er geen parameters moeten worden
@@ -73,16 +72,13 @@ public class QueryBuilder {
 				 * wordt vergeleken met het "=" teken
 				 */
 				if (!(entry.getValue() instanceof Period)) {
-					query_builder
-							.append(entry.getValue() instanceof String ? " LIKE "
-									: "= ");
+					query_builder.append(entry.getValue() instanceof String ? " LIKE " : "= ");
 
 					/*
 					 * De variabele naam is de naam van de voorwaarde met een :
 					 * ervoor
 					 */
-					query_builder.append(":").append(
-							formatParameter(entry.getKey()));
+					query_builder.append(":").append(formatParameter(entry.getKey()));
 				} else {
 					query_builder.append(" BETWEEN ").append(":")
 							.append(formatParameter(entry.getKey()))
@@ -115,8 +111,7 @@ public class QueryBuilder {
 			/*
 			 * Loop door alle sort kolommen en voeg deze toe aan de query
 			 */
-			for (Iterator<String> iterator = sort_columns.iterator(); iterator
-					.hasNext();) {
+			for (Iterator<String> iterator = sort_columns.iterator(); iterator.hasNext();) {
 				String column = iterator.next();
 
 				/*
@@ -154,18 +149,15 @@ public class QueryBuilder {
 			if (entry.getValue() instanceof Period) {
 				Period period = (Period) entry.getValue();
 
-				query.setParameter(formatParameter(entry.getKey()) + "_start",
-						period.getStart());
-				query.setParameter(formatParameter(entry.getKey()) + "_end",
-						period.getEnd());
+				query.setParameter(formatParameter(entry.getKey()) + "_start", period.getStart());
+				query.setParameter(formatParameter(entry.getKey()) + "_end", period.getEnd());
 			}
 
 			else {
 				/*
 				 * Vul de waarde van de parameter in
 				 */
-				query.setParameter(formatParameter(entry.getKey()),
-						entry.getValue());
+				query.setParameter(formatParameter(entry.getKey()), entry.getValue());
 			}
 		}
 

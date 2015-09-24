@@ -51,7 +51,7 @@ public class VerlofAanvraagIO implements Serializable {
 	@NotNull(message = "Veld einddatum moet ingevuld zijn")
 	private Date eindDatum;
 	private LocalDate aanvraagDatum = LocalDate.now();
-	private FacesContext facesContext = FacesContext.getCurrentInstance();
+	
 
 	public VerlofAanvraagIO() {
 		super();
@@ -64,6 +64,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 * @throws GeboortedatumInDeToekomstException
 	 */
 	public String verstuur() {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
 					"De startdatum moet voor de einddatum liggen"));

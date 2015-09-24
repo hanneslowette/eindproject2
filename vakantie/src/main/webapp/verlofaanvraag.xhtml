@@ -21,14 +21,16 @@
 						<h:panelGrid columns="2">
 							<h:outputLabel for="txtStartDatum"
 								value="Geef startdatum van uw verlof: "></h:outputLabel>
-							<h:inputText id="txtStartDatum"
-								value="#{verlofAanvraag.startDatum}" a:placeholder="dd-MM-yyyy">
+							<h:inputText converterMessage="Geef een geldige startdatum op"
+								id="txtStartDatum" value="#{verlofAanvraag.startDatum}"
+								a:placeholder="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:outputLabel for="txtEindDatum"
 								value="Geef einddatum van uw verlof: "></h:outputLabel>
-							<h:inputText id="txtEindDatum"
-								value="#{verlofAanvraag.eindDatum}" a:placeholder="dd-MM-yyyy">
+							<h:inputText converterMessage="Geef een geldige einddatum op"
+								id="txtEindDatum" value="#{verlofAanvraag.eindDatum}"
+								a:placeholder="dd-MM-yyyy">
 								<f:convertDateTime pattern="dd-MM-yyyy" />
 							</h:inputText>
 							<h:commandButton styleClass="buttonStyle" value="Verstuur"

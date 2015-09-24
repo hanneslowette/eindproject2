@@ -53,22 +53,11 @@ public class VerlofAanvraagKeurenIO implements Serializable {
 	private String keuring;
 
 	public List<VerlofAanvraag> getVerlofAanvragen() {
-		// System.out.println(loginbean.getWerknemer());
+		verlofAanvragen.clear();
 		List<Werknemer> list = werknemer_bean.get(new Filter("team.id", loginbean.getWerknemer().getTeam().getId()));
-		
 		for (Werknemer werknemer : list) {
 			verlofAanvragen.addAll(werknemer.getVerlofAanvragen());
 		}
-		
-//		List<Werknemer> werknemers = new ArrayList<Werknemer>();
-//		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
-//				.getWerknemer().getTeam().getId()));
-//		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
-//				.hasNext();) {
-//			Werknemer werknemer = iterator.next();
-//			verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-//					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
-//		}
 		return verlofAanvragen;
 	}
 

@@ -32,6 +32,7 @@ public abstract class AbstractBean<T> implements Bean<T> {
 	}
 	
 	@Override
+	@Transactional
 	public void refresh(T entity) {
 		manager.refresh(entity);
 	}

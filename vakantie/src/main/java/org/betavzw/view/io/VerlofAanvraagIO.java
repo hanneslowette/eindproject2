@@ -29,7 +29,6 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.LoginBean;
-import org.betavzw.view.bean.WerknemerBean;
 
 @Named("verlofAanvraag")
 @SessionScoped
@@ -41,8 +40,6 @@ public class VerlofAanvraagIO implements Serializable {
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 	@Inject
 	private LoginBean loginbean;
-	@Inject
-	private WerknemerBean werknemerbean;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld startdatum moet ingevuld zijn")
@@ -51,6 +48,8 @@ public class VerlofAanvraagIO implements Serializable {
 	@NotNull(message = "Veld einddatum moet ingevuld zijn")
 	private Date eindDatum;
 	private LocalDate aanvraagDatum = LocalDate.now();
+	
+	
 	
 
 	public VerlofAanvraagIO() {
@@ -122,7 +121,7 @@ public class VerlofAanvraagIO implements Serializable {
 							new FacesMessage(
 									"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
 		}
-		werknemerbean.update(loginbean.getWerknemer());
+		loginbean.getWerknemer().addVerlofAanvraag(verlofAanvraag);
 		return View.VERSTUURD;
 	}
 

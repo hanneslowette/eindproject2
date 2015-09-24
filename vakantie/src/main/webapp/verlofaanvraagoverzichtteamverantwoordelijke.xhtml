@@ -45,11 +45,12 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Cancellen</f:facet>
-								<c:if test="#{verlofAanvraagOverzicht.toonCancel(tmp.personeelsNr)}">
+
 									<h:commandButton value="Cancel"
+										rendered="#{(tmp.toestand != 'CANCELED') and (verlofAanvraagOverzicht.toonCancel2(tmp.werknemer.personeelsNr) == true)}"
 										action="#{verlofAanvraagOverzicht.cancel(tmp.id)}">
 									</h:commandButton>
-								</c:if>
+						
 							</h:column>
 						</h:dataTable>
 					</h:form>

@@ -41,12 +41,23 @@ body {
 	background-color: #E10019;
 }
 
-.homebutton {
-	width: 30px;
+.logoutbox {
+	float: right;
+	height: 50px;
+	padding-top: 7px;
+	padding-right: 5px;
 }
 
-.homebutton:hover {
-	width: 100px;
+.logoutbox-content {
+	height: 100%;
+	margin-top: auto;
+	margin-bottom: auto;
+		vertical-align:middle;
+}
+
+.homebutton {
+	padding: 5px;
+	width: 35px;
 }
 
 .table {
@@ -57,8 +68,7 @@ body {
 }
 
 .tableHeader {
-	border: 1px solid #700000
-	font-size: 1.1em;
+	border: 1px solid #700000 font-size: 1.1em;
 	padding-top: 5px;
 	padding-bottom: 4px;
 	color: #ffffff;

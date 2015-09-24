@@ -101,7 +101,7 @@ public class VoorstellingProject {
 		 * voorbeeld verlofaanvragen
 		 */
 		VerlofAanvraag verlofAanvraagAdmin1 = new VerlofAanvraag();
-		verlofAanvraagAdmin1.setAanvraagDatum(LocalDate.parse("1995-mar-10",
+		verlofAanvraagAdmin1.setAanvraagDatum(LocalDate.parse("1995-jan-10",
 				formatter));
 		verlofAanvraagAdmin1.setStartDatum(LocalDate.parse("1995-apr-05",
 				formatter));

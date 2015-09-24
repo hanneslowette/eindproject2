@@ -179,6 +179,7 @@ public class VerlofAanvraagIO implements Serializable {
 		for (JaarlijksVerlof jaar : loginbean.getWerknemer()
 				.getJaarlijkseVerloven()) {
 			if (jaar.getJaar() == startDatum.getYear()) {
+				System.out.println("jaar: "+startDatum.getYear());
 				verlofdagen += jaar.getAantalDagen();
 			}
 		}

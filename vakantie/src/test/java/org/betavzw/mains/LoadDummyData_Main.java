@@ -283,11 +283,16 @@ public class LoadDummyData_Main {
 		JaarlijksVerlof jv2015b = new JaarlijksVerlof();
 		jv2015b.setJaar(2015);
 		jv2015b.setAantalDagen(20);
+		
+		JaarlijksVerlof jv2016 = new JaarlijksVerlof();
+		jv2016.setJaar(2016);
+		jv2016.setAantalDagen(21);
 
 		hannes.addJaarlijksVerlof(jv2014);
 		koen.addJaarlijksVerlof(jv2014a);
 		koen.addJaarlijksVerlof(jv2015);
 		a.addJaarlijksVerlof(jv2015b);
+		a.addJaarlijksVerlof(jv2016);
 		
 
 		/**

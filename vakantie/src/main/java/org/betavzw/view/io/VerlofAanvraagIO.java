@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.util.Filter;
 import org.betavzw.util.Mail;
@@ -26,7 +27,6 @@ import org.betavzw.util.Toestand;
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
-import org.betavzw.view.bean.JaarlijksVerlofBean;
 import org.betavzw.view.bean.LoginBean;
 
 @Named("verlofAanvraag")
@@ -39,8 +39,6 @@ public class VerlofAanvraagIO implements Serializable {
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 	@Inject
 	private LoginBean loginbean;
-	@Inject
-	private JaarlijksVerlofBean jaarbean;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld startdatum moet ingevuld zijn")
@@ -168,6 +166,7 @@ public class VerlofAanvraagIO implements Serializable {
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
 	 * Deze werkt mogelijk nog niet
 	 */
+	@SuppressWarnings("deprecation")
 	public boolean isGenoegVerlofdagen() {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
@@ -176,11 +175,15 @@ public class VerlofAanvraagIO implements Serializable {
 		Period periode = Period.between(start, eind);
 		int aanvraagdagen = periode.getYears() * 365 + periode.getMonths() * 30
 				+ periode.getDays();
-		int verlofdagen = jaarbean.getSingle(new Filter(
-				"werknemer.personeelNr", String.valueOf(loginbean
-						.getWerknemer().getPersoneelsNr()))).getAantalDagen();
-		System.out.println("aanvraagdagen: "+aanvraagdagen);
-		System.out.println("verlofdagen: "+verlofdagen);
+		int verlofdagen = 0;
+		for (JaarlijksVerlof jaar : loginbean.getWerknemer()
+				.getJaarlijkseVerloven()) {
+			if (jaar.getJaar() == startDatum.getYear()) {
+				verlofdagen += jaar.getAantalDagen();
+			}
+		}
+		System.out.println("aanvraagdagen: " + aanvraagdagen);
+		System.out.println("verlofdagen: " + verlofdagen);
 		if (aanvraagdagen > verlofdagen) {
 			return false;
 		}

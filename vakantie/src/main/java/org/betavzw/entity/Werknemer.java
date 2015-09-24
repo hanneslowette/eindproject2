@@ -74,7 +74,7 @@ public class Werknemer implements Comparable<Werknemer> {
 	/**
 	 * De verlofaanvragen van deze werknemer
 	 */
-	@OneToMany(mappedBy="werknemer")
+	@OneToMany(mappedBy="werknemer", fetch=FetchType.EAGER)
 	private Set<VerlofAanvraag> verlofAanvragen = new HashSet<VerlofAanvraag>();
 
 	public Werknemer() {}

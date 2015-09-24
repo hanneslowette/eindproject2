@@ -45,7 +45,7 @@
 							<h:column>
 								<f:facet name="header">Cancellen</f:facet>
 								<h:commandButton value="Cancel"
-									rendered="#{(tmp.toestand != 'CANCELED') and (verlofAanvraagOverzicht.toonCancel2(tmp.werknemer.personeelsNr) == true)}"
+									rendered="#{(tmp.toestand != 'CANCELED') and (verlofAanvraagOverzicht.toonCancel(tmp.werknemer.personeelsNr) == true)}"
 									action="#{verlofAanvraagOverzicht.cancel(tmp.id)}">
 								</h:commandButton>
 							</h:column>

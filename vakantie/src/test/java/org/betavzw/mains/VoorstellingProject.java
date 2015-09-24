@@ -178,6 +178,12 @@ public class VoorstellingProject {
 		admin.addJaarlijksVerlof(jaarlijksVerlof2014a);
 		admin.addJaarlijksVerlof(jaarlijksVerlof2015b);
 		admin.addJaarlijksVerlof(jaarlijksVerlof2016);
+		
+		em.persist(jaarlijksVerlof2014a);
+		em.persist(jaarlijksVerlof2014b);
+		em.persist(jaarlijksVerlof2015a);
+		em.persist(jaarlijksVerlof2015b);
+		em.persist(jaarlijksVerlof2016);
 
 		/**
 		 * commit & close

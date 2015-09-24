@@ -65,7 +65,7 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 
 	public List<VerlofAanvraag> getVerlofAanvragenTeamverantwoordelijke() {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
-		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
 				.getWerknemer().getTeam().getId()));
 		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
 				.hasNext();) {
@@ -79,7 +79,7 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	public void setVerlofAanvragenTeamverantwoordelijke() {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
 		List<VerlofAanvraag> verlofAanvragenTeam = new ArrayList<VerlofAanvraag>();
-		werknemers = werknemer_bean.get(new Filter("team_id", loginbean
+		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
 				.getWerknemer().getTeam().getId()));
 		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
 				.hasNext();) {

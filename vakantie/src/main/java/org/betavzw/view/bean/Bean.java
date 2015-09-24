@@ -41,6 +41,13 @@ public interface Bean<T> {
 	 * @param entity
 	 */
 	public abstract void delete(T entity);
+	
+	/**
+	 * Probeert een entity te verversen
+	 * 
+	 * @param entity
+	 */
+	public abstract void refresh(T entity);
 
 	/**
 	 * Haalt de resultaten van een query

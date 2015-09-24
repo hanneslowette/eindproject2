@@ -16,7 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
-import org.eclipse.persistence.jpa.config.Cascade;
 
 /**
  * 
@@ -69,7 +68,7 @@ public class Werknemer implements Comparable<Werknemer> {
 	/**
 	 * Het aantal verlofdagen dat deze werknemer in gegeven jaar heeft
 	 */
-	@OneToMany(cascade={CascadeType.ALL } )
+	@OneToMany(cascade={CascadeType.ALL }, fetch=FetchType.EAGER )
 	private Set<JaarlijksVerlof> jaarlijkseVerloven = new HashSet<JaarlijksVerlof>();
 
 	/**

@@ -19,7 +19,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.betavzw.entity.JaarlijksVerlof;
 import org.betavzw.entity.VerlofAanvraag;
 import org.betavzw.util.Filter;
 import org.betavzw.util.Mail;
@@ -81,14 +80,14 @@ public class VerlofAanvraagIO implements Serializable {
 									"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
 			return View.VERLOFAANVRAAG;
 		}
-		// if (isGenoegVerlofdagen()) {
-		// facesContext
-		// .addMessage(
-		// "",
-		// new FacesMessage(
-		// "Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
-		// return View.VERLOFAANVRAGEN;
-		// } else {
+		if (isGenoegVerlofdagen()) {
+			facesContext
+					.addMessage(
+							"",
+							new FacesMessage(
+									"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
+			return View.VERLOFAANVRAAG;
+		}
 		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
 		verlofAanvraag.setStartDatum(startDatum.toInstant()
 				.atZone(ZoneId.systemDefault()).toLocalDate());
@@ -116,7 +115,6 @@ public class VerlofAanvraagIO implements Serializable {
 									"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
 		}
 		return View.VERSTUURD;
-		// }
 	}
 
 	/**
@@ -166,8 +164,6 @@ public class VerlofAanvraagIO implements Serializable {
 		return overlaps;
 	}
 
-	// public boolean isOverlappend()
-
 	/**
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
 	 * Deze werkt mogelijk nog niet
@@ -180,9 +176,12 @@ public class VerlofAanvraagIO implements Serializable {
 		Period periode = Period.between(start, eind);
 		int aanvraagdagen = periode.getYears() * 365 + periode.getMonths() * 30
 				+ periode.getDays();
-		if (aanvraagdagen > (jaarbean.getSingle(new Filter(
+		int verlofdagen = jaarbean.getSingle(new Filter(
 				"werknemer.personeelNr", String.valueOf(loginbean
-						.getWerknemer().getPersoneelsNr()))).getAantalDagen())) {
+						.getWerknemer().getPersoneelsNr()))).getAantalDagen();
+		System.out.println("aanvraagdagen: "+aanvraagdagen);
+		System.out.println("verlofdagen: "+verlofdagen);
+		if (aanvraagdagen > verlofdagen) {
 			return false;
 		}
 		return true;

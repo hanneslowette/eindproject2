@@ -45,7 +45,7 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Cancellen</f:facet>
-								<c:if test="#{verlofAanvraagOverzicht.toonCancel(tmp.nummer)}">
+								<c:if test="#{verlofAanvraagOverzicht.toonCancelTeamverantwoordelijke(tmp.werknemer.personeelsNr)}">
 									<h:commandButton value="Cancel"
 										action="#{verlofAanvraagOverzicht.cancel(tmp.id)}">
 									</h:commandButton>

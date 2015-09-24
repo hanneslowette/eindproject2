@@ -67,27 +67,20 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
 		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
 				.getWerknemer().getTeam().getId()));
-		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
-				.hasNext();) {
-			Werknemer werknemer = iterator.next();
-			verlofAanvragen = verlofAanvraag_bean.get(new Filter(
-					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		for (Werknemer werknemer : werknemers) {
+			verlofAanvragen.addAll(werknemer.getVerlofAanvragen());
 		}
 		return verlofAanvragen;
 	}
 
 	public void setVerlofAanvragenTeamverantwoordelijke() {
 		List<Werknemer> werknemers = new ArrayList<Werknemer>();
-		List<VerlofAanvraag> verlofAanvragenTeam = new ArrayList<VerlofAanvraag>();
 		werknemers = werknemer_bean.get(new Filter("team.id", loginbean
 				.getWerknemer().getTeam().getId()));
-		for (Iterator<Werknemer> iterator = werknemers.iterator(); iterator
-				.hasNext();) {
-			Werknemer werknemer = iterator.next();
-			verlofAanvragenTeam = verlofAanvraag_bean.get(new Filter(
-					"werknemer.personeelsNr", werknemer.getPersoneelsNr()));
+		for (Werknemer werknemer : werknemers) {
+			verlofAanvragen.addAll(werknemer.getVerlofAanvragen());
 		}
-		this.verlofAanvragen = verlofAanvragenTeam;
+		this.verlofAanvragen = verlofAanvragen;
 	}
 
 	public List<VerlofAanvraag> getVerlofAanvragenHR() {
@@ -161,16 +154,42 @@ public class VerlofAanvraagOverzichtIO implements Serializable {
 	/**
 	 * Toont cancel-knop
 	 */
-	public boolean toonCancel(String nummer) {
+	public boolean toonCancelTeamverantwoordelijke(String nummer) {
 		boolean cancel = false;
-		for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator(); iterator
-				.hasNext();) {
-			VerlofAanvraag verlofAanvraag = iterator.next();
-			if (loginbean.getWerknemer().getPersoneelsNr() == verlofAanvraag
-					.getWerknemer().getPersoneelsNr()) {
-				cancel = true;
-			}
+		if (loginbean.getWerknemer().getPersoneelsNr() == Integer
+				.parseInt(nummer)) {
+			cancel = true;
 		}
+
+		// for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator();
+		// iterator
+		// .hasNext();) {
+		// VerlofAanvraag verlofAanvraag = iterator.next();
+		// if (loginbean.getWerknemer().getPersoneelsNr() == verlofAanvraag
+		// .getWerknemer().getPersoneelsNr()) {
+		// cancel = true;
+		// }
+		// }
 		return cancel;
 	}
+
+	public boolean toonCancelHR(String nummer) {
+		boolean cancel = false;
+		if (loginbean.getWerknemer().getPersoneelsNr() == Integer
+				.parseInt(nummer)) {
+			cancel = true;
+		}
+
+		// for (Iterator<VerlofAanvraag> iterator = verlofAanvragen.iterator();
+		// iterator
+		// .hasNext();) {
+		// VerlofAanvraag verlofAanvraag = iterator.next();
+		// if (loginbean.getWerknemer().getPersoneelsNr() == verlofAanvraag
+		// .getWerknemer().getPersoneelsNr()) {
+		// cancel = true;
+		// }
+		// }
+		return cancel;
+	}
+
 }

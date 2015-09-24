@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,7 @@ import org.betavzw.util.exceptions.GeboortedatumInDeToekomstException;
 import org.betavzw.view.View;
 import org.betavzw.view.bean.Bean;
 import org.betavzw.view.bean.LoginBean;
+import org.betavzw.view.bean.WerknemerBean;
 
 @Named("verlofAanvraag")
 @SessionScoped
@@ -39,6 +41,8 @@ public class VerlofAanvraagIO implements Serializable {
 	private Bean<VerlofAanvraag> verlofAanvraag_bean;
 	@Inject
 	private LoginBean loginbean;
+	@Inject
+	private WerknemerBean werknemerbean;
 
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Veld startdatum moet ingevuld zijn")
@@ -47,6 +51,7 @@ public class VerlofAanvraagIO implements Serializable {
 	@NotNull(message = "Veld einddatum moet ingevuld zijn")
 	private Date eindDatum;
 	private LocalDate aanvraagDatum = LocalDate.now();
+	private FacesContext facesContext = FacesContext.getCurrentInstance();
 
 	public VerlofAanvraagIO() {
 		super();
@@ -59,7 +64,6 @@ public class VerlofAanvraagIO implements Serializable {
 	 * @throws GeboortedatumInDeToekomstException
 	 */
 	public String verstuur() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
 		if (eindDatum.before(startDatum)) {
 			facesContext.addMessage("", new FacesMessage(
 					"De startdatum moet voor de einddatum liggen"));
@@ -78,12 +82,17 @@ public class VerlofAanvraagIO implements Serializable {
 									"De verlofaanvraag mag niet overlappen met een andere geannuleerde of afgekeurde verlofaanvraag"));
 			return View.VERLOFAANVRAAG;
 		}
-		if (isGenoegVerlofdagen()) {
+		if (!isGenoegVerlofdagen()) {
 			facesContext
 					.addMessage(
 							"",
 							new FacesMessage(
-									"Er zijn niet genoeg verlofdagen om nog een verlofaanvraag te kunnen maken"));
+									"U heeft niet genoeg verlofdagen om deze verlofaanvraag te kunnen maken"));
+			return View.VERLOFAANVRAAG;
+		}
+		if (teveeldagenpending()) {
+			facesContext.addMessage("", new FacesMessage(
+					"U heeft te veel dagen pending"));
 			return View.VERLOFAANVRAAG;
 		}
 		VerlofAanvraag verlofAanvraag = new VerlofAanvraag();
@@ -112,6 +121,7 @@ public class VerlofAanvraagIO implements Serializable {
 							new FacesMessage(
 									"Mail versturen mislukt maar verlofaanvraag is aangekomen"));
 		}
+		werknemerbean.update(loginbean.getWerknemer());
 		return View.VERSTUURD;
 	}
 
@@ -166,20 +176,17 @@ public class VerlofAanvraagIO implements Serializable {
 	 * functie die true weergeeft als de werknemer nog genoeg verlofdagen heeft
 	 * Deze werkt mogelijk nog niet
 	 */
-	@SuppressWarnings("deprecation")
 	public boolean isGenoegVerlofdagen() {
 		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
 		LocalDate eind = eindDatum.toInstant().atZone(ZoneId.systemDefault())
 				.toLocalDate();
 		Period periode = Period.between(start, eind);
-		int aanvraagdagen = periode.getYears() * 365 + periode.getMonths() * 30
-				+ periode.getDays();
+		long aanvraagdagen = periode.get(ChronoUnit.DAYS);
 		int verlofdagen = 0;
 		for (JaarlijksVerlof jaar : loginbean.getWerknemer()
 				.getJaarlijkseVerloven()) {
-			if (jaar.getJaar() == startDatum.getYear()) {
-				System.out.println("jaar: "+startDatum.getYear());
+			if (jaar.getJaar() == start.getYear()) {
 				verlofdagen += jaar.getAantalDagen();
 			}
 		}
@@ -189,6 +196,45 @@ public class VerlofAanvraagIO implements Serializable {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * functie die true terug geeft wanneer er teveel dagen pending zijn om deze
+	 * verlofaanvraag in te dienen (als verlofdagen pending + nieuwe aanvraag
+	 * een groter aantal is dan het toegelaten aantal verlofdagen dat jaar)
+	 * 
+	 * @return
+	 */
+	public boolean teveeldagenpending() {
+		LocalDate start = startDatum.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		LocalDate eind = eindDatum.toInstant().atZone(ZoneId.systemDefault())
+				.toLocalDate();
+		int verlofdagen = 0;
+		for (JaarlijksVerlof jaar : loginbean.getWerknemer()
+				.getJaarlijkseVerloven()) {
+			if (jaar.getJaar() == start.getYear()) {
+				verlofdagen += jaar.getAantalDagen();
+			}
+		}
+		Period periode = Period.between(start, eind);
+		long aanvraagdagen = periode.get(ChronoUnit.DAYS);
+		int pendingdagen = 0;
+		for (VerlofAanvraag aanvraag : loginbean.getWerknemer()
+				.getVerlofAanvragen()) {
+			if (aanvraag.getToestand().equals(Toestand.PENDING)) {
+				System.out.println("PENDING");
+				periode = Period.between(aanvraag.getStartDatum(),
+						aanvraag.getEindDatum());
+				System.out.println(periode.get(ChronoUnit.DAYS));
+				pendingdagen += periode.get(ChronoUnit.DAYS);
+			}
+		}
+		System.out.println("pendingdagen: " + pendingdagen);
+		if (aanvraagdagen + pendingdagen > verlofdagen) {
+			return true;
+		}
+		return false;
 	}
 
 	public LocalDate getAanvraagDatum() {

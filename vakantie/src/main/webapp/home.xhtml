@@ -63,6 +63,8 @@
 					</c:when>
 					<c:otherwise>
 						<h:outputText value="U bent ingelogd als #{login_view.username}" />
+						<h:commandButton styleClass="buttonStyle" value="Log uit"
+							action="#{login_view.uitloggen2}" immediate="true" />
 						<h:commandButton styleClass="buttonStyle"
 							value="Verander gebruiker" action="login" />
 					</c:otherwise>
